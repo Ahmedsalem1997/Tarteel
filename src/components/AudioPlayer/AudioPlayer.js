@@ -7,6 +7,7 @@ const AudioPlayer = ({ url }) => {
 
     useEffect(() => {
         // Check if wavesurfer object is already created.
+        console.log('hellllooooo');
         if (!waveform.current) {
             // Create a wavesurfer object
             // More info about options here https://wavesurfer-js.org/docs/options.html
@@ -27,6 +28,7 @@ const AudioPlayer = ({ url }) => {
                   3. Load the audio using wavesurfer's loadBlob API
            */
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const toggleAudio = () => {
