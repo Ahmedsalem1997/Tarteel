@@ -8,19 +8,19 @@ const Footer = () => {
                     <div className="footer-start-links-col">
                         <p className="footer-start-links-col-header">شركة</p>
                         <ul>
-                            <li><Link>معلومات عنا</Link></li>
-                            <li><Link>مركز المساعدة</Link></li>
-                            <li><Link>سياسة خاصة</Link></li>
-                            <li><Link>كن شريكا</Link></li>
+                            <li><Link to='/'>معلومات عنا</Link></li>
+                            <li><Link to='/'>مركز المساعدة</Link></li>
+                            <li><Link to='/'>سياسة خاصة</Link></li>
+                            <li><Link to='/'>كن شريكا</Link></li>
                         </ul>
                     </div>
                     <div className="footer-start-links-col">
                         <p className="footer-start-links-col-header">رابط سريع</p>
                         <ul>
-                            <li><Link>معلومات عنا</Link></li>
-                            <li><Link>مركز المساعدة</Link></li>
-                            <li><Link>سياسة خاصة</Link></li>
-                            <li><Link>كن شريكا</Link></li>
+                            <li><Link to='/'>معلومات عنا</Link></li>
+                            <li><Link to='/'>مركز المساعدة</Link></li>
+                            <li><Link to='/'>سياسة خاصة</Link></li>
+                            <li><Link to='/'>كن شريكا</Link></li>
                         </ul>
                     </div>
                     <div className="footer-start-links-col">
