@@ -34,9 +34,9 @@ const Footer = () => {
                 <div className="footer-start-support">
                     <p>مدعوم من</p>
                     <div className="footer-start-support-logos">
-                        <i class="fa-brands fa-spotify"></i>
-                        <i class="fa-brands fa-apple"></i>
-                        <i class="fa-brands fa-itunes"></i>
+                        <i className="fa-brands fa-spotify"></i>
+                        <i className="fa-brands fa-apple"></i>
+                        <i className="fa-brands fa-itunes"></i>
                     </div>
                 </div>
             </div>
@@ -46,9 +46,9 @@ const Footer = () => {
                 </div>
                 <div className="footer-end-social">
                     <div className="footer-end-social-logos">
-                        <i class="fa-brands fa-facebook-f"></i>
-                        <i class="fa-brands fa-twitter"></i>
-                        <i class="fa-brands fa-youtube"></i>
+                        <i className="fa-brands fa-facebook-f"></i>
+                        <i className="fa-brands fa-twitter"></i>
+                        <i className="fa-brands fa-youtube"></i>
                     </div>
                     <p>Copyright 2022 By Tartel</p>
                 </div>
