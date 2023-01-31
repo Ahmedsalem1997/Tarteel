@@ -1,0 +1,22 @@
+.audio-player {
+    display: flex;
+    width: 100%;
+    background-color: $main-color;
+    padding: .8rem 1.5rem;
+    column-gap: 1.5rem;
+    border-radius: 1.3rem;
+    &-btn {
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #75b10e;
+        color: $white;
+        font-size: 1.5rem;
+    }
+}
+
+[id^="waveform-"] {
+    width: 100%;
+    height: 50px;
+}
