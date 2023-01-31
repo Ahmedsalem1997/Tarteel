@@ -1,94 +1,66 @@
-*{
-  box-sizing: border-box;
+.carousel-item img {
+  height: 90vh;
 }
-.Carousel-Item {
-  width: 1920px;
-  height: 949px;
-  position: relative;
-   
-}
-.Carousel-Item img {
-  height: 100%;
-}
-.carousel-caption {
-  bottom: 0px !important;
-  right: 0px !important;
-  left: 0px !important;
-}
-.carousel-caption h2 {
-  width: 544px;
-  height: 42px;
-  margin: 55.4% 5.3% 40.2% 66.4%;
-  font-family: Tajawal;
-  font-size: 40px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #fff;
-}
-.Rectangle-1408 {
-  width: 151px;
-  height: 35px;
-  margin: 25px 99px 40px 129px;
-  padding: 3px 20px 11px 15px;
-  border-radius: 2px;
-  background-color: #69a404;
-}
-.btn {
-  width: 116px;
-  height: 21px;
-  font-family: STCForward;
-  font-size: 17px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff !important;
-  vertical-align: text-top !important;
-  --bs-btn-padding-x: 0rem !important;
+.carousel-content {
+  position: absolute;
+  left: 101px;
+  right: 101px;
+  bottom: 76px;
+  h2 {
+    font-size: 2.85rem;
+    font-weight: bold;
+    margin-bottom: 1.8rem;
+  }
+  .register-now-btn {
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: $main-color;
+    padding: 0.5rem 1.5rem;
+    color: $white;
+    border-radius: 0.3rem;
+  }
+  .links {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 3rem;
+    li {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #707070;
+      font-size: 1.5rem;
+      &.active{
+        border-bottom: 2px solid $main-color;
+        a{
+          color:$main-color ;
+        }
+      }
+      a {
+        text-decoration: none;
+        color: $white;
+      }
+    }
+  }
 }
 .carousel-indicators {
-  justify-content: end !important;
+  position: static;
+  justify-content: flex-start;
+  margin: 3rem 0 1.8rem 0;
+  button[data-bs-target] {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+  }
 }
-
-.carousel-control-next {
-  display: none !important;
-}
-.carousel-control-prev {
-  display: none !important;
-}
-.Rectangle-1407{
-  
-  width: 1725px;
-  height: 64px;
-  margin: 40px 89px 0 106px;
-  padding: 15px 17px 14px 29px;
-  background-image: linear-gradient(to right, #192606 -2%, #395709 102%);
-  color: #fff;
-}
-.Rectangle-1414 {
-  width: 151px;
-  height: 35px;
-  margin: 0 1054px 0 0;
-  padding: 7px 35px 8px 32px;
-  border-radius: 2px;
-  background-color: #69a404;
-}
-.\- {
-  width: 84px;
-  height: 20px;
-  font-family: Tajawal;
-  font-size: 17px;
+.register-bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to left, #192606 -2%, #395709 102%);
+  padding: 1rem 2rem;
+  p{
+    font-size: 2rem;
   font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
+  margin: 0;
+  }
+  
 }
-
