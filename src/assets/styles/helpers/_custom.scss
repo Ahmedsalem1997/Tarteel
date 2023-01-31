@@ -8,8 +8,14 @@ body {
 }
 * {
     box-sizing: border-box;
+    font-family: $main-font-family;
+    margin: 0;
 }
 
 html {
     font-size: 14px;
+}
+
+button {
+    cursor: pointer;
 }

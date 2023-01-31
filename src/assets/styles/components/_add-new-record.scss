@@ -1,0 +1,53 @@
+.add-new-record {
+    &-input {
+        margin-bottom: 2.7rem;
+        label {
+            display: block;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        select {
+            width: 100%;
+            height: 61.6px;
+            padding: .5rem 1rem;
+            font-size: 1.92rem;
+            color: $main-color;
+            border: none;
+            outline: none;
+            box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.06);
+            &[class^="aya-"] {
+                width: 40%;
+            }
+        }
+        span {
+            display: inline-block;
+            width: 20%;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+    }
+    button {
+        background-color: $main-color;
+        font-size: 1.8rem;
+        padding: 1.3rem 2.7rem;
+        color: $white;
+        &+button {
+            margin-inline-start: 2rem;
+        }
+    }
+    &-actions {
+        margin-top: 10rem;
+        button {
+            width: 227px;
+            padding: 1rem;
+            &:nth-child(1) {
+                background-color: $white;
+                color: $main-color;
+            }
+            &:nth-child(2) {
+                background-color: #7c7c7c;
+                color: $white;
+            }
+        }
+    }
+}

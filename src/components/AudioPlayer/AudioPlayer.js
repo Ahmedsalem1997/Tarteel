@@ -1,25 +1,27 @@
 import Wavesurfer from "wavesurfer.js";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const AudioPlayer = ({ url }) => {
+const AudioPlayer = (props) => {
     const waveform = useRef(null);
     const audio = require('../../assets/audios/test.mp3');
+    const [isPlaying, setIsPlaying] = useState(false);
 
     useEffect(() => {
         // Check if wavesurfer object is already created.
-        console.log('hellllooooo');
         if (!waveform.current) {
             // Create a wavesurfer object
             // More info about options here https://wavesurfer-js.org/docs/options.html
             waveform.current = Wavesurfer.create({
-                container: "#waveform",
-                waveColor: "#567FFF",
-                barGap: 2,
-                barWidth: 2,
-                barRadius: 2,
-                cursorWidth: 1,
-                cursorColor: "#567FFF",
+                container: `#waveform-${props.id}`,
+                waveColor: "#75b10e",
+                barGap: 1,
+                barWidth: 1,
+                barRadius: 1,
+                cursorWidth: 0,
+                height: 50,
+                // cursorColor: "#75b10e",
             });
+            console.log(waveform.current);
             // Load audio from a remote url.
             waveform.current.load(audio);
             /* To load a local audio file
@@ -28,7 +30,7 @@ const AudioPlayer = ({ url }) => {
                   3. Load the audio using wavesurfer's loadBlob API
            */
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const toggleAudio = () => {
@@ -38,15 +40,18 @@ const AudioPlayer = ({ url }) => {
         // } else {
         //     waveform.current.play();
         // }
-            waveform.current.playPause();
+        waveform.current.playPause();
+        setIsPlaying((prev) => {
+            return prev = !prev;
+        })
     };
 
     return (
-        <div>
-            <div id="waveform" ></div>
-            <button onClick={toggleAudio}>
-                Play / Pause
+        <div className="audio-player">
+            <button className="audio-player-btn" onClick={toggleAudio}>
+                <i className={`fa-solid ${isPlaying ? 'fa-pause' : 'fa-play'}`}></i>
             </button>
+            <div id={`waveform-${props.id}`} />
         </div>
 
     );
