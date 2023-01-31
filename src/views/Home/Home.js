@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import Carousel from "../../components/Carousel/Carousel";
+import Footer from "../../components/Footer/Footer";
 import HomeSection from "../../components/HomeSection/HomeSection";
 import HomeSubscribe from "../../components/HomeSubscribe/HomeSubscribe";
 import IslamicContentHome from "../../components/IslamicContentHome/IslamicContentHome";
@@ -24,6 +25,8 @@ const Home = () => {
             </HomeSection>
 
             <HomeSubscribe />
+
+            <Footer />
         </Fragment>
     )
 }

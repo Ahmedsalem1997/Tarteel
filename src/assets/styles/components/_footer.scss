@@ -1,0 +1,86 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem;
+
+    &-start {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        &-links {
+            display: flex;
+            justify-content: space-between;
+            min-width: 500px;
+
+            &-col {
+                &-header {
+                    font-size: 1.85rem;
+                    font-weight: 600;
+                    margin-bottom: 1.4rem;
+                    text-align: center;
+                }
+
+                ul {
+                    list-style-type: none;
+                    padding: 0;
+
+                    li {
+                        margin-bottom: .7rem;
+                        text-align: center;
+                        color: $main-color;
+
+                        a {
+                            color: $main-color;
+                            text-decoration: none;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    ul {
+                        font-size: 21px;
+                    }
+                }
+            }
+        }
+
+        &-support {
+            p {
+                font-size: 1.28rem;
+                color: $main-color;
+                font-weight: 600;
+                margin-bottom: .6rem;
+            }
+            &-logos {
+                display: flex;
+                justify-content: space-between;
+                font-size: 1.5rem;
+            }
+        }
+
+    }
+    &-end {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        &-logo {
+            font-size: 4.4rem;
+        }
+        &-social {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            &-logos {
+                display: flex;
+                justify-content: space-between;
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            p {
+                font-size: .8rem;
+                color: $main-color;
+            }
+        }
+    }
+}
