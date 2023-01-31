@@ -1,0 +1,94 @@
+*{
+  box-sizing: border-box;
+}
+.Carousel-Item {
+  width: 1920px;
+  height: 949px;
+  position: relative;
+   
+}
+.Carousel-Item img {
+  height: 100%;
+}
+.carousel-caption {
+  bottom: 0px !important;
+  right: 0px !important;
+  left: 0px !important;
+}
+.carousel-caption h2 {
+  width: 544px;
+  height: 42px;
+  margin: 55.4% 5.3% 40.2% 66.4%;
+  font-family: Tajawal;
+  font-size: 40px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #fff;
+}
+.Rectangle-1408 {
+  width: 151px;
+  height: 35px;
+  margin: 25px 99px 40px 129px;
+  padding: 3px 20px 11px 15px;
+  border-radius: 2px;
+  background-color: #69a404;
+}
+.btn {
+  width: 116px;
+  height: 21px;
+  font-family: STCForward;
+  font-size: 17px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fff !important;
+  vertical-align: text-top !important;
+  --bs-btn-padding-x: 0rem !important;
+}
+.carousel-indicators {
+  justify-content: end !important;
+}
+
+.carousel-control-next {
+  display: none !important;
+}
+.carousel-control-prev {
+  display: none !important;
+}
+.Rectangle-1407{
+  
+  width: 1725px;
+  height: 64px;
+  margin: 40px 89px 0 106px;
+  padding: 15px 17px 14px 29px;
+  background-image: linear-gradient(to right, #192606 -2%, #395709 102%);
+  color: #fff;
+}
+.Rectangle-1414 {
+  width: 151px;
+  height: 35px;
+  margin: 0 1054px 0 0;
+  padding: 7px 35px 8px 32px;
+  border-radius: 2px;
+  background-color: #69a404;
+}
+.\- {
+  width: 84px;
+  height: 20px;
+  font-family: Tajawal;
+  font-size: 17px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fff;
+}
+
