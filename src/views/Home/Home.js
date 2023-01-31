@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import Carousel from "../../components/Carousel/Carousel";
 import Footer from "../../components/Footer/Footer";
 import HomeSection from "../../components/HomeSection/HomeSection";
