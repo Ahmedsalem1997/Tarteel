@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Carousel from "../../components/Carousel/Carousel";
 import HomeSection from "../../components/HomeSection/HomeSection";
+import HomeSubscribe from "../../components/HomeSubscribe/HomeSubscribe";
 import Records from "../../components/Records/Records";
 import ExsitingRecord from "../../components/SingleRecordCard/ExsitingRecord/ExsitingRecord";
 import NewRecord from "../../components/SingleRecordCard/NewRecord/NewRecord";
@@ -38,6 +39,7 @@ const Home = () => {
                     <ExsitingRecord btn={true} img={img} name="اسم التسجيل"></ExsitingRecord>
                 </div>
             </HomeSection>
+            <HomeSubscribe />
         </Fragment>
     )
 }
