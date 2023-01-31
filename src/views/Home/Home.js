@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Carousel from "../../components/Carousel/Carousel";
 import HomeSection from "../../components/HomeSection/HomeSection";
 import Records from "../../components/Records/Records";
 import ExsitingRecord from "../../components/SingleRecordCard/ExsitingRecord/ExsitingRecord";
@@ -8,6 +9,7 @@ const Home = () => {
     const img = require('../../assets/images/record.jpg');
     return (
         <Fragment>
+            <Carousel></Carousel>
             <HomeSection header="تسجيلاتي" showAll="records">
                 <div className="home-section-content">
                     <NewRecord />
