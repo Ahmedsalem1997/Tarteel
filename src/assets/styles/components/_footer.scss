@@ -65,7 +65,9 @@
         align-items: center;
         justify-content: space-between;
         &-logo {
-            font-size: 4.4rem;
+            h2 {
+                font-size: 4.4rem;
+            }
         }
         &-social {
             display: flex;
