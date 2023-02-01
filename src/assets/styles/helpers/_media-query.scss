@@ -1,17 +1,20 @@
-// Footer 
-
 @media screen and (max-width: 768px) {
     body {
-    font-size: 12px;  
+        font-size: 12px;
     }
+
+    // Footer 
     .footer {
         flex-direction: column;
         row-gap: 3em;
+
         &-start {
             align-items: center;
+
             &-links {
                 flex-direction: column;
                 row-gap: 3em;
+
                 &-col {
                     ul {
                         font-size: 1.5em;
@@ -19,14 +22,55 @@
                 }
             }
         }
+
         &-end {
             row-gap: 2em;
         }
     }
+
+
+
 }
 
 @media screen and (max-width: 567px) {
     body {
         font-size: 10px;
+    }
+
+    // Home Subscribe
+    .home-subscribe {
+
+        &-input-group {
+            flex-direction: column;
+            row-gap: 1em;
+        }
+
+        &-input {
+            width: 100%;
+        }
+
+        &-send-btn {
+            margin: 0;
+            width: 100%;
+        }
+    }
+
+    // Carousel
+    .carousel {
+        &-item {
+            &:not(:first-child) {
+                display: none;
+            }
+        }
+        &-content {
+            left: 1.9em;
+            right: 1.9em;
+        }
+        &-indicators {
+            display: none;
+        }
+        .register-bar {
+            display: none;
+        }
     }
 }

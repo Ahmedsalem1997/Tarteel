@@ -1,45 +1,56 @@
-.carousel-item img {
-  height: 90vh;
-}
-.carousel-content {
-  position: absolute;
-  left: 101px;
-  right: 101px;
-  bottom: 76px;
-  h2 {
-    font-size: 2.85em;
-    font-weight: bold;
-    margin-bottom: 1.8em;
+.carousel {
+  &-item {
+    img {
+      height: 90vh;
+    }
   }
-  .register-now-btn {
-    font-size: 1.2em;
-    font-weight: 600;
-    background-color: $main-color;
-    padding: 0.5em 1.5em;
-    color: $white;
-    border-radius: 0.3em;
+
+  &-content {
+    position: absolute;
+    left: 5em;
+    right: 5em;
+    bottom: 5.4em;
+
+    h2 {
+      font-size: 2.85em;
+      font-weight: bold;
+      margin-bottom: 1.8em;
+    }
+
+    .register-now-btn {
+      font-size: 1.2em;
+      font-weight: 600;
+      background-color: $main-color;
+      padding: 0.5em 1.5em;
+      color: $white;
+      border-radius: 0.3em;
+    }
+
+    .register-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to left, #192606 -2%, #395709 102%);
+      padding: 1em 2em;
+
+      p {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin: 0;
+      }
+
+    }
   }
-}
-.carousel-indicators {
-  position: static;
-  justify-content: flex-start;
-  margin: 3em 0 1.8em 0;
-  button[data-bs-target] {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
+
+  &-indicators {
+    position: static;
+    justify-content: flex-start;
+    margin: 3em 0 1.8em 0;
+
+    button[data-bs-target] {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+    }
   }
-}
-.register-bar{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(to left, #192606 -2%, #395709 102%);
-  padding: 1em 2em;
-  p{
-    font-size: 2em;
-  font-weight: bold;
-  margin: 0;
-  }
-  
 }
