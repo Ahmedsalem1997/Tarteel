@@ -1,8 +1,8 @@
 .single-record-card {
-    width: 258px;
-    min-width: 258px;
-    height: 338px;
-    border-radius: 17px;
+    width: 18.5em;
+    min-width: 18.5em;
+    height: 24em;
+    border-radius: 1.25em;
     border: solid 1px $singleRecordCardBorder;
     position: relative;
     overflow: hidden;
@@ -19,7 +19,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        height: 142px;
+        height: 10em;
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .97) 40%, #000);
         display: flex;
         justify-content: flex-end;
@@ -33,7 +33,7 @@
             align-items: center;
             height: 60%;
             text-align: center;
-            padding: 0 15px;
+            padding: 0 1em;
         }
     }
 }
