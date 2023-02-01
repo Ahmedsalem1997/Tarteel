@@ -9,7 +9,8 @@ import Records from "../../components/Records/Records";
 
 const Home = () => {
     return (
-        <Fragment>
+        <div className="container">
+            <Fragment>
             <Carousel />
 
             <HomeSection header="تسجيلاتي" showAll="records">
@@ -28,6 +29,8 @@ const Home = () => {
 
             <Footer />
         </Fragment>
+        </div>
+        
     )
 }
 
