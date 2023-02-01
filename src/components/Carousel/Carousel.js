@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 // import { useState } from "react";
-const Carouselc = () => {
+const Carousel = () => {
   const img1 = require("../../assets/images/Group 3753.webp");
   const img2 = require("../../assets/images/Group 3753@2x.webp");
   const img3 = require("../../assets/images/Group 3753@3x.webp");
@@ -44,4 +44,4 @@ const Carouselc = () => {
   )
 };
 
-export default Carouselc;
+export default Carousel;
