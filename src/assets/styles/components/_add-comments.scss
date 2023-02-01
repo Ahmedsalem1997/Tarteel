@@ -1,0 +1,15 @@
+.add-comment{
+  margin-inline-start: 3em;
+  margin-top: 2em;
+
+  textarea {
+    font-size: 1.2em;
+    background-color: rgba(244, 244, 244, 0.1019607843);
+    border-radius: 1em;
+    color: #efefef;
+    padding: 2em;
+    border: none;
+    width: 100%;
+    resize: none;
+  }
+}

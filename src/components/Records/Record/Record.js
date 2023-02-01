@@ -1,4 +1,5 @@
 import AudioPlayer from "./../../AudioPlayer/AudioPlayer";
+import Comments from "./../../Comments/Comments";
 
 const Record = () => {
   const img = require("../../../assets/images/personal.png");
@@ -32,6 +33,9 @@ const Record = () => {
             <i className="fa-solid fa-arrow-up-from-bracket"></i>
           </span>
         </div>
+      </div>
+      <div className="post-comments">
+        <Comments />
       </div>
     </div>
   );
