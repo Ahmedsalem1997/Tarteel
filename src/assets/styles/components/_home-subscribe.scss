@@ -1,13 +1,13 @@
 .home-subscribe {
-    padding: 6.5em 2em;
+    padding: 6.5rem 2rem;
     background-color: #333;;
     display: flex;
     flex-direction: column;
     align-items: center;
     &-text {
-        font-size: 2.85em;
+        font-size: 2.85rem;
         margin: 0;
-        margin-bottom: 2em;
+        margin-bottom: 2rem;
     }
     &-input-group {
         display: flex;
@@ -16,20 +16,20 @@
     }
     &-input {
         height: 50px;
-        border-radius: .85em;
+        border-radius: .85rem;
         font-size: 20px;
         border: none;
         outline: none;
-        padding: .25em 1em;
+        padding: .25rem 1rem;
         width: 470px;
     }
     &-send-btn {
         background-color: $main-color;
-        font-size: 2em;
-        border-radius: .715em;
+        font-size: 2rem;
+        border-radius: .715rem;
         margin-inline-start: -40px;
         color: $white;
         height: 50px;
-        padding: .25em 2.85em;
+        padding: .25rem 2.85rem;
     }
 }
