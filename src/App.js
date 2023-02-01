@@ -1,15 +1,17 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './views/Home/Home';
 import Islamic from './views/Islamic/Islamic';
-import MyRecords from './views/MyRecords/MyRecords';
+import Profile from './views/Profile/Profile';
+import Quran from './views/Quran/Quran';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="records" element={<MyRecords/>} />
+        <Route path="profile" element={<Profile/>} />
         <Route path="islamic" element={<Islamic/>} />
+        <Route path="quran" element={<Quran/>} />
       </Routes>
     </BrowserRouter>
   );
