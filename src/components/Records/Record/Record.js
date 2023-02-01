@@ -28,7 +28,7 @@ const Record = () => {
           <i className="fa-regular fa-comment"></i>
         </span>
         <div>
-          <span className="personal-icon">
+          <span className="post-feedback-share">
             <i className="fa-solid fa-arrow-up-from-bracket"></i>
           </span>
         </div>

@@ -2,7 +2,7 @@
 
 @media screen and (max-width: 768px) {
     body {
-    font-size: 10px;  
+    font-size: 12px;  
     }
     .footer {
         flex-direction: column;
@@ -12,7 +12,21 @@
             &-links {
                 flex-direction: column;
                 row-gap: 3em;
+                &-col {
+                    ul {
+                        font-size: 1.5em;
+                    }
+                }
             }
         }
+        &-end {
+            row-gap: 2em;
+        }
+    }
+}
+
+@media screen and (max-width: 567px) {
+    body {
+        font-size: 10px;
     }
 }
