@@ -1,17 +1,17 @@
 .home-section {
-    margin-bottom: 10rem;
+    margin-bottom: 10em;
     &-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 2.85rem;
+        margin-bottom: 2.85em;
 
         &-title {
-            font-size: 2rem;
+            font-size: 2em;
         }
 
         &-action {
-            font-size: 1.5rem;
+            font-size: 1.5em;
             color: $text-color;
         }
     }
@@ -19,6 +19,6 @@
     &-content {
         display: flex;
         overflow-x: hidden;
-        column-gap: 2.5rem;
+        column-gap: 2.5em;
     }
 }

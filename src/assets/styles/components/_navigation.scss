@@ -2,11 +2,11 @@
     display: flex;
     list-style-type: none;
     padding: 0;
-    margin-bottom: 3rem;
+    margin-bottom: 3em;
     li {
-      padding: 1rem 1.5rem;
+      padding: 1em 1.5em;
       border-bottom: 1px solid #707070;
-      font-size: 1.5rem;
+      font-size: 1.5em;
       &.active{
         border-bottom: 2px solid $main-color;
         a{

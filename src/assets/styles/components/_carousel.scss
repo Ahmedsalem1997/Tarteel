@@ -7,23 +7,23 @@
   right: 101px;
   bottom: 76px;
   h2 {
-    font-size: 2.85rem;
+    font-size: 2.85em;
     font-weight: bold;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.8em;
   }
   .register-now-btn {
-    font-size: 1.2rem;
+    font-size: 1.2em;
     font-weight: 600;
     background-color: $main-color;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5em 1.5em;
     color: $white;
-    border-radius: 0.3rem;
+    border-radius: 0.3em;
   }
 }
 .carousel-indicators {
   position: static;
   justify-content: flex-start;
-  margin: 3rem 0 1.8rem 0;
+  margin: 3em 0 1.8em 0;
   button[data-bs-target] {
     width: 16px;
     height: 16px;
@@ -35,9 +35,9 @@
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(to left, #192606 -2%, #395709 102%);
-  padding: 1rem 2rem;
+  padding: 1em 2em;
   p{
-    font-size: 2rem;
+    font-size: 2em;
   font-weight: bold;
   margin: 0;
   }

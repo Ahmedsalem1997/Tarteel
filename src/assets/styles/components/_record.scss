@@ -1,13 +1,13 @@
 .post {
   background-color: #1a1918;
-  margin-bottom: 1rem;
-  padding: 1.5rem;
+  margin-bottom: 1em;
+  padding: 1.5em;
 
   &-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2em;
 
     &-user {
       display: flex;
@@ -25,11 +25,11 @@
       }
 
       &-name {
-        margin-inline-start: 1.25rem;
+        margin-inline-start: 1.25em;
         h3 {
-          font-size: 2rem;
+          font-size: 2em;
           font-weight: bold;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.5em;
         }
 
         p {
@@ -42,8 +42,8 @@
   }
 
   &-text {
-    margin: 1rem 0;
-    font-size: 1.6rem;
+    margin: 1em 0;
+    font-size: 1.6em;
     color: #676767;
   }
 
@@ -56,12 +56,12 @@
       align-items: center;
 
       p {
-        font-size: 1.2rem;
+        font-size: 1.2em;
         color: #646464;
-        margin-inline-end: 1rem;
+        margin-inline-end: 1em;
         margin-bottom: 0;
         &:not(:first-child) {
-          margin-inline-start: 7rem;
+          margin-inline-start: 7em;
         }
       }
     }
@@ -69,7 +69,7 @@
 
   i {
     color: $main-color;
-    font-size: 2.5rem;
+    font-size: 2.5em;
     cursor: pointer;
   }
 }
