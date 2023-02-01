@@ -48,7 +48,7 @@ const AudioPlayer = (props) => {
 
     return (
         <div className="audio-player">
-            <button className="audio-player-btn" onClick={toggleAudio}>
+            <button className="play-pause-btn" onClick={toggleAudio}>
                 <i className={`fa-solid ${isPlaying ? 'fa-pause' : 'fa-play'}`}></i>
             </button>
             <div id={`waveform-${props.id}`} />

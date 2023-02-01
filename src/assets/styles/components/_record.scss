@@ -1,0 +1,75 @@
+.post {
+  background-color: #1a1918;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    &-user {
+      display: flex;
+      align-items: center;
+
+      &-image {
+        width: 68px;
+        height: 68px;
+        background-color: $white;
+        border-radius: 50%;
+
+        img {
+          height: 100%;
+        }
+      }
+
+      &-name {
+        margin-inline-start: 1.25rem;
+        h3 {
+          font-size: 2rem;
+          font-weight: bold;
+          margin-bottom: 1.5rem;
+        }
+
+        p {
+          margin-bottom: 0;
+        }
+      }
+
+
+    }
+  }
+
+  &-text {
+    margin: 1rem 0;
+    font-size: 1.6rem;
+    color: #676767;
+  }
+
+  &-feedback {
+    display: flex;
+    justify-content: space-between;
+
+    &-likes-comments {
+      display: flex;
+      align-items: center;
+
+      p {
+        font-size: 1.2rem;
+        color: #646464;
+        margin-inline-end: 1rem;
+        margin-bottom: 0;
+        &:not(:first-child) {
+          margin-inline-start: 7rem;
+        }
+      }
+    }
+  }
+
+  i {
+    color: $main-color;
+    font-size: 2.5rem;
+    cursor: pointer;
+  }
+}
