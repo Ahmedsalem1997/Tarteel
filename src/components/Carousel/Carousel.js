@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
+import Navigation from "../Navigation/Navigation";
 
-// import { useState } from "react";
 const Carousel = () => {
   const img1 = require("../../assets/images/Group 3753.webp");
   const img2 = require("../../assets/images/Group 3753@2x.webp");
@@ -29,12 +28,7 @@ const Carousel = () => {
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
       
-        <ul className="links">
-          <li className="active"><Link to="/">الرئيسية</Link></li>
-          <li><Link to="/">تسجيلاتي</Link></li>
-          <li><Link to="/">محتوى إسلامي</Link></li>
-          <li><Link to="/">القرآن</Link></li>
-        </ul>
+        <Navigation />
       <div className="register-bar">
         <p>كلمات خاصة بالاشتراك وسعر الخدمة</p>
         <button className="register-now-btn">اشترك الان</button>

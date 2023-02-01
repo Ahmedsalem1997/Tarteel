@@ -1,0 +1,21 @@
+.navigation-links {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 3rem;
+    li {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #707070;
+      font-size: 1.5rem;
+      &.active{
+        border-bottom: 2px solid $main-color;
+        a{
+          color:$main-color ;
+        }
+      }
+      a {
+        text-decoration: none;
+        color: $white;
+      }
+    }
+  }
