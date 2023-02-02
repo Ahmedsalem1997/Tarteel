@@ -10,7 +10,7 @@ const Comment = () => {
             <img src={img} className="d-block" alt="..." />
           </div>
           <div className="comment-header-user-icon">
-            <i class="fa-solid fa-circle-check"></i>
+            <i className="fa-solid fa-circle-check"></i>
           </div>
           <div className="comment-header-user-name">
             <h3>احمد بن علي</h3>
