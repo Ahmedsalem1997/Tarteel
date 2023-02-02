@@ -5,7 +5,7 @@ const Navigation = () => {
         <ul className="navigation-links">
           <li className="active"><Link to="/">الرئيسية</Link></li>
           <li><Link to="/login">تسجيلاتي</Link></li>
-          <li><Link to="/">محتوى إسلامي</Link></li>
+          <li><Link to="/islamic">محتوى إسلامي</Link></li>
           <li><Link to="/">القرآن</Link></li>
         </ul>
     )
