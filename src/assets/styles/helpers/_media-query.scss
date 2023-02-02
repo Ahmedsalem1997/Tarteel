@@ -1,6 +1,6 @@
 @media screen and (max-width: 768px) {
     html {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     // Footer 
@@ -14,12 +14,6 @@
             &-links {
                 flex-direction: column;
                 row-gap: 3rem;
-
-                &-col {
-                    ul {
-                        font-size: 1.5rem;
-                    }
-                }
             }
         }
 
@@ -65,6 +59,9 @@
         &-content {
             left: 1.9rem;
             right: 1.9rem;
+            .register-now-btn {
+                margin-bottom: 1.8rem;
+            }
         }
         &-indicators {
             display: none;
