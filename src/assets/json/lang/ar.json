@@ -1,0 +1,20 @@
+{
+    "subscription.title": "كلمات خاصة بالاشتراك وسعر الخدمة",
+    "subscription.button": "اشترك الأن",
+    "myRecords.title": "تسجيلاتي",
+    "button.viewAll": "إظهار الكل",
+    "button.addComment": "إضافة تعليق",
+    "anotherTitle.title": "عنوان اخر",
+    "islamicContent.title": "المحتوى الإسلامي",
+    
+    "navigation": {
+        "home": "الرئيسية",
+        "myRecords": "تسجيلاتي",
+        "islamicContent": "المحتوى الإسلامي",
+        "quran": "القرآن"
+    },
+    "carousel": {
+        "title": "تعلم القرآن بالطريقة الصحيحة",
+        "button": "ابدأ تسجيلك الأن"
+    }
+}
