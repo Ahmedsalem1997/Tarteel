@@ -1,10 +1,14 @@
 import Wavesurfer from "wavesurfer.js";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from 'react-redux'
 
 const AudioPlayer = (props) => {
     const waveform = useRef(null);
     const audio = require('../../assets/audios/test.mp3');
     const [isPlaying, setIsPlaying] = useState(false);
+    const globalLang = useSelector(state => {
+        return state.globalLang;
+    });
 
     useEffect(() => {
         // Check if wavesurfer object is already created.
@@ -49,7 +53,7 @@ const AudioPlayer = (props) => {
     return (
         <div className="audio-player">
             <button className="play-pause-btn" onClick={toggleAudio}>
-                <i className={`fa-solid ${isPlaying ? 'fa-pause' : 'fa-play'}`}></i>
+                <i className={`fa-solid ${isPlaying ? 'fa-pause' : 'fa-play'} ${globalLang === 'ar'? 'fa-flip-horizontal': ''}`}></i>
             </button>
             <div id={`waveform-${props.id}`} />
         </div>
