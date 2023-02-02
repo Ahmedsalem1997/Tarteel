@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navigation = () => {
     return (
         <ul className="navigation-links">
-          <li className="active"><Link to="/">الرئيسية</Link></li>
-          <li><Link to="/login">تسجيلاتي</Link></li>
-          <li><Link to="/islamic">محتوى إسلامي</Link></li>
-          <li><Link to="/">القرآن</Link></li>
+          <li><NavLink to="/" activeClassName="active">الرئيسية</NavLink></li>
+          <li><NavLink to="/login" activeClassName="active">تسجيلاتي</NavLink></li>
+          <li><NavLink to="/islamic" activeClassName="active">محتوى إسلامي</NavLink></li>
+          <li><NavLink to="/quran" activeClassName="active">القرآن</NavLink></li>
         </ul>
     )
 }

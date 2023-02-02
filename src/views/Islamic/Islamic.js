@@ -1,10 +1,11 @@
-import { Fragment } from "react";
+// import { Fragment } from "react";
 import HomeSection from "../../components/HomeSection/HomeSection";
 import IslamicSubSection from "../../components/IsalmicSubSection/IslamicSubSection";
+import LayoutWrapper from "../../components/LayoutWrapper/LayoutWrapper";
 
 const Islamic = () => {
     return (
-        <Fragment>
+        <LayoutWrapper>
             <HomeSection header="المحتوى الاسلامي" showAll="/">
                 <IslamicSubSection />
             </HomeSection>
@@ -17,7 +18,7 @@ const Islamic = () => {
             <HomeSection header="المحتوى الاسلامي" showAll="/">
                 <IslamicSubSection />
             </HomeSection>
-        </Fragment>
+        </LayoutWrapper>
     )
 }
 

@@ -1,21 +1,23 @@
 .navigation-links {
-    display: flex;
-    list-style-type: none;
-    padding: 0;
-    margin-bottom: 3rem;
-    li {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 3rem;
+
+  li {
+
+    a {
+      display: inline-block;
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: $white;
       padding: 1rem 1.5rem;
       border-bottom: 1px solid #707070;
-      font-size: 1.5rem;
-      &.active{
+      &.active {
         border-bottom: 2px solid $main-color;
-        a{
-          color:$main-color ;
-        }
-      }
-      a {
-        text-decoration: none;
-        color: $white;
+        color: $main-color;
+        font-weight: 600;
       }
     }
   }
+}
