@@ -43,8 +43,8 @@ const Carousel = () => {
 
         <Navigation />
         <div className="register-bar">
-          <p>كلمات خاصة بالاشتراك وسعر الخدمة</p>
-          <button className="register-now-btn">اشترك الان</button>
+          <p><Translate id="notRegistered.title"/></p>
+          <button className="register-now-btn"><Translate id="button.subscribe"/></button>
         </div>
       </div>
     </div>

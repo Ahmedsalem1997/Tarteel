@@ -1,12 +1,4 @@
-{
-    "subscription.title": "Special words for subscription and service price",
-    "subscription.button": "Subscribe Now",
-    "myRecords.title": "My Records",
-    "button.viewAll": "View All",
-    "button.addComment": "Add Comment",
-    "anotherTitle.title": "Another Title",
-    "islamicContent.title": "Islamic Content",
-    
+{   
     "navigation": {
         "home": "Home",
         "myRecords": "My Records",
@@ -16,5 +8,16 @@
     "carousel": {
         "title": "Learn Quran in the right way",
         "button": "Start Recording Now"
+    },
+    "notRegistered": {
+        "title": "Special words for subscription and service price"
+    },
+    "button": {
+        "viewAll": "View All",
+        "addComment": "Add Comment",
+        "subscribe":  "Subscribe Now"
+    },
+    "islamicContent": {
+        "title": "Islamic Content"
     }
 }
