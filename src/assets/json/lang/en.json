@@ -1,4 +1,4 @@
-{   
+{
     "navigation": {
         "home": "Home",
         "myRecords": "My Records",
@@ -12,12 +12,19 @@
     "notRegistered": {
         "title": "Special words for subscription and service price"
     },
+    "myRecords": {
+        "title": "My Records"
+    },
     "button": {
         "viewAll": "View All",
         "addComment": "Add Comment",
-        "subscribe":  "Subscribe Now"
+        "subscribe": "Subscribe Now",
+        "listen": "listen"
     },
     "islamicContent": {
         "title": "Islamic Content"
+    },
+    "placeholder": {
+        "writeComment": "write a comment"
     }
 }

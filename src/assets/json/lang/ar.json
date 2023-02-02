@@ -1,4 +1,4 @@
-{   
+{
     "navigation": {
         "home": "الرئيسية",
         "myRecords": "تسجيلاتي",
@@ -9,22 +9,22 @@
         "title": "تعلم القرآن بالطريقة الصحيحة",
         "button": "ابدأ تسجيلك الأن"
     },
-
     "notRegistered": {
         "title": "كلمات خاصة بالاشتراك وسعر الخدمة"
     },
-
     "myRecords": {
         "title": "تسجيلاتي"
     },
-
     "button": {
-        "viewAll": "إظهار الكل",
+        "viewAll": "رؤية الكل",
         "addComment": "إضافة تعليق",
-        "subscribe":  "اشترك الأن"
+        "subscribe": "اشترك الأن",
+        "listen": "استماع"
     },
-
     "islamicContent": {
         "title": "المحتوى الإسلامي"
+    },
+    "placeholder": {
+        "writeComment": "اكتب تعليقاً"
     }
 }

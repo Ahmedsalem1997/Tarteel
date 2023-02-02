@@ -11,7 +11,7 @@ import Records from "../../components/Records/Records";
 const Home = () => {
     return (
         <LayoutWrapper>
-            <HomeSection header="تسجيلاتي" showAll="records">
+            <HomeSection header="myRecords.title" showAll="records">
                 <MyRecordsHome />
             </HomeSection>
 
@@ -19,7 +19,7 @@ const Home = () => {
                 <Records />
             </HomeSection>
 
-            <HomeSection header="المحتوى الاسلامي" showAll="islamic">
+            <HomeSection header="islamicContent.title" showAll="islamic">
                 <IslamicContentHome />
             </HomeSection>
         </LayoutWrapper>
