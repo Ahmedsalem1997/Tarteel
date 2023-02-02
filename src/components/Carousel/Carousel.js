@@ -6,16 +6,16 @@ const Carousel = () => {
   const dispatch = useDispatch();
   const globalLang = useSelector(state => {
     return state.globalLang
-});
+  });
   const img1 = require("../../assets/images/Group 3753.webp");
   const img2 = require("../../assets/images/Group 3753@2x.webp");
   const img3 = require("../../assets/images/Group 3753@3x.webp");
   const changeLang = () => {
     console.log(globalLang);
     if (globalLang === 'en') {
-      dispatch({type: 'ar'})
+      dispatch({ type: 'ar' })
     } else {
-      dispatch({type: 'en'})
+      dispatch({ type: 'en' })
     }
   }
   return (
@@ -33,8 +33,8 @@ const Carousel = () => {
         </div>
       </div>
       <div className="carousel-content">
-        <h2><Translate id="carousel.title"/></h2>
-        <button className="register-now-btn" onClick={changeLang}><Translate id="carousel.button"/></button>
+        <h2><Translate id="carousel.title" /></h2>
+        <button className="register-now-btn" onClick={changeLang}><Translate id="carousel.button" /></button>
         <div className="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
