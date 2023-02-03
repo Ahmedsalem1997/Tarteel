@@ -4,24 +4,24 @@ import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div className="login-wrapper">
-      <div className="not-registered">
-        <div className="not-registered-header">
+      <div className="login-form">
+        <div className="login-form-header">
           <p>التحقق من رقم الهاتف</p>
         </div>
-        <div className="not-registered-content">
-          <div className="not-registered-content-input-group">
-            <label className="not-registered-content-label">رقم الهاتف</label>
-            <input className="not-registered-content-input"></input>
+        <div className="login-form-content">
+          <div className="login-form-content-input-group">
+            <label className="login-form-content-label">رقم الهاتف</label>
+            <input className="login-form-content-input"></input>
           </div>
         </div>
-        <div className="not-registered-header">
+        <div className="login-form-header">
           <p>من أجل التحقق من صحة رقم هاتفك</p>
           <p>سنرسل رمز التحقق يجب إدخاله في الصفحة التالية</p>
         </div>
-        <div className="not-registered-actions">
+        <div className="login-form-actions">
           <button className="main-button">الحصول علي الرمز</button>
         </div>
-        <div className="not-registered-cancel"></div>
+        <div className="login-form-cancel"></div>
         <Link className="cancel-btn" to="/">
           الغاء
         </Link>

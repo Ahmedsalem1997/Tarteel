@@ -1,25 +1,61 @@
-.login-wrapper{
-    background-image: url('../../images/Group\ 3753@3x.webp');
-    height: 100vh;
-    background-position: center ;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    &::after{
-        background-color: $main-color;
-        opacity: .7;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        z-index: 1;
-        content: ""
-    }
+.login-wrapper {
+  background-image: url("../../images/Group\ 3753@3x.webp");
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::after {
+    background-color: $main-color;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    content: "";
+  }
 }
-.not-registered{
-    position: relative;
-    z-index: 2;
-    
+.login-form {
+  position: relative;
+  z-index: 2;
+  margin: 3rem;
+  padding: 4rem 5.5rem;
+  background-color: #1f1f1f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  &-content {
+    justify-content: space-between;
+    &-input-group {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.3rem;
+      input {
+        font-size: 2rem;
+        background-color: transparent;
+        border: 1px solid #fff;
+      }
+    }
+  }
+  &-header {
+    padding: 2rem 0 0 0;
+    p {
+      font-size: 1rem;
+    }
+  }
+  &-actions {
+    display: flex;
+    width: 100%;
+    margin-top: 2rem;
+    flex-direction: column;
+    row-gap: 2.5rem;
+    padding: 0 0rem;
+  }
+  a {
+    margin-top: 6rem;
+  }
 }
