@@ -24,7 +24,8 @@
         "editImg": "تعديل الصورة",
         "cancel": "الغاء",
         "share": "مشاركة",
-        "haveRecord": "لدي مقطع صوتي"
+        "haveRecord": "لدي مقطع صوتي",
+        "send": "ارسل"
     },
     "islamicContent": {
         "title": "المحتوى الإسلامي"
@@ -45,6 +46,9 @@
             "selectRecitation": "اختر نوع الرواية",
             "to": "الى"
         }
+    },
+    "subscribeSection": {
+        "title": "ادخل رقم جوالك للاشتراك"
     },
     "footer": {
         "company": "شركة",

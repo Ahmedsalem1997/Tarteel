@@ -24,7 +24,8 @@
         "editimg": "edit photo",
         "cancel": "cancel",
         "share": "share",
-        "haveRecord": "i have record"
+        "haveRecord": "i have record",
+        "send": "send"
     },
     "islamicContent": {
         "title": "Islamic Content"
@@ -45,6 +46,9 @@
             "selectRecitation": "select recitation",
             "to": "to"
         }
+    },
+    "subscribeSection": {
+        "title": "insert your phone number to subscribe"
     },
     "footer": {
         "company": "company",
