@@ -6,6 +6,7 @@ import Quran from './views/Quran/Quran';
 import Login from './views/Login/Login';
 import VerificationCode from './components/VerificationCode/VerificationCode';
 import EditProfile from './components/EditProfile/EditProfile';
+import NotRegistered from './components/NotRegistered/NotRegistered';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
-        <Route path="profile" element={<Profile/>} />
+        <Route path="profile" element={<NotRegistered/>} />
         <Route path="islamic" element={<Islamic/>} />
         <Route path="quran" element={<Quran/>} />
         <Route path="verifitionCode" element={<VerificationCode/>} />

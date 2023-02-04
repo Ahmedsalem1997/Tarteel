@@ -6,10 +6,8 @@
         "quran": "Quran"
     },
     "carousel": {
-        "title": "Learn Quran in the right way"
-    },
-    "notRegistered": {
-        "title": "Special words for subscription and service price"
+        "title": "Learn Quran in the right way",
+        "bar": "Special words for subscription and service price"
     },
     "myRecords": {
         "title": "My Records"
@@ -25,7 +23,9 @@
         "cancel": "cancel",
         "share": "share",
         "haveRecord": "i have record",
-        "send": "send"
+        "send": "send",
+        "register": "register",
+        "login": "login"
     },
     "islamicContent": {
         "title": "Islamic Content"
@@ -49,6 +49,14 @@
     },
     "subscribeSection": {
         "title": "insert your phone number to subscribe"
+    },
+    "notRegistered": {
+        "title": "you are not registered",
+        "pleaseRegister": "please login to enjoy the content"
+    },
+    "profile": {
+        "followers": "followers",
+        "followeings": "followings"
     },
     "footer": {
         "company": "company",

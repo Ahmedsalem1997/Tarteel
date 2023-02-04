@@ -1,3 +1,5 @@
+import Translate from '../../helpers/Translate/Translate';
+
 const ProfileHeader = () => {
     const img = require("../../assets/images/record.jpg");
     return (
@@ -12,11 +14,11 @@ const ProfileHeader = () => {
             <div className="profile-header-following">
                 <div className="profile-header-following-followers">
                     <span>1.2K</span>
-                    <span>متابعين</span>
+                    <span><Translate id="profile.followers"/></span>
                 </div>
                 <div className="profile-header-following-followings">
                     <span>653</span>
-                    <span>يتبع</span>
+                    <span><Translate id="profile.followers"/></span>
                 </div>
             </div>
         </div>

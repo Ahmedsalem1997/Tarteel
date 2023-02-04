@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Translate } from "../../helpers/Translate/Translate";
+import Translate from "../../helpers/Translate/Translate";
 const Footer = () => {
     return (
         <footer className="footer">

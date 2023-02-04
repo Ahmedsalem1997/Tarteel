@@ -4,3 +4,5 @@ export const Translate = (props) => {
     return useTranslate(props.id)
 
 }
+
+export default Translate;

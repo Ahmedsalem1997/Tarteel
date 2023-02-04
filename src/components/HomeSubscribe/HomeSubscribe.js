@@ -1,4 +1,4 @@
-import {Translate} from '../../helpers/Translate/Translate';
+import Translate from '../../helpers/Translate/Translate';
 const HomeSubscribe = () => {
     return (
         <div className="home-subscribe">

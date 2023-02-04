@@ -1,4 +1,4 @@
-import { Translate } from "../../../helpers/Translate/Translate";
+import Translate from "../../../helpers/Translate/Translate";
 import useTranslate from "../../../hooks/use-translate";
 
 const AddComment = () => {

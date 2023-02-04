@@ -27,7 +27,7 @@ const Carousel = () => {
       </div>
 
       <div className="register-bar">
-        <p><Translate id="notRegistered.title" /></p>
+        <p><Translate id="carousel.bar" /></p>
         <button className="register-now-btn"><Translate id="button.subscribe" /></button>
       </div>
     </Fragment>
