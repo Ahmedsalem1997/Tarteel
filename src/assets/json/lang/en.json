@@ -6,8 +6,7 @@
         "quran": "Quran"
     },
     "carousel": {
-        "title": "Learn Quran in the right way",
-        "button": "Start Recording Now"
+        "title": "Learn Quran in the right way"
     },
     "notRegistered": {
         "title": "Special words for subscription and service price"
@@ -16,12 +15,16 @@
         "title": "My Records"
     },
     "button": {
+        "startRecording": "Start Recording Now",
         "viewAll": "View All",
         "addComment": "Add Comment",
         "subscribe": "Subscribe Now",
         "listen": "listen",
         "save": "save",
-        "editimg": "edit photo"
+        "editimg": "edit photo",
+        "cancel": "cancel",
+        "share": "share",
+        "haveRecord": "i have record"
     },
     "islamicContent": {
         "title": "Islamic Content"
@@ -36,7 +39,11 @@
         "label": {
             "name": "name",
             "email": "e-mail",
-            "phone": "phone"
+            "phone": "phone",
+            "selectSora": "select the sora you need to record",
+            "selectAya": "select aya",
+            "selectRecitation": "select recitation",
+            "to": "to"
         }
     }
 }
