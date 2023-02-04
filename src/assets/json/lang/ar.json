@@ -19,12 +19,24 @@
         "viewAll": "رؤية الكل",
         "addComment": "إضافة تعليق",
         "subscribe": "اشترك الأن",
-        "listen": "استماع"
+        "listen": "استماع",
+        "save": "حفظ",
+        "editImg": "تعديل الصورة"
     },
     "islamicContent": {
         "title": "المحتوى الإسلامي"
     },
-    "placeholder": {
-        "writeComment": "اكتب تعليقاً"
+    "input": {
+        "placeholder": {
+            "writeComment": "اكتب تعليقاً",
+            "name": "اكتب اسمك بالكامل",
+            "email": "اكتب ايميلك",
+            "phone": "اكتب رقم جوالك"
+        },
+        "label": {
+            "name": "الاسم",
+            "email": "البريد الالكتروني",
+            "phone": "الجوال"
+        }
     }
 }

@@ -5,7 +5,7 @@ const AddComment = () => {
   return (
     <div className="add-comment">
       <div className="add-comment-input">
-        <textarea placeholder={useTranslate('placeholder.writeComment')}></textarea>
+        <textarea placeholder={useTranslate('input.placeholder.writeComment')}></textarea>
       </div>
       <div className="add-comment-actions">
         <button><Translate id="button.addComment" /></button>

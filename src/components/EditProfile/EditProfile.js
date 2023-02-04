@@ -1,4 +1,6 @@
-import BlackBlock from "../BlackBlock/BlackBlock";
+// import BlackBlock from "../BlackBlock/BlackBlock";
+import { Translate } from "../../helpers/Translate/Translate";
+import useTranslate from "../../hooks/use-translate";
 import LoginWrapper from "../LoginWrapper/LoginWrapper";
 
 const EditProfile = () => {
@@ -10,22 +12,22 @@ const EditProfile = () => {
                 <div className="edit-profile">
                     <div className="edit-profile-img">
                         <img src={img} alt="..." />
-                        <div className="edit-profile-img-upload">تعديل الصورة</div>
+                        <div className="edit-profile-img-upload"><Translate id="button.editImg"/></div>
                     </div>
                     <div className="edit-profile-input-group">
-                        <label>الاسم</label>
-                        <input placeholder="الاسم" type="text" className="trans-input" />
+                        <label><Translate id="input.label.name"/></label>
+                        <input placeholder={useTranslate('input.placeholder.name')} type="text" className="trans-input" />
                     </div>
                     <div className="edit-profile-input-group">
-                        <label>البريد الالكتروني</label>
-                        <input placeholder="البريد الالكتروني" type="text" className="trans-input" />
+                        <label><Translate id="input.label.email"/></label>
+                        <input placeholder={useTranslate('input.placeholder.email')} type="text" className="trans-input" />
                     </div>
                     <div className="edit-profile-input-group">
-                        <label>الجوال</label>
-                        <input placeholder="الجوال" type="text" className="trans-input" />
+                        <label><Translate id="input.label.phone"/></label>
+                        <input placeholder={useTranslate('input.placeholder.phone')} type="text" className="trans-input" />
                     </div>
                     <div className="edit-profile-actions">
-                        <button type="submit" className="main-button">حفظ</button>
+                        <button type="submit" className="main-button"><Translate id="button.save"/></button>
                     </div>
 
                 </div>

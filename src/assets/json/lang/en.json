@@ -19,12 +19,24 @@
         "viewAll": "View All",
         "addComment": "Add Comment",
         "subscribe": "Subscribe Now",
-        "listen": "listen"
+        "listen": "listen",
+        "save": "save",
+        "editimg": "edit photo"
     },
     "islamicContent": {
         "title": "Islamic Content"
     },
-    "placeholder": {
-        "writeComment": "write a comment"
+    "input": {
+        "placeholder": {
+            "writeComment": "write a comment",
+            "name": "write your full name",
+            "email": "write your e-mail",
+            "phone": "write your phone number"
+        },
+        "label": {
+            "name": "name",
+            "email": "e-mail",
+            "phone": "phone"
+        }
     }
 }
