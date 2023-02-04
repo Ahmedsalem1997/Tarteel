@@ -63,6 +63,9 @@
         "toAya": "الى الآية",
         "sora": "سورة"
     },
+    "verificationCode": {
+        "sent": "تم ارسال الرمز"
+    },
     "footer": {
         "company": "شركة",
         "quickLink": "رابط سريع",

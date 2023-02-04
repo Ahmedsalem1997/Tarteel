@@ -63,6 +63,9 @@
         "toAya": "to aya",
         "sora": "sora"
     },
+    "verificationCode": {
+        "sent": "code sent"
+    },
     "footer": {
         "company": "company",
         "quickLink": "quick link",
