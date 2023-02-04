@@ -7,9 +7,9 @@ const Comments = () => {
     <Fragment>
       <Comment />
       <Comment />
-      <Comment />
-      <AddComment />
-      <AddComment />
+      {/* <Comment /> */}
+      {/* <AddComment /> */}
+      {/* <AddComment /> */}
     </Fragment>
   );
 };

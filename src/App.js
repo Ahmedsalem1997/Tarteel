@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './views/Home/Home';
 import Islamic from './views/Islamic/Islamic';
-import Profile from './views/Profile/Profile';
+// import Profile from './views/Profile/Profile';
 import Quran from './views/Quran/Quran';
 import Login from './views/Login/Login';
 import VerificationCode from './components/VerificationCode/VerificationCode';

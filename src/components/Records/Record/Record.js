@@ -1,4 +1,5 @@
 import Translate from "../../../helpers/Translate/Translate";
+import AddComment from "../../Comments/AddComment/AddComment";
 import AudioPlayer from "./../../AudioPlayer/AudioPlayer";
 import Comments from "./../../Comments/Comments";
 
@@ -37,6 +38,9 @@ const Record = () => {
       </div>
       <div className="post-comments">
         <Comments />
+      </div>
+      <div className="post-add-comment">
+        <AddComment />
       </div>
     </div>
   );

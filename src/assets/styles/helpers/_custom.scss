@@ -3,3 +3,7 @@
 @import './buttons';
 @import './media-query';
 @import './inputs';
+
+html[dir="rtl"] {
+    @import './_ar-styles';
+}
