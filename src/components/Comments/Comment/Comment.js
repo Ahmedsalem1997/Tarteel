@@ -19,7 +19,7 @@ const Comment = () => {
       </div>
       <div className="comment-content">
         <div className="comment-content-audio">
-          <AudioPlayer />
+          <AudioPlayer id={Math.floor(Math.random()*1000)} />
         </div>
         <div className="comment-content-text">
           <p>

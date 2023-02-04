@@ -21,7 +21,7 @@ const Record = () => {
           <i className="fa-solid fa-user-plus"></i>
         </span>
       </div>
-      <AudioPlayer />
+      <AudioPlayer id="1" />
       <div className="post-text"><Translate id="record.fromAya" /> 2 <Translate id="record.toAya" /> 7 <Translate id="record.sora" /> البقرة</div>
       <div className="post-feedback">
         <span className="post-feedback-likes-comments">
