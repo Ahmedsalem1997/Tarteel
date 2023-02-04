@@ -7,6 +7,7 @@ import Login from './views/Login/Login';
 import VerificationCode from './components/VerificationCode/VerificationCode';
 import EditProfile from './components/EditProfile/EditProfile';
 // import NotRegistered from './components/NotRegistered/NotRegistered';
+import NotFoundPage from './views/NotFoundPage/NotFoundPage';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         <Route path="quran" element={<Quran/>} />
         <Route path="verifitionCode" element={<VerificationCode/>} />
         <Route path="edit-profile" element={<EditProfile/>} />
+        <Route path="*" element={<NotFoundPage/>} />
+
 
       </Routes>
     </BrowserRouter>
