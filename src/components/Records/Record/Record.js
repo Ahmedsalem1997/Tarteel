@@ -1,3 +1,4 @@
+import Translate from "../../../helpers/Translate/Translate";
 import AudioPlayer from "./../../AudioPlayer/AudioPlayer";
 import Comments from "./../../Comments/Comments";
 
@@ -20,7 +21,7 @@ const Record = () => {
         </span>
       </div>
       <AudioPlayer />
-      <div className="post-text">من الايه ٢ الي الايه ٧ سورة البقرة</div>
+      <div className="post-text"><Translate id="record.fromAya" /> 2 <Translate id="record.toAya" /> 7 <Translate id="record.sora" /> البقرة</div>
       <div className="post-feedback">
         <span className="post-feedback-likes-comments">
           <p>1.490</p>

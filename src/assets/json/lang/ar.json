@@ -58,6 +58,11 @@
         "followers": "متابعين",
         "followeings": "يتبع"
     },
+    "record": {
+        "fromAya": "من الآية",
+        "toAya": "الى الآية",
+        "sora": "سورة"
+    },
     "footer": {
         "company": "شركة",
         "quickLink": "رابط سريع",

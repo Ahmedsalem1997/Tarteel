@@ -58,6 +58,11 @@
         "followers": "followers",
         "followeings": "followings"
     },
+    "record": {
+        "fromAya": "from aya",
+        "toAya": "to aya",
+        "sora": "sora"
+    },
     "footer": {
         "company": "company",
         "quickLink": "quick link",
