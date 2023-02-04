@@ -8,7 +8,7 @@ const ExsitingRecord = (props) => {
             <div className="single-record-card-name">
                 <span>{props.name}</span>
                 {props.btn &&
-                    <button className="listen-btn"><Translate id="button.listen" /></button>}
+                    <button className="trans-btn"><Translate id="button.listen" /></button>}
             </div>
             {/* <button className="play-pause-btn"></button> */}
         </SingleRecordCard>

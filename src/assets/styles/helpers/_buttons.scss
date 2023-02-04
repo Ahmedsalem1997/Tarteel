@@ -5,7 +5,8 @@ button {
     box-shadow: none;
     cursor: pointer;
 }
-.listen-btn {
+
+.trans-btn {
     border: 1px solid $singleRecordCardBorder;
     width: 100%;
     background-color: transparent;
@@ -13,8 +14,8 @@ button {
     text-align: center;
     color: $singleRecordCardBorder;
 }
-.main-button{
-    
+
+.main-button {
     width: 100%;
     background-color: $main-color;
     padding: .7rem;
@@ -22,9 +23,14 @@ button {
     color: $white;
 }
 
-.cancel-btn{
+.cancel-btn {
     color: $main-color;
     text-decoration: none;
     font-size: 1.2rem;
-  font-weight: 600;
+    font-weight: 600;
+    margin-top: 3rem;
+    display: inline-block;
+    &:hover {
+        color: $white;
+    }
 }

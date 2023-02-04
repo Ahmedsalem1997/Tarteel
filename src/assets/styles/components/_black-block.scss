@@ -1,0 +1,16 @@
+.black-block {
+    position: relative;
+    z-index: 2;
+    padding: 4rem 5rem;
+    background-color: #1f1f1f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 450px;
+    max-width: calc(100% - 2rem);
+    border-radius: 1rem;
+    > * {
+        width: 100%;
+    }
+}
