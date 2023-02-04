@@ -5,6 +5,7 @@ import Profile from './views/Profile/Profile';
 import Quran from './views/Quran/Quran';
 import Login from './views/Login/Login';
 import VerificationCode from './components/VerificationCode/VerificationCode';
+import EditProfile from './components/EditProfile/EditProfile';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="islamic" element={<Islamic/>} />
         <Route path="quran" element={<Quran/>} />
         <Route path="verifitionCode" element={<VerificationCode/>} />
+        <Route path="edit-profile" element={<EditProfile/>} />
 
       </Routes>
     </BrowserRouter>
