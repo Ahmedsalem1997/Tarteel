@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { Translate } from "../../helpers/Translate/Translate";
 import { Fragment } from "react";
+import { Link } from 'react-router-dom';
 
 const Carousel = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Carousel = () => {
 
       <div className="register-bar">
         <p><Translate id="carousel.bar" /></p>
-        <button className="register-now-btn"><Translate id="button.subscribe" /></button>
+        <Link to="/login"><button className="register-now-btn"><Translate id="button.subscribe" /></button></Link>
       </div>
     </Fragment>
 

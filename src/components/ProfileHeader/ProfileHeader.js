@@ -23,7 +23,7 @@ const ProfileHeader = () => {
                 </div>
                 <div className="profile-header-following-followings">
                     <span>653</span>
-                    <span><Translate id="profile.followers" /></span>
+                    <span><Translate id="profile.followings" /></span>
                 </div>
             </div>
             {isOpen && <Modal><EditProfile setIsOpen={setIsOpen}/></Modal>}

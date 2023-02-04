@@ -8,3 +8,24 @@
         }
     }
 }
+
+.profile-header {
+    &-following {
+        background: linear-gradient(to right, #192606 -2%, #395709 102%);
+        &-followers {
+            &::after {
+                left: -5.5rem;
+                right: unset;
+            }
+        }
+    }
+}
+
+.carousel {
+    &-content {
+        .register-bar {
+            background: linear-gradient(to right, #192606 -2%, #395709 102%);
+
+        }
+    }
+}

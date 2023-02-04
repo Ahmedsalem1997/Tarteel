@@ -25,7 +25,7 @@
     }
     &-following {
         padding: 1rem 10rem;
-        background: linear-gradient(to right, #192606 -2%, #395709 102%);
+        background: linear-gradient(to left, #192606 -2%, #395709 102%);
         display: flex;
         column-gap: 11rem;
         &-followers, &-followings {
@@ -40,7 +40,7 @@
                 position: absolute;
                 content: "";
                 top: 0;
-                left: -5.5rem;
+                right: -5.5rem;
                 width: 1px;
                 height: 100%;
                 background-color: $white;
