@@ -1,5 +1,4 @@
 import Comment from "./Comment/Comment";
-import AddComment from "./AddComment/AddComment";
 import { Fragment } from "react";
 
 const Comments = () => {
@@ -7,9 +6,6 @@ const Comments = () => {
     <Fragment>
       <Comment />
       <Comment />
-      {/* <Comment /> */}
-      {/* <AddComment /> */}
-      {/* <AddComment /> */}
     </Fragment>
   );
 };
