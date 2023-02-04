@@ -1,4 +1,3 @@
-import Navigation from "../Navigation/Navigation";
 import { useSelector, useDispatch } from 'react-redux'
 import { Translate } from "../../helpers/Translate/Translate";
 import { Fragment } from "react";
@@ -27,7 +26,6 @@ const Carousel = () => {
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
 
-      {/* <Navigation /> */}
       <div className="register-bar">
         <p><Translate id="notRegistered.title" /></p>
         <button className="register-now-btn"><Translate id="button.subscribe" /></button>
