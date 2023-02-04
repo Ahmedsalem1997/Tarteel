@@ -1,0 +1,50 @@
+.profile-header {
+    &-user {
+        display: flex;
+        align-items: flex-end;
+        column-gap: 1.5rem;
+        margin-bottom: 3.5rem;
+        &-img {
+            width: 11.5rem;
+            height: 11.5rem;
+            border-radius: 50%;
+        }
+        &-name {
+            font-size: 2.8rem;
+        }
+        &-follow {
+            background-color: #42444c;
+            padding: .7rem;
+            font-size: 1rem;
+            border-radius: 2px;
+            color: $white;
+            &.followed {
+                color: $main-color;
+            }
+        }
+    }
+    &-following {
+        padding: 1rem 10rem;
+        background: linear-gradient(to right, #192606 -2%, #395709 102%);
+        display: flex;
+        column-gap: 11rem;
+        &-followers, &-followings {
+            display: flex;
+            flex-direction: column;
+            row-gap: .5rem;
+            align-items: center;
+        }
+        &-followers {
+            position: relative;
+            &::after {
+                position: absolute;
+                content: "";
+                top: 0;
+                left: -5.5rem;
+                width: 1px;
+                height: 100%;
+                background-color: $white;
+            }
+        }
+    }
+}

@@ -18,7 +18,7 @@ const Carousel = () => {
   }
   return (
     <Fragment>
-      <h2><Translate id="carousel.title" /></h2>
+      <h2 className='carousel-content-title'><Translate id="carousel.title" /></h2>
       <button className="register-now-btn" onClick={changeLang}><Translate id="carousel.button" /></button>
       <div className="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
