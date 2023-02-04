@@ -45,5 +45,15 @@
             "selectRecitation": "select recitation",
             "to": "to"
         }
+    },
+    "footer": {
+        "company": "company",
+        "quickLink": "quick link",
+        "stayConnected": "stay connected",
+        "supportedBy": "supported by",
+        "aboutUs": "about us",
+        "helpCenter": "help center",
+        "privatePolicy": "private policy",
+        "bePartner": "be a partner"
     }
 }

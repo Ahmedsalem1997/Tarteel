@@ -45,5 +45,15 @@
             "selectRecitation": "اختر نوع الرواية",
             "to": "الى"
         }
+    },
+    "footer": {
+        "company": "شركة",
+        "quickLink": "رابط سريع",
+        "stayConnected": "ابقى على تواصل",
+        "supportedBy": "مدعوم من",
+        "aboutUs": "معلومات عنا",
+        "helpCenter": "مركز المساعدة",
+        "privatePolicy": "سياسة خاصة",
+        "bePartner": "كن شريكاً"
     }
 }

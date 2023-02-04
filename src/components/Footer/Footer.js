@@ -1,30 +1,30 @@
 import { Link } from "react-router-dom";
-
+import { Translate } from "../../helpers/Translate/Translate";
 const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-start">
                 <div className="footer-start-links">
                     <div className="footer-start-links-col">
-                        <p className="footer-start-links-col-header">شركة</p>
+                        <p className="footer-start-links-col-header"><Translate id="footer.company" /></p>
                         <ul>
-                            <li><Link to='/'>معلومات عنا</Link></li>
-                            <li><Link to='/'>مركز المساعدة</Link></li>
-                            <li><Link to='/'>سياسة خاصة</Link></li>
-                            <li><Link to='/'>كن شريكا</Link></li>
+                            <li><Link to='/'><Translate id="footer.aboutUs" /></Link></li>
+                            <li><Link to='/'><Translate id="footer.helpCenter" /></Link></li>
+                            <li><Link to='/'><Translate id="footer.privatePolicy" /></Link></li>
+                            <li><Link to='/'><Translate id="footer.bePartner" /></Link></li>
                         </ul>
                     </div>
                     <div className="footer-start-links-col">
-                        <p className="footer-start-links-col-header">رابط سريع</p>
+                        <p className="footer-start-links-col-header"><Translate id="footer.quickLink" /></p>
                         <ul>
-                            <li><Link to='/'>معلومات عنا</Link></li>
-                            <li><Link to='/'>مركز المساعدة</Link></li>
-                            <li><Link to='/'>سياسة خاصة</Link></li>
-                            <li><Link to='/'>كن شريكا</Link></li>
+                            <li><Link to='/'><Translate id="footer.aboutUs" /></Link></li>
+                            <li><Link to='/'><Translate id="footer.helpCenter" /></Link></li>
+                            <li><Link to='/'><Translate id="footer.privatePolicy" /></Link></li>
+                            <li><Link to='/'><Translate id="footer.bePartner" /></Link></li>
                         </ul>
                     </div>
                     <div className="footer-start-links-col">
-                        <p className="footer-start-links-col-header">ابقى على تواصل</p>
+                        <p className="footer-start-links-col-header"><Translate id="footer.stayConnected" /></p>
                         <ul>
                             <li>tartel@mail.com</li>
                             <li>Riyadh 2231</li>
@@ -32,7 +32,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="footer-start-support">
-                    <p>مدعوم من</p>
+                    <p><Translate id="footer.supportedBy" /></p>
                     <div className="footer-start-support-logos">
                         <i className="fa-brands fa-spotify"></i>
                         <i className="fa-brands fa-apple"></i>
