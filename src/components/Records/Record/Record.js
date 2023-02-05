@@ -23,7 +23,7 @@ const Record = () => {
           <i className="fa-solid fa-user-plus"></i>
         </span>
       </div>
-      <AudioPlayer id="1" />
+      <AudioPlayer id={Math.floor(Math.random()*1000)} />
       <div className="post-text"><Translate id="record.fromAyah" /> 2 <Translate id="record.toAyah" /> 7 <Translate id="record.surah" /> البقرة</div>
       <div className="post-feedback">
         <span className="post-feedback-likes-comments">
