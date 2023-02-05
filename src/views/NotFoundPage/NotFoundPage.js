@@ -1,13 +1,17 @@
+import LoginWrapper from "../../components/LoginWrapper/LoginWrapper";
+import Translate from "../../helpers/Translate/Translate";
+
 const NotFoundPage = () => {
   return (
-   
-    <div className="page-not-found">
-      <div className="page-not-found-content">
-        <h2>404</h2>
-        <h6>Page Not Found</h6>
-        <p>We couldn't find what you were looking for.</p>
+    <LoginWrapper>
+      <div className="page-not-found">
+        <div className="page-not-found-content">
+          <h2>404</h2>
+          <h6><Translate id="notFound.title"/></h6>
+          <p><Translate id="notFound.sorry"/></p>
+        </div>
       </div>
-    </div>
+    </LoginWrapper>
   );
 };
 

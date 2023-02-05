@@ -19,7 +19,7 @@ const Login = () => {
         <p>سنرسل رمز التحقق يجب إدخاله في الصفحة التالية</p>
       </div>
       <div className="login-form-actions">
-        <button className="main-button">الحصول علي الرمز</button>
+        <Link className="w-100" to="/verification-code"><button className="main-button">الحصول علي الرمز</button></Link>
       </div>
       <div className="login-form-cancel">
         <Link className="cancel-btn" to="/">

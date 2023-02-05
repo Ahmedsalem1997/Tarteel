@@ -75,5 +75,9 @@
         "helpCenter": "help center",
         "privatePolicy": "private policy",
         "bePartner": "be a partner"
+    },
+    "notFound": {
+        "title": "Page Not Found",
+        "sorry": "We Couldn't Find What You Were Looking For."
     }
 }
