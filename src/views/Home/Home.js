@@ -11,18 +11,21 @@ const Home = () => {
     const [isOpen, setIsOpen] = useState(false);
     return (
         <LayoutWrapper>
-            <HomeSection header="myRecords.title" showAll="records">
-                <MyRecordsHome />
-            </HomeSection>
-            <button className="main-button" onClick={() => setIsOpen(true)}>open login</button>
-            <HomeSection header="عنوان اخر">
-                <Records />
-            </HomeSection>
+            <div className="container-fluid">
 
-            <HomeSection header="islamicContent.title" showAll="islamic">
-                <IslamicContentHome />
-            </HomeSection>
-            {isOpen && <Modal><NotRegistered setIsOpen={setIsOpen}/></Modal>}
+                <HomeSection header="myRecords.title" showAll="records">
+                    <MyRecordsHome />
+                </HomeSection>
+                <button className="main-button" onClick={() => setIsOpen(true)}>open login</button>
+                <HomeSection header="عنوان اخر">
+                    <Records />
+                </HomeSection>
+
+                <HomeSection header="islamicContent.title" showAll="islamic">
+                    <IslamicContentHome />
+                </HomeSection>
+            </div>
+            {isOpen && <Modal><NotRegistered setIsOpen={setIsOpen} /></Modal>}
         </LayoutWrapper>
 
 

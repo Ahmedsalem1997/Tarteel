@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Translate from "../../../helpers/Translate/Translate";
 import AddComment from "../../Comments/AddComment/AddComment";
 import AudioPlayer from "./../../AudioPlayer/AudioPlayer";
@@ -5,6 +6,7 @@ import Comments from "./../../Comments/Comments";
 
 const Record = () => {
   const img = require("../../../assets/images/personal.png");
+  const [showComments, setShowComments] = useState(false);
   return (
     <div className="post">
       <div className="post-header">
@@ -28,7 +30,7 @@ const Record = () => {
           <p>1.490</p>
           <i className="fa-regular fa-thumbs-up"></i>
           <p>1.490</p>
-          <i className="fa-regular fa-comment"></i>
+          <i className="fa-regular fa-comment" onClick={() => setShowComments(prev => !prev)}></i>
         </span>
         <div>
           <span className="post-feedback-share">
@@ -36,12 +38,12 @@ const Record = () => {
           </span>
         </div>
       </div>
-      <div className="post-comments">
+      {showComments && <div className="post-comments">
         <Comments />
-      </div>
-      <div className="post-add-comment">
+      </div>}
+      {showComments && <div className="post-add-comment">
         <AddComment />
-      </div>
+      </div>}
     </div>
   );
 };
