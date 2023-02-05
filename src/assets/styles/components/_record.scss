@@ -1,5 +1,5 @@
 .post {
-  background-color: #1a1918;
+  background-color: var(--post-bg);
   margin-bottom: 1rem;
   padding: 1.5rem;
 
@@ -16,7 +16,7 @@
       &-image {
         width: 4.8em;
         height: 4.8em;
-        background-color: $white;
+        background-color: var(--avatar-bg);
         border-radius: 50%;
 
         img {
@@ -44,7 +44,7 @@
   &-text {
     margin: 1rem 0;
     font-size: 1.6rem;
-    color: #676767;
+    color: var(--comment-color);
   }
 
   &-feedback {
@@ -57,7 +57,7 @@
 
       p {
         font-size: 1.2rem;
-        color: #646464;
+        color: var(--text-color);
         margin-inline-end: 1rem;
         margin-bottom: 0;
         &:not(:first-child) {
@@ -68,7 +68,7 @@
   }
 
   i {
-    color: $main-color;
+    color: var(--main-icon-color);
     font-size: 2.5rem;
     cursor: pointer;
   }

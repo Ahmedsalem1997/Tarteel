@@ -1,0 +1,5 @@
+@mixin create-css-vars($colors) {
+    @each $key, $value in $colors {
+        --#{$key}: #{$value};
+    }
+}

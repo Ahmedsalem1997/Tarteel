@@ -11,6 +11,6 @@
 }
 
 body {
-    font-family: $main-font-family;
+    font-family: var(--main-font-family);
     font-weight: 400;
 }

@@ -1,2 +1,20 @@
 @import './variables';
+@import './mixins';
 @import './fonts';
+
+:root {
+    @include create-css-vars($main-colors);
+}
+
+:root {
+    body.light-mode {
+        @include create-css-vars($light-vars);
+    }
+}
+
+// }
+:root {
+    body.dark-mode {
+        @include create-css-vars($dark-vars);
+    }
+}

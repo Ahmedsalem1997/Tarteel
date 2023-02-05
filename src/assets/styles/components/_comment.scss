@@ -1,6 +1,5 @@
 .comment {
   margin-top: 2em;
-  background-color: #1a1918;
 
   &-header {
     display: flex;
@@ -14,7 +13,7 @@
       &-image {
         width: 3em;
         height: 3em;
-        background-color: $white;
+        background-color: var(--avatar-bg);
         border-radius: 50%;
 
         img {
@@ -41,7 +40,7 @@
       &::before {
         content: "";
         position: absolute;
-        background-color: #707070;
+        background-color: var(--border-color);
         width: 1px;
         top: -2em;
         bottom: -2em;
@@ -50,13 +49,13 @@
     }
   }
   &-content {
-    background-color: #f4f4f41a;
+    background-color: var(--comment-bg);
     padding: 1em;
     margin-inline-start: 3em;
     border-radius: 1em;
     position: relative;
     &-text {
-      color: #909090;
+      color: var(--comment-color);
       font-size: 1.5em;
     }
     &-feedback {

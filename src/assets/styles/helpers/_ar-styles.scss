@@ -11,7 +11,7 @@
 
 .profile-header {
     &-following {
-        background: linear-gradient(to right, #192606 -2%, #395709 102%);
+        background: linear-gradient(to right, var(--gradient-main-dark) -2%, var(--gradient-main-light) 102%);
         &-followers {
             &::after {
                 left: -5.5rem;
@@ -24,7 +24,7 @@
 .carousel {
     &-content {
         .register-bar {
-            background: linear-gradient(to right, #192606 -2%, #395709 102%);
+            background: linear-gradient(to right, var(--gradient-main-dark) -2%, var(--gradient-main-light) 102%);
 
         }
     }

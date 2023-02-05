@@ -11,7 +11,7 @@
             height: 61.6px;
             padding: .5rem 1rem;
             font-size: 1.92rem;
-            color: $main-color;
+            color: var(--text-color);
             border: none;
             outline: none;
             box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.06);
@@ -27,10 +27,10 @@
         }
     }
     button {
-        background-color: $main-color;
+        background-color: var(--main-btn-bg);
         font-size: 1.8rem;
         padding: 1.3rem 2.7rem;
-        color: $white;
+        color: var(--main-btn-color);
         &+button {
             margin-inline-start: 2rem;
         }
@@ -41,12 +41,12 @@
             width: 227px;
             padding: 1rem;
             &:nth-child(1) {
-                background-color: $white;
-                color: $main-color;
+                background-color: var(--white-btn-bg);
+                color: var(--white-btn-color);
             }
             &:nth-child(2) {
-                background-color: #7c7c7c;
-                color: $white;
+                background-color: var(--secondary-btn-bg);
+                color: var(--secondary-btn-color);
             }
         }
     }

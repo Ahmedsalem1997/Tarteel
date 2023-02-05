@@ -1,11 +1,62 @@
-$main-color: #65990c;
-$icon-color: #9db30e;
-$btn-color: #69a404;
-$main-font-family: 'Tajawal';
-$main-bg: #0a0806;
-$dark-bg: #1a1918;
-$comments-bg: #f4f4f4;
+$green: #65990c;
+$yellow: #9db30e;
+$tajawal: "Tajawal";
+$light-green: #69a404;
+$bg-dark: #0a0806;
+$bg-dark-lighter: #1a1918;
+$bg-light: #f4f4f4;
 $white: #FFF;
-$text-color: $white; 
-$singleRecordCardBorder : #707070;
-$footerBg: #1a1918;
+$light-gray: #707070;
+$dark-white: #efefef;
+$black: #000;
+$main-color: $green;
+$main-colors: (
+    "main-color": $green,
+    "icon-color": $yellow,
+    "btn-color": $light-green,
+    "main-font-family": $tajawal,
+    "singleRecordCardBorder": $light-gray,
+    "carousel-color": $white,
+    "input-color": $dark-white,
+    "main-icon-color": $green,
+    "secondary-icon-color": $white,
+    "main-btn-bg": $green,
+    "secondary-btn-bg": $light-gray,
+    "white-btn-bg": $white,
+    "white-btn-color": $green,
+    "secondary-btn-color": $white,
+    "main-btn-color": $white,
+    "gradient-main-dark": darken($main-color, 30),
+    "gradient-main-light": darken($main-color, 20),
+);
+$dark-vars: (
+    "main-bg": $bg-dark,
+    "dark-bg": $bg-dark-lighter,
+    "comments-bg": $bg-light,
+    "text-color": $white,
+    "footerBg": $bg-dark-lighter,
+    "avatar-bg": $dark-white,
+    "border-color": $light-gray,
+    "white-border": $white,
+    "comment-bg": #302f2f,
+    "comment-color": #909090,
+    "icon-light-gray-bg": #42444c,
+    "post-bg": $bg-dark-lighter,
+    "single-record-gradient": $black
+);
+$light-vars: (
+    "main-bg": $bg-light,
+    "dark-bg": $light-gray,
+    "comments-bg": $bg-light,
+    "text-color": $bg-dark-lighter,
+    "footerBg": $dark-white,
+    "avatar-bg": $light-gray,
+    "border-color": $bg-dark-lighter,
+    "white-border": $black,
+    "comment-bg": $dark-white,
+    "comment-color": $bg-dark-lighter,
+    "icon-light-gray-bg": #42444c,
+    "post-bg": darken($dark-white, 5),
+    "single-record-gradient": $white
+);
+

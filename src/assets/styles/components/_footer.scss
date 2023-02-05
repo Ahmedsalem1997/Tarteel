@@ -26,10 +26,10 @@
                     li {
                         margin-bottom: .7rem;
                         text-align: center;
-                        color: $main-color;
+                        color: var(--main-color);
 
                         a {
-                            color: $main-color;
+                            color: var(--main-color);
                             text-decoration: none;
                         }
                     }
@@ -46,7 +46,7 @@
         &-support {
             p {
                 font-size: 1.28rem;
-                color: $main-color;
+                color: var(--main-color);
                 font-weight: 600;
                 margin-bottom: .6rem;
             }
@@ -80,7 +80,7 @@
             }
             p {
                 font-size: .8rem;
-                color: $main-color;
+                color: var(--main-color);
             }
         }
     }

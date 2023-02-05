@@ -17,10 +17,10 @@
       text-decoration: none;
       color: $white;
       padding: 1rem 1.5rem;
-      border-bottom: 1px solid #707070;
+      border-bottom: 1px solid var(--border-color);
       &.active {
-        border-bottom: 2px solid $main-color;
-        color: $main-color;
+        border-bottom: 2px solid var(--main-btn-bg);
+        color: var(--main-btn-bg);
         font-weight: 600;
       }
     }

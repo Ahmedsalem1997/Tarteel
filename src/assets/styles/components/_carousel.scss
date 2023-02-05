@@ -1,4 +1,5 @@
 .carousel {
+  color: var(--carousel-color);
   &-content {
     position: absolute;
     left: 5rem;
@@ -14,9 +15,9 @@
     .register-now-btn {
       font-size: 1.2rem;
       font-weight: 600;
-      background-color: $main-color;
+      background-color: var(--main-btn-bg);
       padding: 0.5rem 1.5rem;
-      color: $white;
+      color: var(--main-btn-color);
       border-radius: 0.3rem;
     }
 
@@ -24,7 +25,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(to left, #192606 -2%, #395709 102%);
+      background: linear-gradient(to left, var(--gradient-main-dark) -2%, var(--gradient-main-light) 102%);
       padding: 1rem 2rem;
 
       p {

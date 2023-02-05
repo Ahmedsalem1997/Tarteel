@@ -5,9 +5,9 @@
   &-input {
     textarea {
       font-size: 1.2rem;
-      background-color: rgba(244, 244, 244, 0.1019607843);
+      background-color: var(--comment-bg);
       border-radius: 1em;
-      color: #efefef;
+      color: var(--input-color);
       padding: 2rem;
       border: none;
       width: 100%;
@@ -20,12 +20,12 @@
     column-gap: 1rem;
     margin: .7rem;
     button {
-      background-color: $main-color;
-      color: $white;
+      background-color: var(--main-btn-bg);
+      color: var(--main-btn-color);
       border-radius: 0.25rem;
       padding: 0.25rem 0.5rem;
       i{
-        color: $white;
+        color: var(--main-icon-color);
         font-size: 1rem;
       }
     }
