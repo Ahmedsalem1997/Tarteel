@@ -22,7 +22,7 @@ const Record = () => {
         </span>
       </div>
       <AudioPlayer id="1" />
-      <div className="post-text"><Translate id="record.fromAya" /> 2 <Translate id="record.toAya" /> 7 <Translate id="record.sora" /> البقرة</div>
+      <div className="post-text"><Translate id="record.fromAyah" /> 2 <Translate id="record.toAyah" /> 7 <Translate id="record.surah" /> البقرة</div>
       <div className="post-feedback">
         <span className="post-feedback-likes-comments">
           <p>1.490</p>

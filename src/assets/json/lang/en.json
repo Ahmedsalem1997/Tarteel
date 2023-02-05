@@ -41,8 +41,8 @@
             "name": "name",
             "email": "e-mail",
             "phone": "phone",
-            "selectSora": "select the sora you need to record",
-            "selectAya": "select aya",
+            "selectSurah": "select the sora you need to record",
+            "selectAyah": "select ayah",
             "selectRecitation": "select recitation",
             "to": "to"
         }
@@ -59,9 +59,9 @@
         "followings": "followings"
     },
     "record": {
-        "fromAya": "from aya",
-        "toAya": "to aya",
-        "sora": "sora"
+        "fromAyah": "from ayah",
+        "toAyah": "to ayah",
+        "surah": "surah"
     },
     "verificationCode": {
         "sent": "code sent"

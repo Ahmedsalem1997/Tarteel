@@ -41,8 +41,8 @@
             "name": "الاسم",
             "email": "البريد الالكتروني",
             "phone": "الجوال",
-            "selectSora": "اختر السورة المراد تسجيلها",
-            "selectAya": "اختر الآية",
+            "selectSurah": "اختر السورة المراد تسجيلها",
+            "selectAyah": "اختر الآية",
             "selectRecitation": "اختر نوع الرواية",
             "to": "الى"
         }
@@ -59,9 +59,9 @@
         "followings": "يتبع"
     },
     "record": {
-        "fromAya": "من الآية",
-        "toAya": "الى الآية",
-        "sora": "سورة"
+        "fromAyah": "من الآية",
+        "toAyah": "الى الآية",
+        "surah": "سورة"
     },
     "verificationCode": {
         "sent": "تم ارسال الرمز"

@@ -5,7 +5,7 @@ const AddNewRecord = () => {
         <div className="add-new-record">
             <form>
                 <div className="add-new-record-input">
-                    <label><Translate id="input.label.selectSora"/></label>
+                    <label><Translate id="input.label.selectSurah"/></label>
                     <select>
                         <option value="1">البقرة</option>
                         <option value="2">ال عمران</option>
@@ -14,7 +14,7 @@ const AddNewRecord = () => {
                     </select>
                 </div>
                 <div className="add-new-record-input">
-                    <label><Translate id="input.label.selectAya"/></label>
+                    <label><Translate id="input.label.selectAyah"/></label>
                     <select className="aya-from">
                         <option value="1">1</option>
                         <option value="2">2</option>
