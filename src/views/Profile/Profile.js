@@ -13,7 +13,9 @@ const Profile = () => {
                 <ProfileHeader />
             </CarouselWrapper>
 
-            <Records />
+            <div className="container-fluid">
+                <Records />
+            </div>
             <HomeSubscribe />
             <Footer />
         </Fragment>

@@ -5,6 +5,7 @@ const Records = () => {
     return (
         <Fragment>
             <Record></Record>
+            <Record></Record>
         </Fragment>
     )
 }
