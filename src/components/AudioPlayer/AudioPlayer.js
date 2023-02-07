@@ -32,13 +32,17 @@ const AudioPlayer = (props) => {
             // Load audio from a remote url.
             waveform.current.load(audio);
             /* To load a local audio file
-                  1. Read the audio file as a array buffer.
-                  2. Create a blob from the array buffer
-                  3. Load the audio using wavesurfer's loadBlob API
-           */
+            1. Read the audio file as a array buffer.
+            2. Create a blob from the array buffer
+            3. Load the audio using wavesurfer's loadBlob API
+            */
         }
         waveform.current.on("pause", () => {
             setIsPlaying(false);
+        });
+        return (() => {
+            waveform.current.pause();
+            dispatch(audioActions.removeAudio(waveform.current));
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
