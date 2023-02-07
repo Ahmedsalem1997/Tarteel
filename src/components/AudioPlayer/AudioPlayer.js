@@ -7,7 +7,7 @@ const AudioPlayer = (props) => {
     const audio = require('../../assets/audios/test.mp3');
     const [isPlaying, setIsPlaying] = useState(false);
     const globalLang = useSelector(state => {
-        return state.globalLang;
+        return state.lang.globalLang;
     });
 
     useEffect(() => {

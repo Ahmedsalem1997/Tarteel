@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 
 const useTranslate = (text) => {
     const translation = useSelector(state => {
-        return state.translation
+        return state.lang.translation
     });
     let translatedText = { ...translation };
     const objDirArr = text.split('.');

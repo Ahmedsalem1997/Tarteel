@@ -2,19 +2,19 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Translate } from "../../helpers/Translate/Translate";
 import { Fragment } from "react";
 import { Link } from 'react-router-dom';
-
+import { langActions } from '../../store/Lang/Lang';
 const Carousel = () => {
   const dispatch = useDispatch();
   const globalLang = useSelector(state => {
-    return state.globalLang
+    return state.lang.globalLang
   });
 
   const changeLang = () => {
     console.log(globalLang);
     if (globalLang === 'en') {
-      dispatch({ type: 'translation', lang: 'ar' })
+      dispatch(langActions.translation({ type: 'translation', lang: 'ar' }));
     } else {
-      dispatch({ type: 'translation', lang: 'en' })
+      dispatch(langActions.translation({ type: 'translation', lang: 'en' }));
     }
   }
   return (

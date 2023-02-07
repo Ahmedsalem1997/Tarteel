@@ -10,20 +10,21 @@ import EditProfile from './components/EditProfile/EditProfile';
 import NotFoundPage from './views/NotFoundPage/NotFoundPage';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { langActions } from './store/Lang/Lang';
 
 function App() {
   const globalLang = useSelector(state => {
-    return state.globalLang
+    return state.lang.globalLang
   });
 
   const [lang, setLang] = useState(localStorage.getItem('lang'));
   const dispatch = useDispatch();
   const rootEle = document.getElementById('root-html');
   useEffect(() => {
-    if (!lang) {
-      setLang(rootEle.getAttribute('lang'));
-    }
-    dispatch({ type: 'translation', lang: lang });
+    lang ?
+      dispatch(langActions.translation({ type: 'translation', lang: lang }))
+      :
+      dispatch(langActions.translation({ type: 'translation', lang: rootEle.getAttribute('lang') }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
 
