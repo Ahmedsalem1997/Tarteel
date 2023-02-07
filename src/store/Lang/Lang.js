@@ -7,7 +7,6 @@ const langSlice = createSlice({
     initialState: initialLangState,
     reducers: {
         translation(state, action) {
-            console.log(action);
             state.globalLang = action.payload.lang !== "undefined" ? action.payload.lang : state.globalLang;
             state.translation = require(`../../assets/json/lang/${action.payload.lang}.json`);
         }

@@ -1,15 +1,18 @@
 import Wavesurfer from "wavesurfer.js";
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { audioActions } from "../../store/audio/audio";
 
 const AudioPlayer = (props) => {
+    const dispatch = useDispatch();
     const waveform = useRef(null);
     const audio = require('../../assets/audios/test.mp3');
     const [isPlaying, setIsPlaying] = useState(false);
     const globalLang = useSelector(state => {
         return state.lang.globalLang;
     });
-
+    const audios = useSelector(state => state.audio.audioArr);
+    console.log(audios);
     useEffect(() => {
         // Check if wavesurfer object is already created.
         if (!waveform.current) {
@@ -25,7 +28,7 @@ const AudioPlayer = (props) => {
                 height: 50,
                 // cursorColor: "#75b10e",
             });
-            console.log(waveform.current.container.id);
+            dispatch(audioActions.addAudio(waveform.current));
             // Load audio from a remote url.
             waveform.current.load(audio);
             /* To load a local audio file
@@ -34,26 +37,32 @@ const AudioPlayer = (props) => {
                   3. Load the audio using wavesurfer's loadBlob API
            */
         }
+        waveform.current.on("pause", () => {
+            setIsPlaying(false);
+        });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const toggleAudio = () => {
+        audios.forEach(audio => {
+            if(audio.isPlaying()) {
+                audio.pause();
+            }
+        });
         // Check if the audio is already playing
-        // if (waveform.current.isPlaying()) {
-        //     waveform.current.pause();
-        // } else {
-        //     waveform.current.play();
-        // }
-        waveform.current.playPause();
-        setIsPlaying((prev) => {
-            return prev = !prev;
-        })
+        if (isPlaying) {
+            waveform.current.pause();
+            setIsPlaying(false);
+        } else {
+            waveform.current.play();
+            setIsPlaying(true);
+        }
     };
 
     return (
         <div className="audio-player">
             <button className="play-pause-btn" onClick={toggleAudio}>
-                <i className={`fa-solid ${isPlaying ? 'fa-pause' : 'fa-play'} ${globalLang === 'ar'? 'fa-flip-horizontal': ''}`}></i>
+                <i className={`fa-solid ${isPlaying ? 'fa-pause' : 'fa-play'} ${globalLang === 'ar' ? 'fa-flip-horizontal' : ''}`}></i>
             </button>
             <div id={`waveform-${props.id}`} />
         </div>
