@@ -20,11 +20,11 @@ function App() {
   const [lang, setLang] = useState(localStorage.getItem('lang'));
   const dispatch = useDispatch();
   const rootEle = document.getElementById('root-html');
+  if (!lang) {
+    setLang(rootEle.getAttribute('lang'))
+  }
   useEffect(() => {
-    lang ?
-      dispatch(langActions.translation({ type: 'translation', lang: lang }))
-      :
-      dispatch(langActions.translation({ type: 'translation', lang: rootEle.getAttribute('lang') }));
+    dispatch(langActions.translation({ type: 'translation', lang: lang }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
 
