@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
-const baseUrl = "";
+const baseUrl = "http://api.alquran.cloud/v1/";
 
-const useHTTP = (requestConfig, applyData) => {
+const useHTTP = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const sendRequest = async () => {
+    const sendRequest = useCallback(async (requestConfig, applyData) => {
         setIsLoading(true);
         setError(null);
         try {
@@ -28,7 +28,8 @@ const useHTTP = (requestConfig, applyData) => {
             setError(err.message || 'something went wrong')
         }
         setIsLoading(false);
-    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return {
         isLoading,
         error,

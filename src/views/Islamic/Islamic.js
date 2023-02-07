@@ -6,18 +6,20 @@ import LayoutWrapper from "../../components/LayoutWrapper/LayoutWrapper";
 const Islamic = () => {
     return (
         <LayoutWrapper>
-            <HomeSection header="المحتوى الاسلامي" showAll="/">
-                <IslamicSubSection />
-            </HomeSection>
-            <HomeSection header="المحتوى الاسلامي" showAll="/">
-                <IslamicSubSection />
-            </HomeSection>
-            <HomeSection header="المحتوى الاسلامي" showAll="/">
-                <IslamicSubSection />
-            </HomeSection>
-            <HomeSection header="المحتوى الاسلامي" showAll="/">
-                <IslamicSubSection />
-            </HomeSection>
+            <div className="container-fluid">
+                <HomeSection header="المحتوى الاسلامي" showAll="/">
+                    <IslamicSubSection />
+                </HomeSection>
+                <HomeSection header="المحتوى الاسلامي" showAll="/">
+                    <IslamicSubSection />
+                </HomeSection>
+                <HomeSection header="المحتوى الاسلامي" showAll="/">
+                    <IslamicSubSection />
+                </HomeSection>
+                <HomeSection header="المحتوى الاسلامي" showAll="/">
+                    <IslamicSubSection />
+                </HomeSection>
+            </div>
         </LayoutWrapper>
     )
 }
