@@ -12,7 +12,6 @@ const AudioPlayer = (props) => {
         return state.lang.globalLang;
     });
     const audios = useSelector(state => state.audio.audioArr);
-    console.log(audios);
     useEffect(() => {
         // Check if wavesurfer object is already created.
         if (!waveform.current) {

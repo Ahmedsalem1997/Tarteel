@@ -7,7 +7,8 @@ const audioSlice = createSlice({
     initialState: initialAudioState,
     reducers: {
         addAudio(state, action) {
-            state.audioArr = [...state.audioArr, action.payload];
+            const newAudio = action.payload;
+            state.audioArr.push(newAudio);
         },
         removeAudio(state, action) {
             state.audioArr = state.audioArr.filter(audio => audio.container.id !== action.payload.container.id);
