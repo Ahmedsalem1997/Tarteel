@@ -24,6 +24,7 @@ function App() {
       setLang(rootEle.getAttribute('lang'));
     }
     dispatch({ type: 'translation', lang: lang });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
 
   useEffect(() => {
@@ -35,6 +36,7 @@ function App() {
     }
     rootEle.setAttribute('lang', globalLang);
     localStorage.setItem('lang', globalLang);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalLang]);
   return (
     <BrowserRouter>
