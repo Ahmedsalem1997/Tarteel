@@ -12,9 +12,9 @@ const Carousel = () => {
   const changeLang = () => {
     console.log(globalLang);
     if (globalLang === 'en') {
-      dispatch({ type: 'ar' })
+      dispatch({ type: 'translation', lang: 'ar' })
     } else {
-      dispatch({ type: 'en' })
+      dispatch({ type: 'translation', lang: 'en' })
     }
   }
   return (

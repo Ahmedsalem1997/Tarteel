@@ -25,7 +25,7 @@ const AudioPlayer = (props) => {
                 height: 50,
                 // cursorColor: "#75b10e",
             });
-            console.log(waveform.current);
+            console.log(waveform.current.container.id);
             // Load audio from a remote url.
             waveform.current.load(audio);
             /* To load a local audio file
