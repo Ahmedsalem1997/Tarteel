@@ -12,7 +12,7 @@ const QuranView = (props) => {
     });
     useEffect(() => {
         const surahUrl = lang === 'ar' ? `${props.selectedSurah}/quran-simple` : `${props.selectedSurah}/en.ahmedali`;
-        getSurah({ url: `surah/${surahUrl}` }, surahObj => {
+        getSurah({baseUrl: 'http://api.alquran.cloud/v1/', url: `surah/${surahUrl}` }, surahObj => {
             setSurah(surahObj.data);
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps

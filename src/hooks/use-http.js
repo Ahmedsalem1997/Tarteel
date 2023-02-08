@@ -1,14 +1,16 @@
 import { useCallback, useState } from "react";
 
-const baseUrl = "http://api.alquran.cloud/v1/";
+let baseUrl = "http://ec2-34-246-200-235.eu-west-1.compute.amazonaws.com/";
 
 const useHTTP = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-
     const sendRequest = useCallback(async (requestConfig, applyData) => {
         setIsLoading(true);
         setError(null);
+        if (requestConfig.baseUrl) {
+            baseUrl = requestConfig.baseUrl;
+        }
         try {
             const response = await fetch(
                 baseUrl+requestConfig.url, {

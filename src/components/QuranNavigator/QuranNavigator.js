@@ -15,7 +15,7 @@ const QuranNavigator = (props) => {
         setSelectedSurah(surahNumber);
     }
     useEffect(() => {
-        getSurahList({ url: "surah" }, surahObj => setSurahList(surahObj.data));
+        getSurahList({baseUrl: 'http://api.alquran.cloud/v1/', url: "surah" }, surahObj => setSurahList(surahObj.data));
     }, [getSurahList]);
     return (
         <div className="quran-navigator">
