@@ -8,6 +8,10 @@ const Carousel = () => {
   const globalLang = useSelector(state => {
     return state.lang.globalLang
   });
+  const isAuth = useSelector(state => {
+    return state.auth.isAuth;
+  });
+
 
   const changeLang = () => {
     console.log(globalLang);
@@ -29,7 +33,7 @@ const Carousel = () => {
 
       <div className="register-bar">
         <p><Translate id="carousel.bar" /></p>
-        <Link to="/login"><button className="register-now-btn"><Translate id="button.subscribe" /></button></Link>
+        {!isAuth && <Link to="/login"><button className="register-now-btn"><Translate id="button.subscribe" /></button></Link>}
       </div>
     </Fragment>
 
