@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-let baseUrl = "http://ec2-34-246-200-235.eu-west-1.compute.amazonaws.com/";
+let baseUrl = "http://ec2-34-246-200-235.eu-west-1.compute.amazonaws.com/api/v1/front/";
 
 const useHTTP = () => {
     const [isLoading, setIsLoading] = useState(false);
