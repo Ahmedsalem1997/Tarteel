@@ -6,9 +6,14 @@ import Modal from "../../components/Modal/Modal";
 import MyRecordsHome from "../../components/MyRecordsHome/MyRecordsHome";
 import Records from "../../components/Records/Records";
 import NotRegistered from "../../components/NotRegistered/NotRegistered";
+import { useSelector } from "react-redux";
 
 const Home = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const auth = useSelector(state => {
+        console.log(state.auth);
+        return state.auth;
+    });
     return (
         <LayoutWrapper>
             <div className="container-fluid">

@@ -3,7 +3,10 @@ import LoginWrapper from "../LoginWrapper/LoginWrapper";
 import Translate from '../../helpers/Translate/Translate';
 import { useState } from "react";
 import useHTTP from "../../hooks/use-http";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/Auth/Auth";
 const VerificationCode = () => {
+  const dispatch = useDispatch();
   let { mobile } = useParams();
   const [input1, setInput1] = useState('');
   const [input2, setInput2] = useState('');
@@ -32,6 +35,8 @@ const VerificationCode = () => {
       } else {
         console.log(data);
         setVerificationError('');
+        localStorage.setItem('token', data.data.token);
+        dispatch(authActions.setAuth(data.data));
         navigate(`/`);
       }
     });
