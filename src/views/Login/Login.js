@@ -4,24 +4,29 @@ import { Link } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import LoginWrapper from "../../components/LoginWrapper/LoginWrapper";
 import useHTTP from "../../hooks/use-http";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [mobileNumber, setMobileNumber] = useState('')
   const { isLoading, error, sendRequest } = useHTTP();
   const [mobileError, setMobileError] = useState('');
+  const navigate = useNavigate();
   const onLoginHandler = (e) => {
     e.preventDefault();
-    let formData = new FormData();
-    formData.append('mobile', mobileNumber);
     sendRequest({
       url: 'codes/get',
       method: 'POST',
+      headers: {'Content-Type': 'application/json'},
       body: {
-        "mobile": mobileNumber
+        "mobile": Number(mobileNumber),
+        "operator_id": 1
       }
     }, data => {
       if (data.error) {
         setMobileError(data.message);
+      } else {
+        setMobileError('');
+        navigate(`/verification-code/${mobileNumber}`);
       }
     });
   }

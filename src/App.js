@@ -47,7 +47,7 @@ function App() {
         <Route path="profile" element={<Profile />} />
         <Route path="islamic" element={<Islamic />} />
         <Route path="quran" element={<Quran />} />
-        <Route path="verification-code" element={<VerificationCode />} />
+        <Route path="verification-code/:mobile" element={<VerificationCode />} />
         <Route path="edit-profile" element={<EditProfile />} />
         <Route path="*" element={<NotFoundPage />} />
 

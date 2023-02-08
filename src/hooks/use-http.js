@@ -11,6 +11,7 @@ const useHTTP = () => {
         if (requestConfig.baseUrl) {
             baseUrl = requestConfig.baseUrl;
         }
+        console.log(requestConfig.body)
         try {
             const response = await fetch(
                 baseUrl+requestConfig.url, {
@@ -25,7 +26,6 @@ const useHTTP = () => {
             }
 
             const data = await response.json();
-            console.log(data);
             applyData(data);
         } catch (err) {
             setError(err.message || 'something went wrong')
