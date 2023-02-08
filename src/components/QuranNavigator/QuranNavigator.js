@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useHTTP from "../../hooks/use-http";
+import Loader from "../Loader/Loader";
 
 const QuranNavigator = (props) => {
     const [surahList, setSurahList] = useState([]);
@@ -18,14 +19,22 @@ const QuranNavigator = (props) => {
     }, [getSurahList]);
     return (
         <div className="quran-navigator">
-            {surahList.map(surah => {
-                return (
-                    <div key={surah.number} className={`quran-navigator-surah ${selectedSurah === surah.number ? 'active' : ''}`} onClick={() => onSurahChange(surah.number)}>
-                        <span>{surah.number}</span>
-                        <span>{lang === 'ar' ? surah.name : surah.englishName}</span>
-                    </div>
-                )
-            })}
+            {
+                isLoading ?
+                    <Loader />
+                    :
+                    error ?
+                        error
+                        :
+                        surahList.map(surah => {
+                            return (
+                                <div key={surah.number} className={`quran-navigator-surah ${selectedSurah === surah.number ? 'active' : ''}`} onClick={() => onSurahChange(surah.number)}>
+                                    <span>{surah.number}</span>
+                                    <span>{lang === 'ar' ? surah.name : surah.englishName}</span>
+                                </div>
+                            )
+                        })
+            }
         </div>
     )
 }

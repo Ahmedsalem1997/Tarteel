@@ -15,6 +15,7 @@ const QuranView = (props) => {
         getSurah({ url: `surah/${surahUrl}` }, surahObj => {
             setSurah(surahObj.data);
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.selectedSurah, lang]);
     return (
         <div className="quran-view">
