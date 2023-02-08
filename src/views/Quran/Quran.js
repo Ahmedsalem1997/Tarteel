@@ -4,6 +4,7 @@ import CarouselWrapper from "../../components/CarouselWrapper/CarouselWrapper";
 // import LayoutWrapper from "../../components/LayoutWrapper/LayoutWrapper";
 import QuranNavigator from "../../components/QuranNavigator/QuranNavigator";
 import QuranView from "../../components/QuranView/QuranView";
+import Translate from "../../helpers/Translate/Translate";
 
 const Quran = () => {
     const [selectedSurah, setSelectedSurah] = useState(1);
@@ -18,8 +19,13 @@ const Quran = () => {
                 <Carousel />
             </CarouselWrapper>
             <div className="quran">
-                <QuranNavigator onSurahChange={surahChangeHandler} />
-                <QuranView selectedSurah={selectedSurah} />
+                <div className="quran-title">
+                    <h2><Translate id="quran.title" /></h2>
+                </div>
+                <div className="quran-content">
+                    <QuranNavigator onSurahChange={surahChangeHandler} />
+                    <QuranView selectedSurah={selectedSurah} />
+                </div>
             </div>
         </Fragment>
 

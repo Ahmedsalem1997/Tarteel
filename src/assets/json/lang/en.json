@@ -79,5 +79,9 @@
     "notFound": {
         "title": "Page Not Found",
         "sorry": "We Couldn't Find What You Were Looking For."
+    },
+    "quran": {
+        "title": "Read the Holy Qur’an with its provisions",
+        "openning": "In the name of allah"
     }
 }
