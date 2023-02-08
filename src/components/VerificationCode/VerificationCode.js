@@ -36,6 +36,7 @@ const VerificationCode = () => {
         console.log(data);
         setVerificationError('');
         localStorage.setItem('token', data.data.token);
+        localStorage.setItem('user', JSON.stringify(data.data.user));
         dispatch(authActions.setAuth(data.data));
         navigate(`/`);
       }
@@ -57,12 +58,10 @@ const VerificationCode = () => {
           <input type="text" className="trans-input" onChange={(e) => setInput6(e.target.value)} maxLength="1"></input>
         </div>
         {
-          verificationError ?
+          verificationError &&
             <div className="verification-code-form-error">
               <p>{verificationError}</p>
             </div>
-            :
-            ''
         }
 
 

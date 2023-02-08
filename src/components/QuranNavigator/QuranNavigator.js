@@ -15,25 +15,23 @@ const QuranNavigator = (props) => {
         setSelectedSurah(surahNumber);
     }
     useEffect(() => {
-        getSurahList({baseUrl: 'http://api.alquran.cloud/v1/', url: "surah" }, surahObj => setSurahList(surahObj.data));
+        getSurahList({ baseUrl: 'http://api.alquran.cloud/v1/', url: "surah" }, surahObj => setSurahList(surahObj.data));
     }, [getSurahList]);
     return (
         <div className="quran-navigator">
+            {isLoading && <Loader />}
             {
-                isLoading ?
-                    <Loader />
+                error ?
+                    error
                     :
-                    error ?
-                        error
-                        :
-                        surahList.map(surah => {
-                            return (
-                                <div key={surah.number} className={`quran-navigator-surah ${selectedSurah === surah.number ? 'active' : ''}`} onClick={() => onSurahChange(surah.number)}>
-                                    <span>{surah.number}</span>
-                                    <span>{lang === 'ar' ? surah.name : surah.englishName}</span>
-                                </div>
-                            )
-                        })
+                    surahList.map(surah => {
+                        return (
+                            <div key={surah.number} className={`quran-navigator-surah ${selectedSurah === surah.number && 'active'}`} onClick={() => onSurahChange(surah.number)}>
+                                <span>{surah.number}</span>
+                                <span>{lang === 'ar' ? surah.name : surah.englishName}</span>
+                            </div>
+                        )
+                    })
             }
         </div>
     )

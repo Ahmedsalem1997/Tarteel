@@ -11,18 +11,27 @@ import NotFoundPage from './views/NotFoundPage/NotFoundPage';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { langActions } from './store/Lang/Lang';
+import { authActions } from './store/Auth/Auth';
 
 function App() {
   const globalLang = useSelector(state => {
     return state.lang.globalLang
   });
-
+  const loggedUser = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
+  
   const [lang, setLang] = useState(localStorage.getItem('lang'));
   const dispatch = useDispatch();
   const rootEle = document.getElementById('root-html');
+
+  if (token && loggedUser) {
+    dispatch(authActions.setAuth({token, user: loggedUser}));
+  }
+
   if (!lang) {
     setLang(rootEle.getAttribute('lang'))
   }
+  
   useEffect(() => {
     dispatch(langActions.translation({ type: 'translation', lang: lang }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
