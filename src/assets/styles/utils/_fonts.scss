@@ -10,6 +10,12 @@
     font-weight: bold;
 }
 
+@font-face {
+    font-family: "Quran";
+    src: url("../../fonts/Quran.ttf") format("truetype");
+    font-weight: normal;
+}
+
 body {
     font-family: var(--main-font-family);
     font-weight: 400;
