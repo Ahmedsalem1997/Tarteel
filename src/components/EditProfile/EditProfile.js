@@ -21,18 +21,15 @@ const EditProfile = (props) => {
     });
     useEffect(() => {
         if (!auth.isAuth && props.user && props.token) {
-            console.log("notAuth");
             setName(props.user.name);
             setEmail(props.user.email);
             setAvatar(props.user.avatar);
             setToken(props.token);
         } else if (auth.isAuth) {
-            console.log("isAuth");
             setName(auth.user.name);
             setEmail(auth.user.email);
             setAvatar(auth.user.avatar);
             setToken(auth.token);
-            console.log(auth);
         }
     }, []);
     const onEditProfileHandler = (e) => {
@@ -51,7 +48,6 @@ const EditProfile = (props) => {
             body: body
         },
             data => {
-                console.log(data);
                 localStorage.setItem('user', JSON.stringify(data.data));
                 dispatch(authActions.setAuth({ token, user: data.data }));
                 props.setIsOpen(false);
