@@ -1,12 +1,69 @@
+import { useEffect, useState } from "react";
 import { Translate } from "../../helpers/Translate/Translate";
+import useHTTP from "../../hooks/use-http";
 import useTranslate from "../../hooks/use-translate";
 import BlackBlock from "../BlackBlock/BlackBlock";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../store/Auth/Auth";
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = (props) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const img = require("../../assets/images/record.jpg");
+    const { isLoading, error, sendRequest } = useHTTP();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [avatar, setAvatar] = useState('');
+    const [token, setToken] = useState('');
+    const auth = useSelector(state => {
+        return { isAuth: state.auth.isAuth, user: state.auth.user, token: state.auth.token };
+    });
+    useEffect(() => {
+        if (!auth.isAuth && props.user && props.token) {
+            console.log("notAuth");
+            setName(props.user.name);
+            setEmail(props.user.email);
+            setAvatar(props.user.avatar);
+            setToken(props.token);
+        } else if (auth.isAuth) {
+            console.log("isAuth");
+            setName(auth.user.name);
+            setEmail(auth.user.email);
+            setAvatar(auth.user.avatar);
+            setToken(auth.token);
+            console.log(auth);
+        }
+    }, []);
+    const onEditProfileHandler = (e) => {
+        e.preventDefault();
+        let body = { name, email };
+        if (avatar) {
+            body = { name, email, avatar };
+        }
+        sendRequest({
+            url: 'profile',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: body
+        },
+            data => {
+                console.log(data);
+                localStorage.setItem('user', JSON.stringify(data.data));
+                dispatch(authActions.setAuth({ token, user: data.data }));
+                props.setIsOpen(false);
+                if (props.token) {
+                    localStorage.setItem('token', token);
+                    navigate(`/`);
+                }
+            });
+    }
     return (
         <BlackBlock>
-            <form>
+            <form onSubmit={onEditProfileHandler}>
                 <div className="edit-profile">
                     <div className="edit-profile-img">
                         <img src={img} alt="..." />
@@ -14,18 +71,18 @@ const EditProfile = (props) => {
                     </div>
                     <div className="edit-profile-input-group">
                         <label><Translate id="input.label.name" /></label>
-                        <input placeholder={useTranslate('input.placeholder.name')} type="text" className="trans-input" />
+                        <input placeholder={useTranslate('input.placeholder.name')} value={name} onChange={(e) => setName(e.target.value)} type="text" className="trans-input" required />
                     </div>
                     <div className="edit-profile-input-group">
                         <label><Translate id="input.label.email" /></label>
-                        <input placeholder={useTranslate('input.placeholder.email')} type="text" className="trans-input" />
+                        <input placeholder={useTranslate('input.placeholder.email')} value={email} onChange={(e) => setEmail(e.target.value)} type="text" className="trans-input" required />
                     </div>
-                    <div className="edit-profile-input-group">
+                    {/* <div className="edit-profile-input-group">
                         <label><Translate id="input.label.phone" /></label>
-                        <input placeholder={useTranslate('input.placeholder.phone')} type="text" className="trans-input" />
-                    </div>
+                        <input placeholder={useTranslate('input.placeholder.phone')} value={phone} type="text" className="trans-input" required />
+                    </div> */}
                     <div className="edit-profile-actions">
-                        <button type="submit" className="main-button" onClick={() => props.setIsOpen(false)}><Translate id="button.save" /></button>
+                        <button type="submit" className="main-button"><Translate id="button.save" /></button>
                     </div>
 
                 </div>

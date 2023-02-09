@@ -1,10 +1,12 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import LoginWrapper from "../LoginWrapper/LoginWrapper";
+import EditProfile from "../EditProfile/EditProfile";
 import Translate from '../../helpers/Translate/Translate';
 import { useState } from "react";
 import useHTTP from "../../hooks/use-http";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/Auth/Auth";
+import Modal from "../Modal/Modal";
 const VerificationCode = () => {
   const dispatch = useDispatch();
   let { mobile } = useParams();
@@ -17,6 +19,9 @@ const VerificationCode = () => {
   const { isLoading, error, sendRequest } = useHTTP();
   const [verificationError, setVerificationError] = useState('');
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState({});
+  const [token, setToken] = useState('');
 
   const onCodeVerifyHandler = (e) => {
     const code = input1 + input2 + input3 + input4 + input5 + input6;
@@ -33,12 +38,17 @@ const VerificationCode = () => {
       if (data.error) {
         setVerificationError(data.message);
       } else {
-        console.log(data);
         setVerificationError('');
-        localStorage.setItem('token', data.data.token);
-        localStorage.setItem('user', JSON.stringify(data.data.user));
-        dispatch(authActions.setAuth(data.data));
-        navigate(`/`);
+        if (data.data.user.name && data.data.user.email && data.data.user.avatar) {
+          localStorage.setItem('token', data.data.token);
+          localStorage.setItem('user', JSON.stringify(data.data.user));
+          dispatch(authActions.setAuth(data.data));
+          navigate(`/`);
+        } else {
+          setUser(data.data.user);
+          setToken(data.data.token);
+          setIsOpen(true);
+        }
       }
     });
   }
@@ -59,9 +69,9 @@ const VerificationCode = () => {
         </div>
         {
           verificationError &&
-            <div className="verification-code-form-error">
-              <p>{verificationError}</p>
-            </div>
+          <div className="verification-code-form-error">
+            <p>{verificationError}</p>
+          </div>
         }
 
 
@@ -74,6 +84,8 @@ const VerificationCode = () => {
           </Link>
         </div>
       </form>
+      {isOpen && <Modal><EditProfile token={token} user={user} setIsOpen={setIsOpen} /></Modal>}
+
     </LoginWrapper>
   );
 };
