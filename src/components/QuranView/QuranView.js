@@ -10,12 +10,15 @@ const QuranView = (props) => {
     const lang = useSelector(state => {
         return state.lang.globalLang;
     });
+
+
     useEffect(() => {
         const surahUrl = lang === 'ar' ? `${props.selectedSurah}/quran-simple` : `${props.selectedSurah}/en.ahmedali`;
-        getSurah({baseUrl: 'http://api.alquran.cloud/v1/', url: `surah/${surahUrl}` }, surahObj => {
+        getSurah({ baseUrl: 'http://api.alquran.cloud/v1/', url: `surah/${surahUrl}` }, surahObj => {
             setSurah(surahObj.data);
+            console.log(surah);
         });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.selectedSurah, lang]);
     return (
         <div className="quran-view">
@@ -28,9 +31,10 @@ const QuranView = (props) => {
                         error ?
                             error
                             :
-                            surah?.ayahs?.map(ayah => {
+                            surah?.ayahs?.map((ayah, i, ayahsArr) => {
                                 return (
                                     <Fragment key={ayah.number}>
+                                        {ayahsArr[i-1]?.page < ayahsArr[i]?.page && <div>{ayahsArr[i-1]?.page} <hr /></div> }
                                         {(lang === 'ar' && ayah.numberInSurah === 1 && props.selectedSurah !== 1) ? ayah.text.replace('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ', '') : ayah.text}&nbsp;<span>{ayah.numberInSurah}</span>&nbsp;
                                     </Fragment>
                                 )

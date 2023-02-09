@@ -8,6 +8,7 @@
     &-content {
         display: flex;
         column-gap: 2rem;
+        text-align: center;
     }
 
     &-navigator {
@@ -52,16 +53,18 @@
 
             span {
                 display: inline-block;
-                border: 1px solid #fff;
-                width: 4rem;
-                height: 4rem;
+                width: 3rem;
+                height: auto;
                 border-radius: 1rem;
                 line-height: 4rem;
                 vertical-align: middle;
                 text-align: center;
-                font-size: 2rem;
-                // margin: 0 1rem;
-                background-color: var(--comment-bg);
+                font-size: 1.5rem;
+                margin: 0 1rem;
+                background: url('../../images/ayah.svg.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                font-family: var(--quran-font-family);
             }
 
             &-openning {
