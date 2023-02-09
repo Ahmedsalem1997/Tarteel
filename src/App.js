@@ -30,6 +30,7 @@ function App() {
     if (token && loggedUser) {
       dispatch(authActions.setAuth({ token, user: loggedUser }));
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
