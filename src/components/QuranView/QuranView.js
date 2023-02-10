@@ -7,16 +7,13 @@ import Loader from "../Loader/Loader";
 const QuranView = (props) => {
   const [surah, setSurah] = useState([]);
   const { isLoading, error, sendRequest: getSurah } = useHTTP();
-  
+
   const lang = useSelector((state) => {
     return state.lang.globalLang;
   });
 
   useEffect(() => {
-    const surahUrl =
-      lang === "ar"
-        ? `${props.selectedSurah}/quran-simple`
-        : `${props.selectedSurah}/en.ahmedali`;
+    const surahUrl = `${props.selectedSurah}/${lang}.ahmedali`;
     getSurah(
       { baseUrl: "http://api.alquran.cloud/v1/", url: `surah/${surahUrl}` },
       (surahObj) => {
@@ -25,12 +22,12 @@ const QuranView = (props) => {
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.selectedSurah, lang]);
+  }, [lang, props.selectedSurah]);
 
   return (
     <div className="quran-view">
       <div className="quran-view-surah">
-        <p className="quran-view-surah-name">{surah?.name}</p>
+        <p className="quran-view-surah-name">{lang === "ar" ? surah?.name : surah?.englishName}</p>
         <div className="quran-view-surah-openning">
           <Translate id="quran.openning" />
         </div>
@@ -45,7 +42,9 @@ const QuranView = (props) => {
                 {ayahsArr[i - 1]?.page < ayahsArr[i]?.page && (
                   <div className="quran-view-page-seprator">
                     <p>
-                      {lang === "ar" ? ayahsArr[i - 1]?.page.toLocaleString('ar-EG') : ayahsArr[i - 1]?.page}
+                      {lang === "ar"
+                        ? ayahsArr[i - 1]?.page.toLocaleString("ar-EG")
+                        : ayahsArr[i - 1]?.page}
                     </p>
                     <hr />
                   </div>
@@ -58,7 +57,13 @@ const QuranView = (props) => {
                       ""
                     )
                   : ayah.text}
-                &nbsp;<span>{lang === "ar" ? ayah.numberInSurah.toLocaleString('ar-EG') : ayah.numberInSurah}</span>&nbsp;
+                &nbsp;
+                <span>
+                  {lang === "ar"
+                    ? ayah.numberInSurah.toLocaleString("ar-EG")
+                    : ayah.numberInSurah}
+                </span>
+                &nbsp;
               </Fragment>
             );
           })

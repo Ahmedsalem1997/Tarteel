@@ -11,7 +11,6 @@ const useHTTP = () => {
         if (requestConfig.baseUrl) {
             baseUrl = requestConfig.baseUrl;
         }
-        console.log(baseUrl);
         try {
             const response = await fetch(
                 baseUrl + requestConfig.url,

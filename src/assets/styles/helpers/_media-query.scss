@@ -1,78 +1,85 @@
 @media screen and (max-width: 768px) {
-    html {
-        font-size: 11px;
-    }
+  html {
+    font-size: 11px;
+  }
 
-    // Footer 
-    .footer {
+  // Footer
+  .footer {
+    flex-direction: column;
+    row-gap: 3rem;
+
+    &-start {
+      align-items: center;
+
+      &-links {
         flex-direction: column;
         row-gap: 3rem;
-
-        &-start {
-            align-items: center;
-
-            &-links {
-                flex-direction: column;
-                row-gap: 3rem;
-            }
-        }
-
-        &-end {
-            row-gap: 2rem;
-        }
+      }
     }
 
-
-
+    &-end {
+      row-gap: 2rem;
+    }
+  }
 }
 
 @media screen and (max-width: 567px) {
-    html {
-        font-size: 10px;
+  html {
+    font-size: 10px;
+  }
+
+  // Home Subscribe
+  .home-subscribe {
+    &-input-group {
+      flex-direction: column;
+      row-gap: 1rem;
     }
 
-    // Home Subscribe
-    .home-subscribe {
-
-        &-input-group {
-            flex-direction: column;
-            row-gap: 1rem;
-        }
-
-        &-input {
-            width: 100%;
-        }
-
-        &-send-btn {
-            margin: 0;
-            width: 100%;
-        }
+    &-input {
+      width: 100%;
     }
 
-    // Carousel
-    .carousel {
-        &-item {
-            &:not(:first-child) {
-                display: none;
-            }
-        }
-        &-content {
-            left: 1.9rem;
-            right: 1.9rem;
-            .register-now-btn {
-                margin-bottom: 1.8rem;
-            }
-        }
-        &-indicators {
-            display: none;
-        }
-        .register-bar {
-            display: none;
-        }
+    &-send-btn {
+      margin: 0;
+      width: 100%;
     }
+  }
 
-    // Quran
-    .quran {
-        
+  // Carousel
+  .carousel {
+    &-item {
+      &:not(:first-child) {
+        display: none;
+      }
     }
- }
+    &-content {
+      left: 1.9rem;
+      right: 1.9rem;
+      .register-now-btn {
+        margin-bottom: 1.8rem;
+      }
+    }
+    &-indicators {
+      display: none;
+    }
+    .register-bar {
+      display: none;
+    }
+  }
+
+  // Quran
+  .quran {
+    &-content {
+        flex-direction: column;
+    }
+    &-navigator {
+      display: none;
+    }
+    &-mobile-navigator {
+        display: block;
+    }
+    &-view {
+      width: 75%;
+    }
+  }
+}
