@@ -11,6 +11,8 @@
     text-align: center;
   }
 
+  
+
   &-navigator {
     position: sticky;
     top: 0;
@@ -32,10 +34,10 @@
       padding: 1rem;
       width: 100%;
 
-      span {
+      p {
         font-family: var(--quran-font-family);
       }
-
+      
       &.active {
         background-color: var(--main-bg);
         font-weight: 600;
@@ -48,8 +50,18 @@
   }
 
   &-view {
-    width: 50%;
-    padding: 5rem;
+    width: 30%;
+    margin: 0 auto;
+
+    &-page-seprator {
+      margin: 1rem 0;
+      opacity: 0.5;
+      p {
+        font-size: 1.25rem;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    }
 
     &-surah {
       font-size: 2rem;
@@ -61,22 +73,30 @@
         display: inline-block;
         width: 2rem;
         height: auto;
-        border-radius: 1rem;
         vertical-align: middle;
         text-align: center;
-        font-size: 12px;
-        padding: 10px 0;
+        font-size: 1rem;
+        font-weight: bold;
+        padding: 5px 0;
         margin: 0.2rem;
-        background: url("../../images/ayah.svg.png");
+        background: url("../../images/ayah.png");
         background-size: contain;
         background-repeat: no-repeat;
-        font-family: var(--quran-font-family);
+        font-family: Arial, Helvetica, sans-serif;
       }
 
       &-openning {
         text-align: center;
         margin-bottom: 2rem;
         font-family: var(--quran-font-family);
+      }
+
+      &-name {
+        text-align: center;
+        font-weight: bold;
+        font-family: var(--quran-font-family);
+        margin: 10px 0;
+        font-size: 2.5rem;
       }
     }
   }

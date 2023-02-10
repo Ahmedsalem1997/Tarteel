@@ -27,8 +27,8 @@ const QuranNavigator = (props) => {
                     surahList.map(surah => {
                         return (
                             <div key={surah.number} className={`quran-navigator-surah ${selectedSurah === surah.number && 'active'}`} onClick={() => onSurahChange(surah.number)}>
-                                <span>{surah.number}</span>
-                                <span>{lang === 'ar' ? surah.name : surah.englishName}</span>
+                                <span>{lang === 'ar' ? surah.number.toLocaleString('ar-EG') : surah.number}</span>
+                                <p>{lang === 'ar' ? surah.name : surah.englishName}</p>
                             </div>
                         )
                     })
