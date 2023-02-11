@@ -7,12 +7,17 @@ import useHTTP from "../../hooks/use-http";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [mobileNumber, setMobileNumber] = useState('')
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const { isLoading, error, sendRequest } = useHTTP();
   const [mobileError, setMobileError] = useState('');
   const navigate = useNavigate();
   const onLoginHandler = (e) => {
     e.preventDefault();
+    if(mobileNumber.trim().length !== 12) {
+      setErrorMessage('Phone Number Must be 12 Character');
+      return
+    }
     sendRequest({
       url: 'codes/get',
       method: 'POST',
@@ -44,8 +49,9 @@ const Login = () => {
         <div className="login-form-content">
           <div className="login-form-content-input-group">
             <label className="login-form-content-label">رقم الهاتف</label>
-            <input className="trans-input" onChange={mobileNumberChangeHandler}></input>
+            <input className="trans-input" type='number' onChange={mobileNumberChangeHandler} required></input>
             <p>{mobileError}</p>
+            <p>{errorMessage}</p>
           </div>
         </div>
         <div className="login-form-header">

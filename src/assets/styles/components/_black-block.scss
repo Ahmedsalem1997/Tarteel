@@ -1,13 +1,13 @@
 .black-block {
     position: relative;
     z-index: 2;
-    padding: 4rem 5rem;
+    padding: 3rem 7rem;
     background-color: var(--main-bg);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 450px;
+    width: 70%;
     max-width: calc(100% - 2rem);
     border-radius: 1rem;
     > * {
