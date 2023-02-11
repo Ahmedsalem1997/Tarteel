@@ -59,13 +59,11 @@ const QuranView = (props) => {
                     ""
                   )
                   : ayah.text}
-                &nbsp;
                 <span>
                   {lang === "ar"
                     ? ayah.numberInSurah.toLocaleString("ar-EG")
                     : ayah.numberInSurah}
                 </span>
-                &nbsp;
               </Fragment>
             );
           })
