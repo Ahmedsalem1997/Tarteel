@@ -1,3 +1,15 @@
+@media screen and (max-width: 992px) {
+  // Quran
+  .quran {
+    &-navigator {
+      width: 35%;
+    }
+    &-view {
+      width: 65%;
+    }
+  }
+}
+
 @media screen and (max-width: 768px) {
   html {
     font-size: 11px;
@@ -19,6 +31,26 @@
 
     &-end {
       row-gap: 2rem;
+    }
+  }
+
+  // Quran
+  .quran {
+    &-content {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &-navigator {
+      display: none;
+    }
+
+    &-mobile-navigator {
+      display: block;
+    }
+
+    &-view {
+      width: 75%;
     }
   }
 }
@@ -52,34 +84,23 @@
         display: none;
       }
     }
+
     &-content {
       left: 1.9rem;
       right: 1.9rem;
+
       .register-now-btn {
         margin-bottom: 1.8rem;
       }
     }
+
     &-indicators {
       display: none;
     }
+
     .register-bar {
       display: none;
     }
   }
 
-  // Quran
-  .quran {
-    &-content {
-        flex-direction: column;
-    }
-    &-navigator {
-      display: none;
-    }
-    &-mobile-navigator {
-        display: block;
-    }
-    &-view {
-      width: 75%;
-    }
-  }
 }

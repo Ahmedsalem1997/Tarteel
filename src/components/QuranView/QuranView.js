@@ -6,19 +6,21 @@ import Loader from "../Loader/Loader";
 
 const QuranView = (props) => {
   const [surah, setSurah] = useState([]);
-  const { isLoading, error, sendRequest: getSurah } = useHTTP();
-
   const lang = useSelector((state) => {
+    console.log('useSelector', state.lang.globalLang);
     return state.lang.globalLang;
   });
+  const { isLoading, error, sendRequest: getSurah } = useHTTP();
+
 
   useEffect(() => {
-    const surahUrl = `${props.selectedSurah}/${lang}.ahmedali`;
+    console.log('useEffect', lang);
+    const surahUrl = props.selectedSurah + '/' + lang + '.ahmedali';
+    console.log('getSurah', surahUrl);
     getSurah(
       { baseUrl: "http://api.alquran.cloud/v1/", url: `surah/${surahUrl}` },
       (surahObj) => {
         setSurah(surahObj.data);
-        console.log(surah);
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,12 +52,12 @@ const QuranView = (props) => {
                   </div>
                 )}
                 {lang === "ar" &&
-                ayah.numberInSurah === 1 &&
-                props.selectedSurah !== 1
+                  ayah.numberInSurah === 1 &&
+                  props.selectedSurah !== 1
                   ? ayah.text.replace(
-                      "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
-                      ""
-                    )
+                    "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+                    ""
+                  )
                   : ayah.text}
                 &nbsp;
                 <span>

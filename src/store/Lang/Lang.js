@@ -1,14 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialLangState = { globalLang: 'en', translation: require('../../assets/json/lang/en.json') }
+const initialLangState = { globalLang: 'ar', translation: require('../../assets/json/lang/en.json') }
 
 const langSlice = createSlice({
     name: 'lang',
     initialState: initialLangState,
     reducers: {
         translation(state, action) {
-            state.globalLang = action.payload.lang !== "undefined" ? action.payload.lang : state.globalLang;
-            state.translation = require(`../../assets/json/lang/${action.payload.lang}.json`);
+            state.globalLang = action.payload.lang || state.globalLang;
+            state.translation = require(`../../assets/json/lang/${action.payload.lang || state.globalLang}.json`);
+            console.log(state.globalLang);
         }
     }
 })

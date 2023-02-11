@@ -7,7 +7,6 @@
 
   &-content {
     display: flex;
-    column-gap: 2rem;
     text-align: center;
   }
 
@@ -17,12 +16,16 @@
     select {
       background: transparent;
       border: none;
-      color: #fff; //needs to change
+      color: var(--text-color); //needs to change
       font-size: 1.75rem;
       font-family: var(--quran-font-family);
       &:focus{
         outline: none;
       }
+    }
+    option {
+      color: var(--post-bg);
+      background-color: var(--text-color);
     }
   }
 
@@ -60,9 +63,9 @@
   }
 
   &-view {
-    width: 30%;
-    margin: 0 auto;
-
+    width: 80%;
+    display: flex;
+    justify-content: center;
     &-page-seprator {
       margin: 1rem 0;
       opacity: 0.5;
@@ -78,7 +81,7 @@
       text-align: justify;
       text-transform: none;
       font-family: var(--quran-font-family);
-
+      width: 60%;
       span {
         display: inline-block;
         width: 2rem;

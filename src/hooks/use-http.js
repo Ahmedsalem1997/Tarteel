@@ -5,6 +5,7 @@ const useHTTP = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const sendRequest = useCallback(async (requestConfig, applyData) => {
+        console.log('hello');
         let baseUrl = "http://ec2-34-246-200-235.eu-west-1.compute.amazonaws.com/api/v1/front/";
         setIsLoading(true);
         setError(null);
