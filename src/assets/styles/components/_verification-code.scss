@@ -2,6 +2,7 @@
   &-header {
     padding: 4rem 0;
     font-size: 1.2rem;
+    text-align: center;
   }
 
   &-inputs {
@@ -22,5 +23,8 @@
     width: 100%;
     margin-top: 2.5rem;
     padding: 0 0rem;
+  }
+  &-cancel {
+    text-align: center;
   }
 }

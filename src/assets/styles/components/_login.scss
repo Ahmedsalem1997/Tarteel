@@ -1,6 +1,7 @@
 .login-form {
   &-header {
     padding: 2rem 0 0 0;
+    text-align: center;
     p {
       font-size: 1rem;
     }
@@ -10,6 +11,9 @@
     width: 100%;
     margin-top: 2rem;
     padding: 0 0rem;
+  }
+  &-cancel {
+    text-align: center;
   }
   a {
     margin-top: 6rem;

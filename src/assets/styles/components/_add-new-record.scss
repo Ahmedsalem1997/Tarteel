@@ -11,12 +11,15 @@
             height: 61.6px;
             padding: .5rem 1rem;
             font-size: 1.92rem;
-            color: var(--text-color);
+            color: var(--main-color);
             border: none;
             outline: none;
             box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.06);
             &[class^="aya-"] {
                 width: 40%;
+            }
+            option {
+                color: var(--dark-bg);
             }
         }
         span {
@@ -34,6 +37,9 @@
         &+button {
             margin-inline-start: 2rem;
         }
+    }
+    input#upload-file {
+        display: none;
     }
     &-actions {
         margin-top: 10rem;
