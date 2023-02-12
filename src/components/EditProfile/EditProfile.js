@@ -6,6 +6,7 @@ import BlackBlock from "../BlackBlock/BlackBlock";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store/Auth/Auth";
 import { useNavigate } from "react-router-dom";
+// import { URLSearchParams } from "url";
 
 const EditProfile = (props) => {
     const dispatch = useDispatch();
@@ -34,19 +35,23 @@ const EditProfile = (props) => {
     }, []);
     const onEditProfileHandler = (e) => {
         e.preventDefault();
-        let body = { name, email };
+        let body = { name, email, avatar };
+        let formdata = new FormData();
         if (avatar) {
-            body = { name, email, avatar: JSON.stringify(avatar) };
+            formdata.append('name', name);
+            formdata.append('email', email);
+            formdata.append('avatar', avatar);
+            // { name, email, avatar: avatar.slice().slice() };
+            // body = new URLSearchParams(formdata);
         }
-        console.log(avatar, typeof(avatar));
+        
         sendRequest({
             url: 'profile',
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: body
+            body: formdata
         },
             data => {
                 localStorage.setItem('user', JSON.stringify(data.data));
@@ -58,14 +63,19 @@ const EditProfile = (props) => {
                 }
             });
     }
+
+    const onAvatarChange = (e) => {
+        let file = e.target.files[0];
+        setAvatar(file);
+    }
     return (
         <BlackBlock width="80%">
             <form onSubmit={onEditProfileHandler}>
                 <div className="edit-profile">
                     <div className="edit-profile-img">
-                        <img src={img} alt="..." />
+                        <img src={auth.user.avatar} alt="..." />
                         <div className="edit-profile-img-upload" onClick={() => document.getElementById('upload-img').click()}><Translate id="button.editImg" /></div>
-                        <input onChange={(e) => setAvatar(e.target.files[0])} type='file' id="upload-img"/>
+                        <input onChange={onAvatarChange} type='file' id="upload-img" />
                     </div>
                     <div className="edit-profile-input-group">
                         <label><Translate id="input.label.name" /></label>
