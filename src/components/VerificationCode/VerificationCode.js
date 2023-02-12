@@ -26,10 +26,12 @@ const VerificationCode = () => {
   const [token, setToken] = useState("");
 
   const handleOTPChange = (OTP) => {
+    console.log(OTP);
     setOTP(OTP);
   };
 
-  const onCodeVerifyHandler = () => {
+  const onCodeVerifyHandler = (e) => {
+    e.preventDefault();
     console.log(OTP);
     sendRequest(
       {
@@ -115,11 +117,13 @@ const VerificationCode = () => {
           <OTPInput
             onChange={handleOTPChange}
             value={OTP}
-            autoFocus 
+            autoFocus
             otpType="number"
             OTPLength={6}
             inputClassName="trans-input"
-            disabled={false} 
+            style={{columnGap: '1rem'}}
+            inputStyles={{width: '16.666%', marginRight: '0', height: '3rem'}}
+            disabled={false}
           />
         </div>
         {verificationError && (

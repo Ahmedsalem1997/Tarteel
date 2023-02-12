@@ -58,7 +58,7 @@ const EditProfile = (props) => {
             });
     }
     return (
-        <BlackBlock>
+        <BlackBlock width="80%">
             <form onSubmit={onEditProfileHandler}>
                 <div className="edit-profile">
                     <div className="edit-profile-img">
