@@ -14,7 +14,7 @@ const EditProfile = (props) => {
     const { isLoading, error, sendRequest } = useHTTP();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [avatar, setAvatar] = useState('');
+    const [avatar, setAvatar] = useState(undefined);
     const [token, setToken] = useState('');
     const auth = useSelector(state => {
         return { isAuth: state.auth.isAuth, user: state.auth.user, token: state.auth.token };
@@ -36,8 +36,9 @@ const EditProfile = (props) => {
         e.preventDefault();
         let body = { name, email };
         if (avatar) {
-            body = { name, email, avatar };
+            body = { name, email, avatar: JSON.stringify(avatar) };
         }
+        console.log(avatar, typeof(avatar));
         sendRequest({
             url: 'profile',
             method: 'POST',
@@ -63,7 +64,8 @@ const EditProfile = (props) => {
                 <div className="edit-profile">
                     <div className="edit-profile-img">
                         <img src={img} alt="..." />
-                        <div className="edit-profile-img-upload"><Translate id="button.editImg" /></div>
+                        <div className="edit-profile-img-upload" onClick={() => document.getElementById('upload-img').click()}><Translate id="button.editImg" /></div>
+                        <input onChange={(e) => setAvatar(e.target.files[0])} type='file' id="upload-img"/>
                     </div>
                     <div className="edit-profile-input-group">
                         <label><Translate id="input.label.name" /></label>

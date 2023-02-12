@@ -5,7 +5,7 @@ import useHTTP from "../../hooks/use-http";
 import BlackBlock from "../BlackBlock/BlackBlock";
 
 const AddNewRecord = (props) => {
-    const [uploadedRecord, setUploadedRecord] = useState('');
+    const [uploadedRecord, setUploadedRecord] = useState(undefined);
     const [selectedSurah, setSelectedSurah] = useState(0);
     const [ayaFrom, setAyaFrom] = useState('');
     const [ayaTo, setAyaTo] = useState('');
@@ -29,33 +29,52 @@ const AddNewRecord = (props) => {
     const onAddNewRecordHandler = (e) => {
         e.preventDefault();
         console.log(uploadedRecord);
+        // let idCardBase64 = '';
+        // getBase64(uploadedRecord, (result) => {
+        //     idCardBase64 = result;
+        //     console.log(idCardBase64);
+        // });
         const body = {
+            file: uploadedRecord,
             title: "Helloooo",
             surah_id: selectedSurah,
             from_ayah: ayaFrom,
             to_ayah: ayaTo,
-            file: uploadedRecord
         }
-        const formData = new FormData();
+        let formData = new FormData();
         formData.append('title', 'Hellooo');
         formData.append('surah_id', selectedSurah);
         formData.append('from_ayah', ayaFrom);
         formData.append('to_ayah', ayaTo);
-        formData.append('file', URL.createObjectURL(uploadedRecord));
+        formData.append('file', uploadedRecord);
+        for (const key of formData.values()) {
+            console.log(key);
+        }
         addNewRecord(
             {
                 url: 'records',
                 method: 'POST',
-                body: body,
+                body: formData,
                 headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`
                 }
             },
             data => {
                 console.log(data);
             }
         )
+    }
+
+    const getBase64 = (file, cb) => {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            cb(reader.result)
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
     }
 
     const surahChangeHandler = (e) => {
@@ -71,6 +90,7 @@ const AddNewRecord = (props) => {
     const uploadRecordHandler = (e) => {
         console.log(e.target.files);
         setUploadedRecord(e.target.files[0]);
+        console.log(typeof (uploadedRecord));
     }
     return (
         <BlackBlock width="80%">

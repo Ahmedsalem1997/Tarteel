@@ -12,7 +12,8 @@ const Home = () => {
     const [latestRecords, setLatestRecords] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const { isLoading, error, sendRequest: getLatestRecords } = useHTTP();
-    useEffect(() => {
+
+    const fetchRecords = () => {
         getLatestRecords(
             {
                 url: 'records/latest',
@@ -20,8 +21,12 @@ const Home = () => {
             },
             data => {
                 setLatestRecords(data.data);
+                console.log(data.data);
             }
         )
+    }
+    useEffect(() => {
+        fetchRecords();
     }, [])
     return (
         <LayoutWrapper>

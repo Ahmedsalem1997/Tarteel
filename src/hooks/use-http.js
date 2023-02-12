@@ -9,6 +9,7 @@ const useHTTP = () => {
         let baseUrl = "http://ec2-34-246-200-235.eu-west-1.compute.amazonaws.com/api/v1/front/";
         setIsLoading(true);
         setError(null);
+        console.log(requestConfig.headers);
         if (requestConfig.baseUrl) {
             baseUrl = requestConfig.baseUrl;
         }
@@ -18,7 +19,7 @@ const useHTTP = () => {
                 {
                     method: requestConfig.method,
                     headers: requestConfig.headers,
-                    body: JSON.stringify(requestConfig.body)
+                    body: requestConfig.method === 'POST' && requestConfig.headers['Content-Type'] === 'application/json' ? JSON.stringify(requestConfig.body) : requestConfig.body
                 }
             );
 

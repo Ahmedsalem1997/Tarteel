@@ -19,7 +19,7 @@ const Record = (props) => {
             <img src={props?.user?.avatar || img} className="d-block" alt="..." />
           </div>
           <div className="post-header-user-name">
-            <h3>{props?.record?.user?.name || 'لا يوجد اسم' }</h3>
+            <h3>{props?.record?.user?.name || 'لا يوجد اسم'}</h3>
             <p>منذ ٤ يوم</p>
           </div>
         </div>
@@ -49,7 +49,7 @@ const Record = (props) => {
         <Comments comments={props?.record?.latest_comments} />
       </div>}
       {showComments && <div className="post-add-comment">
-        <AddComment />
+        <AddComment recordId={props.record.id} />
       </div>}
     </div>
   );
