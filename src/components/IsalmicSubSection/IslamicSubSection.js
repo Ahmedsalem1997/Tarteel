@@ -1,8 +1,8 @@
 import IslamicContentHome from "../IslamicContentHome/IslamicContentHome";
 
-const IslamicSubSection = () => {
+const IslamicSubSection = (props) => {
     return (
-        <IslamicContentHome />
+        <IslamicContentHome id={props.id}/>
     )
 }
 

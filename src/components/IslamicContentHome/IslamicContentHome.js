@@ -1,16 +1,30 @@
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import ExsitingRecord from "../SingleRecordCard/ExsitingRecord/ExsitingRecord";
+import useHTTP from "../../hooks/use-http";
 
-const IslamicContentHome = () => {
-    const img = require('../../assets/images/record.jpg');
+const IslamicContentHome = ({ id }) => {
+    const lang = useSelector((state) => {
+        return state.lang.globalLang;
+    });
+
+    const [items, setItems] = useState([]);
+    const { sendRequest: getCategories } = useHTTP();
+
+    useEffect(() => {
+        getCategories(
+            { url: `content?operator_id=1&category_id=${id}`, method: 'GET' },
+            data => {
+                setItems(data.data);
+            }
+        );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
         <div className="home-section-content">
-            <ExsitingRecord btn={true} img={img} name="اسم التسجيل"></ExsitingRecord>
-            <ExsitingRecord btn={true} img={img} name="اسم التسجيل"></ExsitingRecord>
-            <ExsitingRecord btn={true} img={img} name="اسم التسجيل"></ExsitingRecord>
-            <ExsitingRecord btn={true} img={img} name="اسم التسجيل"></ExsitingRecord>
-            <ExsitingRecord btn={true} img={img} name="اسم التسجيل"></ExsitingRecord>
-            <ExsitingRecord btn={true} img={img} name="اسم التسجيل"></ExsitingRecord>
-            <ExsitingRecord btn={true} img={img} name="اسم التسجيل"></ExsitingRecord>
+            {items.map((item) => (
+                <ExsitingRecord key={item.id} btn={true} img={item.cover} name={lang === 'ar' ? item.title : item.title_en} media={item.file}></ExsitingRecord>
+            ))}
         </div>
     )
 }

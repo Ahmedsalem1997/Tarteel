@@ -4,11 +4,11 @@ import ReactPlayer from 'react-player'
 
 
 const MediaPlayer = (props) => {
-    return ( 
+    return (
         <BlackBlock width="75%" showClose={true} onClose={props.close}>
-            <ReactPlayer url='https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' controls/>
+            <ReactPlayer url={props.media} controls />
         </BlackBlock>
-     );
+    );
 }
- 
+
 export default MediaPlayer;
