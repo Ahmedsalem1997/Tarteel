@@ -6,11 +6,13 @@ const useTranslate = (text) => {
     });
     let translatedText = { ...translation };
     const objDirArr = text.split('.');
-    objDirArr.forEach(dir => {
-        translatedText = translatedText[dir];
-    });
-    if (!translatedText) {
-        return text;
+    console.log(text);
+    for (let i = 0; i < objDirArr.length; i++) {
+        if (!translatedText[objDirArr[i]]) {
+            translatedText = text;
+            break;
+        }
+        translatedText = translatedText[objDirArr[i]];
     }
     return translatedText;
 }
