@@ -47,16 +47,12 @@ const AddNewRecord = (props) => {
         formData.append('from_ayah', ayaFrom);
         formData.append('to_ayah', ayaTo);
         formData.append('file', uploadedRecord);
-        for (const key of formData.values()) {
-            console.log(key);
-        }
         addNewRecord(
             {
                 url: 'records',
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${token}`
                 }
             },
