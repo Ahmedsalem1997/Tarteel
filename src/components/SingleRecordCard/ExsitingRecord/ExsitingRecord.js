@@ -15,7 +15,7 @@ const ExsitingRecord = (props) => {
                     <button className="trans-btn" onClick={() => setIsOpen(true)}><Translate id="button.listen" /></button>}
             </div>
             {/* <button className="play-pause-btn"></button> */}
-            {isOpen && <Modal><MediaPlayer /></Modal>}
+            {isOpen && <Modal><MediaPlayer close={() => setIsOpen(false)} /></Modal>}
         </SingleRecordCard>
     )
 }

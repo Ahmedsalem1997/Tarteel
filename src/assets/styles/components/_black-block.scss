@@ -10,6 +10,16 @@
     width: 450px;
     max-width: calc(100% - 2rem);
     border-radius: 1rem;
+    .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 3rem;
+        width: 2rem;
+        cursor: pointer;
+        i {
+            font-size: 2rem;
+        }
+    }
     > * {
         width: 100%;
     }
