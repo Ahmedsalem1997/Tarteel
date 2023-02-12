@@ -33,8 +33,8 @@ const Record = (props) => {
           </span>
         }
       </div>
-      <AudioPlayer id={Math.floor(Math.random() * 1000)} />
-      <div className="post-text"><Translate id="record.fromAyah" /> 2 <Translate id="record.toAyah" /> 7 <Translate id="record.surah" /> البقرة</div>
+      <AudioPlayer id={`record-${props?.record?.id}`} />
+      <div className="post-text"><Translate id="record.fromAyah" /> {props?.record?.ayahs[0]?.number} <Translate id="record.toAyah" /> {props?.record?.ayahs[props?.record?.ayahs?.length-1]?.number} <Translate id="record.surah" /> البقرة</div>
       <div className="post-feedback">
         <span className="post-feedback-likes-comments">
           <p>{props?.record?.likes_count}</p>

@@ -62,17 +62,6 @@ const AddNewRecord = (props) => {
         )
     }
 
-    const getBase64 = (file, cb) => {
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function () {
-            cb(reader.result)
-        };
-        reader.onerror = function (error) {
-            console.log('Error: ', error);
-        };
-    }
-
     const surahChangeHandler = (e) => {
         setSelectedSurah(e.target.value);
         const newAyahs = Array.from({ length: surahList[e.target.value - 1].numberOfAyahs }, (value, i) => i + 1);;

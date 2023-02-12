@@ -26,7 +26,7 @@ const Comment = (props) => {
         {
           props?.comment?.file &&
           <div className="comment-content-audio">
-            <AudioPlayer id={Math.floor(Math.random() * 1000)} />
+            <AudioPlayer id={`comment-${props?.comment?.id}`} />
           </div>
         }
         {
