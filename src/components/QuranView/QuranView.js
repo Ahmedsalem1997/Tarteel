@@ -7,7 +7,6 @@ import Loader from "../Loader/Loader";
 const QuranView = (props) => {
   const [surah, setSurah] = useState([]);
   const lang = useSelector((state) => {
-    console.log('useSelector', state.lang.globalLang);
     return state.lang.globalLang;
   });
   const { isLoading, error, sendRequest: getSurah } = useHTTP();
