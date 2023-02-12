@@ -9,6 +9,9 @@ const useTranslate = (text) => {
     objDirArr.forEach(dir => {
         translatedText = translatedText[dir];
     });
+    if (!translatedText) {
+        return text;
+    }
     return translatedText;
 }
 
