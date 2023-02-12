@@ -1,11 +1,14 @@
 import Comment from "./Comment/Comment";
 import { Fragment } from "react";
 
-const Comments = () => {
+const Comments = (props) => {
   return (
     <Fragment>
-      <Comment />
-      <Comment />
+      {
+        props.comments.map(comment => {
+          return (<Comment key={comment.id} comment={comment} />)
+        })
+      }
     </Fragment>
   );
 };

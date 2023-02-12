@@ -1,11 +1,12 @@
 import { Fragment } from "react";
 import Record from "./Record/Record";
 
-const Records = () => {
+const Records = (props) => {
     return (
         <Fragment>
-            <Record></Record>
-            <Record></Record>
+            {props?.records?.map((record) => {
+                return <Record key={record.id} record={record}></Record>
+            })}
         </Fragment>
     )
 }
