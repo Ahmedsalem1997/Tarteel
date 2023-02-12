@@ -10,7 +10,10 @@ const Record = (props) => {
   const [showComments, setShowComments] = useState(false);
   const loggedUser = useSelector(state => {
     return state.auth.user;
-  })
+  });
+  const lang = useSelector(state => {
+    return state.lang.globalLang;
+  });
   return (
     <div className="post">
       <div className="post-header">
@@ -20,7 +23,7 @@ const Record = (props) => {
           </div>
           <div className="post-header-user-name">
             <h3>{props?.record?.user?.name || 'لا يوجد اسم'}</h3>
-            <p>منذ ٤ يوم</p>
+            <p>{lang === 'ar' ? props.record.created_at_ar : props.record.created_at_en}</p>
           </div>
         </div>
         {
