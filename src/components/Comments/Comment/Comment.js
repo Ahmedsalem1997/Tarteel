@@ -33,13 +33,13 @@ const Comment = (props) => {
           props?.comment?.text &&
           <div className="comment-content-text">
             <p>
-              {props.comment.text}
+              {props?.comment?.text}
             </p>
           </div>
         }
         <div className="comment-content-feedback">
           <span className="comment-content-feedback-likes">
-            <p>1.490</p>
+            <p>{props?.comment?.likes_count}</p>
             <i className="fa-regular fa-thumbs-up"></i>
           </span>
           <span>
