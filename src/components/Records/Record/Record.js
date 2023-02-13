@@ -23,7 +23,7 @@ const Record = (props) => {
           </div>
           <div className="post-header-user-name">
             <h3>{props?.record?.user?.name || 'لا يوجد اسم'}</h3>
-            <p>{lang === 'ar' ? props.record.created_at_ar : props.record.created_at_en}</p>
+            <p>{lang === 'ar' ? props?.record?.created_at_ar : props?.record?.created_at_en}</p>
           </div>
         </div>
         {
