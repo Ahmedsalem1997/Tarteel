@@ -13,7 +13,7 @@ const Home = () => {
         <LayoutWrapper>
             <div className="container-fluid">
 
-                <HomeSection header="myRecords.title" showAll="records">
+                <HomeSection header="myRecords.title" showAll="profile">
                     <MyRecordsHome />
                 </HomeSection>
                 <button className="main-button" onClick={() => setIsOpen(true)}>open login</button>
