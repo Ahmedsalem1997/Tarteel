@@ -37,6 +37,9 @@ const useHTTP = () => {
         let baseUrl = "http://ec2-34-246-200-235.eu-west-1.compute.amazonaws.com/api/v1/front/";
         setIsLoading(true);
         setError(null);
+        if (requestConfig.baseUrl) {
+            baseUrl = requestConfig.baseUrl;
+        }
         fetch(
             baseUrl + requestConfig.url,
             {
