@@ -23,7 +23,7 @@ const MyRecords = () => {
                 setMyRecords(data.data);
             }
         )
-    }, [])
+    }, []);
     return <Records records={myRecords} />
 }
 
