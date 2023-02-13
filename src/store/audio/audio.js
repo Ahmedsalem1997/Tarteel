@@ -11,7 +11,7 @@ const audioSlice = createSlice({
             state.audioArr.push(newAudio);
         },
         removeAudio(state, action) {
-            state.audioArr = state.audioArr.filter(audio => audio.container.id !== action.payload.container.id);
+            state.audioArr = state.audioArr.filter(audio => audio?.container?.id !== action?.payload?.container?.id);
         }
     }
 });

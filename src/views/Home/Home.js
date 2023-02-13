@@ -18,6 +18,10 @@ const Home = () => {
             {
                 url: 'records/latest',
                 method: 'GET',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,POST,PATCH,OPTIONS'
+                }
             },
             data => {
                 setLatestRecords(data.data);
