@@ -5,11 +5,9 @@ const useHTTP = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const sendRequest = useCallback(async (requestConfig, applyData) => {
-        console.log('hello');
         let baseUrl = "http://ec2-34-246-200-235.eu-west-1.compute.amazonaws.com/api/v1/front/";
         setIsLoading(true);
         setError(null);
-        console.log(requestConfig.headers);
         if (requestConfig.baseUrl) {
             baseUrl = requestConfig.baseUrl;
         }
@@ -30,7 +28,7 @@ const useHTTP = () => {
             const data = await response.json();
             applyData(data);
         } catch (err) {
-            setError(err.message || 'something went wrong')
+            setError(err.message || 'something went wrong');
         }
         setIsLoading(false);
         // eslint-disable-next-line react-hooks/exhaustive-deps
