@@ -28,7 +28,7 @@ const MyRecordsHome = () => {
     <div className="home-section-content">
       <NewRecord />
       {userRedords?.map((record) => {
-        return <ExsitingRecord img={record.cover} name={record.title}></ExsitingRecord>;
+        return <ExsitingRecord key={record.id} img={record.cover} name={record.title} media={record.file}></ExsitingRecord>;
       })}
     </div>
   );

@@ -9,7 +9,7 @@ const ExsitingRecord = (props) => {
     return (
         <SingleRecordCard>
             <img className="single-record-card-img" src={props.img} alt=""></img>
-            <div className="single-record-card-name">
+            <div className="single-record-card-name" onClick={() => setIsOpen(true)}>
                 <span>{props.name}</span>
                 {props.btn &&
                     <button className="trans-btn" onClick={() => setIsOpen(true)}><Translate id="button.listen" /></button>}
