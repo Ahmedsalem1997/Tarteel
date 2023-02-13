@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import ExsitingRecord from "../SingleRecordCard/ExsitingRecord/ExsitingRecord";
 import useHTTP from "../../hooks/use-http";
 
-const IslamicContentHome = ({ id }) => {
+const IslamicContentHome = () => {
     const lang = useSelector((state) => {
         return state.lang.globalLang;
     });
@@ -13,7 +13,10 @@ const IslamicContentHome = ({ id }) => {
 
     useEffect(() => {
         getCategories(
-            { url: `content?operator_id=1&category_id=${id}`, method: 'GET' },
+            {
+                url: `content`,
+                method: 'GET'
+            },
             data => {
                 setItems(data.data);
             }
@@ -22,7 +25,7 @@ const IslamicContentHome = ({ id }) => {
     }, []);
     return (
         <div className="home-section-content">
-            {items.map((item) => (
+            {items?.map((item) => (
                 <ExsitingRecord key={item.id} btn={true} img={item.cover} name={lang === 'ar' ? item.title : item.title_en} media={item.file}></ExsitingRecord>
             ))}
         </div>
