@@ -1,21 +1,37 @@
 import NewRecord from "../SingleRecordCard/NewRecord/NewRecord";
 import ExsitingRecord from "../SingleRecordCard/ExsitingRecord/ExsitingRecord";
-
+import useHTTP from "./../../hooks/use-http";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const MyRecordsHome = () => {
-    const img = require('../../assets/images/record.jpg');
-    return (
-        <div className="home-section-content">
-            <NewRecord />
-            <ExsitingRecord img={img} name="اسم التسجيل"></ExsitingRecord>
-            <ExsitingRecord img={img} name="اسم التسجيل"></ExsitingRecord>
-            <ExsitingRecord img={img} name="اسم التسجيل"></ExsitingRecord>
-            <ExsitingRecord img={img} name="اسم التسجيل"></ExsitingRecord>
-            <ExsitingRecord img={img} name="اسم التسجيل"></ExsitingRecord>
-            <ExsitingRecord img={img} name="اسم التسجيل"></ExsitingRecord>
-            <ExsitingRecord img={img} name="اسم التسجيل"></ExsitingRecord>
-        </div>
-    )
-}
+  const { isLoading, error, sendRequest: getMyRecords } = useHTTP();
+  const [userRedords, setUserRecords] = useState();
+  const token = useSelector((state) => {
+    return state.auth.token;
+  });
+  useEffect(() => {
+    getMyRecords(
+      {
+        url: "records",
+        headers: { 'Authorization': `Bearer ${token}` },
+        method: "GET",
+      },
+      (data) => {
+        setUserRecords(data.data);
+        console.log(data);
+      }
+    );
+  }, []);
+
+  return (
+    <div className="home-section-content">
+      <NewRecord />
+      {userRedords?.map((record) => {
+        return <ExsitingRecord img={record.cover} name={record.title}></ExsitingRecord>;
+      })}
+    </div>
+  );
+};
 
 export default MyRecordsHome;
