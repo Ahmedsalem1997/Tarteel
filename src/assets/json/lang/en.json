@@ -83,5 +83,13 @@
     "quran": {
         "title": "Read the Holy Qur’an with its provisions",
         "openning": "In the name of allah"
+    },
+    "login": {
+        "validNumber" : "check the phone number",
+        "mobileNumber" : "phone number" ,
+        "validTrueNumber" : "in order to validate your phone number",
+        "sendVerificationCode" : "we will send the verification code ,which must be entered on the next page",
+        "getCode" : "get the code",
+        "cancel" : "cancel"
     }
 }
