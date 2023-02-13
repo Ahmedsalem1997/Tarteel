@@ -27,7 +27,7 @@ const Record = (props) => {
           </div>
         </div>
         {
-          loggedUser.id === props?.record?.user?.id &&
+          loggedUser.id !== props?.record?.user?.id &&
           <span className="post-header-user-follow">
             <i className="fa-solid fa-user-plus"></i>
           </span>
