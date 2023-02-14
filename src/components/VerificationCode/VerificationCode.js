@@ -5,7 +5,6 @@ import Translate from "../../helpers/Translate/Translate";
 import OTPInput from "otp-input-react";
 import { useState } from "react";
 import useHTTP from "../../hooks/use-http";
-import { useDispatch } from "react-redux";
 import Modal from "../Modal/Modal";
 import { setAuth } from "../../utils/Auth";
 const VerificationCode = () => {
