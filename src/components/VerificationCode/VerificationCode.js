@@ -9,12 +9,6 @@ import Modal from "../Modal/Modal";
 import { setAuth } from "../../utils/Auth";
 const VerificationCode = () => {
   let { mobile } = useParams();
-  // const [input1, setInput1] = useState("");
-  // const [input2, setInput2] = useState("");
-  // const [input3, setInput3] = useState("");
-  // const [input4, setInput4] = useState("");
-  // const [input5, setInput5] = useState("");
-  // const [input6, setInput6] = useState("");
   const [OTP, setOTP] = useState("");
   const { sendRequest } = useHTTP();
   const [verificationError, setVerificationError] = useState("");
@@ -52,7 +46,6 @@ const VerificationCode = () => {
           ) {
             console.log('user exist and login');
             setAuth(data.data);
-            // dispatch(authActions.setAuth(data.data));
             navigate(`/`);
           } else {
             console.log('user not exist and register');
@@ -73,44 +66,6 @@ const VerificationCode = () => {
             <Translate id="verificationCode.sent" />
           </p>
         </div>
-        {/* <div className="verification-code-form-inputs">
-          <input
-            type="text"
-            className="trans-input"
-            onChange={(e) => setInput1(e.target.value)}
-            maxLength="1"
-          ></input>
-          <input
-            type="text"
-            className="trans-input"
-            onChange={(e) => setInput2(e.target.value)}
-            maxLength="1"
-          ></input>
-          <input
-            type="text"
-            className="trans-input"
-            onChange={(e) => setInput3(e.target.value)}
-            maxLength="1"
-          ></input>
-          <input
-            type="text"
-            className="trans-input"
-            onChange={(e) => setInput4(e.target.value)}
-            maxLength="1"
-          ></input>
-          <input
-            type="text"
-            className="trans-input"
-            onChange={(e) => setInput5(e.target.value)}
-            maxLength="1"
-          ></input>
-          <input
-            type="text"
-            className="trans-input"
-            onChange={(e) => setInput6(e.target.value)}
-            maxLength="1"
-          ></input>
-        </div> */}
         <div className="verification-code-form-inputs">
           <OTPInput
             onChange={handleOTPChange}
