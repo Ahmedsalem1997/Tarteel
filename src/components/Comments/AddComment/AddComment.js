@@ -1,15 +1,13 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import Translate from "../../../helpers/Translate/Translate";
 import useTranslate from "../../../hooks/use-translate";
-import useHTTP from "../../../hooks/use-http"
+import useHTTP from "../../../hooks/use-http";
+import { getAuth } from "../../../utils/Auth";
 
 const AddComment = (props) => {
   const [comment, setComment] = useState('');
   const { isLoading, error, sendRequest: addComment } = useHTTP()
-  const token = useSelector(state => {
-    return state.auth.token;
-  });
+  const { token } = getAuth()
   const addCommentHandler = (e) => {
     e.preventDefault();
     addComment(

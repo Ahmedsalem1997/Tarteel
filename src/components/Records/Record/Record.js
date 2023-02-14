@@ -5,25 +5,25 @@ import AddComment from "../../Comments/AddComment/AddComment";
 import AudioPlayer from "./../../AudioPlayer/AudioPlayer";
 import Comments from "./../../Comments/Comments";
 import useHTTP from './../../../hooks/use-http';
+import { getAuth } from "../../../utils/Auth";
 
 const Record = (props) => {
   const img = require("../../../assets/images/personal.png");
-  const { sendRequest:toggleLike } = useHTTP();
+  const { sendRequest: toggleLike } = useHTTP();
   const [showComments, setShowComments] = useState(false);
-  const token = useSelector((state) => {
-    return state.auth.token;
-  });
-  const likeBtnHandler =()=>{
+  const { token } = getAuth();
+  const likeBtnHandler = () => {
 
     toggleLike(
       {
-      url : `records/${props?.record?.id}/reactions`,
-      headers : {'Authorization': `Bearer ${token}`,
-     'Content-Type' : 'application/json'
-    },
-      method : 'POST',
-      body : {'reaction' : props.record.is_liked ? `unlike` :`like` }
-    }
+        url: `records/${props?.record?.id}/reactions`,
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: { 'reaction': props.record.is_liked ? `unlike` : `like` }
+      }
     )
   }
   const loggedUser = useSelector(state => {
@@ -52,7 +52,7 @@ const Record = (props) => {
         }
       </div>
       <AudioPlayer id={`record-${props?.record?.id}`} />
-      <div className="post-text"><Translate id="record.fromAyah" /> {props?.record?.ayahs[0]?.number} <Translate id="record.toAyah" /> {props?.record?.ayahs[props?.record?.ayahs?.length-1]?.number} <Translate id="record.surah" /> البقرة</div>
+      <div className="post-text"><Translate id="record.fromAyah" /> {props?.record?.ayahs[0]?.number} <Translate id="record.toAyah" /> {props?.record?.ayahs[props?.record?.ayahs?.length - 1]?.number} <Translate id="record.surah" /> البقرة</div>
       <div className="post-feedback">
         <span className="post-feedback-likes-comments">
           <p>{props?.record?.likes_count}</p>

@@ -1,13 +1,12 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Translate from "../../helpers/Translate/Translate";
+import { getAuth } from "../../utils/Auth";
 
 
 
 const Navigation = () => {
-  const isAuth = useSelector(state => {
-    return state.auth.isAuth;
-  });
+  const { isAuth } = getAuth();
   return (
     <ul className="navigation-links">
       <li><NavLink to="/" activeclassname="active"><Translate id="navigation.home" /></NavLink></li>

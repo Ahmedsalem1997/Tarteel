@@ -3,14 +3,13 @@ import { Translate } from "../../helpers/Translate/Translate";
 import { Fragment } from "react";
 import { Link } from 'react-router-dom';
 import { langActions } from '../../store/Lang/Lang';
+import { getAuth } from '../../utils/Auth';
 const Carousel = () => {
   const dispatch = useDispatch();
   const globalLang = useSelector(state => {
     return state.lang.globalLang
   });
-  const isAuth = useSelector(state => {
-    return state.auth.isAuth;
-  });
+  const { isAuth } = getAuth();
 
 
   const changeLang = () => {

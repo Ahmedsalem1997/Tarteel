@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import HomeSection from "../../components/HomeSection/HomeSection";
 import IslamicContentHome from "../../components/IslamicContentHome/IslamicContentHome";
 import LayoutWrapper from "../../components/LayoutWrapper/LayoutWrapper";
@@ -7,11 +6,10 @@ import Modal from "../../components/Modal/Modal";
 import MyRecordsHome from "../../components/MyRecordsHome/MyRecordsHome";
 import NotRegistered from "../../components/NotRegistered/NotRegistered";
 import LatestRecords from "../../components/LatestRecords/LatestRecords";
+import { getAuth } from "../../utils/Auth";
 
 const Home = () => {
-  const isAuth = useSelector((state) => {
-    return state.auth.isAuth;
-  });
+  const { isAuth } = getAuth();
   const [isOpen, setIsOpen] = useState(false);
   return (
     <LayoutWrapper>

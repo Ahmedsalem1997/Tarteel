@@ -1,14 +1,11 @@
 import AudioPlayer from "./../../AudioPlayer/AudioPlayer";
 import useHTTP from "./../../../hooks/use-http";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { getAuth } from "../../../utils/Auth";
 
 const Comment = (props) => {
   const img = require("../../../assets/images/personal.png");
   const { sendRequest: toggleLike } = useHTTP();
-  const token = useSelector(state => {
-    return state.auth.token;
-  });
+  const { token } = getAuth();
   const likeBtnHandler = () => {
     toggleLike({
       url: `comments/${props?.comment?.id}/reactions`,
@@ -59,9 +56,8 @@ const Comment = (props) => {
             <p>{props?.comment?.likes_count}</p>
             <i
               onClick={likeBtnHandler}
-              className={`${
-                props?.comment?.is_liked ? "fa-solid" : "fa-regular"
-              } fa-thumbs-up`}
+              className={`${props?.comment?.is_liked ? "fa-solid" : "fa-regular"
+                } fa-thumbs-up`}
             ></i>
           </span>
           <span>منذ يوم</span>

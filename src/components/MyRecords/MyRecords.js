@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import useHTTP from "../../hooks/use-http";
+import { getAuth } from "../../utils/Auth";
 import Records from "../Records/Records";
 
 const MyRecords = () => {
     const { isLoading, error, sendRequest: getMyRecords } = useHTTP();
     const [myRecords, setMyRecords] = useState([]);
-    const token = useSelector(state => {
-        return state.auth.token;
-    })
+    const { token } = getAuth();
     useEffect(() => {
+        console.log('tokeeeen', token);
         getMyRecords(
             {
                 url: 'records',

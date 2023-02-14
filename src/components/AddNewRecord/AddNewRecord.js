@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Translate from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
+import { getAuth } from "../../utils/Auth";
 import BlackBlock from "../BlackBlock/BlackBlock";
 
 const AddNewRecord = (props) => {
@@ -16,9 +17,7 @@ const AddNewRecord = (props) => {
     const lang = useSelector(state => {
         return state.lang.globalLang;
     });
-    const token = useSelector(state => {
-        return state.auth.token;
-    });
+    const { token } = getAuth();
     useEffect(() => {
         getSurahList(
             { baseUrl: "http://api.alquran.cloud/v1/", url: "surah" },

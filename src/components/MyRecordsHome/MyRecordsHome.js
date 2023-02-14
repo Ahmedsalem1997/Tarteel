@@ -1,15 +1,13 @@
 import NewRecord from "../SingleRecordCard/NewRecord/NewRecord";
 import ExsitingRecord from "../SingleRecordCard/ExsitingRecord/ExsitingRecord";
 import useHTTP from "./../../hooks/use-http";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { getAuth } from "../../utils/Auth";
 
 const MyRecordsHome = () => {
   const { isLoading, error, sendRequest: getMyRecords } = useHTTP();
   const [userRedords, setUserRecords] = useState();
-  const token = useSelector((state) => {
-    return state.auth.token;
-  });
+  const { token } = getAuth();
   useEffect(() => {
     getMyRecords(
       {

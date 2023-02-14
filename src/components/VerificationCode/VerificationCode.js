@@ -8,6 +8,7 @@ import useHTTP from "../../hooks/use-http";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/Auth/Auth";
 import Modal from "../Modal/Modal";
+import { setAuth } from "../../utils/Auth";
 const VerificationCode = () => {
   const dispatch = useDispatch();
   let { mobile } = useParams();
@@ -50,14 +51,14 @@ const VerificationCode = () => {
           setVerificationError("");
           if (
             data.data.user.name &&
-            data.data.user.email &&
-            data.data.user.avatar
+            data.data.user.email
           ) {
-            localStorage.setItem("token", data.data.token);
-            localStorage.setItem("user", JSON.stringify(data.data.user));
-            dispatch(authActions.setAuth(data.data));
+            console.log('user exist and login');
+            setAuth(data.data);
+            // dispatch(authActions.setAuth(data.data));
             navigate(`/`);
           } else {
+            console.log('user not exist and register');
             setUser(data.data.user);
             setToken(data.data.token);
             setIsOpen(true);
@@ -121,8 +122,8 @@ const VerificationCode = () => {
             otpType="number"
             OTPLength={6}
             inputClassName="trans-input"
-            style={{columnGap: '1rem'}}
-            inputStyles={{width: '16.666%', marginRight: '0', height: '3rem'}}
+            style={{ columnGap: '1rem' }}
+            inputStyles={{ width: '16.666%', marginRight: '0', height: '3rem' }}
             disabled={false}
           />
         </div>

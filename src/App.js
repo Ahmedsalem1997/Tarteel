@@ -6,32 +6,28 @@ import Quran from './views/Quran/Quran';
 import Login from './views/Login/Login';
 import VerificationCode from './components/VerificationCode/VerificationCode';
 import EditProfile from './components/EditProfile/EditProfile';
-// import NotRegistered from './components/NotRegistered/NotRegistered';
 import NotFoundPage from './views/NotFoundPage/NotFoundPage';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { langActions } from './store/Lang/Lang';
 import { authActions } from './store/Auth/Auth';
+import { getAuth } from './utils/Auth';
 
 function App() {
   const globalLang = useSelector(state => {
     return state.lang.globalLang
   });
 
-  
+
   const [lang, setLang] = useState(localStorage.getItem('lang'));
   const dispatch = useDispatch();
   const rootEle = document.getElementById('root-html');
-  
-  
-  useEffect(() => {
-    const loggedUser = JSON.parse(localStorage.getItem('user'));
-    const token = localStorage.getItem('token');
-    if (token && loggedUser) {
-      dispatch(authActions.setAuth({ token, user: loggedUser }));
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  // const { token, user: loggedUser } = getAuth();
+  // useEffect(() => {
+  //   if (token && loggedUser) {
+  //     dispatch(authActions.setAuth({ token, user: loggedUser }));
+  //   }
+  // }, [])
 
   useEffect(() => {
     if (!lang) {

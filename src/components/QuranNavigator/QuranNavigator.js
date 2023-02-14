@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useHTTP from "../../hooks/use-http";
+import { getAuth } from "../../utils/Auth";
 import Loader from "../Loader/Loader";
 
 const QuranNavigator = (props) => {
@@ -10,9 +11,7 @@ const QuranNavigator = (props) => {
   const lang = useSelector((state) => {
     return state.lang.globalLang;
   });
-  const token = useSelector(state => {
-    return state.auth.token;
-  })
+  const { token } = getAuth();
   const onSurahChange = (surahNumber) => {
     surahNumber = Number(surahNumber);
     props.onSurahChange(surahNumber);
@@ -41,7 +40,7 @@ const QuranNavigator = (props) => {
       <div className="quran-navigator">
         {isLoading && <Loader />}
         {error
-          ? error          
+          ? error
           : surahList.map((surah) => {
             return (
               <div
