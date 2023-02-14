@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Translate from "../../helpers/Translate/Translate";
 import { getAuth } from "../../utils/Auth";

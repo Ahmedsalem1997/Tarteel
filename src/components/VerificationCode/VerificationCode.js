@@ -6,11 +6,9 @@ import OTPInput from "otp-input-react";
 import { useState } from "react";
 import useHTTP from "../../hooks/use-http";
 import { useDispatch } from "react-redux";
-import { authActions } from "../../store/Auth/Auth";
 import Modal from "../Modal/Modal";
 import { setAuth } from "../../utils/Auth";
 const VerificationCode = () => {
-  const dispatch = useDispatch();
   let { mobile } = useParams();
   // const [input1, setInput1] = useState("");
   // const [input2, setInput2] = useState("");
