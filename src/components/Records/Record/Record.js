@@ -22,7 +22,7 @@ const Record = (props) => {
           'Content-Type': 'application/json'
         },
         method: 'POST',
-        body: { 'reaction': props.record.is_liked ? `unlike` : `like` }
+        body: { 'reaction': props?.record?.is_liked ? `unlike` : `like` }
       }
     )
   }
@@ -43,7 +43,7 @@ const Record = (props) => {
           </div>
         </div>
         {
-          user.id !== props?.record?.user?.id &&
+          user?.id !== props?.record?.user?.id &&
           <span className="post-header-user-follow">
             <i className="fa-solid fa-user-plus"></i>
           </span>
