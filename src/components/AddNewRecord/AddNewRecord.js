@@ -5,6 +5,7 @@ import useHTTP from "../../hooks/use-http";
 import { getAuth } from "../../utils/Auth";
 import BlackBlock from "../BlackBlock/BlackBlock";
 
+
 const AddNewRecord = (props) => {
     const [uploadedRecord, setUploadedRecord] = useState(undefined);
     const [selectedSurah, setSelectedSurah] = useState(0);
@@ -120,7 +121,7 @@ const AddNewRecord = (props) => {
                     <div className="add-new-record-input">
                         <label><Translate id="input.label.selectAyah" /></label>
                         <select value={ayaFrom} className="aya-from" onChange={(e) => setAyaFrom(e.target.value)}>
-                            <option value="" disabled>من ايه</option>
+                            <option value="" disabled><Translate id="record.fromAyah" /></option>
                             {ayahs.map((ayah) => {
                                 return (
                                     <option key={ayah?.id} value={ayah?.id}>{ayah?.number_in_surah}</option>
@@ -133,7 +134,7 @@ const AddNewRecord = (props) => {
                         </select>
                         <span><Translate id="input.label.to" /></span>
                         <select value={ayaTo} className="aya-to" onChange={(e) => setAyaTo(e.target.value)}>
-                            <option value="" disabled>إلى ايه</option>
+                            <option value="" disabled><Translate id="record.toAyah" /></option>
                             {ayahs.map((ayah) => {
                                 return (
                                     <option key={ayah?.id} value={ayah?.id}>{ayah?.number_in_surah}</option>
