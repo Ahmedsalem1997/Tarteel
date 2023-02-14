@@ -8,25 +8,26 @@ import { getAuth } from "../../utils/Auth";
 
 
 const ProfileHeader = (x) => {
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
   const { token } = getAuth();
   const [isOpen, setIsOpen] = useState(false);
   const auth = useSelector((state) => {
     return { isAuth: state.auth.isAuth, user: state.auth.user };
   });
   const {  sendRequest: getUser } = useHTTP();
- useEffect(()=>{
-    console.log('useEffect');
-    getUser({
-        url : `profile`,
-        method : 'GET',
-        headers : { 'Authorization': `Bearer ${token}` }
-    },
-    (user)=>{
-        setUser(user.data)
-    }
-    )
- },[user.data])
+//  useEffect(()=>{
+//     console.log('useEffect');
+//     getUser({
+//         url : `profile`,
+//         method : 'GET',
+//         headers : { 'Authorization': `Bearer ${token}` }
+//     },
+//     (user)=>{
+//         setUser(user.data)
+//     }
+//     )
+//  },[user.data])
+const {user} = getAuth();
   return (
     <div className="profile-header">
       <div className="profile-header-user">
