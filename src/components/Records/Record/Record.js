@@ -61,7 +61,7 @@ const Record = (props) => {
       <div className="post-feedback">
         <span className="post-feedback-likes-comments">
           <p>{props?.record?.likes_count}</p>
-          <i onClick={likeBtnHandler} className={`${props?.record.is_liked ? 'fa-solid' : 'fa-regular'} fa-thumbs-up`}></i>
+          <i onClick={likeBtnHandler} className={`${props?.record?.is_liked ? 'fa-solid' : 'fa-regular'} fa-thumbs-up`}></i>
           <p>{props?.record?.comments_count}</p>
           <i className="fa-regular fa-comment" onClick={() => setShowComments(prev => !prev)}></i>
         </span>
