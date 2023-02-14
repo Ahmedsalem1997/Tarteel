@@ -26,9 +26,7 @@ const Record = (props) => {
       }
     )
   }
-  const loggedUser = useSelector(state => {
-    return state.auth.user;
-  });
+  const { user } = getAuth();
   const lang = useSelector(state => {
     return state.lang.globalLang;
   });
@@ -45,14 +43,21 @@ const Record = (props) => {
           </div>
         </div>
         {
-          loggedUser.id !== props?.record?.user?.id &&
+          user.id !== props?.record?.user?.id &&
           <span className="post-header-user-follow">
             <i className="fa-solid fa-user-plus"></i>
           </span>
         }
       </div>
       <AudioPlayer id={`record-${props?.record?.id}`} />
-      <div className="post-text"><Translate id="record.fromAyah" /> {props?.record?.ayahs[0]?.number} <Translate id="record.toAyah" /> {props?.record?.ayahs[props?.record?.ayahs?.length - 1]?.number} <Translate id="record.surah" /> البقرة</div>
+      <div className="post-text">
+        <Translate id="record.fromAyah" /> &nbsp;
+        {props?.record?.from_ayah_number} &nbsp;
+        <Translate id="record.toAyah" /> &nbsp;
+        {props?.record?.to_ayah_number} &nbsp;
+        {/* <Translate id="record.surah" />  &nbsp;*/}
+        {lang === 'ar' ? props?.record?.surah?.name : props?.record?.surah?.english_name}
+      </div>
       <div className="post-feedback">
         <span className="post-feedback-likes-comments">
           <p>{props?.record?.likes_count}</p>

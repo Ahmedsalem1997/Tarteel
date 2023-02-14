@@ -12,18 +12,44 @@ const AddNewRecord = (props) => {
     const [ayaTo, setAyaTo] = useState('');
     const [surahList, setSurahList] = useState([]);
     const [ayahs, setAyahs] = useState([]);
+    const [surahId, setSurahId] = useState(0);
     const { isLoading, error, sendRequest: addNewRecord } = useHTTP();
-    const { isLoading: isLoadingSurah, error: getSurahError, sendRequest: getSurahList } = useHTTP();
+    const { isLoading: isLoadingSurah, error: getSurahError, sendRequest } = useHTTP();
     const lang = useSelector(state => {
         return state.lang.globalLang;
     });
     const { token } = getAuth();
     useEffect(() => {
-        getSurahList(
-            { baseUrl: "http://api.alquran.cloud/v1/", url: "surah" },
-            (surahObj) => setSurahList(surahObj.data)
-        );
+        getSurahList();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const getSurahList = () => {
+        sendRequest(
+            {
+                url: "quran/editions/quran-simple-min?with_surahs=1",
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            },
+            (surahsArr) => setSurahList(surahsArr.data.surahs)
+        );
+    }
+
+    const getSurahAyahs = (surahId) => {
+        sendRequest(
+            {
+                url: `quran/surahs/${surahId}?with_ayahs=1`,
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            },
+            (ayahsArr) => {
+                setAyahs(ayahsArr.data.ayahs);
+                setSurahId(ayahsArr.data.id);
+            }
+        )
+    }
 
     const onAddNewRecordHandler = (e) => {
         e.preventDefault();
@@ -33,16 +59,9 @@ const AddNewRecord = (props) => {
         //     idCardBase64 = result;
         //     console.log(idCardBase64);
         // });
-        const body = {
-            file: uploadedRecord,
-            title: "Helloooo",
-            surah_id: selectedSurah,
-            from_ayah: ayaFrom,
-            to_ayah: ayaTo,
-        }
         let formData = new FormData();
         formData.append('title', 'Hellooo');
-        formData.append('surah_id', selectedSurah);
+        formData.append('surah_id', surahId);
         formData.append('from_ayah', ayaFrom);
         formData.append('to_ayah', ayaTo);
         formData.append('file', uploadedRecord);
@@ -64,8 +83,9 @@ const AddNewRecord = (props) => {
 
     const surahChangeHandler = (e) => {
         setSelectedSurah(e.target.value);
-        const newAyahs = Array.from({ length: surahList[e.target.value - 1].numberOfAyahs }, (value, i) => i + 1);;
-        setAyahs(newAyahs);
+        getSurahAyahs(e.target.value);
+        // const newAyahs = Array.from({ length: surahList[e.target.value - 1].numberOfAyahs }, (value, i) => i + 1);;
+        // setAyahs(newAyahs);
     }
 
     const uploadFile = () => {
@@ -73,9 +93,7 @@ const AddNewRecord = (props) => {
     }
 
     const uploadRecordHandler = (e) => {
-        console.log(e.target.files);
         setUploadedRecord(e.target.files[0]);
-        console.log(typeof (uploadedRecord));
     }
     return (
         <BlackBlock width="80%">
@@ -102,7 +120,7 @@ const AddNewRecord = (props) => {
                             <option value="" disabled>من ايه</option>
                             {ayahs.map((ayah) => {
                                 return (
-                                    <option key={ayah} value={ayah}>{ayah}</option>
+                                    <option key={ayah?.id} value={ayah?.id}>{ayah?.number_in_surah}</option>
                                 )
                             })}
                             {/* <option value="1">1</option>
@@ -115,7 +133,7 @@ const AddNewRecord = (props) => {
                             <option value="" disabled>إلى ايه</option>
                             {ayahs.map((ayah) => {
                                 return (
-                                    <option key={ayah} value={ayah}>{ayah}</option>
+                                    <option key={ayah?.id} value={ayah?.id}>{ayah?.number_in_surah}</option>
                                 )
                             })}
                             {/* <option value="1">1</option>
