@@ -1,42 +1,47 @@
 import Translate from "../../helpers/Translate/Translate";
 import Modal from "../Modal/Modal";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import EditProfile from "../EditProfile/EditProfile";
 import { useSelector } from "react-redux";
-import useHTTP from "../../hooks/use-http";
 import { getAuth } from "../../utils/Auth";
-
+import { useParams } from "react-router";
+import useHTTP from "../../hooks/use-http";
 
 const ProfileHeader = (x) => {
-  // const [user, setUser] = useState([]);
   const { token } = getAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const { sendRequest: profileData } = useHTTP();
+  const [userData, setUserData] = useState();
   const auth = useSelector((state) => {
     return { isAuth: state.auth.isAuth, user: state.auth.user };
   });
-  const {  sendRequest: getUser } = useHTTP();
-//  useEffect(()=>{
-//     console.log('useEffect');
-//     getUser({
-//         url : `profile`,
-//         method : 'GET',
-//         headers : { 'Authorization': `Bearer ${token}` }
-//     },
-//     (user)=>{
-//         setUser(user.data)
-//     }
-//     )
-//  },[user.data])
-const {user} = getAuth();
+  let params = useParams();
+  useEffect(() => {
+    if (params) {
+      profileData(
+        {
+          url: `users/${params.id}`,
+          method: "GET",
+          header: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        },
+        (data) => {
+          setUserData(data.data);
+         
+        }
+      );
+    } else {
+      const { user } = getAuth();
+      setUserData(user);
+    }
+  }, []);
   return (
     <div className="profile-header">
       <div className="profile-header-user">
-        <img
-          className="profile-header-user-img"
-          src={user.avatar}
-          alt="..."
-        />
-        <h2 className="profile-header-user-name">{user.name}</h2>
+        <img className="profile-header-user-img" src={userData?.avatar} alt="..." />
+        <h2 className="profile-header-user-name">{userData?.name}</h2>
         <button className="profile-header-user-follow">
           <i className="fa-solid fa-user-plus"></i>
         </button>
@@ -52,13 +57,13 @@ const {user} = getAuth();
       </div>
       <div className="profile-header-following">
         <div className="profile-header-following-followers">
-          <span>{user.followers_count}</span>
+          <span>{userData?.followers_count}</span>
           <span>
             <Translate id="profile.followers" />
           </span>
         </div>
         <div className="profile-header-following-followings">
-          <span>{user.followings_count}</span>
+          <span>{userData?.followings_count}</span>
           <span>
             <Translate id="profile.followings" />
           </span>
