@@ -9,8 +9,9 @@
         "title": "تعلم القرآن بالطريقة الصحيحة",
         "bar": "كلمات خاصة بالاشتراك وسعر الخدمة"
     },
-    "myRecords": {
-        "title": "تسجيلاتي"
+    "records": {
+        "myRecords": "تسجيلاتي",
+        "latestRecords": "احدث التسجيلات"
     },
     "button": {
         "startRecording": "ابدأ تسجيلك الأن",

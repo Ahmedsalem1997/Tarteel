@@ -9,8 +9,9 @@
         "title": "Learn Quran in the right way",
         "bar": "Special words for subscription and service price"
     },
-    "myRecords": {
-        "title": "My Records"
+    "records": {
+        "myRecords": "My Records",
+        "latestRecords": "latest records"
     },
     "button": {
         "startRecording": "Start Recording Now",

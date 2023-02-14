@@ -15,14 +15,14 @@ const Home = () => {
     <LayoutWrapper>
       <div className="container-fluid">
         {isAuth && (
-          <HomeSection header="myRecords.title" showAll="profile">
+          <HomeSection header="records.myRecords" showAll="profile">
             <MyRecordsHome />
           </HomeSection>
         )}
         <button className="main-button" onClick={() => setIsOpen(true)}>
           open login
         </button>
-        <HomeSection header="عنوان اخر">
+        <HomeSection header="records.latestRecords">
           <LatestRecords />
         </HomeSection>
 
