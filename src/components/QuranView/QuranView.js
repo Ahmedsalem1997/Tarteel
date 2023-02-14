@@ -3,15 +3,14 @@ import useHTTP from "../../hooks/use-http";
 import { useSelector } from "react-redux";
 import Translate from "../../helpers/Translate/Translate";
 import Loader from "../Loader/Loader";
+import { getAuth } from "../../utils/Auth";
 
 const QuranView = (props) => {
   const [surah, setSurah] = useState([]);
   const lang = useSelector((state) => {
     return state.lang.globalLang;
   });
-  const token = useSelector(state => {
-    return state.auth.token;
-  })
+  const { token } = getAuth();
   const { isLoading, error, sendRequest: getSurah } = useHTTP();
 
 
