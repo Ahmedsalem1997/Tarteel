@@ -28,7 +28,7 @@ const ProfileHeader = () => {
                     <span><Translate id="profile.followings" /></span>
                 </div>
             </div>
-            {isOpen && <Modal><EditProfile setIsOpen={setIsOpen} /></Modal>}
+            {isOpen && <Modal><EditProfile setIsOpen={setIsOpenValue => setIsOpen(setIsOpenValue)} /></Modal>}
         </div>
     )
 }
