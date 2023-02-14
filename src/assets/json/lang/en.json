@@ -93,6 +93,6 @@
         "sendVerificationCode" : "we will send the verification code ,which must be entered on the next page"       
     },
     "addNewRecord":{
-        
+        "chooseSurah" : "choose Surah"
     }
 }

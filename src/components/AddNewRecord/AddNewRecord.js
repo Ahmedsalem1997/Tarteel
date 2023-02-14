@@ -106,10 +106,10 @@ const AddNewRecord = (props) => {
                     <div className="add-new-record-input">
                         <label><Translate id="input.label.selectSurah" /></label>
                         <select value={selectedSurah} onChange={surahChangeHandler}>
-                            <option disabled value="0">اختر سورة</option>
+                            <option disabled value="0"><Translate id="addNewRecord.chooseSurah" /></option>
                             {surahList.map(surah => {
                                 return (
-                                    <option key={surah.number} value={surah.number}>{lang === 'ar' ? surah.name : surah.englishName}</option>
+                                    <option key={surah.number} value={surah.number}>{lang === 'ar' ? surah.name : surah.english_name}</option>
                                 )
                             })}
                             {/* <option value="1">البقرة</option>

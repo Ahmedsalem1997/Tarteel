@@ -91,5 +91,8 @@
         "mobileNumber" : "رقم الهاتف" ,
         "validTrueNumber" : "من أجل التحقق من صحة رقم هاتفك",
         "sendVerificationCode" : "سنرسل رمز التحقق يجب إدخاله في الصفحة التالية"      
+    },
+    "addNewRecord":{
+        "chooseSurah" : "اختر سورة"
     }
 }
