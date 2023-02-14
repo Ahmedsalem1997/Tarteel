@@ -16,12 +16,10 @@ const Home = () => {
   return (
     <LayoutWrapper>
       <div className="container-fluid">
-        {isAuth ? (
+        {isAuth && (
           <HomeSection header="myRecords.title" showAll="profile">
             <MyRecordsHome />
           </HomeSection>
-        ) : (
-          ""
         )}
         <button className="main-button" onClick={() => setIsOpen(true)}>
           open login
