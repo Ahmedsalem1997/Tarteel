@@ -10,7 +10,11 @@ const QuranNavigator = (props) => {
   const lang = useSelector((state) => {
     return state.lang.globalLang;
   });
+  const token = useSelector(state => {
+    return state.auth.token;
+  })
   const onSurahChange = (surahNumber) => {
+    surahNumber = Number(surahNumber);
     props.onSurahChange(surahNumber);
     setSelectedSurah(surahNumber);
   };
@@ -22,8 +26,14 @@ const QuranNavigator = (props) => {
   // };
   useEffect(() => {
     getSurahList(
-      { baseUrl: "http://api.alquran.cloud/v1/", url: "surah" },
-      (surahObj) => setSurahList(surahObj.data)
+      {
+        url: "quran/editions/quran-uthmani-min?with_surahs=1",
+        method: 'GET',
+        headers: { 'Authorization': `Bearer ${token}` }
+      },
+      (surahObj) => {
+        setSurahList(surahObj.data.surahs);
+      }
     );
   }, [getSurahList]);
   return (
@@ -31,21 +41,21 @@ const QuranNavigator = (props) => {
       <div className="quran-navigator">
         {isLoading && <Loader />}
         {error
-          ? error
+          ? error          
           : surahList.map((surah) => {
             return (
               <div
-                key={surah.number}
-                className={`quran-navigator-surah ${selectedSurah === surah.number && "active"
+                key={surah?.number}
+                className={`quran-navigator-surah ${(selectedSurah === Number(surah?.number)) && "active"
                   }`}
-                onClick={() => onSurahChange(surah.number)}
+                onClick={() => onSurahChange(surah?.number)}
               >
                 <span>
                   {lang === "ar"
-                    ? surah.number.toLocaleString("ar-EG")
-                    : surah.number}
+                    ? surah?.number?.toLocaleString("ar-EG")
+                    : surah?.number}
                 </span>
-                <p>{lang === "ar" ? surah.name : surah.englishName}</p>
+                <p>{lang === "ar" ? surah?.name : surah?.english_name}</p>
               </div>
             );
           })}
@@ -57,13 +67,14 @@ const QuranNavigator = (props) => {
           value={selectedSurah}
         >
           {error
-            ? <option value="" selected disabled>
+            ? <option value="0" disabled>
               سورة
+
             </option>
             : surahList.map((surah) => (
-              <option key={surah.name} value={surah.number}>
-                {surah.number}{" "}
-                {lang === "ar" ? surah.name : surah.englishName}
+              <option key={surah?.number} value={surah?.number}>
+                {surah?.number}{" "}
+                {lang === "ar" ? surah?.name : surah?.english_name}
               </option>
             ))}
         </select>

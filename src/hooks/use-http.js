@@ -37,9 +37,9 @@ const useHTTP = () => {
         let baseUrl = "http://ec2-34-246-200-235.eu-west-1.compute.amazonaws.com/api/v1/front/";
         setIsLoading(true);
         setError(null);
-        if (requestConfig.baseUrl) {
-            baseUrl = requestConfig.baseUrl;
-        }
+        // if (requestConfig.baseUrl) {
+        //     baseUrl = requestConfig.baseUrl;
+        // }
         fetch(
             baseUrl + requestConfig.url,
             {
@@ -49,20 +49,23 @@ const useHTTP = () => {
             }
         ).then(async res => {
             const data = await res.json();
+            console.log(data);
             if (!res.ok) {
-                // get error message from body or default to response statusText
                 const error = (data && data.message) || res.statusText;
-                return Promise.reject(error);
+                console.log('my error', error);
+                throw new Error(error);
+                // get error message from body or default to response statusText
             }
 
             applyData(data);
         }).catch(err => {
-            setError(err);
+            setError(err.message);
             console.error('useHTTP Error', err);
         })
         setIsLoading(false);
 
     }, [])
+
     return {
         isLoading,
         error,

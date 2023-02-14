@@ -9,15 +9,22 @@ const QuranView = (props) => {
   const lang = useSelector((state) => {
     return state.lang.globalLang;
   });
+  const token = useSelector(state => {
+    return state.auth.token;
+  })
   const { isLoading, error, sendRequest: getSurah } = useHTTP();
 
 
   useEffect(() => {
     console.log('useEffect', lang);
-    const surahUrl = props.selectedSurah + '/' + lang + '.ahmedali';
-    console.log('getSurah', surahUrl);
+    // const surahUrl = props.selectedSurah + '/' + lang + '.ahmedali';
+    // console.log('getSurah', surahUrl);
     getSurah(
-      { baseUrl: "http://api.alquran.cloud/v1/", url: `surah/${surahUrl}` },
+      {
+        url: `quran/surahs/${props.selectedSurah}?with_ayahs=1`,
+        method: 'GET',
+        headers: { 'Authorization': `Bearer ${token}` }
+      },
       (surahObj) => {
         setSurah(surahObj.data);
       }
@@ -28,45 +35,45 @@ const QuranView = (props) => {
   return (
     <div className="quran-view">
       <div className="quran-view-surah">
-        <p className="quran-view-surah-name">{lang === "ar" ? surah?.name : surah?.englishName}</p>
+        <p className="quran-view-surah-name">{lang === "ar" ? surah?.name : surah?.english_name}</p>
         <div className="quran-view-surah-openning">
           <Translate id="quran.openning" />
         </div>
-        {isLoading ? (
+        {isLoading ?
           <Loader />
-        ) : error ? (
-          error
-        ) : (
-          surah?.ayahs?.map((ayah, i, ayahsArr) => {
-            return (
-              <Fragment key={ayah.number}>
-                {ayahsArr[i - 1]?.page < ayahsArr[i]?.page && (
-                  <div className="quran-view-page-seprator">
-                    <p>
-                      {lang === "ar"
-                        ? ayahsArr[i - 1]?.page.toLocaleString("ar-EG")
-                        : ayahsArr[i - 1]?.page}
-                    </p>
-                    <hr />
-                  </div>
-                )}
-                {lang === "ar" &&
-                  ayah.numberInSurah === 1 &&
-                  props.selectedSurah !== 1
-                  ? ayah.text.replace(
-                    "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
-                    ""
-                  )
-                  : ayah.text}
-                <span>
-                  {lang === "ar"
-                    ? ayah.numberInSurah.toLocaleString("ar-EG")
-                    : ayah.numberInSurah}
-                </span>
-              </Fragment>
-            );
-          })
-        )}
+          :
+          error ? error :
+            surah?.ayahs?.map((ayah, i, ayahsArr) => {
+              return (
+                <Fragment key={ayah?.number}>
+                  {ayahsArr[i - 1]?.page < ayahsArr[i]?.page && (
+                    <div className="quran-view-page-seprator">
+
+                      <p>
+                        {lang === "ar"
+                          ? ayahsArr[i - 1]?.page.toLocaleString("ar-EG")
+                          : ayahsArr[i - 1]?.page}
+                      </p>
+                      <hr />
+                    </div>
+                  )}
+
+                  {
+                    (lang === 'ar' &&
+                      ayah?.number_in_surah === 1 &&
+                      props?.selectedSurah !== 1)
+                      ? ayah?.text.replace('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ', '')
+                      : ayah?.text}
+                  <span>
+                    {lang === "ar"
+                      ? ayah?.number_in_surah?.toLocaleString("ar-EG")
+                      : ayah?.number_in_surah}
+                  </span>
+                </Fragment>
+              );
+            })
+        }
+        {/* )} */}
       </div>
     </div>
   );
