@@ -13,8 +13,7 @@ const AddNewRecord = (props) => {
     const [surahList, setSurahList] = useState([]);
     const [ayahs, setAyahs] = useState([]);
     const [surahId, setSurahId] = useState(0);
-    const { isLoading, error, sendRequest: addNewRecord } = useHTTP();
-    const { isLoading: isLoadingSurah, error: getSurahError, sendRequest } = useHTTP();
+    const { isLoading, error, sendRequest } = useHTTP();
     const lang = useSelector(state => {
         return state.lang.globalLang;
     });
@@ -23,6 +22,23 @@ const AddNewRecord = (props) => {
         getSurahList();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const addNewRecord = (formData) => {
+        sendRequest(
+            {
+                url: 'records',
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            },
+            data => {
+                console.log(data);
+                props.setIsOpen(false);
+            }
+        )
+    }
 
     const getSurahList = () => {
         sendRequest(
@@ -65,20 +81,7 @@ const AddNewRecord = (props) => {
         formData.append('from_ayah', ayaFrom);
         formData.append('to_ayah', ayaTo);
         formData.append('file', uploadedRecord);
-        addNewRecord(
-            {
-                url: 'records',
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            },
-            data => {
-                console.log(data);
-                props.setIsOpen(false);
-            }
-        )
+        addNewRecord(formData);
     }
 
     const surahChangeHandler = (e) => {
