@@ -26,7 +26,8 @@
         "haveRecord": "لدي مقطع صوتي",
         "send": "ارسل",
         "register": "تسجيل جديد",
-        "login": "تسجيل دخول"
+        "login": "تسجيل دخول",
+        "getCode" : "الحصول علي الرمز"  
     },
     "islamicContent": {
         "title": "المحتوى الإسلامي"
@@ -89,8 +90,6 @@
         "validNumber" : "التحقق من رقم الهاتف",
         "mobileNumber" : "رقم الهاتف" ,
         "validTrueNumber" : "من أجل التحقق من صحة رقم هاتفك",
-        "sendVerificationCode" : "سنرسل رمز التحقق يجب إدخاله في الصفحة التالية",
-        "getCode" : "الحصول علي الرمز",
-        "cancel" : "الغاء"
+        "sendVerificationCode" : "سنرسل رمز التحقق يجب إدخاله في الصفحة التالية"      
     }
 }

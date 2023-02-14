@@ -77,12 +77,12 @@ const Login = () => {
         </div>
         <div className="login-form-actions">
           <button type="submit" className="main-button">
-            <Translate id="login.getCode" />
+            <Translate id="button.getCode" />
           </button>
         </div>
         <div className="login-form-cancel">
           <Link className="cancel-btn" to="/">
-            <Translate id="login.cancel" />{" "}
+            <Translate id="button.cancel" />{" "}
           </Link>
         </div>
       </form>

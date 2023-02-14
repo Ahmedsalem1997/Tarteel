@@ -26,7 +26,8 @@
         "haveRecord": "i have record",
         "send": "send",
         "register": "register",
-        "login": "login"
+        "login": "login",
+        "getCode" : "get the code"
     },
     "islamicContent": {
         "title": "Islamic Content"
@@ -89,8 +90,9 @@
         "validNumber" : "check the phone number",
         "mobileNumber" : "phone number" ,
         "validTrueNumber" : "in order to validate your phone number",
-        "sendVerificationCode" : "we will send the verification code ,which must be entered on the next page",
-        "getCode" : "get the code",
-        "cancel" : "cancel"
+        "sendVerificationCode" : "we will send the verification code ,which must be entered on the next page"       
+    },
+    "addNewRecord":{
+        
     }
 }
