@@ -29,7 +29,6 @@ const ProfileHeader = (x) => {
         },
         (data) => {
           setUserData(data.data);
-         
         }
       );
     } else {
@@ -48,12 +47,12 @@ const ProfileHeader = (x) => {
         <button className="profile-header-user-follow followed">
           <i className="fa-solid fa-user-check"></i>
         </button>
-        <button
+        {params ? "" :<button
           className="profile-header-user-follow"
           onClick={() => setIsOpen(true)}
         >
           <i className="fa-solid fa-user-pen"></i>
-        </button>
+        </button>}
       </div>
       <div className="profile-header-following">
         <div className="profile-header-following-followers">
