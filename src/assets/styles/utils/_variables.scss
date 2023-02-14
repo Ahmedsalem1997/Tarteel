@@ -11,6 +11,8 @@ $light-gray: #707070;
 $dark-white: #efefef;
 $black: #000;
 $main-color: $green;
+$gray-300: #1f1f1f;
+$gray-700: #b9b9b9;
 $main-colors: (
     "main-color": $green,
     "icon-color": $yellow,
@@ -44,7 +46,8 @@ $dark-vars: (
     "comment-color": #909090,
     "icon-light-gray-bg": #42444c,
     "post-bg": $bg-dark-lighter,
-    "single-record-gradient": $black
+    "single-record-gradient": $black,
+    "popup-bg": $gray-300
 );
 $light-vars: (
     "main-bg": $bg-light,
@@ -59,6 +62,7 @@ $light-vars: (
     "comment-color": $bg-dark-lighter,
     "icon-light-gray-bg": #42444c,
     "post-bg": darken($dark-white, 5),
-    "single-record-gradient": $white
+    "single-record-gradient": $white,
+    "popup-bg": $gray-700
 );
 
