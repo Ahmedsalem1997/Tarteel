@@ -13,15 +13,16 @@ const ProfileHeader = (x) => {
   const { sendRequest: profileData } = useHTTP();
   const { sendRequest: followUser } = useHTTP();
   const { sendRequest: unFollowUser } = useHTTP();
-
-
   const [userData, setUserData] = useState();
+  let params = useParams();
+
   const auth = useSelector((state) => {
     return { isAuth: state.auth.isAuth, user: state.auth.user };
   });
-  let params = useParams();
+
+
   useEffect(() => {
-    if (params) {
+    if (params.id) {
       profileData(
         {
           url: `users/${params.id}`,
@@ -38,6 +39,7 @@ const ProfileHeader = (x) => {
     } else {
       const { user } = getAuth();
       setUserData(user);
+      console.log(userData , user);
     }
   }, []);
   const handleFollow = ()=>{
