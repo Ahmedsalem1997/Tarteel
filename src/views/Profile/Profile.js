@@ -16,7 +16,7 @@ const Profile = () => {
             </CarouselWrapper>
 
             <div className="container-fluid">
-                {params ? "" : <MyRecords /> }   
+                {params.id ? "" : <MyRecords /> }   
             </div>
             <HomeSubscribe />
             <Footer />

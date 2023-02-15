@@ -73,7 +73,7 @@ const ProfileHeader = (x) => {
         <button onClick={handleUnFollow} className="profile-header-user-follow followed">
           <i className="fa-solid fa-user-check"></i>
         </button>
-        {params ? "" :<button
+        {params.id ? "" :<button
           className="profile-header-user-follow"
           onClick={() => setIsOpen(true)}
         >
