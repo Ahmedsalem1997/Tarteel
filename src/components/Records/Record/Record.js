@@ -65,6 +65,7 @@ const Record = (props) => {
           user?.id !== props?.record?.user?.id &&
           <span className="post-header-user-follow">
             <i className="fa-solid fa-user-plus"></i>
+            <i className="fa-solid fa-user-check"></i>
           </span>
         }
       </div>
