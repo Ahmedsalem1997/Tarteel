@@ -2,7 +2,7 @@ import Translate from "../../helpers/Translate/Translate";
 import Modal from "../Modal/Modal";
 import { useState, useEffect } from "react";
 import EditProfile from "../EditProfile/EditProfile";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { getAuth } from "../../utils/Auth";
 import { useParams } from "react-router";
 import useHTTP from "../../hooks/use-http";
@@ -15,9 +15,9 @@ const ProfileHeader = (x) => {
   const [userData, setUserData] = useState();
   let params = useParams();
 
-  const auth = useSelector((state) => {
-    return { isAuth: state.auth.isAuth, user: state.auth.user };
-  });
+  // const auth = useSelector((state) => {
+  //   return { isAuth: state.auth.isAuth, user: state.auth.user };
+  // });
 
 
   useEffect(() => {
@@ -40,6 +40,7 @@ const ProfileHeader = (x) => {
       setUserData(user);
       console.log(userData, user);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleFollow = () => {
     sendRequest({
