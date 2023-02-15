@@ -3,11 +3,15 @@ import ExsitingRecord from "../SingleRecordCard/ExsitingRecord/ExsitingRecord";
 import useHTTP from "./../../hooks/use-http";
 import { useEffect, useState } from "react";
 import { getAuth } from "../../utils/Auth";
-
+import { useDispatch, useSelector } from "react-redux";
+// import { recordsActions } from "../../store/Records/Records";
+// let isTrue = true;
 const MyRecordsHome = () => {
   const { isLoading, error, sendRequest: getMyRecords } = useHTTP();
   const [userRedords, setUserRecords] = useState();
   const { token } = getAuth();
+  // const dispatch = useDispatch();
+  const recordsChange = useSelector(state => state.records.myRecordsHome);
   useEffect(() => {
     getMyRecords(
       {
@@ -17,10 +21,14 @@ const MyRecordsHome = () => {
       },
       (data) => {
         setUserRecords(data.data);
-        console.log(data);
+        // if (isTrue) {
+        //   dispatch(recordsActions.setRecords(data.data));
+        //   isTrue = false;
+        // }
       }
     );
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [recordsChange]);
 
   return (
     <div className="home-section-content">

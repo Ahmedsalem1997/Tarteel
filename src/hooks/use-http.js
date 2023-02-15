@@ -33,7 +33,7 @@ const useHTTP = () => {
     //     setIsLoading(false);
     //     // eslint-disable-next-line react-hooks/exhaustive-deps
     // }, []);
-    const sendRequest = useCallback((requestConfig, applyData) => {
+    const sendRequest = useCallback((requestConfig, applyData, applyError) => {
         let baseUrl = "http://ec2-34-246-200-235.eu-west-1.compute.amazonaws.com/api/v1/front/";
         setIsLoading(true);
         setError(null);
@@ -61,6 +61,7 @@ const useHTTP = () => {
         }).catch(err => {
             setError(err.message);
             console.error('useHTTP Error', err);
+            applyError(err);
         })
         setIsLoading(false);
 

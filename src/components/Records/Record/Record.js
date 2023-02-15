@@ -1,19 +1,23 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Translate from "../../../helpers/Translate/Translate";
 import AddComment from "../../Comments/AddComment/AddComment";
 import AudioPlayer from "./../../AudioPlayer/AudioPlayer";
 import Comments from "./../../Comments/Comments";
 import useHTTP from './../../../hooks/use-http';
 import { getAuth } from "../../../utils/Auth";
-
+import { recordsActions } from "../../../store/Records/Records";
 const Record = (props) => {
   const img = require("../../../assets/images/personal.png");
   const { sendRequest: toggleLike } = useHTTP();
   const [showComments, setShowComments] = useState(false);
+  const [isLiked, setIsLiked] = useState(props.record.is_liked);
+  const [likesCount, setLikesCount] = useState(props.record.likes_count);
   const { token } = getAuth();
+  const dispatch = useDispatch();
   const likeBtnHandler = () => {
-
+    setLikesCount(prev => isLiked ? prev-- : prev++);
+    setIsLiked(prev => !prev);
     toggleLike(
       {
         url: `records/${props?.record?.id}/reactions`,
@@ -23,6 +27,17 @@ const Record = (props) => {
         },
         method: 'POST',
         body: { 'reaction': props?.record?.is_liked ? `unlike` : `like` }
+      },
+      data => {
+        setIsLiked(data.data.is_liked);
+        setLikesCount(data.data.likes_count);
+        dispatch(recordsActions.updateLatestRecords());
+        dispatch(recordsActions.updateMyRecords());
+        // dispatch(recordsActions.updateMyRecordsHome());
+      },
+      err => {
+        setLikesCount(prev => isLiked ? prev-- : prev++);
+        setIsLiked(prev => prev = !prev);
       }
     )
   }
@@ -60,8 +75,8 @@ const Record = (props) => {
       </div>
       <div className="post-feedback">
         <span className="post-feedback-likes-comments">
-          <p>{props?.record?.likes_count}</p>
-          <i onClick={likeBtnHandler} className={`${props?.record?.is_liked ? 'fa-solid' : 'fa-regular'} fa-thumbs-up`}></i>
+          <p>{likesCount}</p>
+          <i onClick={likeBtnHandler} className={`${isLiked ? 'fa-solid' : 'fa-regular'} fa-thumbs-up`}></i>
           <p>{props?.record?.comments_count}</p>
           <i className="fa-regular fa-comment" onClick={() => setShowComments(prev => !prev)}></i>
         </span>
@@ -72,10 +87,10 @@ const Record = (props) => {
         </div>
       </div>
       {showComments && <div className="post-comments">
-        <Comments comments={props?.record?.latest_comments} />
+        <Comments recordId={props?.record?.id} />
       </div>}
       {showComments && <div className="post-add-comment">
-        <AddComment recordId={props.record.id} />
+        <AddComment recordId={props?.record?.id} />
       </div>}
     </div>
   );

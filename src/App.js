@@ -10,8 +10,8 @@ import NotFoundPage from './views/NotFoundPage/NotFoundPage';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { langActions } from './store/Lang/Lang';
-import { authActions } from './store/Auth/Auth';
-import { getAuth } from './utils/Auth';
+// import { authActions } from './store/Auth/Auth';
+// import { getAuth } from './utils/Auth';
 
 function App() {
   const globalLang = useSelector(state => {
