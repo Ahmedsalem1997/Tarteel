@@ -8,6 +8,7 @@ import { useParams } from "react-router";
 import useHTTP from "../../hooks/use-http";
 
 const ProfileHeader = (x) => {
+  const [followersCount, setFollowersCount] = useState(0);
   const { token } = getAuth();
   const [isOpen, setIsOpen] = useState(false);
   const { sendRequest } = useHTTP();
@@ -33,34 +34,48 @@ const ProfileHeader = (x) => {
         },
         (data) => {
           setUserData(data.data);
+          setFollowersCount(data.data.followers_count);
+          // setFollowersCount(data.data.followers_count);
         }
       );
     } else {
       const { user } = getAuth();
       setUserData(user);
-      console.log(userData, user);
+      setFollowersCount(user.followers_count);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [followersCount]);
   const handleFollow = () => {
-    sendRequest({
-      url: `users/${params.id}/follow`,
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+    setFollowersCount(prev => prev++);
+    sendRequest(
+      {
+        url: `users/${params.id}/follow`,
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      },
+      data => {
+        setFollowersCount(data.data.followers_count);
       }
-    })
+    )
   }
   const handleUnFollow = () => {
-    sendRequest({
-      url: `users/${params.id}/unfollow`,
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+    setFollowersCount(prev => prev--);
+    sendRequest(
+      {
+        url: `users/${params.id}/unfollow`,
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      },
+      data => {
+        setFollowersCount(data.data.followers_count);
       }
-    })
+    )
   }
   return (
     <div className="profile-header">
@@ -82,7 +97,7 @@ const ProfileHeader = (x) => {
       </div>
       <div className="profile-header-following">
         <div className="profile-header-following-followers">
-          <span>{userData?.followers_count}</span>
+          <span>{followersCount}</span>
           <span>
             <Translate id="profile.followers" />
           </span>

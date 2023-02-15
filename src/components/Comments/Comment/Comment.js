@@ -16,7 +16,6 @@ const Comment = (props) => {
   const [isLiked, setIsLiked] = useState(props.comment.is_liked);
   const [likesCount, setLikesCount] = useState(props.comment.likes_count);
   const likeBtnHandler = () => {
-    console.log(props.comment.is_liked);
     setLikesCount(prev => isLiked ? prev-- : prev++);
     setIsLiked(prev => prev = !isLiked);
     toggleLike(
