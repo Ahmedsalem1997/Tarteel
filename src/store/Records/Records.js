@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialRecordsState = { myRecordsHome: 0, latestRecords: 0, myRecords: 0 }
+const initialRecordsState = { myRecordsHome: 0, latestRecords: 0, myRecords: 0, comments: 0 }
 
 const recordsSlice = createSlice({
     name: 'records',
@@ -14,7 +14,13 @@ const recordsSlice = createSlice({
         },
         updateMyRecords(state) {
             state.myRecords++;
+        },
+        updateComments(state) {
+            state.comments++;
         }
+        // updateMyRecordsComments(state) {
+        //     state.myRecordsComments++;
+        // }
 
         // setRecords(state, actions) {
         //     state.records = actions.payload;

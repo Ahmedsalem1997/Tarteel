@@ -19,7 +19,7 @@ const Record = (props) => {
   const dispatch = useDispatch();
   const likeBtnHandler = () => {
     setLikesCount(prev => isLiked ? prev-- : prev++);
-    setIsLiked(prev => !prev);
+    setIsLiked(prev => prev = !isLiked);
     toggleLike(
       {
         url: `records/${props?.record?.id}/reactions`,
@@ -39,7 +39,7 @@ const Record = (props) => {
       },
       err => {
         setLikesCount(prev => isLiked ? prev-- : prev++);
-        setIsLiked(prev => prev = !prev);
+        setIsLiked(prev => prev = !isLiked);
       }
     )
   }
