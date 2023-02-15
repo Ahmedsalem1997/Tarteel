@@ -10,7 +10,7 @@ const NewRecord = (props) => {
             <div className="h-100" onClick={() => setIsOpen(true) }>
                 <div className="single-record-card-img"></div>
                 <div className="single-record-card-name">
-                    <span><Translate id="button.register" /></span>
+                    <span><Translate id="button.newRecord" /></span>
                 </div>
             </div>
             {isOpen && <Modal><AddNewRecord setIsOpen={setIsOpen} /></Modal>}

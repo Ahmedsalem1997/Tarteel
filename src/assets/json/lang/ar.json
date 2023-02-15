@@ -27,7 +27,8 @@
         "send": "ارسل",
         "register": "تسجيل جديد",
         "login": "تسجيل دخول",
-        "getCode" : "الحصول علي الرمز"  
+        "getCode" : "الحصول علي الرمز",
+        "newRecord": "تسجيل جديد"
     },
     "islamicContent": {
         "title": "المحتوى الإسلامي"

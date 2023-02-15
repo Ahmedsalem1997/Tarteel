@@ -27,7 +27,8 @@
         "send": "send",
         "register": "register",
         "login": "login",
-        "getCode" : "get the code"
+        "getCode" : "get the code",
+        "newRecord": "new record"
     },
     "islamicContent": {
         "title": "Islamic Content"
