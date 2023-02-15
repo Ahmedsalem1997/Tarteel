@@ -10,9 +10,8 @@ import useHTTP from "../../hooks/use-http";
 const ProfileHeader = (x) => {
   const { token } = getAuth();
   const [isOpen, setIsOpen] = useState(false);
-  const { sendRequest: profileData } = useHTTP();
-  const { sendRequest: followUser } = useHTTP();
-  const { sendRequest: unFollowUser } = useHTTP();
+  const { sendRequest } = useHTTP();
+
   const [userData, setUserData] = useState();
   let params = useParams();
 
@@ -23,7 +22,7 @@ const ProfileHeader = (x) => {
 
   useEffect(() => {
     if (params.id) {
-      profileData(
+      sendRequest(
         {
           url: `users/${params.id}`,
           method: "GET",
@@ -39,23 +38,23 @@ const ProfileHeader = (x) => {
     } else {
       const { user } = getAuth();
       setUserData(user);
-      console.log(userData , user);
+      console.log(userData, user);
     }
   }, []);
-  const handleFollow = ()=>{
-    followUser({
-      url : `users/${params.id}/follow`,
-      method : 'GET',
+  const handleFollow = () => {
+    sendRequest({
+      url: `users/${params.id}/follow`,
+      method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       }
     })
   }
-  const handleUnFollow = ()=>{
-    unFollowUser({
-      url : `users/${params.id}/unfollow`,
-      method : 'GET',
+  const handleUnFollow = () => {
+    sendRequest({
+      url: `users/${params.id}/unfollow`,
+      method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -73,7 +72,7 @@ const ProfileHeader = (x) => {
         <button onClick={handleUnFollow} className="profile-header-user-follow followed">
           <i className="fa-solid fa-user-check"></i>
         </button>
-        {params.id ? "" :<button
+        {params.id ? "" : <button
           className="profile-header-user-follow"
           onClick={() => setIsOpen(true)}
         >
