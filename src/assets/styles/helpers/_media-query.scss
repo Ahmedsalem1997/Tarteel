@@ -1,9 +1,18 @@
 @media screen and (max-width: 992px) {
+  html {
+    .container-fluid {
+      --bs-gutter-x: 8rem;
+    }
+
+    font-size: 13px;
+  }
+
   // Quran
   .quran {
     &-navigator {
       width: 25%;
     }
+
     &-view {
       width: 75%;
     }
@@ -11,7 +20,12 @@
 }
 
 @media screen and (max-width: 768px) {
+
   html {
+    .container-fluid {
+      --bs-gutter-x: 5rem;
+    }
+
     font-size: 11px;
   }
 
@@ -56,7 +70,12 @@
 }
 
 @media screen and (max-width: 567px) {
+
   html {
+    .container-fluid {
+      --bs-gutter-x: 0;
+    }
+
     font-size: 10px;
   }
 
