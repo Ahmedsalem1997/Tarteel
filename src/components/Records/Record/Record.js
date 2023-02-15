@@ -7,6 +7,8 @@ import Comments from "./../../Comments/Comments";
 import useHTTP from './../../../hooks/use-http';
 import { getAuth } from "../../../utils/Auth";
 import { recordsActions } from "../../../store/Records/Records";
+import { Link } from "react-router-dom";
+
 const Record = (props) => {
   const img = require("../../../assets/images/personal.png");
   const { sendRequest: toggleLike } = useHTTP();
@@ -48,6 +50,7 @@ const Record = (props) => {
   return (
     <div className="post">
       <div className="post-header">
+        <Link to={`/profile/${props.record.user.id}`} style={{textDecoration : 'none', color :'white'}}>
         <div className="post-header-user">
           <div className="post-header-user-image">
             <img src={props?.user?.avatar || img} className="d-block" alt="..." />
@@ -57,6 +60,7 @@ const Record = (props) => {
             <p>{lang === 'ar' ? props?.record?.created_at_ar : props?.record?.created_at_en}</p>
           </div>
         </div>
+        </Link>
         {
           user?.id !== props?.record?.user?.id &&
           <span className="post-header-user-follow">
