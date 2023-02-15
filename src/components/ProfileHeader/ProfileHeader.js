@@ -11,6 +11,10 @@ const ProfileHeader = (x) => {
   const { token } = getAuth();
   const [isOpen, setIsOpen] = useState(false);
   const { sendRequest: profileData } = useHTTP();
+  const { sendRequest: followUser } = useHTTP();
+  const { sendRequest: unFollowUser } = useHTTP();
+
+
   const [userData, setUserData] = useState();
   const auth = useSelector((state) => {
     return { isAuth: state.auth.isAuth, user: state.auth.user };
@@ -36,15 +40,35 @@ const ProfileHeader = (x) => {
       setUserData(user);
     }
   }, []);
+  const handleFollow = ()=>{
+    followUser({
+      url : `users/${params.id}/follow`,
+      method : 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
+  }
+  const handleUnFollow = ()=>{
+    unFollowUser({
+      url : `users/${params.id}/unfollow`,
+      method : 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
+  }
   return (
     <div className="profile-header">
       <div className="profile-header-user">
         <img className="profile-header-user-img" src={userData?.avatar} alt="..." />
         <h2 className="profile-header-user-name">{userData?.name}</h2>
-        <button className="profile-header-user-follow">
+        <button onClick={handleFollow} className="profile-header-user-follow">
           <i className="fa-solid fa-user-plus"></i>
         </button>
-        <button className="profile-header-user-follow followed">
+        <button onClick={handleUnFollow} className="profile-header-user-follow followed">
           <i className="fa-solid fa-user-check"></i>
         </button>
         {params ? "" :<button
