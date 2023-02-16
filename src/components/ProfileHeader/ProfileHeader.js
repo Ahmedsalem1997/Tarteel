@@ -30,7 +30,7 @@ const ProfileHeader = (props) => {
   useEffect(() => {
     getUserData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [props.id]);
   const handleFollow = () => {
     setFollowersCount(prev => prev + 1);
     sendRequest(
