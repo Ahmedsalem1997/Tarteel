@@ -1,9 +1,8 @@
 import AudioPlayer from "./../../AudioPlayer/AudioPlayer";
 import useHTTP from "./../../../hooks/use-http";
 import { getAuth } from "../../../utils/Auth";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { recordsActions } from "../../../store/Records/Records";
+import { useSelector } from "react-redux";
+// import { useState } from "react";
 
 const Comment = (props) => {
   const lang = useSelector((state) => {
@@ -12,12 +11,15 @@ const Comment = (props) => {
   const img = require("../../../assets/images/personal.png");
   const { sendRequest: toggleLike } = useHTTP();
   const { token } = getAuth();
-  const dispatch = useDispatch();
-  const [isLiked, setIsLiked] = useState(props.comment.is_liked);
-  const [likesCount, setLikesCount] = useState(props.comment.likes_count);
+  // const dispatch = useDispatch();
+  // const [isLiked, setIsLiked] = useState(props.comment.is_liked);
+  // const [likesCount, setLikesCount] = useState(props.comment.likes_count);
   const likeBtnHandler = () => {
-    setLikesCount(prev => isLiked ? prev-- : prev++);
-    setIsLiked(prev => prev = !isLiked);
+    // setLikesCount(prev => {
+    //   console.log(prev);
+    //   return isLiked ? prev-- : prev++
+    // });
+    // setIsLiked(prev => prev = !isLiked);
     toggleLike(
       {
         url: `comments/${props?.comment?.id}/reactions`,
@@ -29,15 +31,14 @@ const Comment = (props) => {
         body: { reaction: props?.comment?.is_liked ? `unlike` : `like` },
       },
       data => {
-        setIsLiked(data?.data?.is_liked);
-        setLikesCount(data?.data?.likes_count);
-        dispatch(recordsActions.updateComments());
-        // dispatch(recordsActions.updateMyRecordsComments());
-        console.log(data.data.is_liked);
+        props.reloadComments();
       },
       err => {
-        setLikesCount(prev => isLiked ? prev-- : prev++);
-        setIsLiked(prev => prev = !isLiked);
+        // setLikesCount(prev => {
+        //   console.log(prev);
+        //   return isLiked ? prev-- : prev++
+        // });
+        // setIsLiked(prev => prev = !isLiked);
       }
     );
   };
@@ -77,10 +78,10 @@ const Comment = (props) => {
         )}
         <div className="comment-content-feedback">
           <span className="comment-content-feedback-likes">
-            <p>{likesCount}</p>
+            <p>{props?.comment?.likes_count}</p>
             <i
               onClick={likeBtnHandler}
-              className={`${isLiked ? "fa-solid" : "fa-regular"
+              className={`${props?.comment?.is_liked ? "fa-solid" : "fa-regular"
                 } fa-thumbs-up`}
             ></i>
           </span>
