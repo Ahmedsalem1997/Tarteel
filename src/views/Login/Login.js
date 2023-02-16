@@ -17,7 +17,7 @@ const Login = () => {
   const onLoginHandler = (e) => {
     e.preventDefault();
     if (mobileNumber.trim().length !== 12) {
-      setErrorMessage("Phone Number Must be 12 Character");
+      setErrorMessage("error.mobileNumberMessage");
       return;
     }
     sendRequest(
@@ -43,7 +43,7 @@ const Login = () => {
   const mobileNumberChangeHandler = (e) => {
     setMobileNumber(e.target.value);
     if (mobileNumber.trim().length > 12) {
-      setErrorMessage("Phone Number Must be 12 Character");
+      setErrorMessage("mobileNumberMessage");
       return;
     }
   };
@@ -68,9 +68,9 @@ const Login = () => {
               onChange={mobileNumberChangeHandler}
               required
             ></input>
-            <ErrorMessage message={errorMessage}/>
           </div>
         </div>
+        <ErrorMessage message={errorMessage} />
         <div className="login-form-header">
           <p>
             <Translate id="login.validTrueNumber" />

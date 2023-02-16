@@ -1,5 +1,6 @@
-.error-message {
-    margin: 10px 0;
-    color: var(--main-color);
-    font-size: 1em;
+.error-message p {
+    margin-top: 0px;
+    color: var(--error-color);
+    font-size: 1.125rem;
+    font-weight: 600;
 }

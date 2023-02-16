@@ -93,6 +93,11 @@
         "validTrueNumber" : "in order to validate your phone number",
         "sendVerificationCode" : "we will send the verification code ,which must be entered on the next page"       
     },
+    "error": {
+        "mobileNumberMessage" : "Phone Number Must Be 12 Character",
+        "name": "Name Must contain at least 5 characters",
+        "email": "Email Must Contain '@' "
+    },
     "addNewRecord":{
         "chooseSurah" : "choose Surah"
     }

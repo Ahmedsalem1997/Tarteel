@@ -93,6 +93,11 @@
         "validTrueNumber" : "من أجل التحقق من صحة رقم هاتفك",
         "sendVerificationCode" : "سنرسل رمز التحقق يجب إدخاله في الصفحة التالية"      
     },
+    "error": {
+        "mobileNumberMessage" : "رقم الهاتف يجب ان يكون 12 رقم",
+        "name": "يجب ان يحتوي الاسم على 5 حروف على الاقل",
+        "email": "يجب ان يحتوي على '@' "
+    },
     "addNewRecord":{
         "chooseSurah" : "اختر سورة"
     }

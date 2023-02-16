@@ -1,9 +1,13 @@
+import Translate from "../../helpers/Translate//Translate";
+
 const ErrorMessage = ({ message }) => {
-    return ( 
-        <p className="error-message">
-            {message}
-        </p>
-     );
+    return (
+        <div className="error-message">
+            <p>
+                <Translate id={message ? `error.${message}`:''} />
+            </p>
+        </div>
+    );
 }
- 
+
 export default ErrorMessage;

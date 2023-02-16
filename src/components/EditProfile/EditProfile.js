@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store/Auth/Auth";
 import { useNavigate } from "react-router-dom";
 import { getAuth, setAuth } from "../../utils/Auth";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 // import { URLSearchParams } from "url";
 
 const EditProfile = (props) => {
@@ -21,6 +22,8 @@ const EditProfile = (props) => {
     const [token, setToken] = useState('');
     const [nameErr, setNameErr] = useState('');
     const [emailErr, setEmailErr] = useState('');
+    const [nameErrorMessage, setNameErrorMessage] = useState("");
+    const [emailErrorMessage, setEmailErrorMessage] = useState("");
     const auth = getAuth();
     const loadXHR = (url) => {
         return new Promise(function (resolve, reject) {
@@ -60,23 +63,30 @@ const EditProfile = (props) => {
         if (!email) {
             setEmailErr('Email is required');
         }
-        if (name && email && avatar) {
+        if (name.trim().length < 5) {
+            setNameErrorMessage("name")
+            return;
+        }
+        if (!email.includes('@')) {
+            setEmailErrorMessage("email");
+            return;
+        }
+        if (name && email) {
             let formdata = new FormData();
             formdata.append('name', name);
             formdata.append('email', email);
-            formdata.append('avatar', avatar);
-            if (avatar === newAvatar) {
-                formdata.delete('avatar');
+            if (avatar !== newAvatar) {
+                formdata.append('avatar', avatar);
             }
-
-            sendRequest({
-                url: 'profile',
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`
+            sendRequest(
+                {
+                    url: 'profile',
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: formdata
                 },
-                body: formdata
-            },
                 data => {
                     setAuth({ user: data.data });
                     // localStorage.setItem('user', JSON.stringify(data.data));
@@ -87,7 +97,8 @@ const EditProfile = (props) => {
                         // localStorage.setItem('token', token);
                         navigate(`/`);
                     }
-                });
+                }
+            );
         }
     }
 
@@ -103,6 +114,15 @@ const EditProfile = (props) => {
         let file = e.target.files[0];
         setAvatar(file);
     }
+
+    const onChangeName = (e) => {
+        setName(e.target.value);
+    }
+
+    const onChangeEmail = (e) => {
+        setEmail(e.target.value)
+    }
+
     return (
         <BlackBlock width="80%">
             <form onSubmit={onEditProfileHandler}>
@@ -110,17 +130,19 @@ const EditProfile = (props) => {
                     <div className="edit-profile-img">
                         <img src={newAvatar} alt="..." />
                         <div className="edit-profile-img-upload" onClick={() => document.getElementById('upload-img').click()}><Translate id="button.editImg" /></div>
-                        <input onChange={onAvatarChange} type='file' id="upload-img" />
+                        <input value="" onChange={onAvatarChange} type='file' id="upload-img" />
                     </div>
                     <div className="edit-profile-input-group">
                         <label><Translate id="input.label.name" /></label>
-                        <input placeholder={useTranslate('input.placeholder.name')} value={name} onChange={(e) => setName(e.target.value)} type="text" className="trans-input" required />
-                        {error?.includes('name') ? <div className="text-danger fs-5">{error}</div> : ''}
+                        <input placeholder={useTranslate('input.placeholder.name')} value={name} onChange={onChangeName} type="text" className="trans-input" required />
+                        {/* {error?.includes('name') ? <div className="text-danger fs-5">{error}</div> : ''} */}
+                        <ErrorMessage message={nameErrorMessage} />
                     </div>
                     <div className="edit-profile-input-group">
                         <label><Translate id="input.label.email" /></label>
-                        <input placeholder={useTranslate('input.placeholder.email')} value={email} onChange={(e) => setEmail(e.target.value)} type="text" className="trans-input" required />
-                        {error?.includes('email') ? <div className="text-danger fs-5">{error}</div> : ''}
+                        <input placeholder={useTranslate('input.placeholder.email')} value={email} onChange={onChangeEmail} type="text" className="trans-input" required />
+                        {/* {error?.includes('email') ? <div className="text-danger fs-5">{error}</div> : ''} */}
+                        <ErrorMessage message={emailErrorMessage} />
                     </div>
                     {/* <div className="edit-profile-input-group">
                         <label><Translate id="input.label.phone" /></label>
