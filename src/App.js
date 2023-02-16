@@ -59,7 +59,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
-        <Route path="profile/:id" element={<Profile />} />
+        <Route path="users/:id" element={<Profile />} />
         <Route path="islamic" element={<Islamic />} />
         <Route path="quran" element={<Quran />} />
         <Route path="verification-code/:mobile" element={<VerificationCode />} />

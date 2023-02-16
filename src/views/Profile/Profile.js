@@ -12,7 +12,7 @@ const Profile = () => {
     return (
         <Fragment>
             <CarouselWrapper>
-                <ProfileHeader />
+                <ProfileHeader id={params.id} />
             </CarouselWrapper>
 
             <div className="container-fluid">

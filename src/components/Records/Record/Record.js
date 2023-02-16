@@ -49,17 +49,18 @@ const Record = (props) => {
   return (
     <div className="post">
       <div className="post-header">
-        <Link to={`/profile/${record.user.id}`} style={{ textDecoration: 'none', color: 'white' }}>
-          <div className="post-header-user">
-            <div className="post-header-user-image">
-              <img src={record?.user?.avatar || img} className="d-block" alt="..." />
-            </div>
-            <div className="post-header-user-name">
-              <h3>{record?.user?.name || 'لا يوجد اسم'}</h3>
-              <p>{lang === 'ar' ? record?.created_at_ar : record?.created_at_en}</p>
-            </div>
+
+        <div className="post-header-user">
+          <div className="post-header-user-image">
+            <img src={record?.user?.avatar || img} className="d-block" alt="..." />
           </div>
-        </Link>
+          <div className="post-header-user-name">
+            <Link to={`/users/${record?.user?.id}`}>
+              <h3>{record?.user?.name || 'لا يوجد اسم'}</h3>
+            </Link>
+            <p>{lang === 'ar' ? record?.created_at_ar : record?.created_at_en}</p>
+          </div>
+        </div>
         {
           user?.id !== record?.user?.id &&
           <span className="post-header-user-follow">
