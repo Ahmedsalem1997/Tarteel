@@ -13,13 +13,13 @@ const Record = (props) => {
   const img = require("../../../assets/images/personal.png");
   const { sendRequest: toggleLike } = useHTTP();
   const [showComments, setShowComments] = useState(false);
-  const [isLiked, setIsLiked] = useState(props.record.is_liked);
-  const [likesCount, setLikesCount] = useState(props.record.likes_count);
+  // const [isLiked, setIsLiked] = useState(props.record.is_liked);
+  // const [likesCount, setLikesCount] = useState(props.record.likes_count);
   const { token } = getAuth();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const likeBtnHandler = () => {
-    setLikesCount(prev => isLiked ? prev-- : prev++);
-    setIsLiked(prev => prev = !isLiked);
+    // setLikesCount(prev => isLiked ? prev-- : prev++);
+    // setIsLiked(prev => prev = !isLiked);
     toggleLike(
       {
         url: `records/${props?.record?.id}/reactions`,
@@ -31,15 +31,16 @@ const Record = (props) => {
         body: { 'reaction': props?.record?.is_liked ? `unlike` : `like` }
       },
       data => {
-        setIsLiked(data.data.is_liked);
-        setLikesCount(data.data.likes_count);
-        dispatch(recordsActions.updateLatestRecords());
-        dispatch(recordsActions.updateMyRecords());
+        props.reloadRecords();
+        // setIsLiked(data.data.is_liked);
+        // setLikesCount(data.data.likes_count);
+        // dispatch(recordsActions.updateLatestRecords());
+        // dispatch(recordsActions.updateMyRecords());
         // dispatch(recordsActions.updateMyRecordsHome());
       },
       err => {
-        setLikesCount(prev => isLiked ? prev-- : prev++);
-        setIsLiked(prev => prev = !isLiked);
+        // setLikesCount(prev => isLiked ? prev-- : prev++);
+        // setIsLiked(prev => prev = !isLiked);
       }
     )
   }
@@ -80,8 +81,8 @@ const Record = (props) => {
       </div>
       <div className="post-feedback">
         <span className="post-feedback-likes-comments">
-          <p>{likesCount}</p>
-          <i onClick={likeBtnHandler} className={`${isLiked ? 'fa-solid' : 'fa-regular'} fa-thumbs-up`}></i>
+          <p>{props?.record?.likes_count}</p>
+          <i onClick={likeBtnHandler} className={`${props.record.is_liked ? 'fa-solid' : 'fa-regular'} fa-thumbs-up`}></i>
           <p>{props?.record?.comments_count}</p>
           <i className="fa-regular fa-comment" onClick={() => setShowComments(prev => !prev)}></i>
         </span>
