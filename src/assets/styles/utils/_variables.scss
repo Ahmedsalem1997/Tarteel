@@ -7,6 +7,7 @@ $bg-dark: #0a0806;
 $bg-dark-lighter: #1a1918;
 $bg-light: #f4f4f4;
 $white: #FFF;
+$error: #eb1405;
 $light-gray: #707070;
 $dark-white: #efefef;
 $black: #000;
@@ -30,6 +31,7 @@ $main-colors: (
     "white-btn-color": $green,
     "secondary-btn-color": $white,
     "main-btn-color": $white,
+    "error": $error,
     "gradient-main-dark": darken($main-color, 30),
     "gradient-main-light": darken($main-color, 20),
 );

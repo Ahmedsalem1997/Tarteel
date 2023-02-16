@@ -6,6 +6,7 @@ import LoginWrapper from "../../components/LoginWrapper/LoginWrapper";
 import useHTTP from "../../hooks/use-http";
 import { useNavigate } from "react-router-dom";
 import Translate from "../../helpers/Translate//Translate";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const Login = () => {
   const [mobileNumber, setMobileNumber] = useState("");
@@ -25,7 +26,7 @@ const Login = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: {
-          mobile: Number(mobileNumber),
+          mobile: Number(mobileNumber.trim()),
           operator_id: 1,
         },
       },
@@ -41,6 +42,10 @@ const Login = () => {
   };
   const mobileNumberChangeHandler = (e) => {
     setMobileNumber(e.target.value);
+    if (mobileNumber.trim().length > 12) {
+      setErrorMessage("Phone Number Must be 12 Character");
+      return;
+    }
   };
 
   return (
@@ -63,8 +68,7 @@ const Login = () => {
               onChange={mobileNumberChangeHandler}
               required
             ></input>
-            <p>{mobileError}</p>
-            <p>{errorMessage}</p>
+            <ErrorMessage message={errorMessage}/>
           </div>
         </div>
         <div className="login-form-header">
