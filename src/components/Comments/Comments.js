@@ -26,13 +26,13 @@ const Comments = (props) => {
   }
   useEffect(() => {
     getRecordComments();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <Fragment>
       {
         comments.map(comment => {
-          return (<Comment key={comment.id} comment={comment} reloadComments={getRecordComments} />)
+          return (<Comment key={comment.id} comment={comment} />)
         })
       }
     </Fragment>

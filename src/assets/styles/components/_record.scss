@@ -18,9 +18,11 @@
         height: 4.8em;
         background-color: var(--avatar-bg);
         border-radius: 50%;
+        overflow: hidden;
 
         img {
           height: 100%;
+          width: 100%;
         }
       }
 

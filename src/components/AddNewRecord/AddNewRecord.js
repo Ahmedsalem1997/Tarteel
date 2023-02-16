@@ -8,7 +8,7 @@ import BlackBlock from "../BlackBlock/BlackBlock";
 
 const AddNewRecord = (props) => {
     const [uploadedRecord, setUploadedRecord] = useState(undefined);
-    const [selectedSurah, setSelectedSurah] = useState(0);
+    const [selectedSurah, setSelectedSurah] = useState('');
     const [ayaFrom, setAyaFrom] = useState('');
     const [ayaTo, setAyaTo] = useState('');
     const [surahList, setSurahList] = useState([]);
@@ -105,8 +105,8 @@ const AddNewRecord = (props) => {
                 <form onSubmit={onAddNewRecordHandler}>
                     <div className="add-new-record-input">
                         <label><Translate id="input.label.selectSurah" /></label>
-                        <select value={selectedSurah} onChange={surahChangeHandler}>
-                            <option disabled value="0"><Translate id="addNewRecord.chooseSurah" /></option>
+                        <select value={selectedSurah} onChange={surahChangeHandler} required>
+                            <option disabled value=""><Translate id="addNewRecord.chooseSurah" /></option>
                             {surahList.map(surah => {
                                 return (
                                     <option key={surah.number} value={surah.number}>{lang === 'ar' ? surah.name : surah.english_name}</option>
@@ -120,7 +120,7 @@ const AddNewRecord = (props) => {
                     </div>
                     <div className="add-new-record-input">
                         <label><Translate id="input.label.selectAyah" /></label>
-                        <select value={ayaFrom} className="aya-from" onChange={(e) => setAyaFrom(e.target.value)}>
+                        <select value={ayaFrom} className="aya-from" onChange={(e) => setAyaFrom(e.target.value)} required>
                             <option value="" disabled><Translate id="record.fromAyah" /></option>
                             {ayahs.map((ayah) => {
                                 return (
@@ -133,7 +133,7 @@ const AddNewRecord = (props) => {
                             <option value="4">4</option> */}
                         </select>
                         <span><Translate id="input.label.to" /></span>
-                        <select value={ayaTo} className="aya-to" onChange={(e) => setAyaTo(e.target.value)}>
+                        <select value={ayaTo} className="aya-to" onChange={(e) => setAyaTo(e.target.value)} required>
                             <option value="" disabled><Translate id="record.toAyah" /></option>
                             {ayahs.map((ayah) => {
                                 return (
@@ -149,7 +149,7 @@ const AddNewRecord = (props) => {
                     </div>
                     <div className="add-new-record-input">
                         <label><Translate id="input.label.selectRecitation" /></label>
-                        <select>
+                        <select required>
                             <option value="1">ورش</option>
                             <option value="2">حفص</option>
                             <option value="3">هشام</option>
@@ -159,7 +159,7 @@ const AddNewRecord = (props) => {
                     <div>
                         <button type="button"><Translate id="button.startRecording" /> <i className="fa-solid fa-microphone"></i></button>
                         <button type="button" onClick={uploadFile}><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></button>
-                        <input onChange={uploadRecordHandler} id="upload-file" type="file"></input>
+                        <input name="record" onChange={uploadRecordHandler} id="upload-file" type="file"></input>
                     </div>
                     <div className="add-new-record-actions">
                         <button type="submit"><Translate id="button.share" /></button>
