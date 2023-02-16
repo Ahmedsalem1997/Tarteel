@@ -17,9 +17,10 @@ const Record = (props) => {
   const [likesCount, setLikesCount] = useState(record?.likes_count);
   const { token } = getAuth();
   const toggleLike = () => {
-    console.log(isLiked, likesCount);
-    setLikesCount(prev => isLiked ? --prev : ++prev);
-    setIsLiked(isLikedPrev => !isLikedPrev);
+    setIsLiked(isLikedPrev => {
+      setLikesCount(prev => isLikedPrev ? prev - 1 : prev + 1);
+      return !isLikedPrev
+    });
   }
   const likeBtnHandler = () => {
     toggleLike();

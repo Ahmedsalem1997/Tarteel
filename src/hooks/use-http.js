@@ -49,10 +49,10 @@ const useHTTP = () => {
             }
         ).then(async res => {
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
             if (!res.ok) {
                 const error = (data && data.message) || res.statusText;
-                console.log('my error', error);
+                // console.log('my error', error);
                 throw new Error(error);
                 // get error message from body or default to response statusText
             }
