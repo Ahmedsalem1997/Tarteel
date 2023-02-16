@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Translate from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
+import { modalsActions } from "../../store/Modals/Modals";
 import { getAuth } from "../../utils/Auth";
-import BlackBlock from "../BlackBlock/BlackBlock";
+import Modal from "../Modal/Modal";
 
 
 const AddNewRecord = (props) => {
@@ -15,6 +16,7 @@ const AddNewRecord = (props) => {
     const [ayahs, setAyahs] = useState([]);
     const [surahId, setSurahId] = useState(0);
     const { isLoading, error, sendRequest } = useHTTP();
+    const dispatch = useDispatch();
     const lang = useSelector(state => {
         return state.lang.globalLang;
     });
@@ -88,8 +90,6 @@ const AddNewRecord = (props) => {
     const surahChangeHandler = (e) => {
         setSelectedSurah(e.target.value);
         getSurahAyahs(e.target.value);
-        // const newAyahs = Array.from({ length: surahList[e.target.value - 1].numberOfAyahs }, (value, i) => i + 1);;
-        // setAyahs(newAyahs);
     }
 
     const uploadFile = () => {
@@ -99,8 +99,12 @@ const AddNewRecord = (props) => {
     const uploadRecordHandler = (e) => {
         setUploadedRecord(e.target.files[0]);
     }
+
+    const closeModal = () => {
+        dispatch(modalsActions.closeAddNewRecordModal());
+    }
     return (
-        <BlackBlock width="80%">
+        <Modal showClose={true}>
             <div className="add-new-record">
                 <form onSubmit={onAddNewRecordHandler}>
                     <div className="add-new-record-input">
@@ -112,10 +116,6 @@ const AddNewRecord = (props) => {
                                     <option key={surah.number} value={surah.number}>{lang === 'ar' ? surah.name : surah.english_name}</option>
                                 )
                             })}
-                            {/* <option value="1">البقرة</option>
-                            <option value="2">ال عمران</option>
-                            <option value="3">يس</option>
-                            <option value="4">الرحمن</option> */}
                         </select>
                     </div>
                     <div className="add-new-record-input">
@@ -127,10 +127,6 @@ const AddNewRecord = (props) => {
                                     <option key={ayah?.id} value={ayah?.id}>{ayah?.number_in_surah}</option>
                                 )
                             })}
-                            {/* <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option> */}
                         </select>
                         <span><Translate id="input.label.to" /></span>
                         <select value={ayaTo} className="aya-to" onChange={(e) => setAyaTo(e.target.value)} required>
@@ -140,10 +136,6 @@ const AddNewRecord = (props) => {
                                     <option key={ayah?.id} value={ayah?.id}>{ayah?.number_in_surah}</option>
                                 )
                             })}
-                            {/* <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option> */}
                         </select>
 
                     </div>
@@ -163,11 +155,11 @@ const AddNewRecord = (props) => {
                     </div>
                     <div className="add-new-record-actions">
                         <button type="submit"><Translate id="button.share" /></button>
-                        <button type="button" onClick={() => props.setIsOpen(false)}><Translate id="button.cancel" /></button>
+                        <button type="button" onClick={closeModal}><Translate id="button.cancel" /></button>
                     </div>
                 </form>
             </div>
-        </BlackBlock>
+        </Modal>
 
     )
 }

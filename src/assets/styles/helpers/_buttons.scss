@@ -30,6 +30,8 @@ button {
     font-weight: 600;
     margin-top: 3rem;
     display: inline-block;
+    border: none;
+    background: none;
     &:hover {
         color: $white;
     }

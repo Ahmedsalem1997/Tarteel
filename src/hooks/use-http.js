@@ -1,7 +1,10 @@
 import { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
+import { modalsActions } from "../store/Modals/Modals";
 
 
 const useHTTP = () => {
+    const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     // const sendRequest = useCallback(async (requestConfig, applyData) => {
@@ -53,6 +56,9 @@ const useHTTP = () => {
             if (!res.ok) {
                 const error = (data && data.message) || res.statusText;
                 // console.log('my error', error);
+                if (res.status === 401) {
+                    dispatch(modalsActions.openLoginModal());
+                }
                 throw new Error(error);
                 // get error message from body or default to response statusText
             }
@@ -60,7 +66,6 @@ const useHTTP = () => {
             applyData(data);
         }).catch(err => {
             setError(err.message);
-            console.error('useHTTP Error', err);
             applyError(err);
         })
         setIsLoading(false);

@@ -17,7 +17,7 @@ const Login = () => {
   const onLoginHandler = (e) => {
     e.preventDefault();
     if (mobileNumber.trim().length !== 12) {
-      setErrorMessage("error.mobileNumberMessage");
+      setErrorMessage("mobileNumberMessage");
       return;
     }
     sendRequest(
@@ -41,11 +41,14 @@ const Login = () => {
     );
   };
   const mobileNumberChangeHandler = (e) => {
-    setMobileNumber(e.target.value);
-    if (mobileNumber.trim().length > 12) {
+    if (e.target.value.trim().length > 12) {
       setErrorMessage("mobileNumberMessage");
       return;
     }
+    if (e.target.value.trim().length === 12) {
+      setErrorMessage("");
+    }
+    setMobileNumber(e.target.value);
   };
 
   return (

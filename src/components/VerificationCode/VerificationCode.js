@@ -1,20 +1,18 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import LoginWrapper from "../LoginWrapper/LoginWrapper";
-import EditProfile from "../EditProfile/EditProfile";
 import Translate from "../../helpers/Translate/Translate";
 import OTPInput from "otp-input-react";
 import { useState } from "react";
 import useHTTP from "../../hooks/use-http";
-import Modal from "../Modal/Modal";
 import { setAuth } from "../../utils/Auth";
+import { useDispatch } from "react-redux";
+import { modalsActions } from "../../store/Modals/Modals";
 const VerificationCode = () => {
   let { mobile } = useParams();
   const [OTP, setOTP] = useState("");
   const { sendRequest } = useHTTP();
   const [verificationError, setVerificationError] = useState("");
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState({});
   const [token, setToken] = useState("");
 
   const handleOTPChange = (OTP) => {
@@ -40,24 +38,26 @@ const VerificationCode = () => {
           setVerificationError(data.message);
         } else {
           setVerificationError("");
+          setAuth(data.data);
           if (
             data.data.user.name &&
             data.data.user.email
           ) {
             console.log('user exist and login');
-            setAuth(data.data);
             navigate(`/`);
           } else {
             console.log('user not exist and register');
-            setUser(data.data.user);
-            setToken(data.data.token);
-            setIsOpen(true);
+            openEditProfileModal();
           }
         }
       }
     );
   };
 
+  const dispatch = useDispatch();
+  const openEditProfileModal = () => {
+    dispatch(modalsActions.openEditProfileModal(token));
+  }
   return (
     <LoginWrapper>
       <form onSubmit={onCodeVerifyHandler}>
@@ -96,11 +96,6 @@ const VerificationCode = () => {
           </Link>
         </div>
       </form>
-      {isOpen && (
-        <Modal>
-          <EditProfile token={token} user={user} setIsOpen={setIsOpen} />
-        </Modal>
-      )}
     </LoginWrapper>
   );
 };

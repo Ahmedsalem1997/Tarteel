@@ -1,25 +1,18 @@
 import Translate from "../../helpers/Translate/Translate";
-import Modal from "../Modal/Modal";
 import { useState, useEffect } from "react";
-import EditProfile from "../EditProfile/EditProfile";
-// import { useSelector } from "react-redux";
 import { getAuth } from "../../utils/Auth";
 import { useParams } from "react-router";
 import useHTTP from "../../hooks/use-http";
+import { useDispatch } from "react-redux";
+import { modalsActions } from "../../store/Modals/Modals";
 
 const ProfileHeader = (x) => {
   const [followersCount, setFollowersCount] = useState(0);
   const { token } = getAuth();
-  const [isOpen, setIsOpen] = useState(false);
   const { sendRequest } = useHTTP();
 
   const [userData, setUserData] = useState();
   let params = useParams();
-
-  // const auth = useSelector((state) => {
-  //   return { isAuth: state.auth.isAuth, user: state.auth.user };
-  // });
-
 
   useEffect(() => {
     if (params.id) {
@@ -35,11 +28,11 @@ const ProfileHeader = (x) => {
         (data) => {
           setUserData(data.data);
           setFollowersCount(data.data.followers_count);
-          // setFollowersCount(data.data.followers_count);
         }
       );
     } else {
       const { user } = getAuth();
+      console.log(user);
       setUserData(user);
       setFollowersCount(user.followers_count);
     }
@@ -77,6 +70,11 @@ const ProfileHeader = (x) => {
       }
     )
   }
+
+  const dispatch = useDispatch();
+  const openEditProfileModal = () => {
+    dispatch(modalsActions.openEditProfileModal());
+  }
   return (
     <div className="profile-header">
       <div className="profile-header-user">
@@ -90,7 +88,7 @@ const ProfileHeader = (x) => {
         </button>
         {params.id ? "" : <button
           className="profile-header-user-follow"
-          onClick={() => setIsOpen(true)}
+          onClick={openEditProfileModal}
         >
           <i className="fa-solid fa-user-pen"></i>
         </button>}
@@ -109,13 +107,6 @@ const ProfileHeader = (x) => {
           </span>
         </div>
       </div>
-      {isOpen && (
-        <Modal>
-          <EditProfile
-            setIsOpen={(setIsOpenValue) => setIsOpen(setIsOpenValue)}
-          />
-        </Modal>
-      )}
     </div>
   );
 };

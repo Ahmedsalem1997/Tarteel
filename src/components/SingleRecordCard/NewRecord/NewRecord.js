@@ -1,19 +1,20 @@
 import SingleRecordCard from "../SingleRecordCard"
 import Translate from '../../../helpers/Translate/Translate';
-import AddNewRecord from "../../AddNewRecord/AddNewRecord";
-import Modal from "../../Modal/Modal";
-import { useState } from "react";
-const NewRecord = (props) => {
-    const [isOpen, setIsOpen] = useState(false);
+import { useDispatch } from "react-redux";
+import { modalsActions } from "../../../store/Modals/Modals";
+const NewRecord = () => {
+    const dispatch = useDispatch();
+    const openAddNewRecordModal = () => {
+        dispatch(modalsActions.openAddNewRecordModal());
+    }
     return (
         <SingleRecordCard>
-            <div className="h-100" onClick={() => setIsOpen(true) }>
+            <div className="h-100" onClick={openAddNewRecordModal}>
                 <div className="single-record-card-img"></div>
                 <div className="single-record-card-name">
                     <span><Translate id="button.newRecord" /></span>
                 </div>
             </div>
-            {isOpen && <Modal><AddNewRecord setIsOpen={setIsOpen} /></Modal>}
         </SingleRecordCard>
     )
 }

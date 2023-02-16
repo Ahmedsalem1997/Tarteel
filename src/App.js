@@ -10,6 +10,9 @@ import NotFoundPage from './views/NotFoundPage/NotFoundPage';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { langActions } from './store/Lang/Lang';
+import AddNewRecord from './components/AddNewRecord/AddNewRecord';
+import NotRegistered from './components/NotRegistered/NotRegistered';
+import MediaPlayer from './components/MediaPlayer/MediaPlayer';
 // import { authActions } from './store/Auth/Auth';
 // import { getAuth } from './utils/Auth';
 
@@ -17,7 +20,7 @@ function App() {
   const globalLang = useSelector((state) => {
     return state.lang.globalLang;
   });
-
+  const modals = useSelector(state => state.modals);
   const [lang, setLang] = useState(localStorage.getItem("lang"));
   const dispatch = useDispatch();
   const rootEle = document.getElementById("root-html");
@@ -49,6 +52,10 @@ function App() {
   }, [globalLang]);
   return (
     <BrowserRouter>
+      {modals.editProfileModal && <EditProfile />}
+      {modals.addNewRecordModal && <AddNewRecord />}
+      {modals.loginModal && <NotRegistered />}
+      {modals.mediaModal && <MediaPlayer />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
@@ -61,7 +68,7 @@ function App() {
           path="verification-code/:mobile"
           element={<VerificationCode />}
         />
-        <Route path="edit-profile" element={<EditProfile />} />
+        {/* <Route path="edit-profile" element={<EditProfile />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

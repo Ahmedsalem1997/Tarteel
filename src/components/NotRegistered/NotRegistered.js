@@ -1,21 +1,29 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Translate from "../../helpers/Translate//Translate";
-import BlackBlock from "../BlackBlock/BlackBlock";
-const NotRegistered = (props) => {
+import { modalsActions } from "../../store/Modals/Modals";
+import Modal from "../Modal/Modal";
+
+
+const NotRegistered = () => {
+  const dispatch = useDispatch();
+  const closeLoginModal = () => {
+    dispatch(modalsActions.closeLoginModal());
+  }
   return (
-    <BlackBlock>
+    <Modal>
       <div className="not-registered-header">
-        <h3><Translate id="notRegistered.title"/></h3>
-        <p><Translate id="notRegistered.pleaseRegister"/></p>
+        <h3><Translate id="notRegistered.title" /></h3>
+        <p><Translate id="notRegistered.pleaseRegister" /></p>
       </div>
       <div className="not-registered-actions">
-        <Link to="/login"><button className="main-button"><Translate id="button.login"/></button></Link>
-        <Link to="/login"><button className="trans-btn"><Translate id="button.register"/></button></Link>
+        <Link to="/login"><button className="main-button"><Translate id="button.login" /></button></Link>
+        <Link to="/login"><button className="trans-btn"><Translate id="button.register" /></button></Link>
       </div>
       <div className="not-registered-cancel">
-        <Link className="cancel-btn" to="/" onClick={() => props.setIsOpen(false)}><Translate id="button.cancel"/></Link>
+        <button className="cancel-btn" onClick={closeLoginModal}><Translate id="button.cancel" /></button>
       </div>
-    </BlackBlock>
+    </Modal>
   );
 };
 

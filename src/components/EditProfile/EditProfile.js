@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { Translate } from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
 import useTranslate from "../../hooks/use-translate";
-import BlackBlock from "../BlackBlock/BlackBlock";
-import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "../../store/Auth/Auth";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAuth, setAuth } from "../../utils/Auth";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import Modal from "../Modal/Modal";
+import { modalsActions } from "../../store/Modals/Modals";
 // import { URLSearchParams } from "url";
 
 const EditProfile = (props) => {
@@ -25,35 +25,35 @@ const EditProfile = (props) => {
     const [nameErrorMessage, setNameErrorMessage] = useState("");
     const [emailErrorMessage, setEmailErrorMessage] = useState("");
     const auth = getAuth();
-    const loadXHR = (url) => {
-        return new Promise(function (resolve, reject) {
-            try {
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", url);
-                xhr.responseType = "blob";
-                xhr.onerror = function () { reject("Network error.") };
-                xhr.onload = function () {
-                    if (xhr.status === 200) { resolve(xhr.response) }
-                    else { reject("Loading error:" + xhr.statusText) }
-                };
-                xhr.send();
-            }
-            catch (err) { reject(err.message) }
-        });
-    }
+    // const loadXHR = (url) => {
+    //     return new Promise(function (resolve, reject) {
+    //         try {
+    //             var xhr = new XMLHttpRequest();
+    //             xhr.open("GET", url);
+    //             xhr.responseType = "blob";
+    //             xhr.onerror = function () { reject("Network error.") };
+    //             xhr.onload = function () {
+    //                 if (xhr.status === 200) { resolve(xhr.response) }
+    //                 else { reject("Loading error:" + xhr.statusText) }
+    //             };
+    //             xhr.send();
+    //         }
+    //         catch (err) { reject(err.message) }
+    //     });
+    // }
     useEffect(() => {
-        if (!auth.isAuth && props.token) {
-            // setName(props.user.name);
-            // setEmail(props.user.email);
-            // setAvatar(props.user.avatar);
-            setToken(props.token);
-        } else if (auth.isAuth) {
+        // if (!auth.isAuth && props.token) {
+        //     // setName(props.user.name);
+        //     // setEmail(props.user.email);
+        //     // setAvatar(props.user.avatar);
+        //     setToken(props.token);
+        // } else if (auth.isAuth) {
             setName(auth.user.name);
             setEmail(auth.user.email);
             setAvatar(auth.user.avatar);
             setNewAvatar(auth.user.avatar);
             setToken(auth.token);
-        }
+        // }
     }, []);
     const onEditProfileHandler = (e) => {
         e.preventDefault();
@@ -89,12 +89,9 @@ const EditProfile = (props) => {
                 },
                 data => {
                     setAuth({ user: data.data });
-                    // localStorage.setItem('user', JSON.stringify(data.data));
-                    // dispatch(authActions.setAuth({ token, user: data.data }));
-                    props.setIsOpen(false);
+                    dispatch(modalsActions.closeEditProfileModal());
                     if (props.token) {
                         setAuth({ token: token })
-                        // localStorage.setItem('token', token);
                         navigate(`/`);
                     }
                 }
@@ -124,13 +121,13 @@ const EditProfile = (props) => {
     }
 
     return (
-        <BlackBlock width="80%">
+        <Modal>
             <form onSubmit={onEditProfileHandler}>
                 <div className="edit-profile">
                     <div className="edit-profile-img">
                         <img src={newAvatar} alt="..." />
                         <div className="edit-profile-img-upload" onClick={() => document.getElementById('upload-img').click()}><Translate id="button.editImg" /></div>
-                        <input value="" onChange={onAvatarChange} type='file' id="upload-img" />
+                        <input value={""} onChange={onAvatarChange} type='file' id="upload-img" />
                     </div>
                     <div className="edit-profile-input-group">
                         <label><Translate id="input.label.name" /></label>
@@ -144,17 +141,13 @@ const EditProfile = (props) => {
                         {/* {error?.includes('email') ? <div className="text-danger fs-5">{error}</div> : ''} */}
                         <ErrorMessage message={emailErrorMessage} />
                     </div>
-                    {/* <div className="edit-profile-input-group">
-                        <label><Translate id="input.label.phone" /></label>
-                        <input placeholder={useTranslate('input.placeholder.phone')} value={phone} type="text" className="trans-input" required />
-                    </div> */}
                     <div className="edit-profile-actions">
                         <button type="submit" className="main-button"><Translate id="button.save" /></button>
                     </div>
 
                 </div>
             </form>
-        </BlackBlock>
+        </Modal>
     )
 }
 

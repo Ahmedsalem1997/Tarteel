@@ -1,13 +1,20 @@
 import React from 'react';
-import BlackBlock from '../BlackBlock/BlackBlock';
 import ReactPlayer from 'react-player'
+import { useDispatch, useSelector } from 'react-redux';
+import { modalsActions } from '../../store/Modals/Modals';
+import Modal from '../Modal/Modal';
 
 
-const MediaPlayer = (props) => {
+const MediaPlayer = () => {
+    const dispatch = useDispatch();
+    const closeMediaModal = () => {
+        dispatch(modalsActions.closeMediaModal())
+    }
+    const media = useSelector(state => state.modals.mediaToPlay);
     return (
-        <BlackBlock width="75%" showClose={true} onClose={props.close}>
-            <ReactPlayer url={props.media} controls />
-        </BlackBlock>
+        <Modal width="75%" showClose={true} onClose={closeMediaModal}>
+            <ReactPlayer url={media} controls />
+        </Modal >
     );
 }
 
