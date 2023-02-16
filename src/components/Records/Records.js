@@ -13,9 +13,9 @@ const Records = (props) => {
                 url: `records${props?.recordsUrl}`,
                 method: 'GET',
                 headers:
-                {
-                    'Authorization': `Bearer ${token}`
-                }
+                    props.recordsUrl ? {} : {
+                        'Authorization': `Bearer ${token}`
+                    }
             },
             data => {
                 setRecords(data.data);
@@ -24,7 +24,7 @@ const Records = (props) => {
     }
     useEffect(() => {
         getRecords();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <Fragment>
