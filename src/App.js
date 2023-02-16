@@ -59,16 +59,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
-        <Route path="profile" element={<Profile />}>
-          <Route path=":id" element={<Profile />} />
-        </Route>
+        <Route path="profile/:id" element={<Profile />} />
         <Route path="islamic" element={<Islamic />} />
         <Route path="quran" element={<Quran />} />
-        <Route
-          path="verification-code/:mobile"
-          element={<VerificationCode />}
-        />
-        {/* <Route path="edit-profile" element={<EditProfile />} /> */}
+        <Route path="verification-code/:mobile" element={<VerificationCode />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
