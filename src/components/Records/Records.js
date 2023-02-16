@@ -13,9 +13,9 @@ const Records = (props) => {
                 url: `records${props?.recordsUrl}`,
                 method: 'GET',
                 headers:
-                    props.recordsUrl ? {} : {
-                        'Authorization': `Bearer ${token}`
-                    }
+                {
+                    'Authorization': `Bearer ${token || ''}`
+                }
             },
             data => {
                 setRecords(data.data);
@@ -29,7 +29,7 @@ const Records = (props) => {
     return (
         <Fragment>
             {records?.map((record) => {
-                return <Record key={record.id} record={record} reloadRecords={getRecords} />
+                return <Record key={record.id} record={record} />
             })}
         </Fragment>
     )
