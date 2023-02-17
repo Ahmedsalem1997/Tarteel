@@ -75,7 +75,7 @@ const Record = (props) => {
         </div>
         <AudioPlayer id={`record-${record?.id}`} />
         <div className="post-text">
-          {lang === 'ar' ? record?.surah?.name : record?.surah?.english_name}
+          {lang === 'ar' ? record?.surah?.name : record?.surah?.english_name} &nbsp;
           <Translate id="record.fromAyah" /> &nbsp;
           {record?.from_ayah_number} &nbsp;
           <Translate id="record.toAyah" /> &nbsp;
