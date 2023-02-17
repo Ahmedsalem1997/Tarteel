@@ -32,7 +32,7 @@ const MyRecordsHome = () => {
       <NewRecord />
       {isLoading && <Loader />}
       {userRecords?.map((record) => {
-        return <ExsitingRecord record={record}></ExsitingRecord>;
+        return <ExsitingRecord record={record} key={record.id}></ExsitingRecord>;
       })}
     </div>
   );
