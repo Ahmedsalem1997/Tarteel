@@ -3,7 +3,7 @@ import { Translate } from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
 import useTranslate from "../../hooks/use-translate";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { getAuth, setAuth } from "../../utils/Auth";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Modal from "../Modal/Modal";
@@ -14,12 +14,13 @@ import Loader from "../Loader/Loader";
 const EditProfile = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
     const img = require("../../assets/images/record.jpg");
     const { isLoading, error, sendRequest } = useHTTP();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [avatar, setAvatar] = useState(img);
-    const [newAvatar, setNewAvatar] = useState(avatar);
+    const [newAvatar, setNewAvatar] = useState(img);
     const [token, setToken] = useState('');
     const [nameErr, setNameErr] = useState('');
     const [emailErr, setEmailErr] = useState('');
@@ -49,10 +50,12 @@ const EditProfile = (props) => {
         //     // setAvatar(props.user.avatar);
         //     setToken(props.token);
         // } else if (auth.isAuth) {
-        setName(auth.user.name);
-        setEmail(auth.user.email);
-        setAvatar(auth.user.avatar);
-        setNewAvatar(auth.user.avatar);
+        if (auth.user.name && auth.user.email) {
+            setName(auth.user.name);
+            setEmail(auth.user.email);
+            setAvatar(auth.user.avatar);
+            setNewAvatar(auth.user.avatar);
+        }
         setToken(auth.token);
         // }
     }, []);
@@ -73,6 +76,7 @@ const EditProfile = (props) => {
             return;
         }
         if (name && email) {
+            console.log('tokeeeeen45678', token);
             let formdata = new FormData();
             formdata.append('name', name);
             formdata.append('email', email);
@@ -91,13 +95,13 @@ const EditProfile = (props) => {
                 data => {
                     setAuth({ user: data.data });
                     dispatch(modalsActions.closeEditProfileModal());
-                    if (props.token) {
-                        setAuth({ token: token })
+                    if (location.pathname.includes('/verification-code/')) {
+                        // setAuth({ token: token })
                         navigate(`/`);
                     }
                 },
                 err => {
-                    
+
                 }
             );
         }
@@ -108,6 +112,7 @@ const EditProfile = (props) => {
 
         const FR = new FileReader();
         FR.addEventListener("load", function (evt) {
+            console.log('converted img ....', evt.target.result);
             setNewAvatar(evt.target.result);
         });
         FR.readAsDataURL(e.target.files[0]);
@@ -132,7 +137,7 @@ const EditProfile = (props) => {
                     <div className="edit-profile-img">
                         <img src={newAvatar} alt="..." />
                         <div className="edit-profile-img-upload" onClick={() => document.getElementById('upload-img').click()}><Translate id="button.editImg" /></div>
-                        <input value={""} onChange={onAvatarChange} type='file' id="upload-img" />
+                        <input value={''} onChange={onAvatarChange} type='file' id="upload-img" />
                     </div>
                     <div className="edit-profile-input-group">
                         <label><Translate id="input.label.name" /></label>
