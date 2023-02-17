@@ -137,7 +137,7 @@ const EditProfile = (props) => {
                     <div className="edit-profile-img">
                         <img src={newAvatar} alt="..." />
                         <div className="edit-profile-img-upload" onClick={() => document.getElementById('upload-img').click()}><Translate id="button.editImg" /></div>
-                        <input value={''} onChange={onAvatarChange} type='file' id="upload-img" />
+                        <input accept="image/*" value={''} onChange={onAvatarChange} type='file' id="upload-img" />
                     </div>
                     <div className="edit-profile-input-group">
                         <label><Translate id="input.label.name" /></label>

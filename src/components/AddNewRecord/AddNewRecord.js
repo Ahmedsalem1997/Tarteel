@@ -156,7 +156,7 @@ const AddNewRecord = (props) => {
                     <div>
                         <button type="button"><Translate id="button.startRecording" /> <i className="fa-solid fa-microphone"></i></button>
                         <button type="button" onClick={uploadFile}><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></button>
-                        <input name="record" onChange={uploadRecordHandler} id="upload-file" type="file"></input>
+                        <input accept="audio/*" name="record" onChange={uploadRecordHandler} id="upload-file" type="file"></input>
                     </div>
                     <div className="add-new-record-actions">
                         <button type="submit"><Translate id="button.share" /></button>
