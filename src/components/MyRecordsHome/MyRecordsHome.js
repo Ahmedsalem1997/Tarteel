@@ -19,6 +19,9 @@ const MyRecordsHome = () => {
       },
       (data) => {
         setUserRecords(data.data);
+      },
+      err => {
+        
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -40,6 +40,9 @@ const AddNewRecord = (props) => {
             data => {
                 console.log(data);
                 props.setIsOpen(false);
+            },
+            err => {
+                
             }
         )
     }
@@ -105,7 +108,7 @@ const AddNewRecord = (props) => {
         dispatch(modalsActions.closeAddNewRecordModal());
     }
     return (
-        <Modal showClose={true}>
+        <Modal showClose={true} onClose={closeModal}>
             {isLoading && <Loader />}
             <div className="add-new-record">
                 <form onSubmit={onAddNewRecordHandler}>

@@ -20,6 +20,9 @@ const IslamicContentHome = () => {
             },
             data => {
                 setItems(data.data);
+            },
+            err => {
+
             }
         );
         // eslint-disable-next-line react-hooks/exhaustive-deps

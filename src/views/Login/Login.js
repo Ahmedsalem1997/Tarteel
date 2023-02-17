@@ -37,6 +37,9 @@ const Login = () => {
           setMobileError("");
           navigate(`/verification-code/${mobileNumber}`);
         }
+      },
+      err => {
+        
       }
     );
   };

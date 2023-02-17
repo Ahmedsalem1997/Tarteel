@@ -22,6 +22,9 @@ const Comments = (props) => {
       },
       data => {
         setComments(data.data);
+      },
+      err => {
+        
       }
     )
   }

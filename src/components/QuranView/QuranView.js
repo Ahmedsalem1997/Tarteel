@@ -26,6 +26,9 @@ const QuranView = (props) => {
       },
       (surahObj) => {
         setSurah(surahObj.data);
+      },
+      err => {
+
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps

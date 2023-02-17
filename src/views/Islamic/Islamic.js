@@ -18,6 +18,9 @@ const Islamic = () => {
             { url: `categories`, method: 'GET' },
             data => {
                 setCategories(data.data);
+            },
+            err => {
+
             }
         );
         // eslint-disable-next-line react-hooks/exhaustive-deps

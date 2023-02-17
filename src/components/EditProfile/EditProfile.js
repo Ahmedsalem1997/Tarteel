@@ -95,6 +95,9 @@ const EditProfile = (props) => {
                         setAuth({ token: token })
                         navigate(`/`);
                     }
+                },
+                err => {
+                    
                 }
             );
         }

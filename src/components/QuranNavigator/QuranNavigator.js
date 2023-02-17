@@ -32,6 +32,9 @@ const QuranNavigator = (props) => {
       },
       (surahObj) => {
         setSurahList(surahObj.data.surahs);
+      },
+      err => {
+        
       }
     );
   // eslint-disable-next-line react-hooks/exhaustive-deps

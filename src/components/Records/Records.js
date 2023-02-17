@@ -20,6 +20,9 @@ const Records = (props) => {
             },
             data => {
                 setRecords(data.data);
+            },
+            err => {
+                
             }
         )
     }

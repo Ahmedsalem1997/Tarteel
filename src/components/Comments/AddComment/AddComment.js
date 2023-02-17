@@ -25,6 +25,9 @@ const AddComment = (props) => {
       },
       data => {
         console.log(data);
+      },
+      err => {
+
       }
     )
   }
