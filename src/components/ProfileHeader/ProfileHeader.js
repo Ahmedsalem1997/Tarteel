@@ -5,6 +5,7 @@ import useHTTP from "../../hooks/use-http";
 import { useDispatch } from "react-redux";
 import { modalsActions } from "../../store/Modals/Modals";
 import Loader from "../Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const ProfileHeader = (props) => {
   const [followersCount, setFollowersCount] = useState(0);
@@ -12,7 +13,7 @@ const ProfileHeader = (props) => {
   const { isLoading, sendRequest } = useHTTP();
 
   const [user, setUser] = useState();
-
+  const navigate = useNavigate();
   const getUserData = () => {
     sendRequest(
       {
@@ -27,7 +28,8 @@ const ProfileHeader = (props) => {
         // setFollowersCount(data.data.followers_count);
       },
       err => {
-        
+        console.log(err);
+        navigate('/');
       }
     );
   }
