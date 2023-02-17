@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from 'react-router-dom';
 import Home from './views/Home/Home';
 import Islamic from './views/Islamic/Islamic';
 import Profile from './views/Profile/Profile';
@@ -7,12 +7,13 @@ import Login from './views/Login/Login';
 import VerificationCode from './components/VerificationCode/VerificationCode';
 import EditProfile from './components/EditProfile/EditProfile';
 import NotFoundPage from './views/NotFoundPage/NotFoundPage';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { langActions } from './store/Lang/Lang';
 import AddNewRecord from './components/AddNewRecord/AddNewRecord';
 import NotRegistered from './components/NotRegistered/NotRegistered';
 import MediaPlayer from './components/MediaPlayer/MediaPlayer';
+import { checkAuthLoader } from './utils/Auth';
 // import { authActions } from './store/Auth/Auth';
 // import { getAuth } from './utils/Auth';
 
@@ -50,22 +51,50 @@ function App() {
     localStorage.setItem("lang", globalLang);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalLang]);
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: < Home />
+    },
+    {
+      path: "login",
+      element: <Login />
+    },
+    {
+      path: "users/:id",
+      element: <Profile />,
+      loader: checkAuthLoader
+    },
+    {
+      path: "islamic",
+      element: <Islamic />,
+      loader: checkAuthLoader
+    },
+    {
+      path: "quran",
+      element: <Quran />,
+      loader: checkAuthLoader
+    },
+    {
+      path: "verification-code/:mobile",
+      element: <VerificationCode />
+    },
+    {
+      path: "*",
+      element: <NotFoundPage />
+    }
+
+  ])
   return (
-    <BrowserRouter>
-      {modals.editProfileModal && <EditProfile />}
-      {modals.addNewRecordModal && <AddNewRecord />}
-      {modals.loginModal && <NotRegistered />}
-      {modals.mediaModal && <MediaPlayer />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="users/:id" element={<Profile />} />
-        <Route path="islamic" element={<Islamic />} />
-        <Route path="quran" element={<Quran />} />
-        <Route path="verification-code/:mobile" element={<VerificationCode />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </BrowserRouter>
+    <Fragment>
+      <RouterProvider router={router} >
+        {modals.editProfileModal && <EditProfile />}
+        {modals.addNewRecordModal && <AddNewRecord />}
+        {modals.loginModal && <NotRegistered />}
+        {modals.mediaModal && <MediaPlayer />}
+      </RouterProvider>
+    </Fragment>
+
   );
 }
 
