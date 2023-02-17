@@ -6,7 +6,7 @@ const initialModalsState =
     loginModal: false,
     addNewRecordModal: false,
     mediaModal: false,
-    mediaToPlay: ''
+    record: ''
 }
 
 const modalsSlice = createSlice({
@@ -34,7 +34,7 @@ const modalsSlice = createSlice({
         },
         openMediaModal(state, actions) {
             state.mediaModal = true;
-            state.mediaToPlay = actions.payload;
+            state.record = actions.payload;
         },
         closeMediaModal(state) {
             state.mediaModal = false;

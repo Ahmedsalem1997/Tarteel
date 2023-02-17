@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const ExsitingRecord = (props) => {
   const dispatch = useDispatch();
   const openMediaModal = () => {
-    dispatch(modalsActions.openMediaModal(props.record.file));
+    dispatch(modalsActions.openMediaModal(props.record));
   };
 
   const lang = useSelector((state) => {

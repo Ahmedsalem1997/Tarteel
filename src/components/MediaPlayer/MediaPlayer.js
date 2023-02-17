@@ -10,10 +10,10 @@ const MediaPlayer = () => {
     const closeMediaModal = () => {
         dispatch(modalsActions.closeMediaModal())
     }
-    const media = useSelector(state => state.modals.mediaToPlay);
+    const record = useSelector(state => state.modals.record);
     return (
         <Modal width="75%" showClose={true} onClose={closeMediaModal}>
-            <ReactPlayer url={media} controls />
+            <ReactPlayer url={record.file} controls />
         </Modal >
     );
 }
