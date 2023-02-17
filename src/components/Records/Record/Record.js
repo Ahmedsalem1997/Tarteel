@@ -75,12 +75,12 @@ const Record = (props) => {
         </div>
         <AudioPlayer id={`record-${record?.id}`} />
         <div className="post-text">
+          {lang === 'ar' ? record?.surah?.name : record?.surah?.english_name}
           <Translate id="record.fromAyah" /> &nbsp;
           {record?.from_ayah_number} &nbsp;
           <Translate id="record.toAyah" /> &nbsp;
           {record?.to_ayah_number} &nbsp;
           {/* <Translate id="record.surah" />  &nbsp;*/}
-          {lang === 'ar' ? record?.surah?.name : record?.surah?.english_name}
         </div>
         <div className="post-feedback">
           <span className="post-feedback-likes-comments">
