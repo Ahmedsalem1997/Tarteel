@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import useHTTP from "../../hooks/use-http";
 import { getAuth } from "../../utils/Auth";
+import Loader from "../Loader/Loader";
 import Record from "./Record/Record";
 
 const Records = (props) => {
@@ -28,6 +29,7 @@ const Records = (props) => {
     }, []);
     return (
         <Fragment>
+            {isLoading && <Loader />}
             {records?.map((record) => {
                 return <Record key={record.id} record={record} />
             })}

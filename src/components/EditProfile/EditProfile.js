@@ -8,6 +8,7 @@ import { getAuth, setAuth } from "../../utils/Auth";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Modal from "../Modal/Modal";
 import { modalsActions } from "../../store/Modals/Modals";
+import Loader from "../Loader/Loader";
 // import { URLSearchParams } from "url";
 
 const EditProfile = (props) => {
@@ -48,11 +49,11 @@ const EditProfile = (props) => {
         //     // setAvatar(props.user.avatar);
         //     setToken(props.token);
         // } else if (auth.isAuth) {
-            setName(auth.user.name);
-            setEmail(auth.user.email);
-            setAvatar(auth.user.avatar);
-            setNewAvatar(auth.user.avatar);
-            setToken(auth.token);
+        setName(auth.user.name);
+        setEmail(auth.user.email);
+        setAvatar(auth.user.avatar);
+        setNewAvatar(auth.user.avatar);
+        setToken(auth.token);
         // }
     }, []);
     const onEditProfileHandler = (e) => {
@@ -122,6 +123,7 @@ const EditProfile = (props) => {
 
     return (
         <Modal>
+            {isLoading && <Loader />}
             <form onSubmit={onEditProfileHandler}>
                 <div className="edit-profile">
                     <div className="edit-profile-img">
@@ -144,7 +146,6 @@ const EditProfile = (props) => {
                     <div className="edit-profile-actions">
                         <button type="submit" className="main-button"><Translate id="button.save" /></button>
                     </div>
-
                 </div>
             </form>
         </Modal>

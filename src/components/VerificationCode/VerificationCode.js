@@ -7,10 +7,11 @@ import useHTTP from "../../hooks/use-http";
 import { setAuth } from "../../utils/Auth";
 import { useDispatch } from "react-redux";
 import { modalsActions } from "../../store/Modals/Modals";
+import Loader from "../Loader/Loader";
 const VerificationCode = () => {
   let { mobile } = useParams();
   const [OTP, setOTP] = useState("");
-  const { sendRequest } = useHTTP();
+  const { isLoading, sendRequest } = useHTTP();
   const [verificationError, setVerificationError] = useState("");
   const navigate = useNavigate();
   const [token, setToken] = useState("");
@@ -60,6 +61,7 @@ const VerificationCode = () => {
   }
   return (
     <LoginWrapper>
+      {isLoading && <Loader />}
       <form onSubmit={onCodeVerifyHandler}>
         <div className="verification-code-form-header">
           <p>

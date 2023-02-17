@@ -3,6 +3,7 @@ import { Fragment, useEffect, useState } from "react";
 import useHTTP from "../../hooks/use-http";
 import { useSelector } from "react-redux";
 import { getAuth } from "../../utils/Auth";
+import Loader from "../Loader/Loader";
 
 const Comments = (props) => {
   const { token } = getAuth();
@@ -30,10 +31,10 @@ const Comments = (props) => {
   }, [])
   return (
     <Fragment>
-      {
-        comments.map(comment => {
-          return (<Comment key={comment.id} comment={comment} />)
-        })
+      {isLoading && <Loader />}
+      {comments.map(comment => {
+        return (<Comment key={comment.id} comment={comment} />)
+      })
       }
     </Fragment>
   );

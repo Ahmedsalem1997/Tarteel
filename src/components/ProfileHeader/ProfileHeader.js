@@ -1,14 +1,15 @@
 import Translate from "../../helpers/Translate/Translate";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { getAuth } from "../../utils/Auth";
 import useHTTP from "../../hooks/use-http";
 import { useDispatch } from "react-redux";
 import { modalsActions } from "../../store/Modals/Modals";
+import Loader from "../Loader/Loader";
 
 const ProfileHeader = (props) => {
   const [followersCount, setFollowersCount] = useState(0);
   const { token } = getAuth();
-  const { sendRequest } = useHTTP();
+  const { isLoading, sendRequest } = useHTTP();
 
   const [user, setUser] = useState();
 
@@ -76,47 +77,50 @@ const ProfileHeader = (props) => {
     dispatch(modalsActions.openEditProfileModal());
   }
   return (
-    <div className="profile-header">
-      <div className="profile-header-user">
-        <img className="profile-header-user-img" src={user?.avatar} alt="..." />
-        <h2 className="profile-header-user-name">{user?.name}</h2>
-        {
-          user?.is_mine &&
-          <button
-            className="profile-header-user-follow"
-            onClick={openEditProfileModal}>
-            <i className="fa-solid fa-user-pen"></i>
-          </button>
-        }
-        {
-          !user?.is_mine &&
-          <button onClick={handleFollow} className="profile-header-user-follow">
-            <i className="fa-solid fa-user-plus"></i>
-          </button>
-        }
-        {
-          !user?.is_mine &&
-          <button onClick={handleUnFollow} className="profile-header-user-follow followed">
-            <i className="fa-solid fa-user-check"></i>
-          </button>
+    <Fragment>
+      {isLoading && <Loader />}
+      <div className="profile-header">
+        <div className="profile-header-user">
+          <img className="profile-header-user-img" src={user?.avatar} alt="..." />
+          <h2 className="profile-header-user-name">{user?.name}</h2>
+          {
+            user?.is_mine &&
+            <button
+              className="profile-header-user-follow"
+              onClick={openEditProfileModal}>
+              <i className="fa-solid fa-user-pen"></i>
+            </button>
+          }
+          {
+            !user?.is_mine &&
+            <button onClick={handleFollow} className="profile-header-user-follow">
+              <i className="fa-solid fa-user-plus"></i>
+            </button>
+          }
+          {
+            !user?.is_mine &&
+            <button onClick={handleUnFollow} className="profile-header-user-follow followed">
+              <i className="fa-solid fa-user-check"></i>
+            </button>
 
-        }
-      </div>
-      <div className="profile-header-following">
-        <div className="profile-header-following-followers">
-          <span>{followersCount}</span>
-          <span>
-            <Translate id="profile.followers" />
-          </span>
+          }
         </div>
-        <div className="profile-header-following-followings">
-          <span>{user?.followings_count}</span>
-          <span>
-            <Translate id="profile.followings" />
-          </span>
+        <div className="profile-header-following">
+          <div className="profile-header-following-followers">
+            <span>{followersCount}</span>
+            <span>
+              <Translate id="profile.followers" />
+            </span>
+          </div>
+          <div className="profile-header-following-followings">
+            <span>{user?.followings_count}</span>
+            <span>
+              <Translate id="profile.followings" />
+            </span>
+          </div>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

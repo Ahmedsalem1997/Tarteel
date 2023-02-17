@@ -4,6 +4,7 @@ import Translate from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
 import { modalsActions } from "../../store/Modals/Modals";
 import { getAuth } from "../../utils/Auth";
+import Loader from "../Loader/Loader";
 import Modal from "../Modal/Modal";
 
 
@@ -105,6 +106,7 @@ const AddNewRecord = (props) => {
     }
     return (
         <Modal showClose={true}>
+            {isLoading && <Loader />}
             <div className="add-new-record">
                 <form onSubmit={onAddNewRecordHandler}>
                     <div className="add-new-record-input">
@@ -159,6 +161,7 @@ const AddNewRecord = (props) => {
                     </div>
                 </form>
             </div>
+
         </Modal>
 
     )

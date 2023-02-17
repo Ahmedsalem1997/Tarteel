@@ -53,12 +53,12 @@ const Login = () => {
 
   return (
     <LoginWrapper>
+      {isLoading && <Loader />}
       <form onSubmit={onLoginHandler}>
         <div className="login-form-header">
           <p>
             <Translate id="login.validNumber" />
           </p>
-          {isLoading ? <Loader /> : ""}
         </div>
         <div className="login-form-content">
           <div className="login-form-content-input-group">

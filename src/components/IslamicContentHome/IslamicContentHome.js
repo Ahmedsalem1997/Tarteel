@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ExsitingRecord from "../SingleRecordCard/ExsitingRecord/ExsitingRecord";
 import useHTTP from "../../hooks/use-http";
+import Loader from "../Loader/Loader";
 
 const IslamicContentHome = () => {
     const lang = useSelector((state) => {
@@ -9,7 +10,7 @@ const IslamicContentHome = () => {
     });
 
     const [items, setItems] = useState([]);
-    const { sendRequest: getCategories } = useHTTP();
+    const { isLoading, sendRequest: getCategories } = useHTTP();
 
     useEffect(() => {
         getCategories(
@@ -25,6 +26,7 @@ const IslamicContentHome = () => {
     }, []);
     return (
         <div className="home-section-content">
+            {isLoading && <Loader />}
             {items?.map((item) => (
                 <ExsitingRecord key={item.id} btn={true} img={item.cover} name={lang === 'ar' ? item.title : item.title_en} media={item.file}></ExsitingRecord>
             ))}
