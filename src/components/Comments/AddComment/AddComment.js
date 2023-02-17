@@ -25,6 +25,8 @@ const AddComment = (props) => {
       },
       data => {
         console.log(data);
+        setComment('');
+        props.onAddComment();
       },
       err => {
 
@@ -36,7 +38,7 @@ const AddComment = (props) => {
        {isLoading && <Loader />}
       <form className="add-comment" onSubmit={addCommentHandler}>
         <div className="add-comment-input">
-          <textarea onChange={(e) => setComment(e.target.value)} placeholder={useTranslate('input.placeholder.writeComment')}></textarea>
+          <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder={useTranslate('input.placeholder.writeComment')}></textarea>
         </div>
        
           <div className="add-comment-actions">

@@ -4,6 +4,7 @@ import useHTTP from "../../hooks/use-http";
 import { useSelector } from "react-redux";
 import { getAuth } from "../../utils/Auth";
 import Loader from "../Loader/Loader";
+import AddComment from "./AddComment/AddComment";
 
 const Comments = (props) => {
   const { token } = getAuth();
@@ -24,7 +25,7 @@ const Comments = (props) => {
         setComments(data.data);
       },
       err => {
-        
+
       }
     )
   }
@@ -35,10 +36,15 @@ const Comments = (props) => {
   return (
     <Fragment>
       {isLoading && <Loader />}
-      {comments.map(comment => {
-        return (<Comment key={comment.id} comment={comment} />)
-      })
-      }
+      <div className="comments">
+        {comments.map(comment => {
+          return (<Comment key={comment.id} comment={comment} />)
+        })
+        }
+      </div>
+      <div className="add-comment">
+        <AddComment recordId={props.recordId} onAddComment={getRecordComments} />
+      </div>
     </Fragment>
   );
 };

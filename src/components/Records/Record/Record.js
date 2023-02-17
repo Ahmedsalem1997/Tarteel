@@ -98,9 +98,8 @@ const Record = (props) => {
         {showComments && <div className="post-comments">
           <Comments recordId={record?.id} />
         </div>}
-        {showComments && <div className="post-add-comment">
-          <AddComment recordId={record?.id} />
-        </div>}
+        {/* {showComments && <div className="post-add-comment">
+        </div>} */}
       </div>
     </Fragment>
 
