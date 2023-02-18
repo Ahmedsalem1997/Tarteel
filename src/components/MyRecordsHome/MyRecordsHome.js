@@ -16,7 +16,7 @@ const MyRecordsHome = () => {
     if (!addNewRecordModalOpen) {
       getMyRecords(
         {
-          url: "records",
+          url: "records?per_page=6&page=1",
           headers: { 'Authorization': `Bearer ${token}` },
           method: "GET",
         },
