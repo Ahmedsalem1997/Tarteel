@@ -1,3 +1,4 @@
+import Joi from 'joi';
 import { useEffect, useState } from "react";
 import { Translate } from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
@@ -25,9 +26,6 @@ const EditProfile = (props) => {
     const [token, setToken] = useState('');
     const [nameErr, setNameErr] = useState('');
     const [emailErr, setEmailErr] = useState('');
-    const [nameErrorMessage, setNameErrorMessage] = useState("");
-    const [emailErrorMessage, setEmailErrorMessage] = useState("");
-    let emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     const auth = getAuth();
     // const loadXHR = (url) => {
     //     return new Promise(function (resolve, reject) {
@@ -46,12 +44,6 @@ const EditProfile = (props) => {
     //     });
     // }
     useEffect(() => {
-        // if (!auth.isAuth && props.token) {
-        //     // setName(props.user.name);
-        //     // setEmail(props.user.email);
-        //     // setAvatar(props.user.avatar);
-        //     setToken(props.token);
-        // } else if (auth.isAuth) {
         if (auth.user.name && auth.user.email) {
             setName(auth.user.name);
             setEmail(auth.user.email);
@@ -59,27 +51,10 @@ const EditProfile = (props) => {
             setNewAvatar(auth.user.avatar);
         }
         setToken(auth.token);
-        // }
     }, []);
     const onEditProfileHandler = (e) => {
         e.preventDefault();
-        if (!name) {
-            setNameErr('name is required');
-        }
-        if (!email) {
-            setEmailErr('Email is required');
-        }
-        if (name.trim().length < 5) {
-            setNameErrorMessage("name")
-            return;
-        }
-        if (!email || emailRegex.test(email) === false) {
-            setEmailErrorMessage('email')
-            return;
-        }
-        setEmailErrorMessage("email");
         if (name && email) {
-            console.log('tokeeeeen45678', token);
             let formdata = new FormData();
             formdata.append('name', name);
             formdata.append('email', email);
@@ -125,12 +100,28 @@ const EditProfile = (props) => {
     }
 
     const onChangeName = (e) => {
+        const schema = Joi.object({
+            name: Joi.string().pattern(/^[a-zA-Z\u0621-\u064A ]{3,30}$/).required()
+        })
+        const nameError = schema.validate({ name: e.target.value });
+        if (nameError.error) {
+            setNameErr('name');
+        } else {
+            setNameErr('');
+        }
         setName(e.target.value);
     }
 
     const onChangeEmail = (e) => {
-        if (email || emailRegex.test(email) === true) {
-            setEmailErrorMessage("email")
+        const schema = Joi.object({
+            email: Joi.string().email({ tlds: false }).required()
+        })
+        const nameError = schema.validate({ email: e.target.value });
+        if (nameError.error) {
+            console.log(nameError.error);
+            setEmailErr('email');
+        } else {
+            setEmailErr('');
         }
         setEmail(e.target.value);
     }
@@ -147,18 +138,16 @@ const EditProfile = (props) => {
                     </div>
                     <div className="edit-profile-input-group">
                         <label><Translate id="input.label.name" /></label>
-                        <input placeholder={useTranslate('input.placeholder.name')} value={name} onChange={onChangeName} type="text" className="trans-input" required />
-                        {/* {error?.includes('name') ? <div className="text-danger fs-5">{error}</div> : ''} */}
-                        <ErrorMessage message={nameErrorMessage} />
+                        <input name="name" placeholder={useTranslate('input.placeholder.name')} value={name} onChange={onChangeName} type="text" className="trans-input" required />
+                        <ErrorMessage message={nameErr} />
                     </div>
                     <div className="edit-profile-input-group">
                         <label><Translate id="input.label.email" /></label>
-                        <input placeholder={useTranslate('input.placeholder.email')} value={email} onChange={onChangeEmail} type="text" className="trans-input" required />
-                        {/* {error?.includes('email') ? <div className="text-danger fs-5">{error}</div> : ''} */}
-                        <ErrorMessage message={emailErrorMessage} />
+                        <input name="email" placeholder={useTranslate('input.placeholder.email')} value={email} onChange={onChangeEmail} type="text" className="trans-input" required />
+                        <ErrorMessage message={emailErr} />
                     </div>
                     <div className="edit-profile-actions">
-                        <button type="submit" className="main-button"><Translate id="button.save" /></button>
+                        <button type="submit" className="main-button" disabled={emailErr || nameErr}><Translate id="button.save" /></button>
                     </div>
                 </div>
             </form>
