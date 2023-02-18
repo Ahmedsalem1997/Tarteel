@@ -26,6 +26,7 @@ const EditProfile = (props) => {
     const [emailErr, setEmailErr] = useState('');
     const [nameErrorMessage, setNameErrorMessage] = useState("");
     const [emailErrorMessage, setEmailErrorMessage] = useState("");
+    let emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     const auth = getAuth();
     // const loadXHR = (url) => {
     //     return new Promise(function (resolve, reject) {
@@ -71,10 +72,11 @@ const EditProfile = (props) => {
             setNameErrorMessage("name")
             return;
         }
-        if (!email.includes('@')) {
-            setEmailErrorMessage("email");
+        if (!email || emailRegex.test(email) === false) {
+            setEmailErrorMessage('email')
             return;
         }
+        setEmailErrorMessage("email");
         if (name && email) {
             console.log('tokeeeeen45678', token);
             let formdata = new FormData();
@@ -126,7 +128,10 @@ const EditProfile = (props) => {
     }
 
     const onChangeEmail = (e) => {
-        setEmail(e.target.value)
+        if (email || emailRegex.test(email) === true) {
+            setEmailErrorMessage("email")
+        }
+        setEmail(e.target.value);
     }
 
     return (

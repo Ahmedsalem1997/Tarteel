@@ -96,7 +96,7 @@
     "error": {
         "mobileNumberMessage" : "Phone Number Must Be 12 Character",
         "name": "Name Must contain at least 5 characters",
-        "email": "Email Must Contain '@' "
+        "email": "Email Must Contain '@' and in English letters"
     },
     "addNewRecord":{
         "chooseSurah" : "choose Surah"
