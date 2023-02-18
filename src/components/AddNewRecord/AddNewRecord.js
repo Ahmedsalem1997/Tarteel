@@ -9,6 +9,8 @@ import Modal from "../Modal/Modal";
 
 
 const AddNewRecord = (props) => {
+    const [formAyahs ,setFromAyahs] = useState([]);
+    const [toAyahs ,setToAyahs] = useState([]);
     const [uploadedRecord, setUploadedRecord] = useState(undefined);
     const [selectedSurah, setSelectedSurah] = useState('');
     const [ayaFrom, setAyaFrom] = useState('');
@@ -70,13 +72,15 @@ const AddNewRecord = (props) => {
             (ayahsArr) => {
                 setAyahs(ayahsArr.data.ayahs);
                 setSurahId(ayahsArr.data.id);
+                setFromAyahs(ayahsArr.data.ayahs);
+                setToAyahs(ayahsArr.data.ayahs);
             }
         )
     }
 
     const onAddNewRecordHandler = (e) => {
         e.preventDefault();
-        console.log(uploadedRecord);
+        // console.log(uploadedRecord);
         // let idCardBase64 = '';
         // getBase64(uploadedRecord, (result) => {
         //     idCardBase64 = result;
@@ -89,13 +93,23 @@ const AddNewRecord = (props) => {
         formData.append('to_ayah', ayaTo);
         formData.append('file', uploadedRecord);
         addNewRecord(formData);
+        
     }
 
     const surahChangeHandler = (e) => {
         setSelectedSurah(e.target.value);
         getSurahAyahs(e.target.value);
     }
-
+    const onChangeFromAyahsHandler = (e)=>{
+        setAyaFrom(e.target.value);
+        const filterAyahs = ayahs.slice(e.target.value);
+        setToAyahs(filterAyahs)
+    }
+    const onChangeToAyahsHandler = (e)=>{
+        setAyaTo(e.target.value);
+        const filterAyahs = ayahs.slice(0 , e.target.value-1);
+        setFromAyahs(filterAyahs)
+    }
     const uploadFile = () => {
         document.getElementById('upload-file').click();
     }
@@ -114,7 +128,7 @@ const AddNewRecord = (props) => {
                 <form onSubmit={onAddNewRecordHandler}>
                     <div className="add-new-record-input">
                         <label><Translate id="input.label.selectSurah" /></label>
-                        <select value={selectedSurah} onChange={surahChangeHandler} required>
+                        <select name='surahSelect' value={selectedSurah} onChange={surahChangeHandler} >
                             <option disabled value=""><Translate id="addNewRecord.chooseSurah" /></option>
                             {surahList.map(surah => {
                                 return (
@@ -125,20 +139,20 @@ const AddNewRecord = (props) => {
                     </div>
                     <div className="add-new-record-input">
                         <label><Translate id="input.label.selectAyah" /></label>
-                        <select value={ayaFrom} className="aya-from" onChange={(e) => setAyaFrom(e.target.value)} required>
+                        <select name='fromAyahsSelect' value={ayaFrom} className="aya-from" onChange={onChangeFromAyahsHandler} >
                             <option value="" disabled><Translate id="record.fromAyah" /></option>
-                            {ayahs.map((ayah) => {
+                            {formAyahs.map((ayah) => {
                                 return (
-                                    <option key={ayah?.id} value={ayah?.id}>{ayah?.number_in_surah}</option>
+                                    <option key={ayah?.id} value={ayah?.number_in_surah} id={ayah.number_in_surah}>{ayah?.number_in_surah}</option>
                                 )
                             })}
                         </select>
                         <span><Translate id="input.label.to" /></span>
-                        <select value={ayaTo} className="aya-to" onChange={(e) => setAyaTo(e.target.value)} required>
+                        <select name='toAyahsSelect' value={ayaTo} className="aya-to" onChange={onChangeToAyahsHandler} >
                             <option value="" disabled><Translate id="record.toAyah" /></option>
-                            {ayahs.map((ayah) => {
+                            {toAyahs.map((ayah) => {
                                 return (
-                                    <option key={ayah?.id} value={ayah?.id}>{ayah?.number_in_surah}</option>
+                                    <option key={ayah?.id} value={ayah?.number_in_surah} id={ayah.number_in_surah}>{ayah?.number_in_surah}</option>
                                 )
                             })}
                         </select>
@@ -155,11 +169,11 @@ const AddNewRecord = (props) => {
                     </div>
                     <div>
                         <button type="button"><Translate id="button.startRecording" /> <i className="fa-solid fa-microphone"></i></button>
-                        <button type="button" onClick={uploadFile}><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></button>
+                        <button type="button" onClick={uploadFile}><Translate id="button.haveRecord"/> <i className="fa-solid fa-cloud-arrow-up"></i></button>
                         <input accept="audio/*" name="record" onChange={uploadRecordHandler} id="upload-file" type="file"></input>
                     </div>
                     <div className="add-new-record-actions">
-                        <button type="submit"><Translate id="button.share" /></button>
+                        <button type="submit" disabled = {!surahId||!ayaFrom||!ayaTo||!uploadedRecord}><Translate id="button.share" /></button>
                         <button type="button" onClick={closeModal}><Translate id="button.cancel" /></button>
                     </div>
                 </form>
