@@ -1,7 +1,6 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Translate from "../../../helpers/Translate/Translate";
-import AddComment from "../../Comments/AddComment/AddComment";
 import AudioPlayer from "./../../AudioPlayer/AudioPlayer";
 import Comments from "./../../Comments/Comments";
 import useHTTP from './../../../hooks/use-http';
@@ -17,6 +16,15 @@ const Record = (props) => {
   const [isLiked, setIsLiked] = useState(record?.is_liked);
   const [likesCount, setLikesCount] = useState(record?.likes_count);
   const { token } = getAuth();
+  const { user } = getAuth();
+  const [randomNum, setRandomNum] = useState(Math.floor(Math.random()*10));
+  const lang = useSelector(state => {
+    return state.lang.globalLang;
+  });
+
+  useEffect(() => {
+    setRandomNum(Math.floor(Math.random()*10));
+  }, [lang])
   const toggleLike = () => {
     setIsLiked(isLikedPrev => {
       setLikesCount(prev => isLikedPrev ? prev - 1 : prev + 1);
@@ -43,10 +51,7 @@ const Record = (props) => {
       }
     )
   }
-  const { user } = getAuth();
-  const lang = useSelector(state => {
-    return state.lang.globalLang;
-  });
+
   return (
     <Fragment>
 
@@ -73,7 +78,7 @@ const Record = (props) => {
             </span>
           }
         </div>
-        <AudioPlayer id={`record-${record?.id}`} />
+        <AudioPlayer key={Math.floor(Math.random() * 100) * randomNum} id={`record-${record?.id}`} />
         <div className="post-text">
           <Translate id="record.fromAyah" /> &nbsp;
           {record?.from_ayah_number} &nbsp;
@@ -98,8 +103,6 @@ const Record = (props) => {
         {showComments && <div className="post-comments">
           <Comments recordId={record?.id} />
         </div>}
-        {/* {showComments && <div className="post-add-comment">
-        </div>} */}
       </div>
     </Fragment>
 
