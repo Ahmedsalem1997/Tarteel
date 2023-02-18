@@ -8,7 +8,7 @@ import { useParams } from "react-router";
 
 const Profile = () => {
     let params = useParams();
-    
+
     return (
         <Fragment>
             <CarouselWrapper>
@@ -16,7 +16,9 @@ const Profile = () => {
             </CarouselWrapper>
 
             <div className="container-fluid">
-                {params.id ? "" : <MyRecords /> }   
+                <div className="user-records">
+                    <MyRecords />
+                </div>
             </div>
             <HomeSubscribe />
             <Footer />
