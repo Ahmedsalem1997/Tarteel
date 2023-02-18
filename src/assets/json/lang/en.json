@@ -28,7 +28,8 @@
         "register": "register",
         "login": "login",
         "getCode" : "get the code",
-        "newRecord": "new record"
+        "newRecord": "new record",
+        "showMore": "show more"
     },
     "islamicContent": {
         "title": "Islamic Content"

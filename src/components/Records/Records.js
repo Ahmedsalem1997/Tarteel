@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
+import Translate from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
 import { getAuth } from "../../utils/Auth";
 import Loader from "../Loader/Loader";
@@ -43,7 +44,7 @@ const Records = (props) => {
                 return <Record key={record.id} record={record} />
             })}
             <div className="show-more">
-                <button disabled={records.length >= totalRecords} className="main-button" onClick={onShowMore}>show more</button>
+                <button disabled={records.length >= totalRecords} className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
             </div>
         </Fragment>
     )
