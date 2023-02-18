@@ -2,18 +2,19 @@ import Translate from "../../helpers/Translate/Translate";
 import { useState, useEffect, Fragment } from "react";
 import { getAuth } from "../../utils/Auth";
 import useHTTP from "../../hooks/use-http";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { modalsActions } from "../../store/Modals/Modals";
 import Loader from "../Loader/Loader";
 import { useNavigate } from "react-router-dom";
 
 const ProfileHeader = (props) => {
+  const img = require("../../assets/images/personal.png");
   const [followersCount, setFollowersCount] = useState(0);
   const { token } = getAuth();
   const { isLoading, sendRequest } = useHTTP();
-
   const [user, setUser] = useState();
   const navigate = useNavigate();
+  const editedUser = useSelector(state => state.auth.user);
   const getUserData = () => {
     sendRequest(
       {
@@ -36,7 +37,7 @@ const ProfileHeader = (props) => {
   useEffect(() => {
     getUserData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.id]);
+  }, [props.id, editedUser]);
   const handleFollow = () => {
     setFollowersCount(prev => prev + 1);
     sendRequest(
@@ -86,7 +87,7 @@ const ProfileHeader = (props) => {
       {isLoading && <Loader />}
       <div className="profile-header">
         <div className="profile-header-user">
-          <img className="profile-header-user-img" src={user?.avatar} alt="..." />
+          <img className="profile-header-user-img" src={user?.avatar || img} alt="..." />
           <h2 className="profile-header-user-name">{user?.name}</h2>
           {
             user?.is_mine &&

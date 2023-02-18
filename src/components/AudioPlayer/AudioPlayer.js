@@ -25,6 +25,7 @@ const AudioPlayer = (props) => {
                 barRadius: 1,
                 cursorWidth: 0,
                 height: 50,
+                rtl: globalLang === 'ar' ? true : false
                 // cursorColor: "#75b10e",
             });
             dispatch(audioActions.addAudio(waveform.current));
