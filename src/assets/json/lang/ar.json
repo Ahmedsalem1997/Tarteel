@@ -28,7 +28,8 @@
         "register": "تسجيل جديد",
         "login": "تسجيل دخول",
         "getCode" : "الحصول علي الرمز",
-        "newRecord": "تسجيل جديد"
+        "newRecord": "تسجيل جديد",
+        "showMore": "إظهار المزيد"
     },
     "islamicContent": {
         "title": "المحتوى الإسلامي"

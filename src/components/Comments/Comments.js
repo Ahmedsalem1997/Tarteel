@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { getAuth } from "../../utils/Auth";
 import Loader from "../Loader/Loader";
 import AddComment from "./AddComment/AddComment";
+import Translate from "../../helpers/Translate/Translate";
 
 const Comments = (props) => {
   const { token } = getAuth();
@@ -51,7 +52,7 @@ const Comments = (props) => {
         }
       </div>
       <div className="show-more">
-        <button disabled={comments.length >= totalComments} className="main-button" onClick={onShowMore}>show more</button>
+        <button disabled={comments.length >= totalComments} className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
       </div>
       <div className="add-new-comment">
         <AddComment recordId={props.recordId} onAddComment={getRecordComments} />
