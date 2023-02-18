@@ -31,7 +31,7 @@ const IslamicContentHome = () => {
         <div className="home-section-content">
             {isLoading && <Loader />}
             {items?.map((item) => (
-                <ExsitingRecord key={item.id} btn={true} img={item.cover} name={lang === 'ar' ? item.title : item.title_en} media={item.file}></ExsitingRecord>
+                <ExsitingRecord key={item.id} btn={true} record={item}></ExsitingRecord>
             ))}
         </div>
     )
