@@ -10,11 +10,14 @@ const Comments = (props) => {
   const { token } = getAuth();
   const { isLoading, error, sendRequest } = useHTTP();
   const [comments, setComments] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalComments, setTotalComments] = useState(0);
+
   // const commentsChange = useSelector(state => state.records.comments);
   const getRecordComments = () => {
     sendRequest(
       {
-        url: `records/${props.recordId}/comments`,
+        url: `records/${props.recordId}/comments?per_page=5&page=${page}`,
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -22,17 +25,22 @@ const Comments = (props) => {
         }
       },
       data => {
-        setComments(data.data);
+        setComments(prev => [...prev, ...data.data]);
+        setTotalComments(data.meta.total);
+
       },
       err => {
 
       }
     )
   }
+  const onShowMore = () => {
+    setPage(prev => prev + 1);
+  }
   useEffect(() => {
     getRecordComments();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [page])
   return (
     <Fragment>
       {isLoading && <Loader />}
@@ -41,6 +49,9 @@ const Comments = (props) => {
           return (<Comment key={comment.id} comment={comment} />)
         })
         }
+      </div>
+      <div className="show-more">
+        <button disabled={comments.length >= totalComments} className="main-button" onClick={onShowMore}>show more</button>
       </div>
       <div className="add-new-comment">
         <AddComment recordId={props.recordId} onAddComment={getRecordComments} />
