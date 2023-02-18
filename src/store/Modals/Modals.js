@@ -10,7 +10,7 @@ const initialModalsState =
 }
 
 const modalsSlice = createSlice({
-    name: 'audio',
+    name: 'modals',
     initialState: initialModalsState,
     reducers: {
         openLoginModal(state) {
@@ -19,9 +19,8 @@ const modalsSlice = createSlice({
         closeLoginModal(state) {
             state.loginModal = false;
         },
-        openEditProfileModal(state, actions) {
+        openEditProfileModal(state) {
             state.editProfileModal = true;
-            // state.token = actions.payload;
         },
         closeEditProfileModal(state) {
             state.editProfileModal = false;

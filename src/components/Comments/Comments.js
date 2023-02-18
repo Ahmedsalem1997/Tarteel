@@ -42,7 +42,7 @@ const Comments = (props) => {
         })
         }
       </div>
-      <div className="add-comment">
+      <div className="add-new-comment">
         <AddComment recordId={props.recordId} onAddComment={getRecordComments} />
       </div>
     </Fragment>

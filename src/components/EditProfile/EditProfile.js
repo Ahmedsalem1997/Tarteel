@@ -9,6 +9,7 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Modal from "../Modal/Modal";
 import { modalsActions } from "../../store/Modals/Modals";
 import Loader from "../Loader/Loader";
+import { authActions } from "../../store/Auth/Auth";
 // import { URLSearchParams } from "url";
 
 const EditProfile = (props) => {
@@ -94,9 +95,9 @@ const EditProfile = (props) => {
                 },
                 data => {
                     setAuth({ user: data.data });
-                    dispatch(modalsActions.closeEditProfileModal());
+                    dispatch(modalsActions.closeEditProfileModal(data.data));
+                    dispatch(authActions.setAuth({ user: data.data }));
                     if (location.pathname.includes('/verification-code/')) {
-                        // setAuth({ token: token })
                         navigate(`/`);
                     }
                 },
