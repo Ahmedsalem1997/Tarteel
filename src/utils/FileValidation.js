@@ -1,8 +1,9 @@
-const validExtensions = ['png', 'jpeg', 'jpg', 'mp3'];
+const validExtensions = ['png', 'jpeg', 'jpg', 'mp3', 'mpeg'];
 // const validAudioExtensions = ['png', 'jpeg', 'jpg'];
 
 export function isValidFileUploaded(file, fileType) {
     const fileExtensions = file.type.split('/');
+    console.log(file.type);
     if (fileExtensions[0] !== fileType) {
         return `${fileType}UploadNotSupported`;
     }

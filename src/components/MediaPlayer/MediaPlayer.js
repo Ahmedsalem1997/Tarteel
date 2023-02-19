@@ -31,6 +31,14 @@ const MediaPlayer = () => {
           {record?.to_ayah_number}
         </span>
       </div>}
+      {!record.surah &&
+        <span className='fs-1'>
+          {
+            lang === "ar"
+              ? record?.title
+              : record?.title_en
+          }
+        </span>}
       <ReactPlayer height="5rem" url={record.file} controls />
     </Modal >
   );

@@ -38,7 +38,12 @@ const ExsitingRecord = (props) => {
             </span>}
           {props.btn &&
             <span>
-              {props?.record?.title}&nbsp;
+              {
+                lang === 'ar' ?
+                  props?.record?.title
+                  :
+                  props?.record?.title_en
+              }
             </span>}
         </div>
 
