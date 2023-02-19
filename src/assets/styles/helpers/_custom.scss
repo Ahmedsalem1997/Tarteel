@@ -7,3 +7,12 @@
 html[dir="rtl"] {
     @import './_ar-styles';
 }
+
+.audio-record {
+    .audio-recorder {
+        display: inline-flex;
+        &.recording {
+            display: flex;
+        }
+    }
+}

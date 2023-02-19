@@ -4,6 +4,7 @@ import Translate from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
 import { modalsActions } from "../../store/Modals/Modals";
 import { getAuth } from "../../utils/Auth";
+import AudioRecord from "../AudioRecord/AudioRecord";
 import { isValidFileUploaded } from "../../utils/FileValidation";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Loader from "../Loader/Loader";
@@ -117,16 +118,23 @@ const AddNewRecord = (props) => {
     }
 
     const uploadRecordHandler = (e) => {
+        console.log(e.target);
+        console.log(e.target.files[0]);
         if (!e.target.files[0]) return;
         const uploadedRecordCurrentErr = isValidFileUploaded(e.target.files[0], 'audio');
         if (!uploadedRecordCurrentErr) {
             setUploadedRecord(e.target.files[0]);
         }
-        setUploadedRecordErr(uploadedRecordCurrentErr)
+        setUploadedRecordErr(uploadedRecordCurrentErr);
     }
 
     const closeModal = () => {
         dispatch(modalsActions.closeAddNewRecordModal());
+    }
+
+    const onRecordFinished = (blob) => {
+        console.log(blob.type);
+        setUploadedRecord(blob);
     }
     return (
         <Modal showClose={true} onClose={closeModal}>
@@ -175,9 +183,11 @@ const AddNewRecord = (props) => {
                         </select>
                     </div>
                     <div>
-                        <button type="button"><Translate id="button.startRecording" /> <i className="fa-solid fa-microphone"></i></button>
-                        <button type="button" onClick={uploadFile}><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></button>
-                        <input accept="audio/*" name="record" onChange={uploadRecordHandler} id="upload-file" type="file"></input>
+                        <div className="add-new-record-buttons">
+                            <button type="button" onClick={uploadFile}>{ uploadedRecord?.name ? uploadedRecord?.name  : <><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></> }</button>
+                            <AudioRecord onRecordFinished={onRecordFinished} />
+                            <input accept="audio/*" name="record" onChange={uploadRecordHandler} id="upload-file" type="file"></input>
+                        </div>
                     </div>
                     <ErrorMessage message={uploadedRecordErr} />
                     <div className="add-new-record-actions">
