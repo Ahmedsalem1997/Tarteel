@@ -4,24 +4,31 @@ import useTranslate from "../../../hooks/use-translate";
 import useHTTP from "../../../hooks/use-http";
 import { getAuth } from "../../../utils/Auth";
 import Loader from "../../Loader/Loader";
+import AddNewRecord from "../../AddNewRecord/AddNewRecord";
+import AudioRecord from "../../AudioRecord/AudioRecord";
 
 const AddComment = (props) => {
   const [comment, setComment] = useState('');
   const { isLoading, error, sendRequest: addComment } = useHTTP()
-  const { token } = getAuth()
+  const { token } = getAuth();
+  const [uploadedRecord, setUploadedRecord] = useState(undefined);
+
   const addCommentHandler = (e) => {
     e.preventDefault();
+    let formData = new FormData();
+    formData.append('text', comment);
+    if (uploadedRecord) {
+      formData.append('file', uploadedRecord);
+    }
     addComment(
       {
         url: `records/${props.recordId}/comments`,
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: {
-          text: comment
-        }
+        body: formData
       },
       data => {
         console.log(data);
@@ -33,20 +40,24 @@ const AddComment = (props) => {
       }
     )
   }
+  const onRecordFinished = (blob) => {
+    setUploadedRecord(blob);
+  }
+
   return (
     <Fragment>
-       {isLoading && <Loader />}
+      {isLoading && <Loader />}
       <form className="add-comment" onSubmit={addCommentHandler}>
         <div className="add-comment-input">
           <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder={useTranslate('input.placeholder.writeComment')}></textarea>
         </div>
-       
-          <div className="add-comment-actions">
-            <button type="submit"><Translate id="button.addComment" /></button>
-            <button className="" type="button">
-              <i className="fa-solid fa-microphone"></i>
-            </button>
-          </div>
+
+        <div className="add-comment-actions">
+          <button type="submit"><Translate id="button.addComment" /></button>
+          <button className="" type="button">
+            <AudioRecord onRecordFinished={onRecordFinished} showTitle={false}/>
+          </button>
+        </div>
       </form>
     </Fragment>
   );

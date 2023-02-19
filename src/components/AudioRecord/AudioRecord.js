@@ -14,12 +14,11 @@ const AudioRecord = (props) => {
         document.getElementById('audio').appendChild(audio);
         props.onRecordFinished(blob);
         setShowRecording(false);
-
     };
 
     return (
         <button type="button" className='audio-record' id='audio'>
-            {!(!showRecording || recorderControls.isRecording ) && <Translate id="button.startRecording" />}
+            {props.showTitle ? !(!showRecording || recorderControls.isRecording) && <Translate id="button.startRecording" /> : ""}
             {showRecording && <AudioRecorder
                 onRecordingComplete={(blob) => addAudioElement(blob)}
                 recorderControls={recorderControls}

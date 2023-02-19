@@ -133,7 +133,6 @@ const AddNewRecord = (props) => {
     }
 
     const onRecordFinished = (blob) => {
-        console.log(blob.type);
         setUploadedRecord(blob);
     }
     return (
@@ -185,7 +184,7 @@ const AddNewRecord = (props) => {
                     <div>
                         <div className="add-new-record-buttons">
                             <button type="button" onClick={uploadFile}>{ uploadedRecord?.name ? uploadedRecord?.name  : <><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></> }</button>
-                            <AudioRecord onRecordFinished={onRecordFinished} />
+                            <AudioRecord onRecordFinished={onRecordFinished} showTitle={true}/>
                             <input accept="audio/*" name="record" onChange={uploadRecordHandler} id="upload-file" type="file"></input>
                         </div>
                     </div>

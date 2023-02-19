@@ -1,0 +1,20 @@
+
+.audio-record {
+    .audio-recorder {
+        display: inline-flex;
+        box-shadow: none;
+        width: auto;
+        &.recording {
+            display: flex;
+        }
+        &:not(.recording) {
+            padding: 0;
+            background: transparent;
+            .audio-recorder-mic {
+                filter: invert(1);
+                height: 1.5rem;
+                margin-inline-start: 0.5rem;
+            }
+        }
+    }
+}
