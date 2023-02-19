@@ -58,9 +58,9 @@ const Comments = (props) => {
         })
         }
       </div>
-      <div className="show-more">
-        <button disabled={comments.length >= totalComments} className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
-      </div>
+      {comments.length < totalComments && <div className="show-more">
+        <button className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
+      </div>}
       <div className="add-new-comment">
         <AddComment recordId={props.recordId} onAddComment={onAddComment} />
       </div>
