@@ -39,7 +39,8 @@
             "writeComment": "write a comment",
             "name": "write your full name",
             "email": "write your e-mail",
-            "phone": "write your phone number"
+            "phone": "write your phone number",
+            "password": "Write your password"
         },
         "label": {
             "name": "name",
@@ -48,7 +49,8 @@
             "selectSurah": "select the sora you need to record",
             "selectAyah": "select ayah",
             "selectRecitation": "select recitation",
-            "to": "to"
+            "to": "to",
+            "password": "password"
         }
     },
     "subscribeSection": {
@@ -92,7 +94,8 @@
         "validNumber" : "check the phone number",
         "mobileNumber" : "phone number" ,
         "validTrueNumber" : "in order to validate your phone number",
-        "sendVerificationCode" : "we will send the verification code ,which must be entered on the next page"       
+        "sendVerificationCode" : "we will send the verification code ,which must be entered on the next page",
+        "adminLogin": "admin login"   
     },
     "error": {
         "mobileNumberMessage" : "Phone Number Must Be 12 Character",
@@ -102,7 +105,8 @@
         "audioUploadNotSupported": "please upload audio file",
         "fileExtensionNotSupported": "please upload a valid extension",
         "maxAudioFileSize": "max audio file size 15 MB",
-        "maxImgFileSize": "max image file size 5MB"
+        "maxImgFileSize": "max image file size 5MB",
+        "password": "please enter a strong password"
     },
     "addNewRecord":{
         "chooseSurah" : "choose Surah"

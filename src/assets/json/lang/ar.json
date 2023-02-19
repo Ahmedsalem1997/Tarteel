@@ -39,7 +39,8 @@
             "writeComment": "اكتب تعليقاً",
             "name": "اكتب اسمك بالكامل",
             "email": "اكتب ايميلك",
-            "phone": "اكتب رقم جوالك"
+            "phone": "اكتب رقم جوالك",
+            "password": "اكتب كلمة السر"
         },
         "label": {
             "name": "الاسم",
@@ -48,7 +49,8 @@
             "selectSurah": "اختر السورة المراد تسجيلها",
             "selectAyah": "اختر الآية",
             "selectRecitation": "اختر نوع الرواية",
-            "to": "الى"
+            "to": "الى",
+            "password": "كلمة السر"
         }
     },
     "subscribeSection": {
@@ -92,7 +94,8 @@
         "validNumber" : "التحقق من رقم الهاتف",
         "mobileNumber" : "رقم الهاتف" ,
         "validTrueNumber" : "من أجل التحقق من صحة رقم هاتفك",
-        "sendVerificationCode" : "سنرسل رمز التحقق يجب إدخاله في الصفحة التالية"      
+        "sendVerificationCode" : "سنرسل رمز التحقق يجب إدخاله في الصفحة التالية",
+        "adminLogin": "تسجيل دخول للشيخ"   
     },
     "error": {
         "mobileNumberMessage" : "رقم الهاتف يجب ان يكون 12 رقم",
@@ -102,7 +105,8 @@
         "audioUploadNotSupported": "الرجاء رفع ملف صوتي صحيح",
         "fileExtensionNotSupported": "عفوا لا ندعم هذا الامتداد",
         "maxAudioFileSize": "برجاء رفع ملف صوتي اقل من 15 ميجا",
-        "maxImgFileSize": "برجاء رفع صورة اقل من 5 ميجا"
+        "maxImgFileSize": "برجاء رفع صورة اقل من 5 ميجا",
+        "password": "برجاء ادخال كلمة سر قوية"
     },
     "addNewRecord":{
         "chooseSurah" : "اختر سورة"

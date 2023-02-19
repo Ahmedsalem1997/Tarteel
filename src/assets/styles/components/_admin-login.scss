@@ -1,0 +1,12 @@
+.admin-login {
+    display: flex;
+    flex-direction: column;
+    height: 22rem;
+    justify-content: space-between;
+    &-form-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+    }
+}
