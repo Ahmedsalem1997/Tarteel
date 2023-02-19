@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Translate from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
 import { getAuth } from "../../utils/Auth";
+import AudioRecord from "../AudioRecord/AudioRecord";
 import BlackBlock from "../BlackBlock/BlackBlock";
 
 
@@ -99,9 +100,13 @@ const AddNewRecord = (props) => {
     const uploadRecordHandler = (e) => {
         setUploadedRecord(e.target.files[0]);
     }
+
+    const onRecordFinished = (blob) => {
+        setUploadedRecord(blob);
+    }
     return (
         <BlackBlock width="80%">
-            <div className="add-new-record">
+            <div className="add-new-record"  id="audio">
                 <form onSubmit={onAddNewRecordHandler}>
                     <div className="add-new-record-input">
                         <label><Translate id="input.label.selectSurah" /></label>
@@ -156,9 +161,9 @@ const AddNewRecord = (props) => {
                             <option value="4">قالون</option>
                         </select>
                     </div>
-                    <div>
-                        <button type="button"><Translate id="button.startRecording" /> <i className="fa-solid fa-microphone"></i></button>
+                    <div className="add-new-record-buttons">
                         <button type="button" onClick={uploadFile}><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></button>
+                        <AudioRecord onRecordFinished={onRecordFinished} />
                         <input name="record" onChange={uploadRecordHandler} id="upload-file" type="file"></input>
                     </div>
                     <div className="add-new-record-actions">
