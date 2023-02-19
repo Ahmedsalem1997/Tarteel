@@ -15,9 +15,6 @@ const QuranView = (props) => {
 
 
   useEffect(() => {
-    console.log('useEffect', lang);
-    // const surahUrl = props.selectedSurah + '/' + lang + '.ahmedali';
-    // console.log('getSurah', surahUrl);
     getSurah(
       {
         url: `quran/surahs/${props.selectedSurah}?with_ayahs=1`,

@@ -29,7 +29,6 @@ const ProfileHeader = (props) => {
         // setFollowersCount(data.data.followers_count);
       },
       err => {
-        console.log(err);
         navigate('/');
       }
     );

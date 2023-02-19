@@ -122,7 +122,6 @@ const EditProfile = (props) => {
         })
         const nameError = schema.validate({ email: e.target.value });
         if (nameError.error) {
-            console.log(nameError.error);
             setEmailErr('email');
         } else {
             setEmailErr('');

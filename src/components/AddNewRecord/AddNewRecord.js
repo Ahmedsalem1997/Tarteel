@@ -43,7 +43,6 @@ const AddNewRecord = (props) => {
                 }
             },
             data => {
-                console.log(data);
                 closeModal();
             },
             err => {

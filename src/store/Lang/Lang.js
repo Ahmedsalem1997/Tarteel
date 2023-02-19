@@ -9,7 +9,6 @@ const langSlice = createSlice({
         translation(state, action) {
             state.globalLang = action.payload.lang || state.globalLang;
             state.translation = require(`../../assets/json/lang/${action.payload.lang || state.globalLang}.json`);
-            console.log(state.globalLang);
         }
     }
 })

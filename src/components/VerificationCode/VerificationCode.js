@@ -17,13 +17,11 @@ const VerificationCode = () => {
   const [token, setToken] = useState("");
 
   const handleOTPChange = (OTP) => {
-    console.log(OTP);
     setOTP(OTP);
   };
 
   const onCodeVerifyHandler = (e) => {
     e.preventDefault();
-    console.log(OTP);
     sendRequest(
       {
         url: "codes/confirm",
