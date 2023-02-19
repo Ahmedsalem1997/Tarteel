@@ -17,7 +17,7 @@ const Profile = () => {
 
             <div className="container-fluid">
                 <div className="user-records">
-                    <MyRecords />
+                    <MyRecords userId={params.id} />
                 </div>
             </div>
             <HomeSubscribe />

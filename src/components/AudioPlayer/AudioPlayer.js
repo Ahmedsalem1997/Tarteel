@@ -6,7 +6,7 @@ import { audioActions } from "../../store/audio/audio";
 const AudioPlayer = (props) => {
     const dispatch = useDispatch();
     const waveform = useRef(null);
-    const audio = require('../../assets/audios/test.mp3');
+    // const audio = require('../../assets/audios/test.mp3');
     const [isPlaying, setIsPlaying] = useState(false);
     const globalLang = useSelector(state => {
         return state.lang.globalLang;
@@ -30,7 +30,7 @@ const AudioPlayer = (props) => {
             });
             dispatch(audioActions.addAudio(waveform.current));
             // Load audio from a remote url.
-            waveform.current.load(audio);
+            waveform.current.load(props.audio);
             /* To load a local audio file
             1. Read the audio file as a array buffer.
             2. Create a blob from the array buffer

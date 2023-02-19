@@ -84,7 +84,7 @@ const Record = (props) => {
             </span>
           }
         </div>
-        <AudioPlayer key={Math.floor(Math.random() * 100) * randomNum} id={`record-${record?.id}`} />
+        <AudioPlayer audio={record.file} key={Math.floor(Math.random() * 100) * randomNum} id={`record-${record?.id}`} />
         <div className="post-text">
           <Translate id="record.fromAyah" /> &nbsp;
           {record?.from_ayah_number} &nbsp;

@@ -14,7 +14,7 @@ const Records = (props) => {
     const getRecords = () => {
         sendRequest(
             {
-                url: `records${props?.recordsUrl}?page=${page}&per_page=10`,
+                url: `${props?.recordsUrl}?page=${page}&per_page=10`,
                 method: 'GET',
                 headers:
                 {

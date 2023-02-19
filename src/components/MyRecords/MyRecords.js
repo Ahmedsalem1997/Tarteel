@@ -1,8 +1,8 @@
 
 import Records from "../Records/Records";
 
-const MyRecords = () => {
-    return <Records recordsUrl='' />
+const MyRecords = (props) => {
+    return <Records recordsUrl={`users/${props.userId}/records`} />
 }
 
 export default MyRecords;
