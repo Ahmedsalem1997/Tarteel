@@ -11,6 +11,7 @@ import Modal from "../Modal/Modal";
 import { modalsActions } from "../../store/Modals/Modals";
 import Loader from "../Loader/Loader";
 import { authActions } from "../../store/Auth/Auth";
+import { isValidFileUploaded } from '../../utils/FileValidation';
 // import { URLSearchParams } from "url";
 
 const EditProfile = (props) => {
@@ -23,6 +24,7 @@ const EditProfile = (props) => {
     const [email, setEmail] = useState('');
     const [avatar, setAvatar] = useState(img);
     const [newAvatar, setNewAvatar] = useState(img);
+    const [avatarErr, setAvatarErr] = useState('');
     const [token, setToken] = useState('');
     const [nameErr, setNameErr] = useState('');
     const [emailErr, setEmailErr] = useState('');
@@ -87,16 +89,18 @@ const EditProfile = (props) => {
 
     const onAvatarChange = (e) => {
         if (!e?.target?.files[0]) return;
-
-        const FR = new FileReader();
-        FR.addEventListener("load", function (evt) {
-            console.log('converted img ....', evt.target.result);
-            setNewAvatar(evt.target.result);
-        });
-        FR.readAsDataURL(e.target.files[0]);
-
-        let file = e.target.files[0];
-        setAvatar(file);
+        const avatarCurrentErr = isValidFileUploaded(e.target.files[0], 'image');
+        if (!avatarCurrentErr) {
+            const FR = new FileReader();
+            FR.addEventListener("load", function (evt) {
+                // console.log('converted img ....', evt.target.result);
+                setNewAvatar(evt.target.result);
+            });
+            FR.readAsDataURL(e.target.files[0]);
+            let file = e.target.files[0];
+            setAvatar(file);
+        }
+        setAvatarErr(avatarCurrentErr);
     }
 
     const onChangeName = (e) => {
@@ -114,7 +118,7 @@ const EditProfile = (props) => {
 
     const onChangeEmail = (e) => {
         const schema = Joi.object({
-            email: Joi.string().email({ tlds: false }).required()
+            email: Joi.string().email({ tlds: false, allowUnicode: false }).required()
         })
         const nameError = schema.validate({ email: e.target.value });
         if (nameError.error) {
@@ -136,6 +140,7 @@ const EditProfile = (props) => {
                         <div className="edit-profile-img-upload" onClick={() => document.getElementById('upload-img').click()}><Translate id="button.editImg" /></div>
                         <input accept="image/*" value={''} onChange={onAvatarChange} type='file' id="upload-img" />
                     </div>
+                    <ErrorMessage message={avatarErr} />
                     <div className="edit-profile-input-group">
                         <label><Translate id="input.label.name" /></label>
                         <input name="name" placeholder={useTranslate('input.placeholder.name')} value={name} onChange={onChangeName} type="text" className="trans-input" required />

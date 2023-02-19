@@ -4,13 +4,15 @@ import Translate from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
 import { modalsActions } from "../../store/Modals/Modals";
 import { getAuth } from "../../utils/Auth";
+import { isValidFileUploaded } from "../../utils/FileValidation";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Loader from "../Loader/Loader";
 import Modal from "../Modal/Modal";
 
 
 const AddNewRecord = (props) => {
-    const [formAyahs ,setFromAyahs] = useState([]);
-    const [toAyahs ,setToAyahs] = useState([]);
+    const [formAyahs, setFromAyahs] = useState([]);
+    const [toAyahs, setToAyahs] = useState([]);
     const [uploadedRecord, setUploadedRecord] = useState(undefined);
     const [selectedSurah, setSelectedSurah] = useState('');
     const [ayaFrom, setAyaFrom] = useState('');
@@ -18,6 +20,7 @@ const AddNewRecord = (props) => {
     const [surahList, setSurahList] = useState([]);
     const [ayahs, setAyahs] = useState([]);
     const [surahId, setSurahId] = useState(0);
+    const [uploadedRecordErr, setUploadedRecordErr] = useState('');
     const { isLoading, error, sendRequest } = useHTTP();
     const dispatch = useDispatch();
     const lang = useSelector(state => {
@@ -44,7 +47,7 @@ const AddNewRecord = (props) => {
                 closeModal();
             },
             err => {
-                
+
             }
         )
     }
@@ -93,21 +96,21 @@ const AddNewRecord = (props) => {
         formData.append('to_ayah', ayaTo);
         formData.append('file', uploadedRecord);
         addNewRecord(formData);
-        
+
     }
 
     const surahChangeHandler = (e) => {
         setSelectedSurah(e.target.value);
         getSurahAyahs(e.target.value);
     }
-    const onChangeFromAyahsHandler = (e)=>{
+    const onChangeFromAyahsHandler = (e) => {
         setAyaFrom(e.target.value);
         const filterAyahs = ayahs.slice(e.target.value);
         setToAyahs(filterAyahs)
     }
-    const onChangeToAyahsHandler = (e)=>{
+    const onChangeToAyahsHandler = (e) => {
         setAyaTo(e.target.value);
-        const filterAyahs = ayahs.slice(0 , e.target.value-1);
+        const filterAyahs = ayahs.slice(0, e.target.value - 1);
         setFromAyahs(filterAyahs)
     }
     const uploadFile = () => {
@@ -115,7 +118,12 @@ const AddNewRecord = (props) => {
     }
 
     const uploadRecordHandler = (e) => {
-        setUploadedRecord(e.target.files[0]);
+        if (!e.target.files[0]) return;
+        const uploadedRecordCurrentErr = isValidFileUploaded(e.target.files[0], 'audio');
+        if (!uploadedRecordCurrentErr) {
+            setUploadedRecord(e.target.files[0]);
+        }
+        setUploadedRecordErr(uploadedRecordCurrentErr)
     }
 
     const closeModal = () => {
@@ -169,11 +177,12 @@ const AddNewRecord = (props) => {
                     </div>
                     <div>
                         <button type="button"><Translate id="button.startRecording" /> <i className="fa-solid fa-microphone"></i></button>
-                        <button type="button" onClick={uploadFile}><Translate id="button.haveRecord"/> <i className="fa-solid fa-cloud-arrow-up"></i></button>
+                        <button type="button" onClick={uploadFile}><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></button>
                         <input accept="audio/*" name="record" onChange={uploadRecordHandler} id="upload-file" type="file"></input>
                     </div>
+                    <ErrorMessage message={uploadedRecordErr} />
                     <div className="add-new-record-actions">
-                        <button type="submit" disabled = {!surahId||!ayaFrom||!ayaTo||!uploadedRecord}><Translate id="button.share" /></button>
+                        <button type="submit" disabled={!surahId || !ayaFrom || !ayaTo || !uploadedRecord}><Translate id="button.share" /></button>
                         <button type="button" onClick={closeModal}><Translate id="button.cancel" /></button>
                     </div>
                 </form>
