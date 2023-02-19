@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { langActions } from './store/Lang/Lang';
 import { checkAuthLoader } from './utils/Auth';
 import BasicLayout from './views/BasicLayout/BasicLayout';
+import SubscriptionLogin from './views/SubscriptionLogin/SubscriptionLogin';
 
 function App() {
   const globalLang = useSelector((state) => {
@@ -51,6 +52,10 @@ function App() {
         {
           path: "login",
           element: <Login />
+        },
+        {
+          path: "subscription-login",
+          element: <SubscriptionLogin />
         },
         {
           path: "users/:id",
