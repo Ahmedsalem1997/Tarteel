@@ -18,3 +18,11 @@ body {
 html {
     font-size: 14px;
 }
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    &:hover {
+        color: var(--text-color);
+    }
+}

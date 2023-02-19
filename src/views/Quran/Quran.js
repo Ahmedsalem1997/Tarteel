@@ -1,7 +1,6 @@
 import { Fragment, useState } from "react";
 import Carousel from "../../components/Carousel/Carousel";
 import CarouselWrapper from "../../components/CarouselWrapper/CarouselWrapper";
-// import LayoutWrapper from "../../components/LayoutWrapper/LayoutWrapper";
 import QuranNavigator from "../../components/QuranNavigator/QuranNavigator";
 import QuranView from "../../components/QuranView/QuranView";
 import Translate from "../../helpers/Translate/Translate";

@@ -4,10 +4,11 @@ import IslamicSubSection from "../../components/IsalmicSubSection/IslamicSubSect
 import { useSelector } from "react-redux";
 import LayoutWrapper from "../../components/LayoutWrapper/LayoutWrapper";
 import useHTTP from "../../hooks/use-http";
+import Loader from "../../components/Loader/Loader";
 
 const Islamic = () => {
     const [categories, setCategories] = useState([]);
-    const { sendRequest: getCategories } = useHTTP();
+    const { isLoading, sendRequest: getCategories } = useHTTP();
     const lang = useSelector((state) => {
         return state.lang.globalLang;
     });
@@ -17,6 +18,9 @@ const Islamic = () => {
             { url: `categories`, method: 'GET' },
             data => {
                 setCategories(data.data);
+            },
+            err => {
+
             }
         );
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -24,10 +28,11 @@ const Islamic = () => {
 
     return (
         <LayoutWrapper>
+            {isLoading && <Loader />}
             <div className="container-fluid">
                 {categories.map((category) => (
                     <HomeSection key={category.id} header={lang === "ar" ? category.name : category.name_en} showAll="/">
-                        <IslamicSubSection id={category.id}/>
+                        <IslamicSubSection id={category.id} />
                     </HomeSection>
                 ))}
             </div>

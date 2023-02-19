@@ -28,7 +28,8 @@
         "register": "تسجيل جديد",
         "login": "تسجيل دخول",
         "getCode" : "الحصول علي الرمز",
-        "newRecord": "تسجيل جديد"
+        "newRecord": "تسجيل جديد",
+        "showMore": "إظهار المزيد"
     },
     "islamicContent": {
         "title": "المحتوى الإسلامي"
@@ -96,7 +97,12 @@
     "error": {
         "mobileNumberMessage" : "رقم الهاتف يجب ان يكون 12 رقم",
         "name": "يجب ان يحتوي الاسم على 5 حروف على الاقل",
-        "email": "يجب ان يحتوي على '@' "
+        "email": "الرجاء كتابة الايميل بشكل صحيح",
+        "imageUploadNotSupported": "الرجاء رفع صورة صحيحة",
+        "audioUploadNotSupported": "الرجاء رفع ملف صوتي صحيح",
+        "fileExtensionNotSupported": "عفوا لا ندعم هذا الامتداد",
+        "maxAudioFileSize": "برجاء رفع ملف صوتي اقل من 15 ميجا",
+        "maxImgFileSize": "برجاء رفع صورة اقل من 5 ميجا"
     },
     "addNewRecord":{
         "chooseSurah" : "اختر سورة"

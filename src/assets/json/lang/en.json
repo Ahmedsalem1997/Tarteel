@@ -28,7 +28,8 @@
         "register": "register",
         "login": "login",
         "getCode" : "get the code",
-        "newRecord": "new record"
+        "newRecord": "new record",
+        "showMore": "show more"
     },
     "islamicContent": {
         "title": "Islamic Content"
@@ -96,7 +97,12 @@
     "error": {
         "mobileNumberMessage" : "Phone Number Must Be 12 Character",
         "name": "Name Must contain at least 5 characters",
-        "email": "Email Must Contain '@' "
+        "email": "please write a valid E-mail",
+        "imageUploadNotSupported": "please upload image file",
+        "audioUploadNotSupported": "please upload audio file",
+        "fileExtensionNotSupported": "please upload a valid extension",
+        "maxAudioFileSize": "max audio file size 15 MB",
+        "maxImgFileSize": "max image file size 5MB"
     },
     "addNewRecord":{
         "chooseSurah" : "choose Surah"

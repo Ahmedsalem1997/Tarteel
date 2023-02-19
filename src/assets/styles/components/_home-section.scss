@@ -1,5 +1,7 @@
 .home-section {
     margin-bottom: 10rem;
+    display: flex;
+    flex-direction: column;
     &-header {
         display: flex;
         justify-content: space-between;
@@ -13,6 +15,10 @@
         &-action {
             font-size: 1.5rem;
             color: var(--text-color);
+            text-decoration: underline;
+            &:hover {
+                color: var(--main-color);
+            }
         }
     }
 

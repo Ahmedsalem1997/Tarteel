@@ -18,11 +18,6 @@ const QuranNavigator = (props) => {
     setSelectedSurah(surahNumber);
   };
 
-  // const surahChangeHandler = (e) => {
-  //   e.preventDefault();
-  //   props.onSurahChange(e.target.value);
-  //   setSelectedSurah(e.target.value);
-  // };
   useEffect(() => {
     getSurahList(
       {
@@ -32,6 +27,9 @@ const QuranNavigator = (props) => {
       },
       (surahObj) => {
         setSurahList(surahObj.data.surahs);
+      },
+      err => {
+        
       }
     );
   // eslint-disable-next-line react-hooks/exhaustive-deps

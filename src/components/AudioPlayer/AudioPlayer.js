@@ -25,6 +25,7 @@ const AudioPlayer = (props) => {
                 barRadius: 1,
                 cursorWidth: 0,
                 height: 50,
+                rtl: globalLang === 'ar' ? true : false
                 // cursorColor: "#75b10e",
             });
             dispatch(audioActions.addAudio(waveform.current));
@@ -38,6 +39,9 @@ const AudioPlayer = (props) => {
         }
         waveform.current.on("pause", () => {
             setIsPlaying(false);
+        });
+        waveform.current.on("play", () => {
+            setIsPlaying(true);
         });
         return (() => {
             waveform.current.pause();

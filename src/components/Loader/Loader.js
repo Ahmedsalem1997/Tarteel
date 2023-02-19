@@ -1,6 +1,10 @@
 const Loader = () => {
     return (
-        <div className="loading">Loading...</div>
+        <div className="loader-backdrop">
+            <div className="loader">
+                <i className="fa-solid fa-kaaba fa-2xl fa-flip"></i>
+            </div>
+        </div>
     )
 }
 

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Translate from "../../../helpers/Translate/Translate";
 import useTranslate from "../../../hooks/use-translate";
 import useHTTP from "../../../hooks/use-http";
 import { getAuth } from "../../../utils/Auth";
+import Loader from "../../Loader/Loader";
 
 const AddComment = (props) => {
   const [comment, setComment] = useState('');
@@ -24,21 +25,30 @@ const AddComment = (props) => {
       },
       data => {
         console.log(data);
+        setComment('');
+        props.onAddComment();
+      },
+      err => {
+
       }
     )
   }
   return (
-    <form className="add-comment" onSubmit={addCommentHandler}>
-      <div className="add-comment-input">
-        <textarea onChange={(e) => setComment(e.target.value)} placeholder={useTranslate('input.placeholder.writeComment')}></textarea>
-      </div>
-      <div className="add-comment-actions">
-        <button type="submit"><Translate id="button.addComment" /></button>
-        <button className="" type="button">
-          <i className="fa-solid fa-microphone"></i>
-        </button>
-      </div>
-    </form>
+    <Fragment>
+       {isLoading && <Loader />}
+      <form className="add-comment" onSubmit={addCommentHandler}>
+        <div className="add-comment-input">
+          <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder={useTranslate('input.placeholder.writeComment')}></textarea>
+        </div>
+       
+          <div className="add-comment-actions">
+            <button type="submit"><Translate id="button.addComment" /></button>
+            <button className="" type="button">
+              <i className="fa-solid fa-microphone"></i>
+            </button>
+          </div>
+      </form>
+    </Fragment>
   );
 };
 

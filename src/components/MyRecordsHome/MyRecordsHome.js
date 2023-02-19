@@ -3,38 +3,40 @@ import ExsitingRecord from "../SingleRecordCard/ExsitingRecord/ExsitingRecord";
 import useHTTP from "./../../hooks/use-http";
 import { useEffect, useState } from "react";
 import { getAuth } from "../../utils/Auth";
-// import { useDispatch, useSelector } from "react-redux";
-// import { recordsActions } from "../../store/Records/Records";
-// let isTrue = true;
+import Loader from "../Loader/Loader";
+import { useSelector } from "react-redux";
+
 const MyRecordsHome = () => {
   const { isLoading, error, sendRequest: getMyRecords } = useHTTP();
   const [userRecords, setUserRecords] = useState();
   const { token } = getAuth();
-  // const dispatch = useDispatch();
-  // const recordsChange = useSelector(state => state.records.myRecordsHome);
+  const addNewRecordModalOpen = useSelector(state => state.modals.addNewRecordModal);
+
   useEffect(() => {
-    getMyRecords(
-      {
-        url: "records",
-        headers: { 'Authorization': `Bearer ${token}` },
-        method: "GET",
-      },
-      (data) => {
-        setUserRecords(data.data);
-        // if (isTrue) {
-        //   dispatch(recordsActions.setRecords(data.data));
-        //   isTrue = false;
-        // }
-      }
-    );
+    if (!addNewRecordModalOpen) {
+      getMyRecords(
+        {
+          url: "records?per_page=6&page=1",
+          headers: { 'Authorization': `Bearer ${token}` },
+          method: "GET",
+        },
+        (data) => {
+          setUserRecords(data.data);
+        },
+        err => {
+
+        }
+      );
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [addNewRecordModalOpen]);
 
   return (
     <div className="home-section-content">
       <NewRecord />
+      {isLoading && <Loader />}
       {userRecords?.map((record) => {
-        return <ExsitingRecord key={record.id} img={record.cover} name={record.title} media={record.file}></ExsitingRecord>;
+        return <ExsitingRecord record={record} key={record.id}></ExsitingRecord>;
       })}
     </div>
   );

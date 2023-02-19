@@ -13,7 +13,6 @@ const Carousel = () => {
 
 
   const changeLang = () => {
-    console.log(globalLang);
     if (globalLang === 'en') {
       dispatch(langActions.translation({ type: 'translation', lang: 'ar' }));
     } else {

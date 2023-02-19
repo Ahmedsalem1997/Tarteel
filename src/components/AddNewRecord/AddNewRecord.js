@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Translate from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
+import { modalsActions } from "../../store/Modals/Modals";
 import { getAuth } from "../../utils/Auth";
 import AudioRecord from "../AudioRecord/AudioRecord";
-import BlackBlock from "../BlackBlock/BlackBlock";
+import { isValidFileUploaded } from "../../utils/FileValidation";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import Loader from "../Loader/Loader";
+import Modal from "../Modal/Modal";
 
 
 const AddNewRecord = (props) => {
+    const [formAyahs, setFromAyahs] = useState([]);
+    const [toAyahs, setToAyahs] = useState([]);
     const [uploadedRecord, setUploadedRecord] = useState(undefined);
     const [selectedSurah, setSelectedSurah] = useState('');
     const [ayaFrom, setAyaFrom] = useState('');
@@ -15,7 +21,9 @@ const AddNewRecord = (props) => {
     const [surahList, setSurahList] = useState([]);
     const [ayahs, setAyahs] = useState([]);
     const [surahId, setSurahId] = useState(0);
+    const [uploadedRecordErr, setUploadedRecordErr] = useState('');
     const { isLoading, error, sendRequest } = useHTTP();
+    const dispatch = useDispatch();
     const lang = useSelector(state => {
         return state.lang.globalLang;
     });
@@ -36,8 +44,10 @@ const AddNewRecord = (props) => {
                 }
             },
             data => {
-                console.log(data);
-                props.setIsOpen(false);
+                closeModal();
+            },
+            err => {
+
             }
         )
     }
@@ -65,13 +75,15 @@ const AddNewRecord = (props) => {
             (ayahsArr) => {
                 setAyahs(ayahsArr.data.ayahs);
                 setSurahId(ayahsArr.data.id);
+                setFromAyahs(ayahsArr.data.ayahs);
+                setToAyahs(ayahsArr.data.ayahs);
             }
         )
     }
 
     const onAddNewRecordHandler = (e) => {
         e.preventDefault();
-        console.log(uploadedRecord);
+        // console.log(uploadedRecord);
         // let idCardBase64 = '';
         // getBase64(uploadedRecord, (result) => {
         //     idCardBase64 = result;
@@ -84,71 +96,77 @@ const AddNewRecord = (props) => {
         formData.append('to_ayah', ayaTo);
         formData.append('file', uploadedRecord);
         addNewRecord(formData);
+
     }
 
     const surahChangeHandler = (e) => {
         setSelectedSurah(e.target.value);
         getSurahAyahs(e.target.value);
-        // const newAyahs = Array.from({ length: surahList[e.target.value - 1].numberOfAyahs }, (value, i) => i + 1);;
-        // setAyahs(newAyahs);
     }
-
+    const onChangeFromAyahsHandler = (e) => {
+        setAyaFrom(e.target.value);
+        const filterAyahs = ayahs.slice(e.target.value);
+        setToAyahs(filterAyahs)
+    }
+    const onChangeToAyahsHandler = (e) => {
+        setAyaTo(e.target.value);
+        const filterAyahs = ayahs.slice(0, e.target.value - 1);
+        setFromAyahs(filterAyahs)
+    }
     const uploadFile = () => {
         document.getElementById('upload-file').click();
     }
 
     const uploadRecordHandler = (e) => {
-        setUploadedRecord(e.target.files[0]);
+        if (!e.target.files[0]) return;
+        const uploadedRecordCurrentErr = isValidFileUploaded(e.target.files[0], 'audio');
+        if (!uploadedRecordCurrentErr) {
+            setUploadedRecord(e.target.files[0]);
+        }
+        setUploadedRecordErr(uploadedRecordCurrentErr)
+    }
+
+    const closeModal = () => {
+        dispatch(modalsActions.closeAddNewRecordModal());
     }
 
     const onRecordFinished = (blob) => {
         setUploadedRecord(blob);
     }
     return (
-        <BlackBlock width="80%">
+        <Modal showClose={true} onClose={closeModal}>
+            {isLoading && <Loader />}
             <div className="add-new-record"  id="audio">
                 <form onSubmit={onAddNewRecordHandler}>
                     <div className="add-new-record-input">
                         <label><Translate id="input.label.selectSurah" /></label>
-                        <select value={selectedSurah} onChange={surahChangeHandler} required>
+                        <select name='surahSelect' value={selectedSurah} onChange={surahChangeHandler} >
                             <option disabled value=""><Translate id="addNewRecord.chooseSurah" /></option>
                             {surahList.map(surah => {
                                 return (
                                     <option key={surah.number} value={surah.number}>{lang === 'ar' ? surah.name : surah.english_name}</option>
                                 )
                             })}
-                            {/* <option value="1">البقرة</option>
-                            <option value="2">ال عمران</option>
-                            <option value="3">يس</option>
-                            <option value="4">الرحمن</option> */}
                         </select>
                     </div>
                     <div className="add-new-record-input">
                         <label><Translate id="input.label.selectAyah" /></label>
-                        <select value={ayaFrom} className="aya-from" onChange={(e) => setAyaFrom(e.target.value)} required>
+                        <select name='fromAyahsSelect' value={ayaFrom} className="aya-from" onChange={onChangeFromAyahsHandler} >
                             <option value="" disabled><Translate id="record.fromAyah" /></option>
-                            {ayahs.map((ayah) => {
+                            {formAyahs.map((ayah) => {
                                 return (
-                                    <option key={ayah?.id} value={ayah?.id}>{ayah?.number_in_surah}</option>
+                                    <option key={ayah?.id} value={ayah?.number_in_surah} id={ayah.number_in_surah}>{ayah?.number_in_surah}</option>
                                 )
                             })}
-                            {/* <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option> */}
                         </select>
                         <span><Translate id="input.label.to" /></span>
-                        <select value={ayaTo} className="aya-to" onChange={(e) => setAyaTo(e.target.value)} required>
+                        <select name='toAyahsSelect' value={ayaTo} className="aya-to" onChange={onChangeToAyahsHandler} >
                             <option value="" disabled><Translate id="record.toAyah" /></option>
-                            {ayahs.map((ayah) => {
+                            {toAyahs.map((ayah) => {
                                 return (
-                                    <option key={ayah?.id} value={ayah?.id}>{ayah?.number_in_surah}</option>
+                                    <option key={ayah?.id} value={ayah?.number_in_surah} id={ayah.number_in_surah}>{ayah?.number_in_surah}</option>
                                 )
                             })}
-                            {/* <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option> */}
                         </select>
 
                     </div>
@@ -164,15 +182,17 @@ const AddNewRecord = (props) => {
                     <div className="add-new-record-buttons">
                         <button type="button" onClick={uploadFile}><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></button>
                         <AudioRecord onRecordFinished={onRecordFinished} />
-                        <input name="record" onChange={uploadRecordHandler} id="upload-file" type="file"></input>
+                        <input accept="audio/*" name="record" onChange={uploadRecordHandler} id="upload-file" type="file"></input>
                     </div>
+                    <ErrorMessage message={uploadedRecordErr} />
                     <div className="add-new-record-actions">
-                        <button type="submit"><Translate id="button.share" /></button>
-                        <button type="button" onClick={() => props.setIsOpen(false)}><Translate id="button.cancel" /></button>
+                        <button type="submit" disabled={!surahId || !ayaFrom || !ayaTo || !uploadedRecord}><Translate id="button.share" /></button>
+                        <button type="button" onClick={closeModal}><Translate id="button.cancel" /></button>
                     </div>
                 </form>
             </div>
-        </BlackBlock>
+
+        </Modal>
 
     )
 }
