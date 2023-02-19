@@ -43,9 +43,12 @@ const Records = (props) => {
             {records?.map((record) => {
                 return <Record key={record.id} record={record} />
             })}
-            <div className="show-more">
-                <button disabled={records.length >= totalRecords} className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
-            </div>
+            {
+                records.length < totalRecords &&
+                <div className="show-more">
+                    <button className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
+                </div>
+            }
         </Fragment>
     )
 }
