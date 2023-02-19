@@ -1,22 +1,16 @@
-import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './views/Home/Home';
 import Islamic from './views/Islamic/Islamic';
 import Profile from './views/Profile/Profile';
 import Quran from './views/Quran/Quran';
 import Login from './views/Login/Login';
 import VerificationCode from './components/VerificationCode/VerificationCode';
-// import EditProfile from './components/EditProfile/EditProfile';
 import NotFoundPage from './views/NotFoundPage/NotFoundPage';
 import { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { langActions } from './store/Lang/Lang';
-// import AddNewRecord from './components/AddNewRecord/AddNewRecord';
-// import NotRegistered from './components/NotRegistered/NotRegistered';
-// import MediaPlayer from './components/MediaPlayer/MediaPlayer';
 import { checkAuthLoader } from './utils/Auth';
 import BasicLayout from './views/BasicLayout/BasicLayout';
-// import { authActions } from './store/Auth/Auth';
-// import { getAuth } from './utils/Auth';
 
 function App() {
   const globalLang = useSelector((state) => {
@@ -25,12 +19,6 @@ function App() {
   const [lang, setLang] = useState(localStorage.getItem("lang"));
   const dispatch = useDispatch();
   const rootEle = document.getElementById("root-html");
-  // const { token, user: loggedUser } = getAuth();
-  // useEffect(() => {
-  //   if (token && loggedUser) {
-  //     dispatch(authActions.setAuth({ token, user: loggedUser }));
-  //   }
-  // }, [])
 
   useEffect(() => {
     if (!lang) {

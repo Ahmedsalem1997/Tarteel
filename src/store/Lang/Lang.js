@@ -13,16 +13,6 @@ const langSlice = createSlice({
     }
 })
 
-// const langReducer = (state = initialState, action) => {
-//     if (action.type === 'translation') {
-//         return {
-//             globalLang: action.lang,
-//             translation: require(`../../assets/json/lang/${action.lang}.json`)
-//         }
-//     }
-//     return state;
-// }
-
 
 
 export const langActions = langSlice.actions;

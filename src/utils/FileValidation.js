@@ -1,5 +1,4 @@
 const validExtensions = ['png', 'jpeg', 'jpg', 'mp3', 'mpeg'];
-// const validAudioExtensions = ['png', 'jpeg', 'jpg'];
 
 export function isValidFileUploaded(file, fileType) {
     const fileExtensions = file.type.split('/');

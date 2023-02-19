@@ -1,7 +1,6 @@
 import Comment from "./Comment/Comment";
 import { Fragment, useEffect, useState } from "react";
 import useHTTP from "../../hooks/use-http";
-import { useSelector } from "react-redux";
 import { getAuth } from "../../utils/Auth";
 import Loader from "../Loader/Loader";
 import AddComment from "./AddComment/AddComment";
@@ -14,7 +13,6 @@ const Comments = (props) => {
   const [page, setPage] = useState(1);
   const [totalComments, setTotalComments] = useState(0);
 
-  // const commentsChange = useSelector(state => state.records.comments);
   const getRecordComments = () => {
     sendRequest(
       {

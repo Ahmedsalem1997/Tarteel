@@ -18,11 +18,6 @@ const QuranNavigator = (props) => {
     setSelectedSurah(surahNumber);
   };
 
-  // const surahChangeHandler = (e) => {
-  //   e.preventDefault();
-  //   props.onSurahChange(e.target.value);
-  //   setSelectedSurah(e.target.value);
-  // };
   useEffect(() => {
     getSurahList(
       {

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import Translate from "../../helpers/Translate//Translate";
+import Translate from "../../helpers/Translate/Translate";
 import { modalsActions } from "../../store/Modals/Modals";
 import Modal from "../Modal/Modal";
 

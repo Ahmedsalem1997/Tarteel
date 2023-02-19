@@ -4,7 +4,6 @@ import { getAuth } from "../../../utils/Auth";
 import { useSelector } from "react-redux";
 import { Fragment, useState } from "react";
 import Loader from "../../Loader/Loader";
-// import { useState } from "react";
 
 const Comment = (props) => {
   const lang = useSelector((state) => {
@@ -14,7 +13,6 @@ const Comment = (props) => {
   const [comment, setComment] = useState(props.comment);
   const { isLoading, sendRequest } = useHTTP();
   const { token } = getAuth();
-  // const dispatch = useDispatch();
   const [isLiked, setIsLiked] = useState(comment.is_liked);
   const [likesCount, setLikesCount] = useState(comment.likes_count);
   const toggleLike = () => {

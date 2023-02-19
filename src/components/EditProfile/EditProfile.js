@@ -12,7 +12,6 @@ import { modalsActions } from "../../store/Modals/Modals";
 import Loader from "../Loader/Loader";
 import { authActions } from "../../store/Auth/Auth";
 import { isValidFileUploaded } from '../../utils/FileValidation';
-// import { URLSearchParams } from "url";
 
 const EditProfile = (props) => {
     const dispatch = useDispatch();
@@ -93,7 +92,6 @@ const EditProfile = (props) => {
         if (!avatarCurrentErr) {
             const FR = new FileReader();
             FR.addEventListener("load", function (evt) {
-                // console.log('converted img ....', evt.target.result);
                 setNewAvatar(evt.target.result);
             });
             FR.readAsDataURL(e.target.files[0]);
