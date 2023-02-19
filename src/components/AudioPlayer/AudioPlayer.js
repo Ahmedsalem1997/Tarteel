@@ -40,6 +40,9 @@ const AudioPlayer = (props) => {
         waveform.current.on("pause", () => {
             setIsPlaying(false);
         });
+        waveform.current.on("play", () => {
+            setIsPlaying(true);
+        });
         return (() => {
             waveform.current.pause();
             dispatch(audioActions.removeAudio(waveform.current));
