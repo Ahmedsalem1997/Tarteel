@@ -14,8 +14,6 @@ const VerificationCode = () => {
   const { isLoading, sendRequest } = useHTTP();
   const [verificationError, setVerificationError] = useState("");
   const navigate = useNavigate();
-  const [token, setToken] = useState("");
-
   const handleOTPChange = (OTP) => {
     setOTP(OTP);
   };
@@ -58,7 +56,7 @@ const VerificationCode = () => {
 
   const dispatch = useDispatch();
   const openEditProfileModal = () => {
-    dispatch(modalsActions.openEditProfileModal(token));
+    dispatch(modalsActions.openEditProfileModal());
   }
   return (
     <LoginWrapper>

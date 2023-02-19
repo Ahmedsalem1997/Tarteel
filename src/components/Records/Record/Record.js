@@ -15,21 +15,26 @@ const Record = (props) => {
   const [showComments, setShowComments] = useState(false);
   const [isLiked, setIsLiked] = useState(record?.is_liked);
   const [likesCount, setLikesCount] = useState(record?.likes_count);
+  const [commentsCount, setCommentsCount] = useState(record?.comments_count);
   const { token } = getAuth();
   const { user } = getAuth();
-  const [randomNum, setRandomNum] = useState(Math.floor(Math.random()*10));
+  const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * 10));
   const lang = useSelector(state => {
     return state.lang.globalLang;
   });
 
   useEffect(() => {
-    setRandomNum(Math.floor(Math.random()*10));
+    setRandomNum(Math.floor(Math.random() * 10));
   }, [lang])
   const toggleLike = () => {
     setIsLiked(isLikedPrev => {
       setLikesCount(prev => isLikedPrev ? prev - 1 : prev + 1);
       return !isLikedPrev
     });
+  }
+
+  const onCommentAdded = () => {
+    setCommentsCount(prev => prev + 1);
   }
   const likeBtnHandler = () => {
     toggleLike();
@@ -45,6 +50,7 @@ const Record = (props) => {
       },
       data => {
         setRecord(data.data);
+        setCommentsCount(data.data.comments_count);
       },
       err => {
         toggleLike();
@@ -91,7 +97,7 @@ const Record = (props) => {
           <span className="post-feedback-likes-comments">
             <p>{likesCount}</p>
             <i onClick={likeBtnHandler} className={`${isLiked ? 'fa-solid' : 'fa-regular'} fa-thumbs-up`}></i>
-            <p>{record?.comments_count}</p>
+            <p>{commentsCount}</p>
             <i className="fa-regular fa-comment" onClick={() => setShowComments(prev => !prev)}></i>
           </span>
           <div>
@@ -101,7 +107,7 @@ const Record = (props) => {
           </div>
         </div>
         {showComments && <div className="post-comments">
-          <Comments recordId={record?.id} />
+          <Comments recordId={record?.id} onAddComment={onCommentAdded} />
         </div>}
       </div>
     </Fragment>

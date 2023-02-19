@@ -24,9 +24,12 @@ const Comments = (props) => {
         }
       },
       data => {
-        setComments(prev => [...prev, ...data.data]);
+        if (page === 1) {
+          setComments(data.data);
+        } else {
+          setComments(prev => [...prev, ...data.data]);
+        }
         setTotalComments(data.meta.total);
-
       },
       err => {
 
@@ -40,6 +43,12 @@ const Comments = (props) => {
     getRecordComments();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page])
+
+  const onAddComment = () => {
+    setPage(1);
+    props.onAddComment();
+    getRecordComments();
+  }
   return (
     <Fragment>
       {isLoading && <Loader />}
@@ -53,7 +62,7 @@ const Comments = (props) => {
         <button disabled={comments.length >= totalComments} className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
       </div>
       <div className="add-new-comment">
-        <AddComment recordId={props.recordId} onAddComment={getRecordComments} />
+        <AddComment recordId={props.recordId} onAddComment={onAddComment} />
       </div>
     </Fragment>
   );
