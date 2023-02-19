@@ -96,13 +96,13 @@ const ProfileHeader = (props) => {
             </button>
           }
           {
-            !user?.is_mine &&
+            (!user?.is_mine && !user?.is_followed) &&
             <button onClick={handleFollow} className="profile-header-user-follow">
               <i className="fa-solid fa-user-plus"></i>
             </button>
           }
           {
-            !user?.is_mine &&
+            (!user?.is_mine && user?.is_followed) &&
             <button onClick={handleUnFollow} className="profile-header-user-follow followed">
               <i className="fa-solid fa-user-check"></i>
             </button>
