@@ -10,7 +10,7 @@ import AudioRecord from "../../AudioRecord/AudioRecord";
 const AddComment = (props) => {
   const [comment, setComment] = useState('');
   const { isLoading, error, sendRequest: addComment } = useHTTP()
-  const { token } = getAuth();
+  const auth = getAuth();
   const [uploadedRecord, setUploadedRecord] = useState(undefined);
 
   const addCommentHandler = (e) => {
@@ -26,7 +26,7 @@ const AddComment = (props) => {
         method: 'POST',
         headers: {
           // 'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${auth.token}`
         },
         body: formData
       },
@@ -54,9 +54,7 @@ const AddComment = (props) => {
 
         <div className="add-comment-actions">
           <button type="submit"><Translate id="button.addComment" /></button>
-          <button className="" type="button">
-            <AudioRecord onRecordFinished={onRecordFinished} showTitle={false}/>
-          </button>
+          {auth?.user?.is_sheikh && <AudioRecord onRecordFinished={onRecordFinished} showTitle={false} />}
         </div>
       </form>
     </Fragment>
