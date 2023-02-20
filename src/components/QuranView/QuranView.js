@@ -36,7 +36,7 @@ const QuranView = (props) => {
       <div className="quran-view-surah">
         <p className="quran-view-surah-name">{lang === "ar" ? surah?.name : surah?.english_name}</p>
         <div className="quran-view-surah-openning">
-          <Translate id="quran.openning" />
+          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
         </div>
         {isLoading ?
           <Loader />
@@ -57,16 +57,17 @@ const QuranView = (props) => {
                     </div>
                   )}
 
-                  {
-                    (lang === 'ar' &&
-                      ayah?.number_in_surah === 1 &&
-                      props?.selectedSurah !== 1)
-                      ? ayah?.text.replace('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ', '')
-                      : ayah?.text}
-                  <span>
-                    {lang === "ar"
-                      ? ayah?.number_in_surah?.toLocaleString("ar-EG")
-                      : ayah?.number_in_surah}
+                  <span className="quran-view-surah-ayah">
+                    {
+                      (lang === 'ar' &&
+                        ayah?.number_in_surah === 1 &&
+                        props?.selectedSurah !== 1)
+                        ? ayah?.text.replace('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ', '')
+                        : ayah?.text
+                    }
+                  </span>
+                  <span className="quran-view-surah-ayah-seperator">
+                      {ayah?.number_in_surah?.toLocaleString("ar-EG")}
                   </span>
                 </Fragment>
               );
