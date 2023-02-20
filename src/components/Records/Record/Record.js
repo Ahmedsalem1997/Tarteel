@@ -57,6 +57,38 @@ const Record = (props) => {
       }
     )
   }
+  const handleFollow = () => {
+    sendRequest(
+      {
+        url: `users/${record.user.id}/follow`,
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      },
+      data => {
+        // setUser(data.data);
+      },
+      err => {
+      }
+    )
+  }
+  const handleUnFollow = () => {
+    sendRequest(
+      {
+        url: `users/${record.user.id}/unfollow`,
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      },
+      data => {
+        // setUser(data.data);
+      },
+      err => {
+      }
+    )
+  }
 
   return (
     <Fragment>
@@ -81,9 +113,9 @@ const Record = (props) => {
             <span className="post-header-user-follow">
               {
                 user?.is_followed ?
-                <i className="fa-solid fa-user-check"></i>
-                :
-                <i className="fa-solid fa-user-plus"></i>
+                  <i className="fa-solid fa-user-check" onClick={handleFollow}></i>
+                  :
+                  <i className="fa-solid fa-user-plus" onClick={handleUnFollow}></i>
               }
             </span>
           }
