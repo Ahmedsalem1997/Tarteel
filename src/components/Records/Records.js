@@ -9,12 +9,13 @@ const Records = (props) => {
     const { isLoading, error, sendRequest } = useHTTP();
     const [records, setRecords] = useState([]);
     const { token } = getAuth();
-    const [page, setPage] = useState(1);
-    const [totalRecords, setTotalRecords] = useState(0);
+    // const [page, setPage] = useState(1);
+    // const [perPage, setPerPage] = useState(5);
+    // const [totalRecords, setTotalRecords] = useState(0);
     const getRecords = () => {
         sendRequest(
             {
-                url: `${props?.recordsUrl}?page=${page}&per_page=10`,
+                url: `${props?.recordsUrl}`,
                 method: 'GET',
                 headers:
                 {
@@ -22,33 +23,34 @@ const Records = (props) => {
                 }
             },
             data => {
-                setRecords(prev => [...prev, ...data.data]);
-                setTotalRecords(data.meta.total);
+                setRecords(data.data);
+                // setTotalRecords(data.meta.total);
             },
             err => {
 
             }
         )
     }
-    const onShowMore = () => {
-        setPage(prev => prev + 1);
-    }
+    // const onShowMore = () => {
+    //     setPage(prev => prev + 1);
+    //     getRecords(records);
+    // }
     useEffect(() => {
         getRecords();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [page]);
+    }, []);
     return (
         <Fragment>
             {isLoading && <Loader />}
             {records?.map((record) => {
-                return <Record key={record.id} record={record} />
+                return <Record key={record.id} record={record} onRecordChange={getRecords} />
             })}
-            {
+            {/* {
                 records.length < totalRecords &&
                 <div className="show-more">
                     <button className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
                 </div>
-            }
+            } */}
         </Fragment>
     )
 }

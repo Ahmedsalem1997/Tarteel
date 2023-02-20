@@ -10,13 +10,18 @@ const Comments = (props) => {
   const { token } = getAuth();
   const { isLoading, error, sendRequest } = useHTTP();
   const [comments, setComments] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalComments, setTotalComments] = useState(0);
+  // const [commentsToShow, setCommentsToShow] = useState([]);
+  // const [page, setPage] = useState(1);
+  // const [perPage, setPerPage] = useState(5);
+  // const [totalComments, setTotalComments] = useState(0);
 
-  const getRecordComments = () => {
+  const getRecordComments = (oldComments) => {
+    // if (page > 1) {
+    //   setPerPage(prev => prev * page);
+    // }
     sendRequest(
       {
-        url: `records/${props.recordId}/comments?per_page=5&page=${page}`,
+        url: `records/${props.recordId}/comments`,
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -24,30 +29,39 @@ const Comments = (props) => {
         }
       },
       data => {
-        if (page === 1) {
-          setComments(data.data);
-        } else {
-          setComments(prev => [...prev, ...data.data]);
-        }
-        setTotalComments(data.meta.total);
+        // if (oldComments) {
+        //   setComments([...oldComments, ...data.data]);
+        // } else {
+        setComments(data.data);
+        // }
+        // if (page === 1) {
+        // } else {
+        //   setComments(prev => [...prev, ...data.data]);
+        // }
+        // setTotalComments(data.meta.total);
       },
       err => {
 
       }
     )
   }
-  const onShowMore = () => {
-    setPage(prev => prev + 1);
-  }
+  // const onShowMore = () => {
+  //   setPage(prev => prev + 1);
+  //   getRecordComments(commentsToShow);
+  // }
   useEffect(() => {
     getRecordComments();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page])
+  }, [])
 
   const onAddComment = () => {
-    setPage(1);
+    // setPerPage(prev => prev * page);
+    // let currentPage = page;
+    // setPage(1);
+
     props.onAddComment();
     getRecordComments();
+    // setPage(currentPage);
   }
   return (
     <Fragment>
@@ -58,9 +72,9 @@ const Comments = (props) => {
         })
         }
       </div>
-      {comments.length < totalComments && <div className="show-more">
+      {/* {comments.length < totalComments && <div className="show-more">
         <button className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
-      </div>}
+      </div>} */}
       <div className="add-new-comment">
         <AddComment recordId={props.recordId} onAddComment={onAddComment} />
       </div>
