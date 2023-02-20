@@ -10,6 +10,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { langActions } from './store/Lang/Lang';
 import { checkAuthLoader } from './utils/Auth';
+import AdminLogin from './views/AdminLogin/AdminLogin';
 import BasicLayout from './views/BasicLayout/BasicLayout';
 import SubscriptionLogin from './views/SubscriptionLogin/SubscriptionLogin';
 
@@ -75,6 +76,10 @@ function App() {
         {
           path: "verification-code/:mobile",
           element: <VerificationCode />
+        },
+        {
+          path: "admin-login",
+          element: <AdminLogin />
         }
       ]
     },

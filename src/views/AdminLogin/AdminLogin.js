@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Joi from "joi";
-import { Link } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import LoginWrapper from "../../components/LoginWrapper/LoginWrapper";
 import useHTTP from "../../hooks/use-http";
@@ -8,17 +7,37 @@ import Translate from "../../helpers/Translate//Translate";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import useTranslate from "../../hooks/use-translate";
 
-const Login = () => {
+const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
   const [emailErr, setEmailErr] = useState("");
+  const [emailError, setEmailError] = useState("");
 
-  const { isLoading } = useHTTP();
+  const { isLoading, error, sendRequest } = useHTTP();
 
   const onLoginHandler = (e) => {
     e.preventDefault();
-  };
+    sendRequest(
+      {
+        url: "codes/get",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {
+          email: email,
+          password: password,
+        },
+      },
+      (data) => {
+        if (data.error) {
+          emailError(data.message);
+        } else {
+          setEmailError("");
+        }
+      },
+      (err) => {}
+    );
+};
 
   const onChangeEmail = (e) => {
     const schema = Joi.object({
@@ -36,7 +55,15 @@ const Login = () => {
   };
 
   const onChangePassword = (e) => {
-    e.preventDefault();
+    const schema = Joi.object({
+      password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
+    });
+    const nameError = schema.validate({ password: e.target.value });
+    if (nameError.error) {
+      setPasswordErr("password");
+    } else {
+      setPasswordErr("");
+    }
     setPassword(e.target.value);
   };
 
@@ -90,4 +117,4 @@ const Login = () => {
     </LoginWrapper>
   );
 };
-export default Login;
+export default AdminLogin;
