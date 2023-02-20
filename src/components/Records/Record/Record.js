@@ -12,6 +12,7 @@ const Record = (props) => {
   const img = require("../../../assets/images/personal.png");
   const { isLoading, sendRequest } = useHTTP();
   const [record, setRecord] = useState(props.record);
+  // const [recordUser, setRecordUser] = useState(record.user);
   const [showComments, setShowComments] = useState(false);
   const [isLiked, setIsLiked] = useState(record?.is_liked);
   const [likesCount, setLikesCount] = useState(record?.likes_count);
@@ -25,6 +26,7 @@ const Record = (props) => {
 
   useEffect(() => {
     setRandomNum(Math.floor(Math.random() * 10));
+    // setRecordUser(props.record.user);
   }, [lang])
   const toggleLike = () => {
     setIsLiked(isLikedPrev => {
@@ -67,7 +69,8 @@ const Record = (props) => {
         }
       },
       data => {
-        // setUser(data.data);
+        // setRecordUser(data.data);
+        props.onRecordChange();
       },
       err => {
       }
@@ -83,7 +86,8 @@ const Record = (props) => {
         }
       },
       data => {
-        // setUser(data.data);
+        // setRecordUser(data.data);
+        props.onRecordChange();
       },
       err => {
       }
@@ -112,10 +116,10 @@ const Record = (props) => {
             loggedUser?.id !== record?.user?.id &&
             <span className="post-header-user-follow">
               {
-                record?.user?.is_followed ?
-                  <i className="fa-solid fa-user-check" onClick={handleFollow}></i>
+                props?.record?.user?.is_followed ?
+                  <i className="fa-solid fa-user-check" onClick={handleUnFollow}></i>
                   :
-                  <i className="fa-solid fa-user-plus" onClick={handleUnFollow}></i>
+                  <i className="fa-solid fa-user-plus" onClick={handleFollow}></i>
               }
             </span>
           }
