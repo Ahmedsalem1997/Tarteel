@@ -7,6 +7,7 @@ import Translate from "../../helpers/Translate//Translate";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import useTranslate from "../../hooks/use-translate";
 import { setAuth } from "../../utils/Auth";
+import { useNavigate } from "react-router";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ const AdminLogin = () => {
   const [passwordErr, setPasswordErr] = useState("");
   const [emailErr, setEmailErr] = useState("");
   const [emailError, setEmailError] = useState("");
-
+  const navigate = useNavigate();
   const { isLoading, error, sendRequest } = useHTTP();
 
   const onLoginHandler = (e) => {
@@ -35,6 +36,7 @@ const AdminLogin = () => {
         } else {
           setEmailError("");
           setAuth(data.data);
+          navigate(`/`);
         }
       },
       (err) => { }
@@ -58,7 +60,7 @@ const AdminLogin = () => {
 
   const onChangePassword = (e) => {
     const schema = Joi.object({
-      password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{8,30}$")),
+      password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{6,30}$")),
     });
     const nameError = schema.validate({ password: e.target.value });
     if (nameError.error) {
