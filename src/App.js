@@ -78,7 +78,7 @@ function App() {
           element: <VerificationCode />
         },
         {
-          path: "admin-login",
+          path: "shekh-login",
           element: <AdminLogin />
         }
       ]

@@ -6,6 +6,7 @@ import useHTTP from "../../hooks/use-http";
 import Translate from "../../helpers/Translate//Translate";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import useTranslate from "../../hooks/use-translate";
+import { setAuth } from "../../utils/Auth";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ const AdminLogin = () => {
     e.preventDefault();
     sendRequest(
       {
-        url: "codes/get",
+        url: "login",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: {
@@ -33,11 +34,12 @@ const AdminLogin = () => {
           emailError(data.message);
         } else {
           setEmailError("");
+          setAuth(data.data);
         }
       },
-      (err) => {}
+      (err) => { }
     );
-};
+  };
 
   const onChangeEmail = (e) => {
     const schema = Joi.object({
@@ -56,7 +58,7 @@ const AdminLogin = () => {
 
   const onChangePassword = (e) => {
     const schema = Joi.object({
-      password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
+      password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{8,30}$")),
     });
     const nameError = schema.validate({ password: e.target.value });
     if (nameError.error) {
