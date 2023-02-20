@@ -2,14 +2,14 @@ import { redirect } from "react-router-dom";
 
 export function setAuth(data) {
     data?.token && localStorage.setItem('token', data.token);
-    data?.user && localStorage.setItem('user', JSON.stringify(data.user));
+    data?.user && localStorage.setItem('loggedUser', JSON.stringify(data.user));
 }
 
 export function getAuth() {
     const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user'));
-    const isAuth = token && user;
-    return { token, user, isAuth }
+    const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+    const isAuth = token && loggedUser;
+    return { token, loggedUser, isAuth }
 }
 
 export function checkAuthLoader() {

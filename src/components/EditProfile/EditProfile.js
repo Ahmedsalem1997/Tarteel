@@ -45,11 +45,11 @@ const EditProfile = (props) => {
     //     });
     // }
     useEffect(() => {
-        if (auth.user.name && auth.user.email) {
-            setName(auth.user.name);
-            setEmail(auth.user.email);
-            setAvatar(auth.user.avatar);
-            setNewAvatar(auth.user.avatar);
+        if (auth.loggedUser.name && auth.loggedUser.email) {
+            setName(auth.loggedUser.name);
+            setEmail(auth.loggedUser.email);
+            setAvatar(auth.loggedUser.avatar);
+            setNewAvatar(auth.loggedUser.avatar);
         }
         setToken(auth.token);
     }, []);

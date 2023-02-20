@@ -17,7 +17,7 @@ const Record = (props) => {
   const [likesCount, setLikesCount] = useState(record?.likes_count);
   const [commentsCount, setCommentsCount] = useState(record?.comments_count);
   const { token } = getAuth();
-  const { user } = getAuth();
+  const { loggedUser } = getAuth();
   const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * 10));
   const lang = useSelector(state => {
     return state.lang.globalLang;
@@ -109,10 +109,10 @@ const Record = (props) => {
             </div>
           </div>
           {
-            user?.id !== record?.user?.id &&
+            loggedUser?.id !== record?.user?.id &&
             <span className="post-header-user-follow">
               {
-                user?.is_followed ?
+                record?.user?.is_followed ?
                   <i className="fa-solid fa-user-check" onClick={handleFollow}></i>
                   :
                   <i className="fa-solid fa-user-plus" onClick={handleUnFollow}></i>
