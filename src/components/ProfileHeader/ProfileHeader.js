@@ -28,7 +28,7 @@ const ProfileHeader = (props) => {
         setUser(data.data);
       },
       err => {
-        navigate('/');
+        navigate('/home');
       }
     );
   }

@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom';
 import Home from './views/Home/Home';
 import Islamic from './views/Islamic/Islamic';
 import Profile from './views/Profile/Profile';
@@ -12,7 +12,6 @@ import { langActions } from './store/Lang/Lang';
 import { checkAuthLoader } from './utils/Auth';
 import AdminLogin from './views/AdminLogin/AdminLogin';
 import BasicLayout from './views/BasicLayout/BasicLayout';
-import SubscriptionLogin from './views/SubscriptionLogin/SubscriptionLogin';
 
 function App() {
   const globalLang = useSelector((state) => {
@@ -48,16 +47,20 @@ function App() {
       children: [
         {
           path: "/",
+          loader: () => redirect('/home')
+        },
+        {
+          path: "/home",
           element: < Home />
         },
         {
           path: "login",
           element: <Login />
         },
-        {
-          path: "subscription-login",
-          element: <SubscriptionLogin />
-        },
+        // {
+        //   path: "subscription-login",
+        //   element: <SubscriptionLogin />
+        // },
         {
           path: "users/:id",
           element: <Profile />,

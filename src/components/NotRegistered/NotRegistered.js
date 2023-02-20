@@ -1,7 +1,10 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Translate from "../../helpers/Translate/Translate";
+import useHTTP from "../../hooks/use-http";
 import { modalsActions } from "../../store/Modals/Modals";
+import { setLongTermToken } from "../../utils/Auth";
 import Modal from "../Modal/Modal";
 
 
@@ -9,6 +12,29 @@ const NotRegistered = () => {
   const dispatch = useDispatch();
   const closeLoginModal = () => {
     dispatch(modalsActions.closeLoginModal());
+  };
+  const { isLoading, error, sendRequest } = useHTTP();
+
+  const onLogin = () => {
+    sendRequest(
+      {
+        url: "subscribe",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {
+          long_term_token: setLongTermToken(),
+          operator_id: 1
+        },
+      },
+      (data) => {
+        console.log(data);
+        window.location.replace(data.data);
+      },
+      err => {
+
+      }
+    );
+
   }
   return (
     <Modal>
@@ -17,8 +43,8 @@ const NotRegistered = () => {
         <p><Translate id="notRegistered.pleaseRegister" /></p>
       </div>
       <div className="not-registered-actions">
-        <Link to="/login"><button className="main-button"><Translate id="button.login" /></button></Link>
-        <Link to="/login"><button className="trans-btn"><Translate id="button.register" /></button></Link>
+        <button className="main-button" onClick={onLogin}><Translate id="button.login" /></button>
+        <button className="trans-btn" onClick={onLogin}><Translate id="button.register" /></button>
       </div>
       <div className="not-registered-cancel">
         <button className="cancel-btn" onClick={closeLoginModal}><Translate id="button.cancel" /></button>

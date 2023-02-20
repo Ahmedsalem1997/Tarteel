@@ -11,6 +11,7 @@ const AudioPlayer = (props) => {
     const globalLang = useSelector(state => {
         return state.lang.globalLang;
     });
+    // const audio = new Audio(props.audio);
     const audios = useSelector(state => state.audio.audioArr);
     useEffect(() => {
         // Check if wavesurfer object is already created.
@@ -30,7 +31,22 @@ const AudioPlayer = (props) => {
             });
             dispatch(audioActions.addAudio(waveform.current));
             // Load audio from a remote url.
-            waveform.current.load(props.audio);
+            // let url = window.URL.revokeObjectURL(props?.audio);
+            // console.log(url);
+            // console.log(typeof(props.audio));
+            // console.log(props.audio);
+            // fetch(props.audio, { mode: 'no-cors' }).then(function (response) {
+            //     // console.log(response);
+            //     if (response.ok) {
+            //         return response.blob();
+            //     }
+            //     // throw new Error('Network response was not ok.');
+            // }).then(function (blob) {
+            //     // surfTheBlob(blob);
+                waveform.current.load(props.audio);
+            // }).catch(function (error) {
+            //     // console.log('There has been a problem with your fetch operation: ', error.message);
+            // });
             /* To load a local audio file
             1. Read the audio file as a array buffer.
             2. Create a blob from the array buffer
@@ -52,7 +68,7 @@ const AudioPlayer = (props) => {
 
     const toggleAudio = () => {
         audios.forEach(audio => {
-            if(audio.isPlaying()) {
+            if (audio.isPlaying()) {
                 audio.pause();
             }
         });

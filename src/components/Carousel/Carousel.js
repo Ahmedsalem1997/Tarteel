@@ -32,7 +32,7 @@ const Carousel = () => {
       <div className="register-bar">
         <p><Translate id="carousel.bar" /></p>
         {!isAuth && <Link to="/login"><button className="register-now-btn"><Translate id="button.subscribe" /></button></Link>}
-        {!isAuth && <Link to="/subscription-login"><button className="register-now-btn"><Translate id="button.subscribe" /></button></Link>}
+        {/* {!isAuth && <Link to="/subscription-login"><button className="register-now-btn"><Translate id="button.subscribe" /></button></Link>} */}
       </div>
     </Fragment>
 

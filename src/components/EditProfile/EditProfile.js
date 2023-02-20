@@ -4,7 +4,7 @@ import { Translate } from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
 import useTranslate from "../../hooks/use-translate";
 import { useDispatch } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { getAuth, setAuth } from "../../utils/Auth";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Modal from "../Modal/Modal";
@@ -17,6 +17,7 @@ const EditProfile = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
+    const searchParams = useSearchParams();
     const img = require("../../assets/images/record.jpg");
     const { isLoading, error, sendRequest } = useHTTP();
     const [name, setName] = useState('');
@@ -75,7 +76,8 @@ const EditProfile = (props) => {
                     setAuth({ user: data.data });
                     dispatch(modalsActions.closeEditProfileModal(data.data));
                     dispatch(authActions.setAuth({ user: data.data }));
-                    if (location.pathname.includes('/verification-code/')) {
+                    // console.log()
+                    if (searchParams.get('status')) {
                         navigate(`/`);
                     }
                 },
