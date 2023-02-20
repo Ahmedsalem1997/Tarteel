@@ -37,7 +37,7 @@ const ProfileHeader = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.id, editedUser]);
   const handleFollow = () => {
-    setFollowersCount(prev => prev + 1);
+    // setFollowersCount(prev => prev + 1);
     sendRequest(
       {
         url: `users/${props.id}/follow`,
@@ -48,15 +48,15 @@ const ProfileHeader = (props) => {
       },
       data => {
         setUser(data.data);
-        setFollowersCount(data.data.followers_count);
+        // setFollowersCount(data.data.followers_count);
       },
       err => {
-        setFollowersCount(prev => prev - 1);
+        // setFollowersCount(prev => prev - 1);
       }
     )
   }
   const handleUnFollow = () => {
-    setFollowersCount(prev => prev - 1);
+    // setFollowersCount(prev => prev - 1);
     sendRequest(
       {
         url: `users/${props.id}/unfollow`,
@@ -68,10 +68,10 @@ const ProfileHeader = (props) => {
       },
       data => {
         setUser(data.data);
-        setFollowersCount(data.data.followers_count);
+        // setFollowersCount(data.data.followers_count);
       },
       err => {
-        setFollowersCount(prev => prev + 1);
+        // setFollowersCount(prev => prev + 1);
       }
     )
   }
@@ -111,7 +111,7 @@ const ProfileHeader = (props) => {
         </div>
         <div className="profile-header-following">
           <div className="profile-header-following-followers">
-            <span>{followersCount}</span>
+            <span>{user?.followers_count}</span>
             <span>
               <Translate id="profile.followers" />
             </span>
