@@ -35,18 +35,18 @@ const AudioPlayer = (props) => {
             // console.log(url);
             // console.log(typeof(props.audio));
             // console.log(props.audio);
-            // fetch(props.audio, { mode: 'no-cors' }).then(function (response) {
-            //     // console.log(response);
-            //     if (response.ok) {
-            //         return response.blob();
-            //     }
-            //     // throw new Error('Network response was not ok.');
-            // }).then(function (blob) {
-            //     // surfTheBlob(blob);
-                waveform.current.load(props.audio);
-            // }).catch(function (error) {
-            //     // console.log('There has been a problem with your fetch operation: ', error.message);
-            // });
+            fetch(props.audio, { mode: 'no-cors' }).then(function (response) {
+                //     // console.log(response);
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw new Error('Network response was not ok.');
+            }).then(function (blob) {
+                //     // surfTheBlob(blob);
+                waveform.current.loadBlob(props.audio);
+            }).catch(function (error) {
+                // console.log('There has been a problem with your fetch operation: ', error.message);
+            });
             /* To load a local audio file
             1. Read the audio file as a array buffer.
             2. Create a blob from the array buffer
