@@ -64,7 +64,7 @@
     }
 
     &-view {
-      width: 75%;
+      width: 100%;
     }
   }
 
@@ -124,6 +124,15 @@
 
     .register-bar {
       display: none;
+    }
+  }
+
+  // Quran
+  .quran {
+    &-view {
+      &-surah {
+        width: 80%;
+      }
     }
   }
 
