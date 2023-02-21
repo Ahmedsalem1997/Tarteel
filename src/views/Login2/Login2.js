@@ -4,7 +4,7 @@ import Loader from "../../components/Loader/Loader";
 import LoginWrapper from "../../components/LoginWrapper/LoginWrapper";
 import useHTTP from "../../hooks/use-http";
 import { useNavigate } from "react-router-dom";
-import Translate from "../../helpers/Translate//Translate";
+import Translate from "../../helpers/Translate/Translate";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const Login = () => {

@@ -3,7 +3,9 @@ import Home from './views/Home/Home';
 import Islamic from './views/Islamic/Islamic';
 import Profile from './views/Profile/Profile';
 import Quran from './views/Quran/Quran';
-import Login from './views/Login/Login';
+import Login2 from './views/Login2/Login2';
+import Login from './components/Login/Login';
+
 import VerificationCode from './components/VerificationCode/VerificationCode';
 import NotFoundPage from './views/NotFoundPage/NotFoundPage';
 import { Fragment, useEffect, useState } from 'react';
@@ -53,10 +55,10 @@ function App() {
           path: "/home",
           element: < Home />
         },
-        // {
-        //   path: "login",
-        //   element: <Login />
-        // },
+        {
+          path: "login",
+          element: <Login />
+        },
         // {
         //   path: "subscription-login",
         //   element: <SubscriptionLogin />

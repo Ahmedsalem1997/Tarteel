@@ -1,0 +1,43 @@
+.login-message{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.error-message{
+    background-color: white;
+    text-align: center;
+    font-size: 3rem;
+    width: 40rem;
+    i{
+        color: red;
+    }
+    p{
+        padding: 1rem;
+    }
+    .error-message-cancel-btn{
+        background-color: red;
+        color: var(--white);
+        padding: .5rem;
+    }
+}
+.success-message{
+    background-color: white;
+    text-align: center;
+    font-size: 3rem;
+    width: 40rem;
+    i{
+        color: var(--main-color);
+    }
+    h4{
+        padding: 1rem;
+        color: var(--main-color);
+    }
+    .success-message-cancel-btn{
+        background-color: var(--main-color);
+        color: var(--white);
+        font-size: 1.125rem;
+        font-weight: 600;
+    }
+}
