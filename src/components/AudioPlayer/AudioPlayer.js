@@ -45,7 +45,7 @@ const AudioPlayer = (props) => {
                 //     // surfTheBlob(blob);
                 waveform.current.loadBlob(blob);
             }).catch(function (error) {
-                // console.log('There has been a problem with your fetch operation: ', error.message);
+                console.log('There has been a problem with your fetch operation: ', error.message);
             });
             /* To load a local audio file
             1. Read the audio file as a array buffer.
