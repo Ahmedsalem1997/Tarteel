@@ -5,8 +5,8 @@ import { audioActions } from "../../store/audio/audio";
 
 const AudioPlayer = (props) => {
     const dispatch = useDispatch();
-    const audio = require('../../assets/audios/test.mp3');
-    console.log(audio);
+    // const audio = require('../../assets/audios/test.mp3');
+    // console.log(audio);
     const waveform = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const globalLang = useSelector(state => {
@@ -29,7 +29,7 @@ const AudioPlayer = (props) => {
                 height: 50,
                 backend: 'MediaElement',
                 xhr: { mode: 'no-cors' },
-                rtl: globalLang === 'ar' ? true : false
+                rtl: globalLang === 'ar' ? true : false,
                 // cursorColor: "#75b10e",
             });
             // waveform.current.setVolume(1);
@@ -79,8 +79,9 @@ const AudioPlayer = (props) => {
             //     .then(data => data.arrayBuffer())
             //     .then(arrayBuffer => {
             //         let blob = new Blob([arrayBuffer]);
+            //         // const url = URL.createObjectURL(blob)
             //         // const url = URL.createObjectURL(blob);
-            //         waveform.current.loadBlob(blob);
+            //         waveform.current.load(blob);
             //         // document.getElementById("recording").src = url;
             //         // URL.revokeObjectURL(url);
             //     })
