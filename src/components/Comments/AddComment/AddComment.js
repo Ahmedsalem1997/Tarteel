@@ -6,39 +6,48 @@ import { getAuth } from "../../../utils/Auth";
 import Loader from "../../Loader/Loader";
 import AddNewRecord from "../../AddNewRecord/AddNewRecord";
 import AudioRecord from "../../AudioRecord/AudioRecord";
+import { useDispatch } from "react-redux";
+import { modalsActions } from "../../../store/Modals/Modals";
 
 const AddComment = (props) => {
   const [comment, setComment] = useState('');
   const { isLoading, error, sendRequest: addComment } = useHTTP()
   const auth = getAuth();
   const [uploadedRecord, setUploadedRecord] = useState(undefined);
-
+  const dispatch = useDispatch();
+  const openLoginModal = () => {
+    dispatch(modalsActions.openLoginModal());
+  }
   const addCommentHandler = (e) => {
     e.preventDefault();
-    let formData = new FormData();
-    formData.append('text', comment);
-    if (uploadedRecord) {
-      formData.append('file', uploadedRecord);
-    }
-    addComment(
-      {
-        url: `records/${props.recordId}/comments`,
-        method: 'POST',
-        headers: {
-          // 'Content-Type': 'application/json',
-          'Authorization': `Bearer ${auth.token}`
-        },
-        body: formData
-      },
-      data => {
-        console.log(data);
-        setComment('');
-        props.onAddComment();
-      },
-      err => {
-
+    if (auth.isAuth) {
+      let formData = new FormData();
+      formData.append('text', comment);
+      if (uploadedRecord) {
+        formData.append('file', uploadedRecord);
       }
-    )
+      addComment(
+        {
+          url: `records/${props.recordId}/comments`,
+          method: 'POST',
+          headers: {
+            // 'Content-Type': 'application/json',
+            'Authorization': `Bearer ${auth.token}`
+          },
+          body: formData
+        },
+        data => {
+          console.log(data);
+          setComment('');
+          props.onAddComment();
+        },
+        err => {
+
+        }
+      )
+    } else {
+      openLoginModal();
+    }
   }
   const onRecordFinished = (blob) => {
     setUploadedRecord(blob);
@@ -49,11 +58,11 @@ const AddComment = (props) => {
       {isLoading && <Loader />}
       <form className="add-comment" onSubmit={addCommentHandler}>
         <div className="add-comment-input">
-          <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder={useTranslate('input.placeholder.writeComment')}></textarea>
+          <textarea disabled={!auth.isAuth} value={comment} onChange={(e) => setComment(e.target.value)} placeholder={useTranslate('input.placeholder.writeComment')}></textarea>
         </div>
 
         <div className="add-comment-actions">
-          <button type="submit"><Translate id="button.addComment" /></button>
+          <button type="submit" disabled={!auth.isAuth}><Translate id="button.addComment" /></button>
           {auth?.loggedUser?.is_sheikh ? <AudioRecord onRecordFinished={onRecordFinished} showTitle={false} /> : ''}
         </div>
       </form>

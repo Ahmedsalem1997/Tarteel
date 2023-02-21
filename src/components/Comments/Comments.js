@@ -5,45 +5,54 @@ import { getAuth } from "../../utils/Auth";
 import Loader from "../Loader/Loader";
 import AddComment from "./AddComment/AddComment";
 import Translate from "../../helpers/Translate/Translate";
+import { useDispatch } from "react-redux";
+import { modalsActions } from "../../store/Modals/Modals";
 
 const Comments = (props) => {
-  const { token } = getAuth();
+  const { token, isAuth } = getAuth();
   const { isLoading, error, sendRequest } = useHTTP();
   const [comments, setComments] = useState([]);
+  const dispatch = useDispatch();
   // const [commentsToShow, setCommentsToShow] = useState([]);
   // const [page, setPage] = useState(1);
   // const [perPage, setPerPage] = useState(5);
   // const [totalComments, setTotalComments] = useState(0);
-
+  const openLoginModal = () => {
+    dispatch(modalsActions.openLoginModal());
+  }
   const getRecordComments = (oldComments) => {
     // if (page > 1) {
     //   setPerPage(prev => prev * page);
     // }
-    sendRequest(
-      {
-        url: `records/${props.recordId}/comments`,
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      },
-      data => {
-        // if (oldComments) {
-        //   setComments([...oldComments, ...data.data]);
-        // } else {
-        setComments(data.data);
-        // }
-        // if (page === 1) {
-        // } else {
-        //   setComments(prev => [...prev, ...data.data]);
-        // }
-        // setTotalComments(data.meta.total);
-      },
-      err => {
+    if (isAuth) {
+      sendRequest(
+        {
+          url: `records/${props.recordId}/comments`,
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        },
+        data => {
+          // if (oldComments) {
+          //   setComments([...oldComments, ...data.data]);
+          // } else {
+          setComments(data.data);
+          // }
+          // if (page === 1) {
+          // } else {
+          //   setComments(prev => [...prev, ...data.data]);
+          // }
+          // setTotalComments(data.meta.total);
+        },
+        err => {
 
-      }
-    )
+        }
+      )
+    } else {
+      openLoginModal();
+    }
   }
   // const onShowMore = () => {
   //   setPage(prev => prev + 1);

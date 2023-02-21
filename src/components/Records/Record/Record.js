@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Translate from "../../../helpers/Translate/Translate";
 import AudioPlayer from "./../../AudioPlayer/AudioPlayer";
 import Comments from "./../../Comments/Comments";
@@ -7,6 +7,7 @@ import useHTTP from './../../../hooks/use-http';
 import { getAuth } from "../../../utils/Auth";
 import { Link } from "react-router-dom";
 import Loader from "../../Loader/Loader";
+import { modalsActions } from "../../../store/Modals/Modals";
 
 const Record = (props) => {
   const img = require("../../../assets/images/personal.png");
@@ -17,12 +18,17 @@ const Record = (props) => {
   const [isLiked, setIsLiked] = useState(record?.is_liked);
   const [likesCount, setLikesCount] = useState(record?.likes_count);
   const [commentsCount, setCommentsCount] = useState(record?.comments_count);
-  const { token } = getAuth();
-  const { loggedUser } = getAuth();
+  const { token, isAuth, loggedUser } = getAuth();
+  // const { loggedUser } = getAuth();
+  const dispatch = useDispatch();
   const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * 10));
   const lang = useSelector(state => {
     return state.lang.globalLang;
   });
+
+  const openLoginModal = () => {
+    dispatch(modalsActions.openLoginModal());
+  }
 
   useEffect(() => {
     setRandomNum(Math.floor(Math.random() * 10));
@@ -39,59 +45,71 @@ const Record = (props) => {
     setCommentsCount(prev => prev + 1);
   }
   const likeBtnHandler = () => {
-    toggleLike();
-    sendRequest(
-      {
-        url: `records/${record?.id}/reactions`,
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
+    if (isAuth) {
+      toggleLike();
+      sendRequest(
+        {
+          url: `records/${record?.id}/reactions`,
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          method: 'POST',
+          body: { reaction: record?.is_liked ? `unlike` : `like` }
         },
-        method: 'POST',
-        body: { reaction: record?.is_liked ? `unlike` : `like` }
-      },
-      data => {
-        setRecord(data.data);
-        setCommentsCount(data.data.comments_count);
-      },
-      err => {
-        toggleLike();
-      }
-    )
+        data => {
+          setRecord(data.data);
+          setCommentsCount(data.data.comments_count);
+        },
+        err => {
+          toggleLike();
+        }
+      )
+    } else {
+      openLoginModal();
+    }
   }
   const handleFollow = () => {
-    sendRequest(
-      {
-        url: `users/${record.user.id}/follow`,
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`
+    if (isAuth) {
+      sendRequest(
+        {
+          url: `users/${record.user.id}/follow`,
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        },
+        data => {
+          // setRecordUser(data.data);
+          props.onRecordChange();
+        },
+        err => {
         }
-      },
-      data => {
-        // setRecordUser(data.data);
-        props.onRecordChange();
-      },
-      err => {
-      }
-    )
+      )
+    } else {
+      openLoginModal();
+    }
   }
   const handleUnFollow = () => {
-    sendRequest(
-      {
-        url: `users/${record.user.id}/unfollow`,
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`
+    if (isAuth) {
+      sendRequest(
+        {
+          url: `users/${record.user.id}/unfollow`,
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        },
+        data => {
+          // setRecordUser(data.data);
+          props.onRecordChange();
+        },
+        err => {
         }
-      },
-      data => {
-        // setRecordUser(data.data);
-        props.onRecordChange();
-      },
-      err => {
-      }
-    )
+      )
+    } else {
+      openLoginModal();
+    }
   }
 
   return (
