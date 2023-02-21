@@ -5,7 +5,6 @@ import Profile from './views/Profile/Profile';
 import Quran from './views/Quran/Quran';
 import Login2 from './views/Login2/Login2';
 import Login from './components/Login/Login';
-
 import VerificationCode from './components/VerificationCode/VerificationCode';
 import NotFoundPage from './views/NotFoundPage/NotFoundPage';
 import { Fragment, useEffect, useState } from 'react';
@@ -14,26 +13,9 @@ import { langActions } from './store/Lang/Lang';
 import { checkAuthLoader } from './utils/Auth';
 import AdminLogin from './views/AdminLogin/AdminLogin';
 import BasicLayout from './views/BasicLayout/BasicLayout';
-import {
-  createBrowserRouter,
-  redirect,
-  RouterProvider,
-} from "react-router-dom";
-import Home from "./views/Home/Home";
-import Islamic from "./views/Islamic/Islamic";
-import Profile from "./views/Profile/Profile";
-import Quran from "./views/Quran/Quran";
-import Login from "./views/Login/Login";
-import VerificationCode from "./components/VerificationCode/VerificationCode";
-import NotFoundPage from "./views/NotFoundPage/NotFoundPage";
-import { Fragment, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { langActions } from "./store/Lang/Lang";
 import { modalsActions } from "./store/Modals/Modals";
 import { getAuth } from "./utils/Auth";
 
-import AdminLogin from "./views/AdminLogin/AdminLogin";
-import BasicLayout from "./views/BasicLayout/BasicLayout";
 
 function App() {
 
