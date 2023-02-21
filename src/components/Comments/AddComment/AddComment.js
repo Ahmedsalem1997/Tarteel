@@ -54,7 +54,7 @@ const AddComment = (props) => {
 
         <div className="add-comment-actions">
           <button type="submit"><Translate id="button.addComment" /></button>
-          {auth?.loggedUser?.is_sheikh && <AudioRecord onRecordFinished={onRecordFinished} showTitle={false} />}
+          {auth?.loggedUser?.is_sheikh ? <AudioRecord onRecordFinished={onRecordFinished} showTitle={false} /> : ''}
         </div>
       </form>
     </Fragment>
