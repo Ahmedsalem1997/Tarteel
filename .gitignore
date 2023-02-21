@@ -6,6 +6,7 @@
 .pnp.js
 /package-lock.json
 build.rar
+build.zip
 /build
 # testing
 /coverage
