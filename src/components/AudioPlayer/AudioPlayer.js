@@ -43,7 +43,7 @@ const AudioPlayer = (props) => {
                 throw new Error('Network response was not ok.');
             }).then(function (blob) {
                 //     // surfTheBlob(blob);
-                waveform.current.loadBlob(props.audio);
+                waveform.current.loadBlob(blob);
             }).catch(function (error) {
                 // console.log('There has been a problem with your fetch operation: ', error.message);
             });
