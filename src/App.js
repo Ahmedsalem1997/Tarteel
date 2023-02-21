@@ -1,19 +1,35 @@
-import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom';
-import Home from './views/Home/Home';
-import Islamic from './views/Islamic/Islamic';
-import Profile from './views/Profile/Profile';
-import Quran from './views/Quran/Quran';
-import Login from './views/Login/Login';
-import VerificationCode from './components/VerificationCode/VerificationCode';
-import NotFoundPage from './views/NotFoundPage/NotFoundPage';
-import { Fragment, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { langActions } from './store/Lang/Lang';
-import { checkAuthLoader } from './utils/Auth';
-import AdminLogin from './views/AdminLogin/AdminLogin';
-import BasicLayout from './views/BasicLayout/BasicLayout';
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
+import Home from "./views/Home/Home";
+import Islamic from "./views/Islamic/Islamic";
+import Profile from "./views/Profile/Profile";
+import Quran from "./views/Quran/Quran";
+import Login from "./views/Login/Login";
+import VerificationCode from "./components/VerificationCode/VerificationCode";
+import NotFoundPage from "./views/NotFoundPage/NotFoundPage";
+import { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { langActions } from "./store/Lang/Lang";
+import { modalsActions } from "./store/Modals/Modals";
+import { getAuth } from "./utils/Auth";
+
+import AdminLogin from "./views/AdminLogin/AdminLogin";
+import BasicLayout from "./views/BasicLayout/BasicLayout";
 
 function App() {
+
+  function checkAuthLoader() {
+    const { token } = getAuth();
+    if (!token) {
+      dispatch(modalsActions.openLoginModal());
+      return redirect("/home");
+    }
+    return null;
+  }
+
   const globalLang = useSelector((state) => {
     return state.lang.globalLang;
   });
@@ -42,16 +58,16 @@ function App() {
   }, [globalLang]);
   const router = createBrowserRouter([
     {
-      path: '/',
+      path: "/",
       element: <BasicLayout />,
       children: [
         {
           path: "/",
-          loader: () => redirect('/home')
+          loader: () => redirect("/home"),
         },
         {
           path: "/home",
-          element: < Home />
+          element: <Home />,
         },
         // {
         //   path: "login",
@@ -64,39 +80,37 @@ function App() {
         {
           path: "users/:id",
           element: <Profile />,
-          loader: checkAuthLoader
+          loader: checkAuthLoader,
         },
         {
           path: "islamic",
           element: <Islamic />,
-          loader: checkAuthLoader
+          loader: checkAuthLoader,
         },
         {
           path: "quran",
           element: <Quran />,
-          loader: checkAuthLoader
+          loader: checkAuthLoader,
         },
         {
           path: "verification-code/:mobile",
-          element: <VerificationCode />
+          element: <VerificationCode />,
         },
         {
           path: "shekh-login",
-          element: <AdminLogin />
-        }
-      ]
+          element: <AdminLogin />,
+        },
+      ],
     },
     {
       path: "*",
-      element: <NotFoundPage />
-    }
-
-  ])
+      element: <NotFoundPage />,
+    },
+  ]);
   return (
     <Fragment>
       <RouterProvider router={router} />
     </Fragment>
-
   );
 }
 
