@@ -1,43 +1,55 @@
-.login-message{
+.login-message {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 100vh;
+
+    background-color: transparent;
 }
-.error-message{
-    background-color: white;
+
+.error-message {
+
     text-align: center;
     font-size: 3rem;
-    width: 40rem;
-    i{
-        color: red;
+    width: 35rem;
+
+    i {
+        color: var(--error-color);
     }
-    p{
+
+    p {
         padding: 1rem;
     }
-    .error-message-cancel-btn{
-        background-color: red;
+
+    .error-message-cancel-btn {
+        background-color: var(--error-color);
         color: var(--white);
         padding: .5rem;
+        font-size: 1.125rem;
+    font-weight: 600;
     }
 }
-.success-message{
-    background-color: white;
+
+.success-message {
+
     text-align: center;
     font-size: 3rem;
-    width: 40rem;
-    i{
+    width: 35rem;
+
+    i {
         color: var(--main-color);
     }
-    h4{
+
+    h4 {
         padding: 1rem;
         color: var(--main-color);
     }
-    .success-message-cancel-btn{
+
+    .success-message-cancel-btn {
         background-color: var(--main-color);
         color: var(--white);
+        padding: .5rem;
         font-size: 1.125rem;
-        font-weight: 600;
+    font-weight: 600;
     }
 }
