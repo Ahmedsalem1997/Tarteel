@@ -53,10 +53,10 @@ function App() {
           path: "/home",
           element: < Home />
         },
-        {
-          path: "login",
-          element: <Login />
-        },
+        // {
+        //   path: "login",
+        //   element: <Login />
+        // },
         // {
         //   path: "subscription-login",
         //   element: <SubscriptionLogin />

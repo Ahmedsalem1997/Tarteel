@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import { Link } from 'react-router-dom';
 import { langActions } from '../../store/Lang/Lang';
 import { getAuth } from '../../utils/Auth';
+import { modalsActions } from '../../store/Modals/Modals';
 const Carousel = () => {
   const dispatch = useDispatch();
   const globalLang = useSelector(state => {
@@ -19,6 +20,9 @@ const Carousel = () => {
       dispatch(langActions.translation({ type: 'translation', lang: 'en' }));
     }
   }
+  const openLoginModal = () => {
+    dispatch(modalsActions.openLoginModal());
+  }
   return (
     <Fragment>
       <h2 className='carousel-content-title'><Translate id="carousel.title" /></h2>
@@ -31,7 +35,7 @@ const Carousel = () => {
 
       <div className="register-bar">
         <p><Translate id="carousel.bar" /></p>
-        {!isAuth && <Link to="/login"><button className="register-now-btn"><Translate id="button.subscribe" /></button></Link>}
+        {!isAuth && <button onClick={openLoginModal} className="register-now-btn"><Translate id="button.subscribe" /></button>}
         {/* {!isAuth && <Link to="/subscription-login"><button className="register-now-btn"><Translate id="button.subscribe" /></button></Link>} */}
       </div>
     </Fragment>

@@ -38,7 +38,7 @@ export function getLongTermToken(data) {
 export function checkAuthLoader() {
     const { token } = getAuth();
     if (!token) {
-        return redirect('/login');
+        return redirect('/home');
     }
     return null;
 }
