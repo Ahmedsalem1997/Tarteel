@@ -96,7 +96,6 @@ const Record = (props) => {
 
   return (
     <Fragment>
-
       {isLoading && <Loader />}
       <div className="post">
         <div className="post-header">

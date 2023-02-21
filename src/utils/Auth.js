@@ -35,10 +35,3 @@ export function getLongTermToken(data) {
     return localStorage.getItem('longTermToken');
 }
 
-export function checkAuthLoader() {
-    const { token } = getAuth();
-    if (!token) {
-        return redirect('/home');
-    }
-    return null;
-}
