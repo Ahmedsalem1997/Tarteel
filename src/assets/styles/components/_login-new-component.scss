@@ -14,7 +14,7 @@
     width: 35rem;
 
     i {
-        color: $error;
+        color: var(--error-color);
     }
 
     p {
@@ -22,7 +22,7 @@
     }
 
     .error-message-cancel-btn {
-        background-color: $error;
+        background-color: var(--error-color);
         color: var(--white);
         padding: .5rem;
         font-size: 1.125rem;
