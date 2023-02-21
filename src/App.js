@@ -19,10 +19,18 @@ import { getAuth } from "./utils/Auth";
 
 function App() {
 
-  function checkAuthLoader() {
-    const { token } = getAuth();
-    if (!token) {
+  const checkAuthLoader = () => {
+    const { isAuth } = getAuth();
+    if (!isAuth) {
       dispatch(modalsActions.openLoginModal());
+      return redirect("/home");
+    }
+    return null;
+  }
+  const checkLogeedInLoader = () => {
+    const { isAuth } = getAuth();
+    if (isAuth) {
+      // dispatch(modalsActions.openLoginModal());
       return redirect("/home");
     }
     return null;
@@ -57,7 +65,8 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "login",
-      element: <Login />
+      element: <Login />,
+      loader: checkLogeedInLoader
     },
     {
       path: "/",
