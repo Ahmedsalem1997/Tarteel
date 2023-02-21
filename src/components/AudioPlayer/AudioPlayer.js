@@ -1,10 +1,13 @@
 import Wavesurfer from "wavesurfer.js";
 import { useEffect, useRef, useState } from "react";
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
+import { getAuth } from "../../utils/Auth";
 import { audioActions } from "../../store/audio/audio";
+import { modalsActions } from '../../store/Modals/Modals';
 
 const AudioPlayer = (props) => {
     const dispatch = useDispatch();
+    const { isAuth } = getAuth();
     const waveform = useRef(null);
     // const audio = require('../../assets/audios/test.mp3');
     const [isPlaying, setIsPlaying] = useState(false);
@@ -52,45 +55,53 @@ const AudioPlayer = (props) => {
             2. Create a blob from the array buffer
             3. Load the audio using wavesurfer's loadBlob API
             */
-        }
-        waveform.current.on("pause", () => {
-            setIsPlaying(false);
-        });
-        waveform.current.on("play", () => {
-            setIsPlaying(true);
-        });
-        return (() => {
-            waveform.current.pause();
-            dispatch(audioActions.removeAudio(waveform.current));
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const toggleAudio = () => {
-        audios.forEach(audio => {
-            if (audio.isPlaying()) {
-                audio.pause();
-            }
-        });
-        // Check if the audio is already playing
-        if (isPlaying) {
-            waveform.current.pause();
-            setIsPlaying(false);
-        } else {
-            waveform.current.play();
-            setIsPlaying(true);
-        }
+    }
+    waveform.current.on("pause", () => {
+      setIsPlaying(false);
+    });
+    waveform.current.on("play", () => {
+      setIsPlaying(true);
+    });
+    return () => {
+      waveform.current.pause();
+      dispatch(audioActions.removeAudio(waveform.current));
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    return (
-        <div className="audio-player">
-            <button className="play-pause-btn" onClick={toggleAudio}>
-                <i className={`fa-solid ${isPlaying ? 'fa-pause' : 'fa-play'} ${globalLang === 'ar' ? 'fa-flip-horizontal' : ''}`}></i>
-            </button>
-            <div id={`waveform-${props.id}`} />
-        </div>
+  const toggleAudio = () => {
+    //
+    if (isAuth) {
+      audios.forEach((audio) => {
+        if (audio.isPlaying()) {
+          audio.pause();
+        }
+      });
+      // Check if the audio is already playing
+      if (isPlaying) {
+        waveform.current.pause();
+        setIsPlaying(false);
+      } else {
+        waveform.current.play();
+        setIsPlaying(true);
+      }
+    } else {
+        dispatch(modalsActions.openLoginModal());
+    }
+  };
 
-    );
+  return (
+    <div className="audio-player">
+      <button className="play-pause-btn" onClick={toggleAudio}>
+        <i
+          className={`fa-solid ${isPlaying ? "fa-pause" : "fa-play"} ${
+            globalLang === "ar" ? "fa-flip-horizontal" : ""
+          }`}
+        ></i>
+      </button>
+      <div id={`waveform-${props.id}`} />
+    </div>
+  );
 };
 
 export default AudioPlayer;
