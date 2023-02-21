@@ -56,21 +56,22 @@ function App() {
   }, [globalLang]);
   const router = createBrowserRouter([
     {
+      path: "login",
+      element: <Login />
+    },
+    {
       path: "/",
       element: <BasicLayout />,
       children: [
         {
-          path: "/",
+          path: "",
           loader: () => redirect("/home"),
         },
         {
-          path: "/home",
+          path: "home",
           element: <Home />,
         },
-        {
-          path: "login",
-          element: <Login />
-        },
+
         // {
         //   path: "subscription-login",
         //   element: <SubscriptionLogin />

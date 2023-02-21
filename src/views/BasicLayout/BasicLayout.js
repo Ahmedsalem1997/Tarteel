@@ -7,7 +7,7 @@ import MediaPlayer from "../../components/MediaPlayer/MediaPlayer";
 import NotRegistered from "../../components/NotRegistered/NotRegistered";
 import useHTTP from "../../hooks/use-http";
 import { modalsActions } from "../../store/Modals/Modals";
-import { getAuth, getLongTermToken, setAuth, setLongTermToken } from "../../utils/Auth";
+import { getAuth, setAuth } from "../../utils/Auth";
 
 const BasicLayout = () => {
     const modals = useSelector(state => state.modals);
@@ -17,58 +17,38 @@ const BasicLayout = () => {
     const [message, setMessage] = useState(searchParams.get('message'));
     const [error, setError] = useState(searchParams.get('error'));
     const { isLoading, error: requestError, sendRequest } = useHTTP();
-    const auth = getAuth();
+    let auth = getAuth();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const fetchUser = (code) => {
+    const fetchCurrentUser = () => {
         sendRequest(
             {
-                url: 'codes',
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: {
-                    authorization_code: code,
-                    long_term_token: getLongTermToken(),
-                    operator_id: 1
+                url: `users/${auth.loggedUser.id}`,
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${auth.token}`
                 }
-
             },
-            data => {
-                console.log(data);
-                setAuth(data.data);
-                if (
-                    data.data.user.name &&
-                    data.data.user.email
-                ) {
-                    console.log('user exist and login');
-                    navigate(`/`);
-                } else {
-                    console.log('user not exist and register');
+            (data) => {
+                setAuth({ loggedUser: data.data });
+                if (!data.data.email || !data.data.name) {
                     openEditProfileModal();
+                } else {
+                    navigate('/home');
                 }
             },
             err => {
-                console.log(err);
-
+                navigate('/home');
             }
         )
     }
-    useEffect(() => {
-        if (auth?.token && auth?.user) {
-            if (!auth.user.email || !auth.user.name) {
-                openEditProfileModal();
-            } else {
-                navigate('/home');
-            }
 
-        }
-        else if (status && message && code) {
-            if ((status === '200' && message === 'OK' && code) || error === 'USER_ALREADY_SUBSCRIBED') {
-                fetchUser(code);
-            }
-        } else if (error) {
-            console.log('subscription error', error);
+    useEffect(() => {
+        if (auth?.isAuth) {
+            fetchCurrentUser();
+        } else {
+            navigate('/home');
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
