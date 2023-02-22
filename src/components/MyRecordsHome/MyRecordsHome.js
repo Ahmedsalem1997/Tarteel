@@ -32,22 +32,17 @@ const MyRecordsHome = () => {
   }, [addNewRecordModalOpen]);
 
   return (
-    <div className="home-section-content">
-      <div className="row gy-5">
-
-        <div className="col-xl-3 col-md-4 col-sm-6 col-xs-12">
-          <NewRecord />
-        </div>
-        {isLoading && <Loader />}
-        {userRecords?.map((record) => {
-          return <div className="col-xl-3 col-md-4 col-sm-6 col-xs-12"><ExsitingRecord record={record} key={record.id}></ExsitingRecord></div>;
-        })}
-
-
-      </div>
-
-
+    <div className="row gy-3">
+      {/* <div className="home-section-content"> */}
+      {/* <div className="col-xl col-lg col-md-4 col-sm-6 col-xs-12"> */}
+      <NewRecord />
+      {/* </div> */}
+      {isLoading && <Loader />}
+      {userRecords?.map((record) => {
+        return <ExsitingRecord record={record} key={record.id}></ExsitingRecord>;
+      })}
     </div>
+    // </div>
   );
 };
 
