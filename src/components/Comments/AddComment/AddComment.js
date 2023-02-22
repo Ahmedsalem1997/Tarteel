@@ -92,7 +92,7 @@ const AddComment = (props) => {
         <div className="add-comment-actions">
           <button type="submit" disabled={!auth.isAuth}><Translate id="button.addComment" /></button>
           <AudioRecorder
-            onRecordingComplete={(blob) => setUploadedRecord(blob)}
+            onRecordingComplete={(blob) => onRecordFinished(blob)}
             recorderControls={{
               startRecording,
               stopRecording,

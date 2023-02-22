@@ -13,6 +13,7 @@ const Comments = (props) => {
   const { isLoading, error, sendRequest } = useHTTP();
   const [comments, setComments] = useState([]);
   const dispatch = useDispatch();
+  const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * 100));
   // const [commentsToShow, setCommentsToShow] = useState([]);
   // const [page, setPage] = useState(1);
   // const [perPage, setPerPage] = useState(5);
@@ -70,6 +71,7 @@ const Comments = (props) => {
 
     props.onAddComment();
     getRecordComments();
+    setRandomNum(Math.floor(Math.random() * 100));
     // setPage(currentPage);
   }
   return (
@@ -85,7 +87,7 @@ const Comments = (props) => {
         <button className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
       </div>} */}
       <div className="add-new-comment">
-        <AddComment recordId={props.recordId} onAddComment={onAddComment} />
+        <AddComment key={randomNum} recordId={props.recordId} onAddComment={onAddComment} />
       </div>
     </Fragment>
   );
