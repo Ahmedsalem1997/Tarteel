@@ -6,6 +6,8 @@ import useHTTP from "../../hooks/use-http";
 import { modalsActions } from "../../store/Modals/Modals";
 import { setLongTermToken } from "../../utils/Auth";
 import Modal from "../Modal/Modal";
+import Loader from "../Loader/Loader";
+
 
 
 const NotRegistered = () => {
@@ -38,6 +40,7 @@ const NotRegistered = () => {
   }
   return (
     <Modal>
+      {isLoading && <Loader />}
       <div className="not-registered">
         <div className="not-registered-header">
           <h3><Translate id="notRegistered.title" /></h3>
