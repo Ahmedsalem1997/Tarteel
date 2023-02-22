@@ -9,7 +9,7 @@ const Home = () => {
   const { isAuth, loggedUser } = getAuth();
   return (
     <LayoutWrapper>
-      <div className="container-fluid gx-1 gx-md-5">
+      <div className="container-fluid gx-2 gx-md-5">
         {isAuth && (
           <HomeSection header="records.myRecords" showAll={`users/${loggedUser.id}`}>
             <MyRecordsHome />
