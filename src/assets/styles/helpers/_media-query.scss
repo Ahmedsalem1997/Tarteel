@@ -127,4 +127,19 @@
     }
   }
 
+  .content {
+    max-width: 95vw;
+  }
+
+  .audio-source {
+    width: 80vw;
+  }
+
+  .add-new-record-buttons {
+    flex-direction: column;
+    justify-content: space-between;
+    column-gap: 0;
+    row-gap: 1rem;
+  }
+  
 }

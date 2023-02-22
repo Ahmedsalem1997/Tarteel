@@ -24,10 +24,12 @@ const AudioPlayer = (props) => {
       waveform.current = Wavesurfer.create({
         container: `#waveform-${props.id}`,
         waveColor: "#75b10e",
+        progressColor: 'purple',
         barGap: 1,
         barWidth: 1,
         barRadius: 1,
         cursorWidth: 0,
+        splitChannels: true,
         height: 50,
         rtl: globalLang === 'ar' ? true : false,
         xhr: { mode: 'no-cors' },
