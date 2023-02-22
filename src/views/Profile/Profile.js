@@ -15,7 +15,7 @@ const Profile = () => {
                 <ProfileHeader id={params.id} />
             </CarouselWrapper>
 
-            <div className="container-fluid">
+            <div className="container-fluid gx-1 gx-md-5">
                 <div className="user-records">
                     <MyRecords userId={params.id} />
                 </div>

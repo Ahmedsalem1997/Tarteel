@@ -2,6 +2,7 @@ body {
   background-color: var(--main-bg);
   color: var(--text-color);
   margin: 0;
+  overflow-x: hidden;
   * {
     box-sizing: border-box;
     font-family: var(--main-font-family);
@@ -39,5 +40,5 @@ a {
 }
 
 .audio-source {
-  width: 40vw;
+  width: 100%;
 }
