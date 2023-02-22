@@ -6,6 +6,13 @@
 
     font-size: 13px;
   }
+  
+  .add-new-record-buttons {
+    flex-direction: column;
+    justify-content: space-between;
+    column-gap: 0;
+    row-gap: 1rem;
+  }
 
   // Quran
   .quran {
@@ -26,6 +33,13 @@
     }
 
     font-size: 11px;
+  }
+  
+  .add-new-record-buttons {
+    flex-direction: column;
+    justify-content: space-between;
+    column-gap: 0;
+    row-gap: 1rem;
   }
 
   // Footer
@@ -71,6 +85,12 @@
   .black-block {
     width: 100vw !important;
   }
+
+  .audio-record {
+    audio {
+      max-width: 21rem;
+    }
+  }
 }
 
 @media screen and (max-width: 567px) {
@@ -80,6 +100,11 @@
     }
 
     font-size: 10px;
+  }
+
+  .content {
+    width: 95vw;
+    max-width: 100vw;
   }
 
   // Home Subscribe
@@ -128,10 +153,7 @@
     padding: 1rem 5rem;
   }
 
-  .content {
-    width: 95vw;
-    max-width: 100vw;
-  }
+
 
   .audio-source {
     width: 80vw;
@@ -150,12 +172,6 @@
       &-surah {
         width: 80%;
       }
-    }
-  }
-
-  .audio-record {
-    audio {
-      max-width: 21rem;
     }
   }
 }

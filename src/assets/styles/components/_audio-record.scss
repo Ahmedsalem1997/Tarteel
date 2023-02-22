@@ -1,20 +1,23 @@
-
 .audio-record {
-    .audio-recorder {
-        display: inline-flex;
-        box-shadow: none;
-        width: auto;
-        &.recording {
-            display: flex;
-        }
-        &:not(.recording) {
-            padding: 0;
-            background: transparent;
-            .audio-recorder-mic {
-                filter: invert(1);
-                height: 1.5rem;
-                margin-inline-start: 0.5rem;
-            }
-        }
+  audio {
+    max-width: 15rem;
+  }
+  padding: 8px 0 0 0;
+  .audio-recorder {
+    display: inline-flex;
+    box-shadow: none;
+    width: auto;
+    &.recording {
+      display: flex;
     }
+    &:not(.recording) {
+      padding: 0;
+      background: transparent;
+      .audio-recorder-mic {
+        filter: invert(1);
+        height: 1.5rem;
+        margin-inline-start: 0.5rem;
+      }
+    }
+  }
 }
