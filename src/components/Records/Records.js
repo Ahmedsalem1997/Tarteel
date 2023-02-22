@@ -43,7 +43,7 @@ const Records = (props) => {
         <Fragment>
             {isLoading && <Loader />}
             {records?.map((record) => {
-                return <Record key={record.id} record={record} onRecordChange={getRecords} />
+                return <Record hideFollow={props.hideFollow} key={record.id} record={record} onRecordChange={getRecords} />
             })}
             {/* {
                 records.length < totalRecords &&

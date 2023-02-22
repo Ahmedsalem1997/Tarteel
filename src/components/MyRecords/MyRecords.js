@@ -2,7 +2,7 @@
 import Records from "../Records/Records";
 
 const MyRecords = (props) => {
-    return <Records recordsUrl={`users/${props.userId}/records`} />
+    return <Records hideFollow={true} recordsUrl={`users/${props.userId}/records`} />
 }
 
 export default MyRecords;
