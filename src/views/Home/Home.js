@@ -11,7 +11,7 @@ const Home = () => {
     <LayoutWrapper>
       <div className="container-fluid gx-2 gx-md-5">
         {isAuth && (
-          <HomeSection header="records.myRecords" showAll={`users/${loggedUser.id}`}>
+          <HomeSection header="records.myRecords" showAll={`/users/${loggedUser.id}`}>
             <MyRecordsHome />
           </HomeSection>
         )}
@@ -19,7 +19,7 @@ const Home = () => {
           <LatestRecords />
         </HomeSection>
 
-        <HomeSection header="islamicContent.title" showAll="islamic">
+        <HomeSection header="islamicContent.title" showAll="/islamic">
           <IslamicContentHome />
         </HomeSection>
       </div>
