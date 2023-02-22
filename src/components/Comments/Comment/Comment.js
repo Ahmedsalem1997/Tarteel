@@ -2,7 +2,7 @@ import AudioPlayer from "./../../AudioPlayer/AudioPlayer";
 import useHTTP from "./../../../hooks/use-http";
 import { getAuth } from "../../../utils/Auth";
 import { useSelector } from "react-redux";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Loader from "../../Loader/Loader";
 
 const Comment = (props) => {
@@ -15,12 +15,17 @@ const Comment = (props) => {
   const { token } = getAuth();
   const [isLiked, setIsLiked] = useState(comment.is_liked);
   const [likesCount, setLikesCount] = useState(comment.likes_count);
+  const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * 10));
+
   const toggleLike = () => {
     setIsLiked(isLikedPrev => {
       setLikesCount(prev => isLikedPrev ? prev - 1 : prev + 1);
       return !isLikedPrev
     });
   }
+  useEffect(() => {
+    setRandomNum(Math.floor(Math.random() * 10));
+  }, [lang])
   const likeBtnHandler = () => {
     toggleLike();
     sendRequest(
@@ -69,7 +74,7 @@ const Comment = (props) => {
         <div className="comment-content">
           {comment?.file && (
             <div className="comment-content-audio">
-              <AudioPlayer id={`comment-${comment?.id}`} />
+              <AudioPlayer audio={comment.file} key={Math.floor(Math.random() * 100) * randomNum} id={`comment-${comment?.id}`} />
             </div>
           )}
           {comment?.text && (
