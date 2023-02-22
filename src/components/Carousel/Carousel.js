@@ -1,17 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Translate } from "../../helpers/Translate/Translate";
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { langActions } from "../../store/Lang/Lang";
 import { getAuth } from "../../utils/Auth";
 import { modalsActions } from "../../store/Modals/Modals";
 const Carousel = () => {
   const dispatch = useDispatch();
-  const globalLang = useSelector((state) => {
-    return state.lang.globalLang;
-  });
   const { isAuth } = getAuth();
-
   const openAddNewRecordModal = () => {
     if (!isAuth) {
       dispatch(modalsActions.openLoginModal());
@@ -20,13 +14,6 @@ const Carousel = () => {
     }
   };
 
-  // const changeLang = () => {
-  //   if (globalLang === "en") {
-  //     dispatch(langActions.translation({ type: "translation", lang: "ar" }));
-  //   } else {
-  //     dispatch(langActions.translation({ type: "translation", lang: "en" }));
-  //   }
-  // };
   const openLoginModal = () => {
     dispatch(modalsActions.openLoginModal());
   };
@@ -70,7 +57,6 @@ const Carousel = () => {
             <Translate id="button.subscribe" />
           </button>
         )}
-        {/* {!isAuth && <Link to="/subscription-login"><button className="register-now-btn"><Translate id="button.subscribe" /></button></Link>} */}
       </div>
     </Fragment>
   );

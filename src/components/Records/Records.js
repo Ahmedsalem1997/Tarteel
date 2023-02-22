@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState } from "react";
-import Translate from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
 import { getAuth } from "../../utils/Auth";
 import Loader from "../Loader/Loader";

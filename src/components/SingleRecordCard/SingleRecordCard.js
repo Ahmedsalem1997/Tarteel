@@ -4,7 +4,6 @@ const SingleRecordCard = (props) => {
 
             <div className="single-record-card">
                 {props.children}
-                {/* <button className="play-pause-btn"></button> */}
             </div>
         </div>
     )

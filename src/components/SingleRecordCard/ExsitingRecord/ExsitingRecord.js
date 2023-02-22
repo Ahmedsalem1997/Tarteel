@@ -53,7 +53,6 @@ const ExsitingRecord = (props) => {
           </button>
         )}
       </div>
-      {/* <button className="play-pause-btn"></button> */}
     </SingleRecordCard>
   );
 };

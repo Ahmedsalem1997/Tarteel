@@ -1,5 +1,4 @@
 import React from "react";
-import ReactPlayer from "react-player";
 import { useDispatch, useSelector } from "react-redux";
 import { modalsActions } from "../../store/Modals/Modals";
 import Modal from "../Modal/Modal";

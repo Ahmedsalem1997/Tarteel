@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import useHTTP from "../../hooks/use-http";
 import { useSelector } from "react-redux";
-import Translate from "../../helpers/Translate/Translate";
 import Loader from "../Loader/Loader";
 import { getAuth } from "../../utils/Auth";
 

@@ -4,8 +4,6 @@ import useTranslate from "../../../hooks/use-translate";
 import useHTTP from "../../../hooks/use-http";
 import { getAuth } from "../../../utils/Auth";
 import Loader from "../../Loader/Loader";
-import AddNewRecord from "../../AddNewRecord/AddNewRecord";
-import AudioRecord from "../../AudioRecord/AudioRecord";
 import { useDispatch } from "react-redux";
 import { modalsActions } from "../../../store/Modals/Modals";
 import { useAudioRecorder, AudioRecorder } from "react-audio-voice-recorder";
@@ -41,7 +39,6 @@ const AddComment = (props) => {
           url: `records/${props.recordId}/comments`,
           method: 'POST',
           headers: {
-            // 'Content-Type': 'application/json',
             'Authorization': `Bearer ${auth.token}`
           },
           body: formData

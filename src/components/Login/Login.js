@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import LoginWrapper from "../../components/LoginWrapper/LoginWrapper";
-import { useDispatch } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useHTTP from "../../hooks/use-http";
-import { modalsActions } from "../../store/Modals/Modals";
 import { getAuth, getLongTermToken, setAuth } from "../../utils/Auth";
 import Loader from "../Loader/Loader";
 
@@ -16,9 +14,7 @@ const Login = () => {
     const [message, setMessage] = useState(searchParams.get('message'));
     const [error, setError] = useState(searchParams.get('error'));
     const { isLoading, error: requestError, sendRequest } = useHTTP();
-    const auth = getAuth();
     const navigate = useNavigate();
-    // const dispatch = useDispatch();
     useEffect(() => {
         if (status && message && code) {
             if (code) {
@@ -64,30 +60,14 @@ const Login = () => {
             data => {
                 console.log(data);
                 setAuth(data.data);
-                // if (
-                //     data.data.user.name &&
-                //     data.data.user.email
-                // ) {
-                //     console.log('user exist and login');
-                //     // navigate(`/home`);
-                // } else {
-                //     console.log('user not exist and register');
-                //     // openEditProfileModal();
-                // }
             },
             err => {
                 console.log('3333', err)
                 setErrorMessage('something went wrong');
                 setSuccessMessage('');
-                // setTimeout(() => {
-                // navigate('/login');
-                // });
             }
         )
     }
-    // const openEditProfileModal = () => {
-    //     dispatch(modalsActions.openEditProfileModal());
-    // }
     return (
         <LoginWrapper>
             {isLoading && <Loader />}

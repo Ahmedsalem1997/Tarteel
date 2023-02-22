@@ -33,16 +33,12 @@ const MyRecordsHome = () => {
 
   return (
     <div className="row gy-3">
-      {/* <div className="home-section-content"> */}
-      {/* <div className="col-xl col-lg col-md-4 col-sm-6 col-xs-12"> */}
       <NewRecord />
-      {/* </div> */}
       {isLoading && <Loader />}
       {userRecords?.map((record) => {
         return <ExsitingRecord record={record} key={record.id}></ExsitingRecord>;
       })}
     </div>
-    // </div>
   );
 };
 

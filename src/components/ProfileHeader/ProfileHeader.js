@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const ProfileHeader = (props) => {
   const img = require("../../assets/images/personal.png");
-  const [followersCount, setFollowersCount] = useState(0);
+  // const [followersCount, setFollowersCount] = useState(0);
   const { token } = getAuth();
   const { isLoading, sendRequest } = useHTTP();
   const [user, setUser] = useState();

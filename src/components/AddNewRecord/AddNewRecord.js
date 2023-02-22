@@ -4,7 +4,6 @@ import Translate from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
 import { modalsActions } from "../../store/Modals/Modals";
 import { getAuth } from "../../utils/Auth";
-import AudioRecord from "../AudioRecord/AudioRecord";
 import { isValidFileUploaded } from "../../utils/FileValidation";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Loader from "../Loader/Loader";

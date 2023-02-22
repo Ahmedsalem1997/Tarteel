@@ -4,7 +4,6 @@ import useHTTP from "../../hooks/use-http";
 import { getAuth } from "../../utils/Auth";
 import Loader from "../Loader/Loader";
 import AddComment from "./AddComment/AddComment";
-import Translate from "../../helpers/Translate/Translate";
 import { useDispatch } from "react-redux";
 import { modalsActions } from "../../store/Modals/Modals";
 

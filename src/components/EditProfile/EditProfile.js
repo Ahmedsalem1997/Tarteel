@@ -4,7 +4,7 @@ import { Translate } from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
 import useTranslate from "../../hooks/use-translate";
 import { useDispatch } from "react-redux";
-import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { getAuth, setAuth } from "../../utils/Auth";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Modal from "../Modal/Modal";
@@ -16,7 +16,6 @@ import { isValidFileUploaded } from '../../utils/FileValidation';
 const EditProfile = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
     const searchParams = useSearchParams();
     const img = require("../../assets/images/record.jpg");
     const { isLoading, error, sendRequest } = useHTTP();
@@ -53,6 +52,7 @@ const EditProfile = (props) => {
             setNewAvatar(auth.loggedUser.avatar);
         }
         setToken(auth.token);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const onEditProfileHandler = (e) => {
         e.preventDefault();

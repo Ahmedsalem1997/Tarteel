@@ -12,7 +12,6 @@ const Quran = () => {
         setSelectedSurah(surahNumber);
     }
     return (
-        // <LayoutWrapper>
         <Fragment>
             <CarouselWrapper>
                 <Carousel />
@@ -27,8 +26,6 @@ const Quran = () => {
                 </div>
             </div>
         </Fragment>
-
-        // </LayoutWrapper>
     )
 }
 

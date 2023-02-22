@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import LoginWrapper from "../../components/LoginWrapper/LoginWrapper";
 import useHTTP from "../../hooks/use-http";
-// import { useNavigate } from "react-router-dom";
 import Translate from "../../helpers/Translate//Translate";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 const SubscriptionLogin = () => {
@@ -11,7 +10,6 @@ const SubscriptionLogin = () => {
     const [errorMessage, setErrorMessage] = useState("");
     const { isLoading, error, sendRequest } = useHTTP();
     const [mobileError, setMobileError] = useState("");
-    // const navigate = useNavigate();
     const onLoginHandler = (e) => {
         e.preventDefault();
         if (mobileNumber.trim().length !== 12) {

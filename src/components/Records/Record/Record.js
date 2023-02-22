@@ -19,7 +19,6 @@ const Record = (props) => {
   const [likesCount, setLikesCount] = useState(record?.likes_count);
   const [commentsCount, setCommentsCount] = useState(record?.comments_count);
   const { token, isAuth, loggedUser } = getAuth();
-  // const { loggedUser } = getAuth();
   const dispatch = useDispatch();
   const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * 10));
   const lang = useSelector(state => {
@@ -32,7 +31,6 @@ const Record = (props) => {
 
   useEffect(() => {
     setRandomNum(Math.floor(Math.random() * 10));
-    // setRecordUser(props.record.user);
   }, [lang])
   const toggleLike = () => {
     setIsLiked(isLikedPrev => {
@@ -173,7 +171,6 @@ const Record = (props) => {
           <Translate id="record.toAyah" /> &nbsp;
           {record?.to_ayah_number} &nbsp;
           {lang === 'ar' ? record?.surah?.name : record?.surah?.english_name}
-          {/* <Translate id="record.surah" />  &nbsp;*/}
         </div>
         <div className="post-feedback">
           <span className="post-feedback-likes-comments">
