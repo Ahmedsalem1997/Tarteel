@@ -1,8 +1,9 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Outlet, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import AddNewRecord from "../../components/AddNewRecord/AddNewRecord";
 import EditProfile from "../../components/EditProfile/EditProfile";
+import Loader from "../../components/Loader/Loader";
 import MediaPlayer from "../../components/MediaPlayer/MediaPlayer";
 import NotRegistered from "../../components/NotRegistered/NotRegistered";
 import useHTTP from "../../hooks/use-http";
@@ -11,11 +12,6 @@ import { getAuth, setAuth } from "../../utils/Auth";
 
 const BasicLayout = () => {
     const modals = useSelector(state => state.modals);
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [code, setCode] = useState(searchParams.get('code'));
-    const [status, setstatus] = useState(searchParams.get('status'));
-    const [message, setMessage] = useState(searchParams.get('message'));
-    const [error, setError] = useState(searchParams.get('error'));
     const { isLoading, error: requestError, sendRequest } = useHTTP();
     let auth = getAuth();
     const navigate = useNavigate();
@@ -58,6 +54,7 @@ const BasicLayout = () => {
     }
     return (
         <Fragment>
+            {isLoading && <Loader />}
             {modals.editProfileModal && <EditProfile />}
             {modals.addNewRecordModal && <AddNewRecord />}
             {modals.loginModal && <NotRegistered />}
