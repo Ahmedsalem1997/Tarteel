@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { modalsActions } from "../../store/Modals/Modals";
 import Modal from "../Modal/Modal";
 import { Translate } from "../../helpers/Translate/Translate";
+import ReactPlayer from "react-player";
 
 const MediaPlayer = () => {
   const dispatch = useDispatch();
@@ -34,10 +35,15 @@ const MediaPlayer = () => {
           {lang === "ar" ? record?.title : record?.title_en}
         </span>
       )}
-      {/* <ReactPlayer height="5rem" url={record.file} controls width='80vw'/> */}
-      <audio controls className="audio-source">
+      <ReactPlayer
+        height="5rem"
+        url={record.file}
+        controls
+        className="audio-source"
+      />
+      {/* <audio controls className="audio-source">
         <source src={record.file} type="audio/mp3"></source>
-      </audio>
+      </audio> */}
     </Modal>
   );
 };
