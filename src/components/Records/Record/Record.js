@@ -69,6 +69,31 @@ const Record = (props) => {
       openLoginModal();
     }
   }
+  const shareBtnHandler = () => {
+    if (isAuth) {
+      // toggleLike();
+      sendRequest(
+        {
+          url: `records/${record?.id}/reactions`,
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          method: 'POST',
+          body: { reaction: record?.is_shared ? `unshare` : `share` }
+        },
+        data => {
+          setRecord(data.data);
+          // setCommentsCount(data.data.comments_count);
+        },
+        err => {
+          // toggleLike();
+        }
+      )
+    } else {
+      openLoginModal();
+    }
+  }
   const handleFollow = () => {
     if (isAuth) {
       sendRequest(
@@ -157,11 +182,12 @@ const Record = (props) => {
             <p>{commentsCount}</p>
             <i className="fa-regular fa-comment" onClick={() => setShowComments(prev => !prev)}></i>
           </span>
-          <div>
-            <span className="post-feedback-share">
-              <i className="fa-solid fa-arrow-up-from-bracket"></i>
+          <span>
+            <span className="post-feedback-likes-comments">
+              <p>{record?.shares_count}</p>
+              <i onClick={shareBtnHandler} className="fa-solid fa-arrow-up-from-bracket"></i>
             </span>
-          </div>
+          </span>
         </div>
         {showComments && <div className="post-comments">
           <Comments recordId={record?.id} onAddComment={onCommentAdded} />
