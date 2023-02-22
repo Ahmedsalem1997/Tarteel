@@ -18,15 +18,15 @@ html {
   font-size: 14px;
 }
 
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 14px;
 }
 
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: var(--main-bg);
 }
 
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: var(--secondary-btn-bg);
 }
 

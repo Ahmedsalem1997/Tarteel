@@ -46,12 +46,6 @@
     padding: 0.5rem;
     overflow-y: auto;
     height: 100vh;
-    // &::-webkit-scrollbar-track {
-    //   background: var(--main-bg);
-    // }
-    // &::-webkit-scrollbar-thumb {
-    //   background-color: var(--secondary-btn-bg);
-    // }
 
     &-surah {
       display: flex;
@@ -135,11 +129,4 @@
       }
     }
   }
-}
-
-.quran-navigator::-webkit-scrollbar-track {
-  background: var(--main-bg);
-}
-.quran-navigator::-webkit-scrollbar-thumb {
-  background-color: var(--secondary-btn-bg);
 }
