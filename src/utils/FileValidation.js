@@ -6,9 +6,9 @@ export function isValidFileUploaded(file, fileType) {
     if (fileExtensions[0] !== fileType) {
         return `${fileType}UploadNotSupported`;
     }
-    else if (!validExtensions.includes(fileExtensions[1])) {
-        return 'fileExtensionNotSupported';
-    }
+    // else if (!validExtensions.includes(fileExtensions[1])) {
+    //     return 'fileExtensionNotSupported';
+    // }
     else if (fileType === 'audio' && file.size > 15728640) {
         return 'maxAudioFileSize';
     }
