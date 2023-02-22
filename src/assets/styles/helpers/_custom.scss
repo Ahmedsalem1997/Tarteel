@@ -8,3 +8,9 @@ html[dir="rtl"] {
     @import './_ar-styles';
 }
 
+.add-new-record-buttons,
+.add-comment-actions {
+    .audio-recorder {
+        display: none;
+    }
+}

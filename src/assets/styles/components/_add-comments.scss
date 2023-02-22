@@ -14,24 +14,33 @@
       resize: none;
     }
   }
+
   &-actions {
     display: flex;
     justify-content: flex-end;
     column-gap: 1rem;
     margin: .7rem;
+
     .audio-record .audio-recorder:not(.recording) .audio-recorder-mic {
       margin-inline-start: 0;
     }
+
     button {
       background-color: var(--main-btn-bg);
       color: var(--main-btn-color);
       border-radius: 0.25rem;
       padding: 0.25rem 0.5rem;
       font-size: 1.5rem;
-      i{
+
+      i {
         font-size: 1rem;
-        color : var(--white);
+        color: var(--white);
       }
     }
+  }
+
+  &-audio {
+    display: flex;
+    justify-content: flex-end;
   }
 }

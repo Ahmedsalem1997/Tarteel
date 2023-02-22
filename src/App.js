@@ -69,11 +69,15 @@ function App() {
       loader: checkLogeedInLoader
     },
     {
+      path: "shekh-login",
+      element: <AdminLogin />,
+    },
+    {
       path: "/",
       element: <BasicLayout />,
       children: [
         {
-          path: "",
+          path: "/",
           loader: () => redirect("/home"),
         },
         {
@@ -104,10 +108,7 @@ function App() {
           path: "verification-code/:mobile",
           element: <VerificationCode />,
         },
-        {
-          path: "shekh-login",
-          element: <AdminLogin />,
-        },
+
       ],
     },
     {

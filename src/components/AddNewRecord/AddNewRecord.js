@@ -9,12 +9,14 @@ import { isValidFileUploaded } from "../../utils/FileValidation";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Loader from "../Loader/Loader";
 import Modal from "../Modal/Modal";
+import { useAudioRecorder, AudioRecorder } from "react-audio-voice-recorder";
 
 
 const AddNewRecord = (props) => {
     const [formAyahs, setFromAyahs] = useState([]);
     const [toAyahs, setToAyahs] = useState([]);
     const [uploadedRecord, setUploadedRecord] = useState(undefined);
+    const [recordedRecord, setRecordedRecord] = useState(undefined);
     const [selectedSurah, setSelectedSurah] = useState('');
     const [ayaFrom, setAyaFrom] = useState('');
     const [ayaTo, setAyaTo] = useState('');
@@ -29,6 +31,15 @@ const AddNewRecord = (props) => {
     const lang = useSelector(state => {
         return state.lang.globalLang;
     });
+    const {
+        startRecording,
+        stopRecording,
+        togglePauseResume,
+        recordingBlob,
+        isRecording,
+        isPaused,
+        recordingTime,
+    } = useAudioRecorder();
     const { token } = getAuth();
     useEffect(() => {
         getSurahList();
@@ -122,7 +133,7 @@ const AddNewRecord = (props) => {
         formData.append('surah_id', surahId);
         formData.append('from_ayah', ayaFrom);
         formData.append('to_ayah', ayaTo);
-        formData.append('file', uploadedRecord);
+        formData.append('file', uploadedRecord || recordedRecord);
         addNewRecord(formData);
 
     }
@@ -164,9 +175,24 @@ const AddNewRecord = (props) => {
         dispatch(modalsActions.closeAddNewRecordModal());
     }
 
-    const onRecordFinished = (blob) => {
-        setUploadedRecord(blob);
+    // const onRecordFinished = (blob) => {
+    //     setUploadedRecord(blob);
+    // }
+
+    const handlerRecordBtn = () => {
+        if (!isRecording && !recordingBlob) {
+            startRecording();
+        }
     }
+
+    const handleStopRecording = () => {
+        stopRecording();
+        // console.log(recordingBlob);
+        // setUploadedRecord(recordingBlob);
+    }
+    // const pauseRecordingHandler = () => {
+    //     togglePauseResume();
+    // }
     return (
         <Modal showClose={true} onClose={closeModal}>
             {isLoading && <Loader />}
@@ -216,14 +242,48 @@ const AddNewRecord = (props) => {
                     </div>
                     <div>
                         <div className="add-new-record-buttons">
-                            <button type="button" onClick={uploadFile}>{uploadedRecord?.name ? uploadedRecord?.name : <><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></>}</button>
-                            <AudioRecord onRecordFinished={onRecordFinished} showTitle={true} />
+                            <button disabled={recordingBlob || isRecording} style={{ wordBreak: 'break-word' }} type="button" onClick={uploadFile}>{uploadedRecord?.name ? uploadedRecord?.name : <><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></>}</button>
+                            <AudioRecorder
+                                onRecordingComplete={(blob) => setRecordedRecord(blob)}
+                                recorderControls={{
+                                    startRecording,
+                                    stopRecording,
+                                    togglePauseResume,
+                                    recordingBlob,
+                                    isRecording,
+                                    isPaused,
+                                    recordingTime,
+                                }}
+                            />
+                            <button disabled={uploadedRecord} type="button" onClick={handlerRecordBtn}>
+                                {(!isRecording && !recordingBlob) && <><Translate id="button.startRecording" /> <i className="fa-solid fa-microphone"></i></>}
+                                {isRecording &&
+                                    <span>
+                                        <i className="fa-solid fa-circle-stop" onClick={handleStopRecording}></i>&nbsp;
+                                        {isPaused ?
+                                            <i className="fa-solid fa-circle-play" onClick={togglePauseResume}></i>
+                                            :
+                                            <i className="fa-solid fa-circle-pause" onClick={togglePauseResume}></i>
+                                        }
+                                        &nbsp;
+                                        {recordingTime}
+                                    </span>}
+                                {(!isRecording && recordingBlob) &&
+                                    <>
+                                        <audio id='record-audio' style={{ maxWidth: '100%' }} src={URL.createObjectURL(recordingBlob)} controls></audio>
+                                        {/* &nbsp;
+                                        <i className="fa-solid fa-trash-can"></i> */}
+                                    </>
+
+                                }
+                            </button>
+                            {/* <AudioRecord onRecordFinished={onRecordFinished} showTitle={true} /> */}
                             <input accept="audio/*" name="record" onChange={uploadRecordHandler} id="upload-file" type="file"></input>
                         </div>
                     </div>
                     <ErrorMessage message={uploadedRecordErr} />
                     <div className="add-new-record-actions">
-                        <button type="submit" disabled={!surahId || !ayaFrom || !ayaTo || !uploadedRecord}><Translate id="button.share" /></button>
+                        <button type="submit" disabled={!surahId || !ayaFrom || !ayaTo || !(uploadedRecord || recordedRecord)}><Translate id="button.share" /></button>
                         <button type="button" onClick={closeModal}><Translate id="button.cancel" /></button>
                     </div>
                 </form>
