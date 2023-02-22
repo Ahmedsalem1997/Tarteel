@@ -28,7 +28,7 @@ const IslamicContentHome = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
-        <div className="home-section-content">
+        <div className="row gy-3">
             {isLoading && <Loader />}
             {items?.map((item) => (
                 <ExsitingRecord key={item.id} btn={true} record={item}></ExsitingRecord>
