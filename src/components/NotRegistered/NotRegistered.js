@@ -38,16 +38,18 @@ const NotRegistered = () => {
   }
   return (
     <Modal>
-      <div className="not-registered-header">
-        <h3><Translate id="notRegistered.title" /></h3>
-        <p><Translate id="notRegistered.pleaseRegister" /></p>
-      </div>
-      <div className="not-registered-actions">
-        <button className="main-button" onClick={onLogin}><Translate id="button.login" /></button>
-        <button className="trans-btn" onClick={onLogin}><Translate id="button.register" /></button>
-      </div>
-      <div className="not-registered-cancel">
-        <button className="cancel-btn" onClick={closeLoginModal}><Translate id="button.cancel" /></button>
+      <div className="not-registered">
+        <div className="not-registered-header">
+          <h3><Translate id="notRegistered.title" /></h3>
+          <p><Translate id="notRegistered.pleaseRegister" /></p>
+        </div>
+        <div className="not-registered-actions">
+          <button className="main-button" onClick={onLogin}><Translate id="button.login" /></button>
+          <button className="trans-btn" onClick={onLogin}><Translate id="button.register" /></button>
+        </div>
+        <div className="not-registered-cancel">
+          <button className="cancel-btn" onClick={closeLoginModal}><Translate id="button.cancel" /></button>
+        </div>
       </div>
     </Modal>
   );
