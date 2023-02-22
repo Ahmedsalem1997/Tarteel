@@ -26,6 +26,7 @@
     }
     &-following {
         padding: 1rem 10rem;
+        margin: auto;
         background: linear-gradient(to left, var(--gradient-main-dark) -2%, var(--gradient-main-light) 102%);
         display: flex;
         column-gap: 11rem;
