@@ -7,9 +7,9 @@ const Backdrop = props => {
 
 const ModalOverlay = props => {
     return (
-        <div className="modal">
+        <div className="modal-popup">
             <div className="content">
-                {props.showClose && <span className="modal-dismiss" onClick={() => props.onClose()}>X</span>}
+                {props.showClose && <span className="modal-dismiss" onClick={() => props.onClose()}><i className="fa-solid fa-xmark"></i></span>}
                 {props.children}
             </div>
         </div>
