@@ -27,7 +27,7 @@
         "send": "ارسل",
         "register": "تسجيل جديد",
         "login": "تسجيل دخول",
-        "getCode" : "الحصول علي الرمز",
+        "getCode": "الحصول علي الرمز",
         "newRecord": "تسجيل جديد",
         "showMore": "إظهار المزيد"
     },
@@ -48,7 +48,7 @@
             "phone": "الجوال",
             "selectSurah": "اختر السورة المراد تسجيلها",
             "selectAyah": "اختر الآية",
-            "selectRecitation": "اختر نوع الرواية",
+            "selectRead": "اختر نوع الرواية",
             "to": "الى",
             "password": "كلمة السر"
         }
@@ -91,14 +91,14 @@
         "openning": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
     },
     "login": {
-        "validNumber" : "التحقق من رقم الهاتف",
-        "mobileNumber" : "رقم الهاتف" ,
-        "validTrueNumber" : "من أجل التحقق من صحة رقم هاتفك",
-        "sendVerificationCode" : "سنرسل رمز التحقق يجب إدخاله في الصفحة التالية",
-        "adminLogin": "تسجيل دخول للشيخ"   
+        "validNumber": "التحقق من رقم الهاتف",
+        "mobileNumber": "رقم الهاتف",
+        "validTrueNumber": "من أجل التحقق من صحة رقم هاتفك",
+        "sendVerificationCode": "سنرسل رمز التحقق يجب إدخاله في الصفحة التالية",
+        "adminLogin": "تسجيل دخول للشيخ"
     },
     "error": {
-        "mobileNumberMessage" : "رقم الهاتف يجب ان يكون 12 رقم",
+        "mobileNumberMessage": "رقم الهاتف يجب ان يكون 12 رقم",
         "name": "يجب ان يحتوي الاسم على 5 حروف على الاقل",
         "email": "الرجاء كتابة الايميل بشكل صحيح",
         "imageUploadNotSupported": "الرجاء رفع صورة صحيحة",
@@ -108,7 +108,7 @@
         "maxImgFileSize": "برجاء رفع صورة اقل من 5 ميجا",
         "password": "برجاء ادخال كلمة سر قوية"
     },
-    "addNewRecord":{
-        "chooseSurah" : "اختر سورة"
+    "addNewRecord": {
+        "chooseSurah": "اختر سورة"
     }
 }
