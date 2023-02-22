@@ -46,9 +46,9 @@
             "name": "name",
             "email": "e-mail",
             "phone": "phone",
-            "selectSurah": "select the sora you need to record",
+            "selectSurah": "select the surah you need to record",
             "selectAyah": "select ayah",
-            "selectRecitation": "select recitation",
+            "selectRead": "select recitation",
             "to": "to",
             "password": "password"
         }

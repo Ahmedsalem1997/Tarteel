@@ -21,6 +21,8 @@ const AddNewRecord = (props) => {
     const [surahList, setSurahList] = useState([]);
     const [ayahs, setAyahs] = useState([]);
     const [surahId, setSurahId] = useState(0);
+    const [reads, setReads] = useState([]);
+    const [selectedRead, setSelectedRead] = useState(1);
     const [uploadedRecordErr, setUploadedRecordErr] = useState('');
     const { isLoading, error, sendRequest } = useHTTP();
     const dispatch = useDispatch();
@@ -30,6 +32,7 @@ const AddNewRecord = (props) => {
     const { token } = getAuth();
     useEffect(() => {
         getSurahList();
+        getReads();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -60,7 +63,12 @@ const AddNewRecord = (props) => {
                     'Authorization': `Bearer ${token}`
                 }
             },
-            (surahsArr) => setSurahList(surahsArr.data.surahs)
+            surahsArr => {
+                setSurahList(surahsArr.data.surahs)
+            },
+            err => {
+
+            }
         );
     }
 
@@ -72,14 +80,34 @@ const AddNewRecord = (props) => {
                     'Authorization': `Bearer ${token}`
                 }
             },
-            (ayahsArr) => {
+            ayahsArr => {
                 setAyahs(ayahsArr.data.ayahs);
                 setSurahId(ayahsArr.data.id);
                 setFromAyahs(ayahsArr.data.ayahs);
                 setToAyahs(ayahsArr.data.ayahs);
+            }, err => {
+
             }
         )
     }
+    const getReads = () => {
+        sendRequest(
+            {
+                url: `quran/reads`,
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            },
+            data => {
+                console.log(data);
+                setReads(data.data);
+            },
+            err => {
+
+            }
+        )
+    }
+
 
     const onAddNewRecordHandler = (e) => {
         e.preventDefault();
@@ -112,6 +140,10 @@ const AddNewRecord = (props) => {
         setAyaTo(e.target.value);
         const filterAyahs = ayahs.slice(0, e.target.value - 1);
         setFromAyahs(filterAyahs)
+    }
+
+    const onChangeReadHandler = (e) => {
+        setSelectedRead(e.target.value);
     }
     const uploadFile = () => {
         document.getElementById('upload-file').click();
@@ -173,18 +205,19 @@ const AddNewRecord = (props) => {
 
                     </div>
                     <div className="add-new-record-input">
-                        <label><Translate id="input.label.selectRecitation" /></label>
-                        <select required>
-                            <option value="1">ورش</option>
-                            <option value="2">حفص</option>
-                            <option value="3">هشام</option>
-                            <option value="4">قالون</option>
+                        <label><Translate id="input.label.selectRead" /></label>
+                        <select name="reads" value={selectedRead} onChange={onChangeReadHandler}>
+                            {reads.map((read, i) => {
+                                return (
+                                    <option key={i + 1} value={i + 1}>{read}</option>
+                                )
+                            })}
                         </select>
                     </div>
                     <div>
                         <div className="add-new-record-buttons">
-                            <button type="button" onClick={uploadFile}>{ uploadedRecord?.name ? uploadedRecord?.name  : <><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></> }</button>
-                            <AudioRecord onRecordFinished={onRecordFinished} showTitle={true}/>
+                            <button type="button" onClick={uploadFile}>{uploadedRecord?.name ? uploadedRecord?.name : <><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></>}</button>
+                            <AudioRecord onRecordFinished={onRecordFinished} showTitle={true} />
                             <input accept="audio/*" name="record" onChange={uploadRecordHandler} id="upload-file" type="file"></input>
                         </div>
                     </div>
