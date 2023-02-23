@@ -10,7 +10,7 @@ const useHTTP = () => {
     const sendRequest = useCallback(async (requestConfig, applyData, applyError) => {
         setIsLoading(true);
         setError(null);
-        let baseUrl = "http://ec2-34-246-200-235.eu-west-1.compute.amazonaws.com/api/v1/front/";
+        let baseUrl = "https://tarteel.me/api/v1/front/";
         try {
             const response = await fetch(
                 baseUrl + requestConfig.url,
