@@ -9,11 +9,12 @@ const AudioPlayer = (props) => {
   const dispatch = useDispatch();
   const { isAuth } = getAuth();
   const waveform = useRef(null);
-  // const audio = require('../../assets/audios/test.mp3');
+  const audio = require('../../assets/audios/test.mp3');
   const [isPlaying, setIsPlaying] = useState(false);
   const globalLang = useSelector(state => {
     return state.lang.globalLang;
   });
+  console.log(audio);
   // const audio = new Audio(props.audio);
   const audios = useSelector(state => state.audio.audioArr);
   useEffect(() => {
@@ -29,7 +30,7 @@ const AudioPlayer = (props) => {
         barWidth: 1,
         barRadius: 1,
         cursorWidth: 0,
-        splitChannels: true,
+        // splitChannels: true,
         height: 50,
         rtl: globalLang === 'ar' ? true : false,
         xhr: { mode: 'no-cors' },
@@ -37,7 +38,6 @@ const AudioPlayer = (props) => {
         // cursorColor: "#75b10e",
       });
       dispatch(audioActions.addAudio(waveform.current));
-      waveform.current.load(props.audio);
       // Load audio from a remote url.
       // let url = window.URL.revokeObjectURL(props?.audio);
       // console.log(url);
@@ -46,11 +46,11 @@ const AudioPlayer = (props) => {
       // fetch(props.audio, { mode: 'no-cors' }).then(function (response) {
       //     //     // console.log(response);
       //     if (response.ok) {
-      //         return response.blob();
-      //     }
-      //     throw new Error('Network response was not ok.');
-      // }).then(function (blob) {
-      //     //     // surfTheBlob(blob);
+        //         return response.blob();
+        //     }
+        //     throw new Error('Network response was not ok.');
+        // }).then(function (blob) {
+          //     //     // surfTheBlob(blob);
       //     waveform.current.loadBlob(blob);
       // }).catch(function (error) {
       //     console.log('There has been a problem with your fetch operation: ', error.message);
@@ -61,6 +61,7 @@ const AudioPlayer = (props) => {
       3. Load the audio using wavesurfer's loadBlob API
       */
     }
+    waveform.current.load(props.audio);
     waveform.current.on("pause", () => {
       setIsPlaying(false);
     });
