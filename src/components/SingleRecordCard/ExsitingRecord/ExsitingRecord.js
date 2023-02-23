@@ -3,11 +3,17 @@ import SingleRecordCard from "../SingleRecordCard";
 import { useDispatch } from "react-redux";
 import { modalsActions } from "../../../store/Modals/Modals";
 import { useSelector } from "react-redux";
+import { getAuth } from '../../../utils/Auth';
 
 const ExsitingRecord = (props) => {
+  const { isAuth } = getAuth()
   const dispatch = useDispatch();
   const openMediaModal = () => {
-    dispatch(modalsActions.openMediaModal(props.record));
+    if (!isAuth) {
+      dispatch(modalsActions.openLoginModal());
+    } else {
+      dispatch(modalsActions.openMediaModal(props.record));
+    }
   };
 
   const lang = useSelector((state) => {
@@ -15,7 +21,7 @@ const ExsitingRecord = (props) => {
   });
   return (
     <SingleRecordCard>
-      <div style={{backgroundImage: `url(${props.record.cover})`}}
+      <div style={{ backgroundImage: `url(${props.record.cover})` }}
         className="single-record-card-img"
         // src={props?.record?.cover}
         alt=""
