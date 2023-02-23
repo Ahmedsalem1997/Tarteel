@@ -9,9 +9,12 @@
     padding: 2px;
 
     &-img {
-        width: 100%;
+        min-width: 100%;
         background-color: var(--main-color);
-        min-height: 75%;
+        height: 90%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
     }
 
     &-name {
