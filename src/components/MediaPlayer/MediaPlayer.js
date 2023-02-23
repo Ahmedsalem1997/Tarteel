@@ -35,15 +35,22 @@ const MediaPlayer = () => {
           {lang === "ar" ? record?.title : record?.title_en}
         </span>
       )}
-      <ReactPlayer
+      {/* <ReactPlayer
         height={record.file_type === 'video' ? '20rem' : '5rem'}
         url={record.file}
         controls
         className="audio-source"
-      />
-      {/* <audio controls className="audio-source">
-        <source src={record.file} type="audio/mp3"></source>
-      </audio> */}
+      /> */}
+      <div className="audio-source">
+        {
+          record.file_type !== 'video' &&
+          <audio src={record.file} controls />
+        }
+        {
+          record.file_type === 'video' &&
+          <video src={record.file} controls />
+        }
+      </div>
     </Modal>
   );
 };
