@@ -27,7 +27,7 @@ const NotRegistered = () => {
         },
       },
       (data) => {
-        console.log(data);
+        // console.log(data);
         window.location.replace(data.data);
       },
       err => {

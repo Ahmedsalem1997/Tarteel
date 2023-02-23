@@ -109,7 +109,7 @@ const AddNewRecord = (props) => {
                 }
             },
             data => {
-                console.log(data);
+                // console.log(data);
                 setReads(data.data);
             },
             err => {
@@ -160,8 +160,8 @@ const AddNewRecord = (props) => {
     }
 
     const uploadRecordHandler = (e) => {
-        console.log(e.target);
-        console.log(e.target.files[0]);
+        // console.log(e.target);
+        // console.log(e.target.files[0]);
         if (!e.target.files[0]) return;
         const uploadedRecordCurrentErr = isValidFileUploaded(e.target.files[0], 'audio');
         if (!uploadedRecordCurrentErr) {

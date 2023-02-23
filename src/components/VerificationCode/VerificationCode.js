@@ -40,10 +40,10 @@ const VerificationCode = () => {
             data.data.user.name &&
             data.data.user.email
           ) {
-            console.log('user exist and login');
+            // console.log('user exist and login');
             navigate(`/`);
           } else {
-            console.log('user not exist and register');
+            // console.log('user not exist and register');
             openEditProfileModal();
           }
         }

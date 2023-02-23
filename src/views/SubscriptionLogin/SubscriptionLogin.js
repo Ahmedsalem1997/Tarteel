@@ -27,7 +27,7 @@ const SubscriptionLogin = () => {
                 },
             },
             (data) => {
-                console.log(data);
+                // console.log(data);
                 if (data.error) {
                     setMobileError(data.message);
                 } else {

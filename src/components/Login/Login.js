@@ -19,24 +19,24 @@ const Login = () => {
         if (status && message && code) {
             if (code) {
                 if (error === 'USER_ALREADY_SUBSCRIBED') {
-                    console.log('login')
+                    // console.log('login')
                     setSuccessMessage('You logged in successfully');
                     setErrorMessage('')
                 }
                 else if (status === '200') {
-                    console.log('subscribe')
+                    // console.log('subscribe')
                     setSuccessMessage('You subscribed successfully');
                     setErrorMessage('');
                 }
                 fetchUserWithCode(code);
             }
             else {
-                console.log('1111', error);
+                // console.log('1111', error);
                 setErrorMessage(error);
                 setSuccessMessage('');
             }
         } else if (error) {
-            console.log('2222', error);
+            // console.log('2222', error);
             setErrorMessage(error);
             setSuccessMessage('');
         }
@@ -58,11 +58,11 @@ const Login = () => {
 
             },
             data => {
-                console.log(data);
+                // console.log(data);
                 setAuth(data.data);
             },
             err => {
-                console.log('3333', err)
+                // console.log('3333', err)
                 setErrorMessage('something went wrong');
                 setSuccessMessage('');
             }

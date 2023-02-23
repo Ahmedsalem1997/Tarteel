@@ -44,7 +44,7 @@ const AddComment = (props) => {
           body: formData
         },
         data => {
-          console.log(data);
+          // console.log(data);
           setComment('');
           props.onAddComment();
         },
@@ -64,7 +64,7 @@ const AddComment = (props) => {
     if (!isRecording && !recordingBlob) {
       startRecording();
     }
-    console.log(recordingBlob, recordingTime);
+    // console.log(recordingBlob, recordingTime);
   }
 
   const handleStopRecording = () => {
