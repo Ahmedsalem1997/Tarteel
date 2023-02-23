@@ -23,8 +23,8 @@ const AudioPlayer = (props) => {
       // More info about options here https://wavesurfer-js.org/docs/options.html
       waveform.current = Wavesurfer.create({
         container: `#waveform-${props.id}`,
-        waveColor: "#75b10e",
-        progressColor: 'purple',
+        waveColor: "#000",
+        progressColor: '#ccc',
         barGap: 1,
         barWidth: 1,
         barRadius: 1,

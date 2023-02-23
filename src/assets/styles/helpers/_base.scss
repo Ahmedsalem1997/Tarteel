@@ -3,6 +3,7 @@ body {
   color: var(--text-color);
   margin: 0;
   overflow-x: hidden;
+
   * {
     box-sizing: border-box;
     font-family: var(--main-font-family);
@@ -34,11 +35,20 @@ html {
 a {
   color: var(--text-color);
   text-decoration: none;
+
   &:hover {
     color: var(--text-color);
   }
 }
 
 .audio-source {
-  max-width: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  audio,
+  video {
+    width: 100%;
+  }
 }
