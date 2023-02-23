@@ -10,11 +10,16 @@
 
     &-img {
         min-width: 100%;
-        background-color: var(--main-color);
+        background-image: url('../../../assets/images/quran.webp');
         height: 90%;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
+    }
+
+    &-bg {
+        background-color: var(--main-color);
+        height: 100%;
     }
 
     &-name {

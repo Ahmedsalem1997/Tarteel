@@ -21,7 +21,7 @@ const ExsitingRecord = (props) => {
   });
   return (
     <SingleRecordCard>
-      <div style={{ backgroundImage: `url(${props.record.cover})` }}
+      <div style={props?.record?.cover ? { backgroundImage: `url(${props?.record?.cover})` } : {}}
         className="single-record-card-img"
         // src={props?.record?.cover}
         alt=""

@@ -10,7 +10,7 @@ const NewRecord = () => {
     return (
         <SingleRecordCard>
             <div className="h-100" onClick={openAddNewRecordModal}>
-                <div className="single-record-card-img"></div>
+                <div className="single-record-card-bg"></div>
                 <div className="single-record-card-name">
                     <span><Translate id="button.newRecord" /></span>
                 </div>
