@@ -14,7 +14,7 @@ const AudioPlayer = (props) => {
   const globalLang = useSelector(state => {
     return state.lang.globalLang;
   });
-  console.log(audio);
+  // console.log(audio);
   // const audio = new Audio(props.audio);
   const audios = useSelector(state => state.audio.audioArr);
   useEffect(() => {
