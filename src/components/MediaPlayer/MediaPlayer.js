@@ -36,7 +36,7 @@ const MediaPlayer = () => {
         </span>
       )}
       <ReactPlayer
-        height="5rem"
+        height={record.file_type === 'video' ? '20rem' : '5rem'}
         url={record.file}
         controls
         className="audio-source"
