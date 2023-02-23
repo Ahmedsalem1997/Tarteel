@@ -25,9 +25,13 @@ const IslamicContentHome = (props) => {
     return (
         <div className="row gy-3">
             {isLoading && <Loader />}
-            {items?.map((item) => (
-                <ExsitingRecord key={item.id} btn={true} record={item}></ExsitingRecord>
-            ))}
+            {items.length !== 0 ?
+                items?.map((item) => (
+                    <ExsitingRecord key={item.id} btn={true} record={item}></ExsitingRecord>
+                ))
+                :
+                <h3 className="text-center">عفوا لا يوجد محتوى</h3>
+            }
         </div>
     )
 }
