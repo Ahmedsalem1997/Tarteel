@@ -11,7 +11,7 @@ const NewRecord = () => {
         <SingleRecordCard>
             <div className="h-100" onClick={openAddNewRecordModal}>
                 <div className="single-record-card-bg">
-                    <i class="fa-solid fa-microphone fa-5x"></i>
+                    <i className="fa-solid fa-microphone fa-5x"></i>
                 </div>
                 <div className="single-record-card-name">
                     <span><Translate id="button.newRecord" /></span>

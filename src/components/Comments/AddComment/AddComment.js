@@ -1,3 +1,4 @@
+import Joi from 'joi';
 import { Fragment, useState } from "react";
 import Translate from "../../../helpers/Translate/Translate";
 import useTranslate from "../../../hooks/use-translate";
@@ -7,11 +8,13 @@ import Loader from "../../Loader/Loader";
 import { useDispatch } from "react-redux";
 import { modalsActions } from "../../../store/Modals/Modals";
 import { useAudioRecorder, AudioRecorder } from "react-audio-voice-recorder";
+import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 
 const AddComment = (props) => {
   const [comment, setComment] = useState('');
   const { isLoading, error, sendRequest: addComment } = useHTTP()
   const auth = getAuth();
+  const [commentErr, setCommentErr] = useState('');
   const [uploadedRecord, setUploadedRecord] = useState(undefined);
   const dispatch = useDispatch();
   const openLoginModal = () => {
@@ -29,29 +32,33 @@ const AddComment = (props) => {
   const addCommentHandler = (e) => {
     e.preventDefault();
     if (auth.isAuth) {
-      let formData = new FormData();
-      formData.append('text', comment);
-      if (uploadedRecord) {
-        formData.append('file', uploadedRecord);
-      }
-      addComment(
-        {
-          url: `records/${props.recordId}/comments`,
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${auth.token}`
-          },
-          body: formData
-        },
-        data => {
-          // console.log(data);
-          setComment('');
-          props.onAddComment();
-        },
-        err => {
-
+      if (comment.trim().length > 3) {
+        let formData = new FormData();
+        formData.append('text', comment);
+        if (uploadedRecord) {
+          formData.append('file', uploadedRecord);
         }
-      )
+        addComment(
+          {
+            url: `records/${props.recordId}/comments`,
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${auth.token}`
+            },
+            body: formData
+          },
+          data => {
+            // console.log(data);
+            setComment('');
+            props.onAddComment();
+          },
+          err => {
+
+          }
+        )
+      } else {
+        setCommentErr('comment');
+      }
     } else {
       openLoginModal();
     }
@@ -71,12 +78,30 @@ const AddComment = (props) => {
     stopRecording();
     // setUploadedRecord(recordingBlob);
   }
+
+  const onChangeComment = (e) => {
+    const schema = Joi.object({
+      comment: Joi.string()
+        .pattern(/^[a-zA-Z\u0621-\u064A0-9 ]{3,200}$/)
+        // .min(3)
+        // .max(100)
+        .required(),
+    })
+    const commentError = schema.validate({ comment: e.target.value });
+    if (commentError.error) {
+      setCommentErr('comment');
+    } else {
+      setCommentErr('');
+    }
+    setComment(e.target.value);
+  }
   return (
     <Fragment>
       {isLoading && <Loader />}
       <form className="add-comment" onSubmit={addCommentHandler}>
         <div className="add-comment-input">
-          <textarea disabled={!auth.isAuth} value={comment} onChange={(e) => setComment(e.target.value)} placeholder={useTranslate('input.placeholder.writeComment')}></textarea>
+          <textarea disabled={!auth.isAuth} value={comment} onChange={onChangeComment} placeholder={useTranslate('input.placeholder.writeComment')}></textarea>
+          <ErrorMessage message={commentErr} />
         </div>
         {
           (!isRecording && recordingBlob) &&
