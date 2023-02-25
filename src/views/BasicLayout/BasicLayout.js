@@ -27,7 +27,7 @@ const BasicLayout = () => {
                 }
             },
             (data) => {
-                setAuth({ loggedUser: data.data });
+                setAuth({ user: data.data });
                 if (!data.data.email || !data.data.name) {
                     openEditProfileModal();
                 } else {

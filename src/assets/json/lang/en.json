@@ -99,7 +99,7 @@
     },
     "error": {
         "mobileNumberMessage" : "Phone Number Must Be 12 Character",
-        "name": "Name Must contain at least 5 characters",
+        "name": "Name Must contain at least 3 characters",
         "email": "please write a valid E-mail",
         "imageUploadNotSupported": "please upload image file",
         "audioUploadNotSupported": "please upload audio file",
