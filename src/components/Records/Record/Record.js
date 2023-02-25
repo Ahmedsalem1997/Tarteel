@@ -153,7 +153,7 @@ const Record = (props) => {
             </div>
           </div>
           {
-            ((loggedUser?.id !== record?.user?.id) || !props.hideFollow) &&
+            ((loggedUser?.id !== record?.user?.id) && !props.hideFollow) &&
             <span className="post-header-user-follow">
               {
                 props?.record?.user?.is_followed ?
