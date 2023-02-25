@@ -21,10 +21,9 @@ const ExsitingRecord = (props) => {
   });
   return (
     <SingleRecordCard>
-      <div style={props?.record?.cover ? { backgroundImage: `url(${props?.record?.cover})` } : {}}
+      <div  onClick={openMediaModal} style={props?.record?.cover ? { backgroundImage: `url(${props?.record?.cover})` } : {}}
         className="single-record-card-img"
-        // src={props?.record?.cover}
-        alt=""
+      // src={props?.record?.cover}
       ></div>
       <div className="single-record-card-name" onClick={openMediaModal}>
         <div className="text-center">
