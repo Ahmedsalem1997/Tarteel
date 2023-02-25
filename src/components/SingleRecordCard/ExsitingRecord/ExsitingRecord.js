@@ -21,10 +21,12 @@ const ExsitingRecord = (props) => {
   });
   return (
     <SingleRecordCard>
-      <div  onClick={openMediaModal} style={props?.record?.cover ? { backgroundImage: `url(${props?.record?.cover})` } : {}}
+      <div onClick={openMediaModal} style={props?.record?.cover ? { backgroundImage: `url(${props?.record?.cover})` } : {}}
         className="single-record-card-img"
       // src={props?.record?.cover}
-      ></div>
+      >
+        <i className="fa-solid fa-play fa-3x"></i>
+      </div>
       <div className="single-record-card-name" onClick={openMediaModal}>
         <div className="text-center">
           {!props.btn &&
