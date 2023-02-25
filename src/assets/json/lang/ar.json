@@ -106,7 +106,8 @@
         "fileExtensionNotSupported": "عفوا لا ندعم هذا الامتداد",
         "maxAudioFileSize": "برجاء رفع ملف صوتي اقل من 15 ميجا",
         "maxImgFileSize": "برجاء رفع صورة اقل من 5 ميجا",
-        "password": "برجاء ادخال كلمة سر قوية"
+        "password": "برجاء ادخال كلمة سر قوية",
+        "comment": "برجاء ادخال تعليق ما بين 3 الى 100 حرف"
     },
     "addNewRecord": {
         "chooseSurah": "اختر سورة"
