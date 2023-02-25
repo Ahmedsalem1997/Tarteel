@@ -186,10 +186,29 @@
     }
   }
 
+  // comments 
+  .post {
+    padding-bottom: 0;
+  }
+
+  .post-feedback {
+    padding-bottom: 1.5rem;
+  }
+
+  .post-comments {
+    margin: 0 -1.5rem;
+    background-color: var(--main-bg);
+  }
+
+  .add-new-comment .add-comment {
+    margin-inline-start: 0;
+    // margin-top: 0;
+  }
 
   .add-comment-actions {
     flex-direction: column;
     row-gap: 1rem;
+
     button {
       width: 100%;
     }

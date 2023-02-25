@@ -55,8 +55,9 @@
     margin-inline-start: 3em;
     border-radius: 1em;
     position: relative;
+    color: var(--comment-color);
     &-text {
-      color: var(--comment-color);
+      // color: var(--comment-color);
       font-size: 1.5em;
     }
     &-feedback {
