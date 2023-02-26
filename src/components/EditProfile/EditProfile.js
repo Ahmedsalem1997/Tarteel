@@ -152,7 +152,7 @@ const EditProfile = (props) => {
                         <ErrorMessage message={emailErr} />
                     </div>
                     <div className="edit-profile-actions">
-                        <button type="submit" className="main-button" disabled={emailErr || nameErr}><Translate id="button.save" /></button>
+                        <button type="submit" className="main-button" disabled={emailErr || nameErr || !name || !email}><Translate id="button.save" /></button>
                     </div>
                 </div>
             </form>
