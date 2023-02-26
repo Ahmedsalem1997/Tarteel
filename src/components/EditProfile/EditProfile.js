@@ -118,7 +118,7 @@ const EditProfile = (props) => {
 
     const onChangeEmail = (e) => {
         const schema = Joi.object({
-            email: Joi.string().email({ tlds: false, allowUnicode: false }).required()
+            email: Joi.string().trim().email({ tlds: false, allowUnicode: false }).required()
         })
         const nameError = schema.validate({ email: e.target.value });
         if (nameError.error) {
@@ -126,7 +126,7 @@ const EditProfile = (props) => {
         } else {
             setEmailErr('');
         }
-        setEmail(e.target.value);
+        setEmail(e.target.value.trim());
     }
 
     return (
