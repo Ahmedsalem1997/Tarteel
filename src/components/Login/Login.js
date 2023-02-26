@@ -20,12 +20,12 @@ const Login = () => {
             if (code) {
                 if (error === 'USER_ALREADY_SUBSCRIBED') {
                     // console.log('login')
-                    setSuccessMessage('You logged in successfully');
+                    setSuccessMessage('تم تسجيل دخولك بنجاح');
                     setErrorMessage('')
                 }
                 else if (status === '200') {
                     // console.log('subscribe')
-                    setSuccessMessage('You subscribed successfully');
+                    setSuccessMessage('تم تسجيلك بنجاح');
                     setErrorMessage('');
                 }
                 fetchUserWithCode(code);
@@ -63,7 +63,7 @@ const Login = () => {
             },
             err => {
                 // console.log('3333', err)
-                setErrorMessage('something went wrong');
+                setErrorMessage('نأسف حدث خطا برجاء المحاولة مرة اخرى');
                 setSuccessMessage('');
             }
         )
@@ -74,7 +74,7 @@ const Login = () => {
             <div className="login-message">
                 {errorMessage && <div className="error-message">
                     <i className="fa-solid fa-triangle-exclamation"></i>
-                    <h4>Oh snap!</h4>
+                    <h4>خطأ!</h4>
                     <p>{errorMessage}</p>
                     <button onClick={() => navigate('/home')} className="error-message-cancel-btn w-100">Home</button>
                 </div>}
