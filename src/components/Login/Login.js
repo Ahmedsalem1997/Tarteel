@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import useHTTP from "../../hooks/use-http";
 import { getAuth, getLongTermToken, setAuth } from "../../utils/Auth";
 import Loader from "../Loader/Loader";
+import Translate from "../../helpers/Translate/Translate";
 
 const Login = () => {
     const [errorMessage, setErrorMessage] = useState('');
@@ -76,12 +77,12 @@ const Login = () => {
                     <i className="fa-solid fa-triangle-exclamation"></i>
                     <h4>خطأ!</h4>
                     <p>{errorMessage}</p>
-                    <button onClick={() => navigate('/home')} className="error-message-cancel-btn w-100">Home</button>
+                    <button onClick={() => navigate('/home')} className="error-message-cancel-btn w-100"><Translate id="navigation.home" /></button>
                 </div>}
                 {successMessage && <div className="success-message">
                     <i className="fa-regular fa-square-check"></i>
                     <h4>{successMessage}</h4>
-                    <button onClick={() => navigate('/home')} className="success-message-cancel-btn w-100">Home</button>
+                    <button onClick={() => navigate('/home')} className="success-message-cancel-btn w-100"><Translate id="navigation.home" /></button>
                 </div>}
             </div>
         </LoginWrapper>
