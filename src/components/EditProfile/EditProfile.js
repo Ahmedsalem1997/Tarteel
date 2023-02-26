@@ -104,8 +104,9 @@ const EditProfile = (props) => {
     }
 
     const onChangeName = (e) => {
+        e.target.value = e.target.value.replace('  ', ' ');
         const schema = Joi.object({
-            name: Joi.string().pattern(/^[a-zA-Z\u0621-\u064A ]{3,30}$/).required()
+            name: Joi.string().pattern(/^([a-zA-Z\u0621-\u064A]{3,10}[ ]?){1,4}$/).required()
         })
         const nameError = schema.validate({ name: e.target.value });
         if (nameError.error) {
