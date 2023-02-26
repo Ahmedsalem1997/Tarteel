@@ -27,6 +27,7 @@ const EditProfile = (props) => {
     const [token, setToken] = useState('');
     const [nameErr, setNameErr] = useState('');
     const [emailErr, setEmailErr] = useState('');
+    const [formErr, setFormErr] = useState('');
     const auth = getAuth();
     // const loadXHR = (url) => {
     //     return new Promise(function (resolve, reject) {
@@ -52,7 +53,7 @@ const EditProfile = (props) => {
             setNewAvatar(auth.loggedUser.avatar);
         }
         setToken(auth.token);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const onEditProfileHandler = (e) => {
         e.preventDefault();
@@ -82,6 +83,7 @@ const EditProfile = (props) => {
                     }
                 },
                 err => {
+                    setFormErr('somethingWrong');
 
                 }
             );
@@ -153,6 +155,7 @@ const EditProfile = (props) => {
                     </div>
                     <div className="edit-profile-actions">
                         <button type="submit" className="main-button" disabled={emailErr || nameErr || !name || !email}><Translate id="button.save" /></button>
+                        <ErrorMessage message={formErr} />
                     </div>
                 </div>
             </form>
