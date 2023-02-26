@@ -17,7 +17,7 @@ const EditProfile = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const searchParams = useSearchParams();
-    const img = require("../../assets/images/record.jpg");
+    const img = require("../../assets/images/personal.png");
     const { isLoading, error, sendRequest } = useHTTP();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -135,7 +135,7 @@ const EditProfile = (props) => {
             <form onSubmit={onEditProfileHandler}>
                 <div className="edit-profile">
                     <div className="edit-profile-img">
-                        <img src={newAvatar} alt="..." />
+                        <img src={newAvatar || img} alt="..." />
                         <div className="edit-profile-img-upload" onClick={() => document.getElementById('upload-img').click()}><Translate id="button.editImg" /></div>
                         <input accept="image/*" value={''} onChange={onAvatarChange} type='file' id="upload-img" />
                     </div>
