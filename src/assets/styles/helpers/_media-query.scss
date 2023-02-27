@@ -1,3 +1,13 @@
+@media screen and (max-width: 1400px) {
+  .modal-popup {
+    width: 60%;
+
+    .content {
+      padding: 4rem 7rem;
+    }
+  }
+}
+
 @media screen and (max-width: 992px) {
   html {
     .container-fluid {
@@ -22,6 +32,16 @@
 
     &-view {
       width: 75%;
+    }
+  }
+
+  // popup
+
+  .modal-popup {
+    width: 70%;
+
+    .content {
+      padding: 4rem 7rem;
     }
   }
 }
@@ -87,24 +107,31 @@
     width: 100vw !important;
   }
 
-  .content {
-    width: 95vw;
-    max-width: 100vw;
+  // .content {
+  //   width: 95vw;
+  //   max-width: 100vw;
+  // }
+  .modal-popup {
+    width: 80%;
+
+    .content {
+      padding: 3rem 4rem;
+    }
   }
 
   // .audio-source {
   //   max-width: 100%;
   // }
 
-  .audio-record {
-    audio {
-      max-width: 21rem;
-    }
-  }
+  // .audio-record {
+  //   audio {
+  //     max-width: 21rem;
+  //   }
+  // }
 
-  .edit-profile {
-    max-width: 500px;
-  }
+  // .edit-profile {
+  //   max-width: 500px;
+  // }
 
 }
 
@@ -121,6 +148,13 @@
   //   width: 95vw;
   //   max-width: 100vw;
   // }
+  .modal-popup {
+    width: 100%;
+
+    .content {
+      padding: 2rem 2rem;
+    }
+  }
 
   // Home Subscribe
   .home-subscribe {
@@ -214,7 +248,7 @@
     }
   }
 
-  .edit-profile {
-    max-width: 250px;
-  }
+  // .edit-profile {
+  //   max-width: 250px;
+  // }
 }
