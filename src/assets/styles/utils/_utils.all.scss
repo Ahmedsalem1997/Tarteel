@@ -3,18 +3,36 @@
 @import './fonts';
 
 :root {
-    @include create-css-vars($main-colors);
-}
+    .dark-mode {
+        @include create-css-vars($dark-vars);
+    }
 
-:root {
-    body.light-mode {
+    .light-mode {
         @include create-css-vars($light-vars);
     }
-}
 
-// }
-:root {
-    body.dark-mode {
-        @include create-css-vars($dark-vars);
+    @include create-css-vars($main-colors);
+    .zain-theme {
+        @include create-css-vars($zain-theme);
+    }
+
+    .omentel-theme {
+        @include create-css-vars($omentel-theme);
+        // --main-color: #ff9d18;
+        // --main-btn-bg: #ff9d18;
+        // --main-icon-color: #ff9d18;
+        // --white-btn-color: #ff9d18;
+        // --gradient-main-dark: darken($orange, 30);
+        // --gradient-main-light: darken($orange, 20);
+    }
+
+    .du-theme {
+        @include create-css-vars($du-theme);
+        // --main-color: #0086c3;
+        // --main-btn-bg: #0086c3;
+        // --main-icon-color: #0086c3;
+        // --white-btn-color: #0086c3;
+        // --gradient-main-dark: darken($du-blue, 30);
+        // --gradient-main-light: darken($du-blue, 20);
     }
 }

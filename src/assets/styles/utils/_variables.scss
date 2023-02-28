@@ -1,4 +1,6 @@
 $green: #65990c;
+$du-blue: #0086c3;
+$orange: #ff9d18;
 $yellow: #9db30e;
 $tajawal: "Tajawal";
 $quran: "Quran";
@@ -14,8 +16,34 @@ $black: #000;
 $main-color: $green;
 $gray-300: #1f1f1f;
 $gray-700: #b9b9b9;
-$main-colors: (
+$du-theme: (
+    "main-color": $du-blue,
+    "gradient-main-dark": darken($du-blue, 30),
+    "gradient-main-light": darken($du-blue, 20),
+    "main-icon-color": $du-blue,
+    "main-btn-bg": $du-blue,
+    "white-btn-color": $du-blue,
+    "play-pause-btn": lighten($du-blue, 5)
+);
+$zain-theme: (
     "main-color": $green,
+    "gradient-main-dark": darken($green, 30),
+    "gradient-main-light": darken($green, 20),
+    "main-icon-color": $green,
+    "main-btn-bg": $green,
+    "white-btn-color": $green,
+    "play-pause-btn": lighten($green, 5)
+);
+$omentel-theme: (
+    "main-color": $orange,
+    "gradient-main-dark": darken($orange, 30),
+    "gradient-main-light": darken($orange, 20),
+    "main-icon-color": $orange,
+    "main-btn-bg": $orange,
+    "white-btn-color": $orange,
+    "play-pause-btn": lighten($orange, 5)
+);
+$main-colors: (
     "icon-color": $yellow,
     "btn-color": $light-green,
     "main-font-family": $tajawal,
@@ -23,17 +51,12 @@ $main-colors: (
     "singleRecordCardBorder": $light-gray,
     "carousel-color": $white,
     "input-color": $dark-white,
-    "main-icon-color": $green,
     "secondary-icon-color": $white,
-    "main-btn-bg": $green,
     "secondary-btn-bg": $light-gray,
     "white-btn-bg": $white,
-    "white-btn-color": $green,
     "secondary-btn-color": $white,
     "main-btn-color": $white,
     "error-color": $error,
-    "gradient-main-dark": darken($main-color, 30),
-    "gradient-main-light": darken($main-color, 20),
 );
 $dark-vars: (
     "main-bg": $bg-dark,
@@ -68,4 +91,3 @@ $light-vars: (
     "popup-bg": $gray-700
 );
 // $grid-gutter-width : 10rem;
-
