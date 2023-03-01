@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Translate from "../../helpers/Translate/Translate";
 const Footer = () => {
+    const logo = require('../../assets/images/tarteel-logo.webp');
     return (
         <footer className="footer">
             <div className="footer-start">
@@ -31,27 +32,27 @@ const Footer = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="footer-start-support">
+                {/* <div className="footer-start-support">
                     <p><Translate id="footer.supportedBy" /></p>
                     <div className="footer-start-support-logos">
                         <i className="fa-brands fa-spotify"></i>
                         <i className="fa-brands fa-apple"></i>
                         <i className="fa-brands fa-itunes"></i>
                     </div>
-                </div>
+                </div> */}
             </div>
             <div className="footer-end">
                 <div className="footer-end-logo">
-                    <h2>logo</h2>
+                    <img src={logo} alt="logo" />
                 </div>
-                <div className="footer-end-social">
+                {/* <div className="footer-end-social">
                     <div className="footer-end-social-logos">
                         <i className="fa-brands fa-facebook-f"></i>
                         <i className="fa-brands fa-twitter"></i>
                         <i className="fa-brands fa-youtube"></i>
                     </div>
                     <p>Copyright 2022 By Tartel</p>
-                </div>
+                </div> */}
             </div>
 
         </footer>

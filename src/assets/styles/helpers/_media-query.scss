@@ -69,6 +69,7 @@
 
     &-start {
       align-items: center;
+      order: 2;
 
       &-links {
         flex-direction: column;
@@ -78,6 +79,7 @@
 
     &-end {
       row-gap: 2rem;
+      order: 1;
     }
   }
 
