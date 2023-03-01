@@ -1,0 +1,25 @@
+.records-count {
+    font-size: 10rem;
+    margin-bottom: 2rem;
+    line-height: .8;
+}
+
+.records-title {
+    font-size: 2rem;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sheikh-records {
+    border: 1px solid var(--border-color);
+    padding: 3rem;
+    border-radius: 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.sheikh-profile {
+    margin-bottom: 2rem;
+    // padding: 3rem;
+}

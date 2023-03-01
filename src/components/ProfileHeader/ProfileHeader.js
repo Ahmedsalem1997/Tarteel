@@ -86,30 +86,33 @@ const ProfileHeader = (props) => {
       <div className="profile-header">
         <div className="profile-header-user">
           <img className="profile-header-user-img" src={user?.avatar || img} alt="..." />
+          {user?.is_sheikh && <i className="fa-solid fa-circle-check fa-2x green-color"></i>}
           <h2 className="profile-header-user-name">{user?.name}</h2>
-          {
-            user?.is_mine &&
-            <button
-              className="profile-header-user-follow"
-              onClick={openEditProfileModal}>
-              <i className="fa-solid fa-user-pen"></i>
-            </button>
-          }
-          {
-            (!user?.is_mine && !user?.is_followed) &&
-            <button onClick={handleFollow} className="profile-header-user-follow">
-              <i className="fa-solid fa-user-plus"></i>
-            </button>
-          }
-          {
-            (!user?.is_mine && user?.is_followed) &&
-            <button onClick={handleUnFollow} className="profile-header-user-follow followed">
-              <i className="fa-solid fa-user-check"></i>
-            </button>
+          {!user?.is_sheikh && <div className="profile-header-user-actions">
+            {
+              user?.is_mine &&
+              <button
+                className="profile-header-user-follow"
+                onClick={openEditProfileModal}>
+                <i className="fa-solid fa-user-pen"></i>
+              </button>
+            }
+            {
+              (!user?.is_mine && !user?.is_followed) &&
+              <button onClick={handleFollow} className="profile-header-user-follow">
+                <i className="fa-solid fa-user-plus"></i>
+              </button>
+            }
+            {
+              (!user?.is_mine && user?.is_followed) &&
+              <button onClick={handleUnFollow} className="profile-header-user-follow followed">
+                <i className="fa-solid fa-user-check"></i>
+              </button>
 
-          }
+            }
+          </div>}
         </div>
-        <div className="profile-header-following">
+        {!user?.is_sheikh && <div className="profile-header-following">
           <div className="profile-header-following-followers">
             <span>{user?.followers_count}</span>
             <span>
@@ -122,7 +125,7 @@ const ProfileHeader = (props) => {
               <Translate id="profile.followings" />
             </span>
           </div>
-        </div>
+        </div>}
       </div>
     </Fragment>
   );
