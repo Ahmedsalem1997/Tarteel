@@ -86,7 +86,7 @@ const ProfileHeader = (props) => {
       <div className="profile-header">
         <div className="profile-header-user">
           <img className="profile-header-user-img" src={user?.avatar || img} alt="..." />
-          {user?.is_sheikh && <i className="fa-solid fa-circle-check fa-2x green-color"></i>}
+          {user?.is_sheikh? <i className="fa-solid fa-circle-check fa-2x green-color"></i>:''}
           <h2 className="profile-header-user-name">{user?.name}</h2>
           {!user?.is_sheikh && <div className="profile-header-user-actions">
             {

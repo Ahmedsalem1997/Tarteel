@@ -36,7 +36,7 @@ const AdminLogin = () => {
         } else {
           setEmailError("");
           setAuth(data.data);
-          navigate(`/`);
+          navigate(`/users/${data.data.user.id}`);
         }
       },
       (err) => { }
