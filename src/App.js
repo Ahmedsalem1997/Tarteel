@@ -14,10 +14,10 @@ import AdminLogin from './views/AdminLogin/AdminLogin';
 import BasicLayout from './views/BasicLayout/BasicLayout';
 import { modalsActions } from "./store/Modals/Modals";
 import { getAuth } from "./utils/Auth";
+import ThemeLayout from './views/ThemeLayout/ThemeLayout';
 
 
 function App() {
-
   const checkAuthLoader = () => {
     const { isAuth } = getAuth();
     if (!isAuth) {
@@ -26,6 +26,7 @@ function App() {
     }
     return null;
   }
+
   const checkLogeedInLoader = () => {
     const { isAuth } = getAuth();
     if (isAuth) {
@@ -62,52 +63,58 @@ function App() {
   }, [globalLang]);
   const router = createBrowserRouter([
     {
-      path: "login",
-      element: <Login />,
-      loader: checkLogeedInLoader
-    },
-    {
-      path: "shekh-login",
-      element: <AdminLogin />,
-    },
-    {
       path: "/",
-      element: <BasicLayout />,
+      element: <ThemeLayout />,
       children: [
         {
+          path: "login",
+          element: <Login />,
+          loader: checkLogeedInLoader
+        },
+        {
+          path: "shekh-login",
+          element: <AdminLogin />,
+        },
+        {
           path: "/",
-          loader: () => redirect("/home"),
-        },
-        {
-          path: "home",
-          element: <Home />,
-        },
+          element: <BasicLayout />,
+          children: [
+            {
+              path: "/",
+              // loader: () => redirect("/home"),
+            },
+            {
+              path: "home",
+              element: <Home />,
+            },
 
-        // {
-        //   path: "subscription-login",
-        //   element: <SubscriptionLogin />
-        // },
-        {
-          path: "users/:id",
-          element: <Profile />,
-          loader: checkAuthLoader,
-        },
-        {
-          path: "islamic",
-          element: <Islamic />,
-          loader: checkAuthLoader,
-        },
-        {
-          path: "quran",
-          element: <Quran />,
-          loader: checkAuthLoader,
-        },
-        {
-          path: "verification-code/:mobile",
-          element: <VerificationCode />,
-        },
+            // {
+            //   path: "subscription-login",
+            //   element: <SubscriptionLogin />
+            // },
+            {
+              path: "users/:id",
+              element: <Profile />,
+              loader: checkAuthLoader,
+            },
+            {
+              path: "islamic",
+              element: <Islamic />,
+              loader: checkAuthLoader,
+            },
+            {
+              path: "quran",
+              element: <Quran />,
+              loader: checkAuthLoader,
+            },
+            {
+              path: "verification-code/:mobile",
+              element: <VerificationCode />,
+            },
 
-      ],
+          ],
+        },
+      ]
     },
     {
       path: "*",
