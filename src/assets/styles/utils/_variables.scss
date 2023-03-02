@@ -1,6 +1,7 @@
 $green: #65990c;
 $du-blue: #0086c3;
 $orange: #ff9d18;
+$stc-purple: #450671;
 $yellow: #9db30e;
 $tajawal: "Tajawal";
 $quran: "Quran";
@@ -42,6 +43,15 @@ $omentel-theme: (
     "main-btn-bg": $orange,
     "white-btn-color": $orange,
     "play-pause-btn": lighten($orange, 5)
+);
+$stc-theme: (
+    "main-color": $stc-purple,
+    "gradient-main-dark": darken($stc-purple, 30),
+    "gradient-main-light": darken($stc-purple, 20),
+    "main-icon-color": $stc-purple,
+    "main-btn-bg": $stc-purple,
+    "white-btn-color": $stc-purple,
+    "play-pause-btn": lighten($stc-purple, 5)
 );
 $main-colors: (
     "icon-color": $yellow,

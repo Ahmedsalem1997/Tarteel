@@ -35,4 +35,13 @@
         // --gradient-main-dark: darken($du-blue, 30);
         // --gradient-main-light: darken($du-blue, 20);
     }
+    .stc-theme {
+        @include create-css-vars($stc-theme);
+        // --main-color: #0086c3;
+        // --main-btn-bg: #0086c3;
+        // --main-icon-color: #0086c3;
+        // --white-btn-color: #0086c3;
+        // --gradient-main-dark: darken($du-blue, 30);
+        // --gradient-main-light: darken($du-blue, 20);
+    }
 }
