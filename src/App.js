@@ -14,10 +14,10 @@ import AdminLogin from './views/AdminLogin/AdminLogin';
 import BasicLayout from './views/BasicLayout/BasicLayout';
 import { modalsActions } from "./store/Modals/Modals";
 import { getAuth } from "./utils/Auth";
-import ThemeLayout from './views/ThemeLayout/ThemeLayout';
 
 
 function App() {
+
   const checkAuthLoader = () => {
     const { isAuth } = getAuth();
     if (!isAuth) {
@@ -26,18 +26,6 @@ function App() {
     }
     return null;
   }
-  const checkThemeLoader = () => {
-    const urlArr = window.location.href.split('/');
-    const theme = urlArr[urlArr.length - 1];
-    const body = document.getElementsByTagName('body')[0];
-    if (theme === 'du' || theme === 'omentel' || theme === 'stc' || theme === 'zain') {
-      localStorage.setItem('theme', theme);
-      body.classList.add(`${theme}-theme`);
-      return redirect('/');
-    }
-    return null;
-  }
-
   const checkLogeedInLoader = () => {
     const { isAuth } = getAuth();
     if (isAuth) {
@@ -73,12 +61,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalLang]);
   const router = createBrowserRouter([
-    // {
-    //   path: "/",
-    //   element: <ThemeLayout />,
-    //   children: [
-    //   ]
-    // },
     {
       path: "login",
       element: <Login />,
@@ -94,7 +76,7 @@ function App() {
       children: [
         {
           path: "/",
-          // loader: () => redirect("/home"),
+          loader: () => redirect("/home"),
         },
         {
           path: "home",
@@ -130,7 +112,6 @@ function App() {
     {
       path: "*",
       element: <NotFoundPage />,
-      loader: checkThemeLoader
     },
   ]);
   return (

@@ -3,10 +3,9 @@ import langReducer from "./Lang/Lang";
 import authReducer from "./Auth/Auth";
 import audioReducer from "./audio/audio";
 import modalsReducer from "./Modals/Modals";
-import themeReducer from "./Theme/Theme";
 
 const store = configureStore({
-    reducer: { lang: langReducer, auth: authReducer, audio: audioReducer, modals: modalsReducer, theme: themeReducer },
+    reducer: { lang: langReducer, auth: authReducer, audio: audioReducer, modals: modalsReducer },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {
