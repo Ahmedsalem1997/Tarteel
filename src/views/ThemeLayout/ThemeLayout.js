@@ -13,6 +13,7 @@ const ThemeLayout = () => {
     const rootEle = document.getElementsByTagName('body')[0];
 
     useEffect(() => {
+        // console.log(url);
         // if (!theme) {
         //   setTheme('zain');
         // }

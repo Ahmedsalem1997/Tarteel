@@ -26,6 +26,17 @@ function App() {
     }
     return null;
   }
+  const checkThemeLoader = () => {
+    const urlArr = window.location.href.split('/');
+    const theme = urlArr[urlArr.length - 1];
+    const body = document.getElementsByTagName('body')[0];
+    if (theme === 'du' || theme === 'omentel' || theme === 'stc' || theme === 'zain') {
+      localStorage.setItem('theme', theme);
+      body.classList.add(`${theme}-theme`);
+      return redirect('/');
+    }
+    return null;
+  }
 
   const checkLogeedInLoader = () => {
     const { isAuth } = getAuth();
@@ -62,63 +73,64 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalLang]);
   const router = createBrowserRouter([
+    // {
+    //   path: "/",
+    //   element: <ThemeLayout />,
+    //   children: [
+    //   ]
+    // },
+    {
+      path: "login",
+      element: <Login />,
+      loader: checkLogeedInLoader
+    },
+    {
+      path: "shekh-login",
+      element: <AdminLogin />,
+    },
     {
       path: "/",
-      element: <ThemeLayout />,
+      element: <BasicLayout />,
       children: [
         {
-          path: "login",
-          element: <Login />,
-          loader: checkLogeedInLoader
-        },
-        {
-          path: "shekh-login",
-          element: <AdminLogin />,
-        },
-        {
           path: "/",
-          element: <BasicLayout />,
-          children: [
-            {
-              path: "/",
-              // loader: () => redirect("/home"),
-            },
-            {
-              path: "home",
-              element: <Home />,
-            },
-
-            // {
-            //   path: "subscription-login",
-            //   element: <SubscriptionLogin />
-            // },
-            {
-              path: "users/:id",
-              element: <Profile />,
-              loader: checkAuthLoader,
-            },
-            {
-              path: "islamic",
-              element: <Islamic />,
-              loader: checkAuthLoader,
-            },
-            {
-              path: "quran",
-              element: <Quran />,
-              loader: checkAuthLoader,
-            },
-            {
-              path: "verification-code/:mobile",
-              element: <VerificationCode />,
-            },
-
-          ],
+          // loader: () => redirect("/home"),
         },
-      ]
+        {
+          path: "home",
+          element: <Home />,
+        },
+
+        // {
+        //   path: "subscription-login",
+        //   element: <SubscriptionLogin />
+        // },
+        {
+          path: "users/:id",
+          element: <Profile />,
+          loader: checkAuthLoader,
+        },
+        {
+          path: "islamic",
+          element: <Islamic />,
+          loader: checkAuthLoader,
+        },
+        {
+          path: "quran",
+          element: <Quran />,
+          loader: checkAuthLoader,
+        },
+        {
+          path: "verification-code/:mobile",
+          element: <VerificationCode />,
+        },
+
+      ],
     },
     {
       path: "*",
       element: <NotFoundPage />,
+      loader: checkThemeLoader
     },
   ]);
   return (
