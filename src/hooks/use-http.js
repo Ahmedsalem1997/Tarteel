@@ -17,7 +17,7 @@ const useHTTP = () => {
                 baseUrl + requestConfig.url,
                 {
                     method: requestConfig.method,
-                    headers: requestConfig.headers,
+                    headers: {operator_id: '2', ...requestConfig.headers},
                     body: requestConfig.method === 'POST' && requestConfig.headers && requestConfig.headers['Content-Type'] === 'application/json' ? JSON.stringify(requestConfig.body) : requestConfig.body
                 }
             );
