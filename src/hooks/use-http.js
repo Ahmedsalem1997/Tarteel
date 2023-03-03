@@ -11,13 +11,13 @@ const useHTTP = () => {
         setIsLoading(true);
         setError(null);
         // http://ec2-34-246-200-235.eu-west-1.compute.amazonaws.com
-        let baseUrl = "https://tarteel.me/api/v1/front/";
+        let baseUrl = process.env.REACT_APP_BASE_URL;
         try {
             const response = await fetch(
                 baseUrl + requestConfig.url,
                 {
                     method: requestConfig.method,
-                    headers: {operator_id: 2, ...requestConfig.headers},
+                    headers: {operator_id: process.env.REACT_APP_OPERATOR_ID, ...requestConfig.headers},
                     body: requestConfig.method === 'POST' && requestConfig.headers && requestConfig.headers['Content-Type'] === 'application/json' ? JSON.stringify(requestConfig.body) : requestConfig.body
                 }
             );
