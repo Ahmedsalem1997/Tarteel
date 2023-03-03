@@ -31,7 +31,7 @@ const Islamic = () => {
             {isLoading && <Loader />}
             <div className="container-fluid gx-2 gx-md-5">
                 {categories.map((category) => (
-                    <HomeSection key={category.id} header={lang === "ar" ? category.name : category.name_en} showAll="/">
+                    <HomeSection key={category.id} header={lang === "ar" ? category.name : category.name_en}>
                         <IslamicSubSection id={category.id} />
                     </HomeSection>
                 ))}
