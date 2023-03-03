@@ -10,7 +10,6 @@ const useHTTP = () => {
     const sendRequest = useCallback(async (requestConfig, applyData, applyError) => {
         setIsLoading(true);
         setError(null);
-        // http://ec2-34-246-200-235.eu-west-1.compute.amazonaws.com
         let baseUrl = process.env.REACT_APP_BASE_URL;
         try {
             const response = await fetch(
