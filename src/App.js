@@ -14,6 +14,7 @@ import AdminLogin from './views/AdminLogin/AdminLogin';
 import BasicLayout from './views/BasicLayout/BasicLayout';
 import { modalsActions } from "./store/Modals/Modals";
 import { getAuth } from "./utils/Auth";
+import SheikhProfileRecords from './views/SheikhProfileRecords/SheikhProfileRecords';
 
 
 function App() {
@@ -103,9 +104,13 @@ function App() {
           loader: checkAuthLoader,
         },
         {
-          path: "verification-code/:mobile",
-          element: <VerificationCode />,
-        },
+          path: "sheikh-records/:type",
+          element: <SheikhProfileRecords />,
+        }
+        // {
+        //   path: "verification-code/:mobile",
+        //   element: <VerificationCode />,
+        // },
 
       ],
     },

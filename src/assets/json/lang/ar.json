@@ -11,7 +11,9 @@
     },
     "records": {
         "myRecords": "تسجيلاتي",
-        "latestRecords": "احدث التسجيلات"
+        "latestRecords": "احدث التسجيلات",
+        "newRecord":"تسجيل جديد",
+        "oldRecords": "تسجيلات تم تصحيحها"
     },
     "button": {
         "startRecording": "ابدأ تسجيل الأن",
@@ -29,7 +31,8 @@
         "login": "تسجيل دخول",
         "getCode": "الحصول علي الرمز",
         "newRecord": "تسجيل جديد",
-        "showMore": "إظهار المزيد"
+        "showMore": "إظهار المزيد",
+        "show": "عرض"
     },
     "islamicContent": {
         "title": "المحتوى الإسلامي"
