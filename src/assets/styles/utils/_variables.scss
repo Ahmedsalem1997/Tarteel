@@ -24,7 +24,8 @@ $du-theme: (
     "main-icon-color": $du-blue,
     "main-btn-bg": $du-blue,
     "white-btn-color": $du-blue,
-    "play-pause-btn": lighten($du-blue, 5)
+    "play-pause-btn": lighten($du-blue, 5),
+    "dark-main-color": darken($du-blue, 5)
 );
 $zain-theme: (
     "main-color": $green,
@@ -33,7 +34,8 @@ $zain-theme: (
     "main-icon-color": $green,
     "main-btn-bg": $green,
     "white-btn-color": $green,
-    "play-pause-btn": lighten($green, 5)
+    "play-pause-btn": lighten($green, 5),
+    "dark-main-color": darken($green, 5)
 );
 $omentel-theme: (
     "main-color": $orange,
@@ -42,7 +44,8 @@ $omentel-theme: (
     "main-icon-color": $orange,
     "main-btn-bg": $orange,
     "white-btn-color": $orange,
-    "play-pause-btn": lighten($orange, 5)
+    "play-pause-btn": lighten($orange, 5),
+    "dark-main-color": darken($orange, 5)
 );
 $stc-theme: (
     "main-color": $stc-purple,
@@ -51,7 +54,9 @@ $stc-theme: (
     "main-icon-color": $stc-purple,
     "main-btn-bg": $stc-purple,
     "white-btn-color": $stc-purple,
-    "play-pause-btn": lighten($stc-purple, 5)
+    "play-pause-btn": lighten($stc-purple, 5),
+    "dark-main-color": darken($stc-purple, 5)
+
 );
 $main-colors: (
     "icon-color": $yellow,

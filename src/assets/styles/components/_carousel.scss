@@ -1,6 +1,7 @@
 .carousel {
   color: var(--carousel-color);
   margin-bottom: 2.5rem;
+
   &-content {
     position: absolute;
     left: 5rem;
@@ -37,8 +38,10 @@
 
     }
   }
+
   &-item {
     position: relative;
+
     &::after {
       content: '';
       position: absolute;
@@ -46,8 +49,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to bottom, var(--main-color) -2%, #000 102%);
-      opacity: .3;
+      background-image: linear-gradient(177deg, #000 -32%, var(--dark-main-color) -20%, #000 95%);
+      opacity: .8;
     }
   }
 
