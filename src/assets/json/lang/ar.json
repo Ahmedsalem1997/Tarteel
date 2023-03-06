@@ -32,7 +32,8 @@
         "getCode": "الحصول علي الرمز",
         "newRecord": "تسجيل جديد",
         "showMore": "إظهار المزيد",
-        "show": "عرض"
+        "show": "عرض",
+        "addRecord": "اضف تسجيل صوتي"
     },
     "islamicContent": {
         "title": "المحتوى الإسلامي"

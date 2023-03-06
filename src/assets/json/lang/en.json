@@ -32,7 +32,8 @@
         "getCode" : "get the code",
         "newRecord": "new record",
         "showMore": "show more",
-        "show": "show"
+        "show": "show",
+        "addRecord": "add record"
     },
     "islamicContent": {
         "title": "Islamic Content"

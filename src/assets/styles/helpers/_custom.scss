@@ -18,3 +18,7 @@ html[dir="rtl"] {
 .green-color {
     color: $green;
 }
+
+.error-color {
+    color: var(--error-color) !important;
+}
