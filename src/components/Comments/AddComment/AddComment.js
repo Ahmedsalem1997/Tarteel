@@ -7,19 +7,20 @@ import { getAuth } from "../../../utils/Auth";
 import Loader from "../../Loader/Loader";
 import { useDispatch } from "react-redux";
 import { modalsActions } from "../../../store/Modals/Modals";
-import { useAudioRecorder, AudioRecorder } from "react-audio-voice-recorder";
+// import { useAudioRecorder, AudioRecorder } from "react-audio-voice-recorder";
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
-import MicRecorder from 'mic-recorder-to-mp3';
+// import MicRecorder from 'mic-recorder-to-mp3';
+import AudioRecord from '../../AudioRecord/AudioRecord';
 
 
 const AddComment = (props) => {
-  const [Mp3Recorder, setMp3Recorder] = useState(
-    new MicRecorder({ bitRate: 128 })
-  );
-  const [recordingTimeInterval, setRecordingTimeInterval] = useState();
+  // const [Mp3Recorder, setMp3Recorder] = useState(
+  //   new MicRecorder({ bitRate: 128 })
+  // );
+  // const [recordingTimeInterval, setRecordingTimeInterval] = useState();
   const [comment, setComment] = useState('');
   const { isLoading, error, sendRequest: addComment } = useHTTP();
-  const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * 1000));
+  // const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * 1000));
   const auth = getAuth();
   const [commentErr, setCommentErr] = useState('');
   const [uploadedRecord, setUploadedRecord] = useState(undefined);
@@ -27,19 +28,19 @@ const AddComment = (props) => {
   const openLoginModal = () => {
     dispatch(modalsActions.openLoginModal());
   }
-  const [isMp3Recording, setIsMp3Recording] = useState(false);
-  const [recordingMp3Time, setRecordingMp3Time] = useState(0);
-  const [isBlocked, setIsBlocked] = useState(false);
-  const [blobUrl, setBlobUrl] = useState('');
-  const {
-    startRecording,
-    stopRecording,
-    togglePauseResume,
-    recordingBlob,
-    isRecording,
-    isPaused,
-    recordingTime,
-  } = useAudioRecorder();
+  // const [isMp3Recording, setIsMp3Recording] = useState(false);
+  // const [recordingMp3Time, setRecordingMp3Time] = useState(0);
+  // const [isBlocked, setIsBlocked] = useState(false);
+  // const [blobUrl, setBlobUrl] = useState('');
+  // const {
+  //   startRecording,
+  //   stopRecording,
+  //   togglePauseResume,
+  //   recordingBlob,
+  //   isRecording,
+  //   isPaused,
+  //   recordingTime,
+  // } = useAudioRecorder();
   const addCommentHandler = (e) => {
     e.preventDefault();
     let formData = new FormData();
@@ -123,17 +124,17 @@ const AddComment = (props) => {
     setUploadedRecord(blob);
   }
 
-  const handlerRecordBtn = () => {
-    if (!isRecording && !recordingBlob) {
-      startRecording();
-    }
-    // console.log(recordingBlob, recordingTime);
-  }
+  // const handlerRecordBtn = () => {
+  //   if (!isRecording && !recordingBlob) {
+  //     startRecording();
+  //   }
+  //   // console.log(recordingBlob, recordingTime);
+  // }
 
-  const handleStopRecording = () => {
-    stopRecording();
-    // setUploadedRecord(recordingBlob);
-  }
+  // const handleStopRecording = () => {
+  //   stopRecording();
+  //   // setUploadedRecord(recordingBlob);
+  // }
 
   const onChangeComment = (e) => {
     const schema = Joi.object({
@@ -152,48 +153,44 @@ const AddComment = (props) => {
     setComment(e.target.value);
   }
 
-  const start = () => {
-    if (!isMp3Recording) {
-      navigator.getUserMedia({ audio: true },
-        () => {
-          console.log('Permission Granted');
-          setIsBlocked(false);
-          Mp3Recorder
-            .start()
-            .then(() => {
-              setIsMp3Recording(true);
-              setRecordingTimeInterval(setInterval(() => {
-                setRecordingMp3Time(prev => prev + 1);
-              }, 1000));
-            }).catch((e) => console.error(e));
-        },
-        () => {
-          console.log('Permission Denied');
-          setIsBlocked(true);
-        },
-      );
-    }
-    // if (isBlocked) {
-    //   console.log('Permission Denied');
-    // } else {
-    // }
-  };
+  // const start = () => {
+  //   if (!isMp3Recording) {
+  //     navigator.getUserMedia({ audio: true },
+  //       () => {
+  //         console.log('Permission Granted');
+  //         setIsBlocked(false);
+  //         Mp3Recorder
+  //           .start()
+  //           .then(() => {
+  //             setIsMp3Recording(true);
+  //             setRecordingTimeInterval(setInterval(() => {
+  //               setRecordingMp3Time(prev => prev + 1);
+  //             }, 1000));
+  //           }).catch((e) => console.error(e));
+  //       },
+  //       () => {
+  //         console.log('Permission Denied');
+  //         setIsBlocked(true);
+  //       },
+  //     );
+  //   }
+  // };
 
-  const stop = (e) => {
-    e.stopPropagation()
-    // e.stopPropgation()
-    clearInterval(recordingTimeInterval);
-    setRecordingMp3Time(0);
-    Mp3Recorder
-      .stop()
-      .getMp3()
-      .then(([buffer, blob]) => {
-        const blobURL = URL.createObjectURL(blob);
-        setBlobUrl(blobURL);
-        setIsMp3Recording(false);
-        setUploadedRecord(blob);
-      }).catch((e) => console.log(e));
-  };
+  // const stop = (e) => {
+  //   e.stopPropagation()
+  //   // e.stopPropgation()
+  //   clearInterval(recordingTimeInterval);
+  //   setRecordingMp3Time(0);
+  //   Mp3Recorder
+  //     .stop()
+  //     .getMp3()
+  //     .then(([buffer, blob]) => {
+  //       const blobURL = URL.createObjectURL(blob);
+  //       setBlobUrl(blobURL);
+  //       setIsMp3Recording(false);
+  //       setUploadedRecord(blob);
+  //     }).catch((e) => console.log(e));
+  // };
   return (
     <Fragment>
       {isLoading && <Loader />}
@@ -202,28 +199,14 @@ const AddComment = (props) => {
           <textarea disabled={!auth.isAuth} value={comment} onChange={onChangeComment} placeholder={useTranslate('input.placeholder.writeComment')}></textarea>
           <ErrorMessage message={commentErr} />
         </div>
-        {/* {
-          (!isRecording && recordingBlob) &&
-          <div className="add-comment-audio">
-            &nbsp;
-                  <i className="fa-solid fa-trash-can"></i>
-          </div>
 
-        } */}
         <div className="add-comment-actions">
-          {/* <AudioRecorder key={`record-${randomNum}`}
-            onRecordingComplete={(blob) => onRecordFinished(blob)}
-            recorderControls={{
-              startRecording,
-              stopRecording,
-              togglePauseResume,
-              recordingBlob,
-              isRecording,
-              isPaused,
-              recordingTime,
-            }}
-          /> */}
-          {uploadedRecord && <i className="fa-solid fa-trash-can error-color fa-2xs" onClick={() => setUploadedRecord(undefined)}></i>}
+          {auth?.loggedUser?.is_sheikh ?
+            <AudioRecord onRecordFinished={onRecordFinished} onIsRecordingChange={() => { return }} />
+            :
+            ''
+          }
+          {/* {uploadedRecord && <i className="fa-solid fa-trash-can error-color fa-2xs" onClick={() => setUploadedRecord(undefined)}></i>}
           {
             auth?.loggedUser?.is_sheikh ?
               <button type="button" onClick={start} disabled={uploadedRecord}>
@@ -233,19 +216,14 @@ const AddComment = (props) => {
                   <span>
                     <i className="fa-solid fa-circle-stop fa-2x" onClick={stop}></i>&nbsp;&nbsp;
                     <i className="fa-solid fa-circle-dot fa-beat error-color fa-2x"></i>&nbsp;&nbsp;
-                    {/* {isPaused ?
-                      <i className="fa-solid fa-circle-play" onClick={togglePauseResume}></i>
-                      :
-                      <i className="fa-solid fa-circle-pause" onClick={togglePauseResume}></i>
-                    }
-                    &nbsp; */}
+                    
                     {recordingMp3Time}
                   </span>
                 }
                 {(!isMp3Recording && uploadedRecord) && <audio id='record-audio' style={{ maxWidth: '100%' }} src={blobUrl} controls></audio>}
               </button> :
               ''
-          }
+          } */}
           <button type="submit" disabled={!auth.isAuth || !(comment || uploadedRecord)}><Translate id="button.addComment" /></button>
         </div>
       </form>

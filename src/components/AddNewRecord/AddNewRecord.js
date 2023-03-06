@@ -8,7 +8,7 @@ import { isValidFileUploaded } from "../../utils/FileValidation";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Loader from "../Loader/Loader";
 import Modal from "../Modal/Modal";
-import { useAudioRecorder, AudioRecorder } from "react-audio-voice-recorder";
+import AudioRecord from "../AudioRecord/AudioRecord";
 
 
 const AddNewRecord = (props) => {
@@ -26,19 +26,11 @@ const AddNewRecord = (props) => {
     const [selectedRead, setSelectedRead] = useState(1);
     const [uploadedRecordErr, setUploadedRecordErr] = useState('');
     const { isLoading, error, sendRequest } = useHTTP();
+    const [isRecording, setIsRecording] = useState(false);
     const dispatch = useDispatch();
     const lang = useSelector(state => {
         return state.lang.globalLang;
     });
-    const {
-        startRecording,
-        stopRecording,
-        togglePauseResume,
-        recordingBlob,
-        isRecording,
-        isPaused,
-        recordingTime,
-    } = useAudioRecorder();
     const { token } = getAuth();
     useEffect(() => {
         getSurahList();
@@ -173,25 +165,9 @@ const AddNewRecord = (props) => {
     const closeModal = () => {
         dispatch(modalsActions.closeAddNewRecordModal());
     }
-
-    // const onRecordFinished = (blob) => {
-    //     setUploadedRecord(blob);
-    // }
-
-    const handlerRecordBtn = () => {
-        if (!isRecording && !recordingBlob) {
-            startRecording();
-        }
+    const onRecordFinished = (blob) => {
+        setRecordedRecord(blob);
     }
-
-    const handleStopRecording = () => {
-        stopRecording();
-        // console.log(recordingBlob);
-        // setUploadedRecord(recordingBlob);
-    }
-    // const pauseRecordingHandler = () => {
-    //     togglePauseResume();
-    // }
     return (
         <Modal showClose={true} onClose={closeModal}>
             {isLoading && <Loader />}
@@ -240,42 +216,8 @@ const AddNewRecord = (props) => {
                         </select>
                     </div>
                     <div className="add-new-record-buttons">
-                        <button disabled={recordingBlob || isRecording} style={{ wordBreak: 'break-word' }} type="button" onClick={uploadFile}>{uploadedRecord?.name ? uploadedRecord?.name : <><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></>}</button>
-                        <AudioRecorder
-                            onRecordingComplete={(blob) => setRecordedRecord(blob)}
-                            recorderControls={{
-                                startRecording,
-                                stopRecording,
-                                togglePauseResume,
-                                recordingBlob,
-                                isRecording,
-                                isPaused,
-                                recordingTime,
-                            }}
-                        />
-                        <button disabled={uploadedRecord} type="button" onClick={handlerRecordBtn}>
-                            {(!isRecording && !recordingBlob) && <><Translate id="button.startRecording" /> <i className="fa-solid fa-microphone"></i></>}
-                            {isRecording &&
-                                <span>
-                                    <i className="fa-solid fa-circle-stop" onClick={handleStopRecording}></i>&nbsp;
-                                    {isPaused ?
-                                        <i className="fa-solid fa-circle-play" onClick={togglePauseResume}></i>
-                                        :
-                                        <i className="fa-solid fa-circle-pause" onClick={togglePauseResume}></i>
-                                    }
-                                    &nbsp;
-                                    {recordingTime}
-                                </span>}
-                            {(!isRecording && recordingBlob) &&
-                                <>
-                                    <audio id='record-audio' style={{ maxWidth: '100%' }} src={URL.createObjectURL(recordingBlob)} controls></audio>
-                                    {/* &nbsp;
-                                        <i className="fa-solid fa-trash-can"></i> */}
-                                </>
-
-                            }
-                        </button>
-                        {/* <AudioRecord onRecordFinished={onRecordFinished} showTitle={true} /> */}
+                        <button disabled={recordedRecord || isRecording} style={{ wordBreak: 'break-word' }} type="button" onClick={uploadFile}>{uploadedRecord?.name ? uploadedRecord?.name : <><Translate id="button.haveRecord" /> <i className="fa-solid fa-cloud-arrow-up"></i></>}</button>
+                        <AudioRecord disabled={uploadedRecord} onRecordFinished={onRecordFinished} onIsRecordingChange={(e) => setIsRecording(e)} />
                         <input accept="audio/*" name="record" onChange={uploadRecordHandler} id="upload-file" type="file"></input>
                     </div>
                     <ErrorMessage message={uploadedRecordErr} />
