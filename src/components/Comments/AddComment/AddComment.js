@@ -206,24 +206,6 @@ const AddComment = (props) => {
             :
             ''
           }
-          {/* {uploadedRecord && <i className="fa-solid fa-trash-can error-color fa-2xs" onClick={() => setUploadedRecord(undefined)}></i>}
-          {
-            auth?.loggedUser?.is_sheikh ?
-              <button type="button" onClick={start} disabled={uploadedRecord}>
-                {(!isMp3Recording && !uploadedRecord) && <span><i className="fa-solid fa-microphone"></i>&nbsp;<Translate id="button.addRecord" /></span>}
-                {
-                  isMp3Recording &&
-                  <span>
-                    <i className="fa-solid fa-circle-stop fa-2x" onClick={stop}></i>&nbsp;&nbsp;
-                    <i className="fa-solid fa-circle-dot fa-beat error-color fa-2x"></i>&nbsp;&nbsp;
-                    
-                    {recordingMp3Time}
-                  </span>
-                }
-                {(!isMp3Recording && uploadedRecord) && <audio id='record-audio' style={{ maxWidth: '100%' }} src={blobUrl} controls></audio>}
-              </button> :
-              ''
-          } */}
           <button type="submit" disabled={!auth.isAuth || !(comment || uploadedRecord)}><Translate id="button.addComment" /></button>
         </div>
       </form>
