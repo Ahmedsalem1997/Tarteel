@@ -11,12 +11,14 @@ const useHTTP = () => {
         setIsLoading(true);
         setError(null);
         let baseUrl = process.env.REACT_APP_BASE_URL;
+        let headers = {operator: process.env.REACT_APP_OPERATOR_ID, ...requestConfig.headers};
+        console.log(headers);
         try {
             const response = await fetch(
                 baseUrl + requestConfig.url,
                 {
                     method: requestConfig.method,
-                    headers: {operator: process.env.REACT_APP_OPERATOR_ID, ...requestConfig.headers},
+                    headers: headers,
                     body: requestConfig.method === 'POST' && requestConfig.headers && requestConfig.headers['Content-Type'] === 'application/json' ? JSON.stringify(requestConfig.body) : requestConfig.body
                 }
             );
