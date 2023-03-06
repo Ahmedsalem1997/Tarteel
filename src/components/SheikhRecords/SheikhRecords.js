@@ -3,7 +3,7 @@ import Records from "../Records/Records";
 const SheikhRecords = (props) => {
     return (
         <HomeSection header={props.type === 'pending' ? "records.newRecord" : "records.oldRecords"}>
-            <Records recordsUrl={`records/latest?records_type=${props.type}`} />
+            <Records recordsUrl={`records/latest?records_type=${props.type}`} hideFollow={true} />
         </HomeSection>
     )
 }

@@ -1,3 +1,4 @@
+import { getAuth } from "../../utils/Auth";
 import Navigation from "../Navigation/Navigation";
 
 const CarouselWrapper = (props) => {
@@ -5,6 +6,7 @@ const CarouselWrapper = (props) => {
     const img2 = require("../../assets/images/bg2.png");
     const img3 = require("../../assets/images/bg3.png");
     const img4 = require("../../assets/images/bg4.png");
+    const { loggedUser } = getAuth();
     return (
         <div id="carouselExampleIndicators" className="carousel slide">
             <div className="carousel-inner">
@@ -24,7 +26,7 @@ const CarouselWrapper = (props) => {
             <div className="carousel-content">
                 {props.children}
             </div>
-            <Navigation />
+            {!loggedUser?.is_sheikh && <Navigation />}
         </div>
     )
 }

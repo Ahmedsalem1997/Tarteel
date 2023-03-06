@@ -20,7 +20,10 @@ import SheikhProfileRecords from './views/SheikhProfileRecords/SheikhProfileReco
 function App() {
 
   const checkAuthLoader = () => {
-    const { isAuth } = getAuth();
+    const { isAuth, loggedUser } = getAuth();
+    if (isAuth && loggedUser.is_sheikh) {
+      return redirect(`/users/${loggedUser.id}`);
+    }
     if (!isAuth) {
       dispatch(modalsActions.openLoginModal());
       return redirect("/home");
@@ -33,6 +36,32 @@ function App() {
       return redirect("/home");
     }
     return null;
+  }
+  const checkSheikhLoader = () => {
+    const { loggedUser } = getAuth();
+    if (loggedUser && loggedUser.is_sheikh) {
+      return redirect(`/shekh`);
+    }
+    return null;
+  }
+
+  const checkIsShekhLoader = () => {
+    const {loggedUser} = getAuth();
+    if (!(loggedUser && loggedUser.is_sheikh)) {
+      return redirect('/home');
+    }
+    return null
+  }
+
+  const checkProfileLoader = () => {
+    const { isAuth, loggedUser } = getAuth();
+    if (!isAuth) {
+      return redirect('/home');
+    }
+    if (isAuth && loggedUser.is_sheikh) {
+      return redirect('/shekh');
+    }
+    return null
   }
 
   const globalLang = useSelector((state) => {
@@ -82,6 +111,7 @@ function App() {
         {
           path: "home",
           element: <Home />,
+          loader: checkSheikhLoader
         },
 
         // {
@@ -91,7 +121,12 @@ function App() {
         {
           path: "users/:id",
           element: <Profile />,
-          loader: checkAuthLoader,
+          loader: checkProfileLoader,
+        },
+        {
+          path: "shekh",
+          element: <Profile />,
+          loader: checkIsShekhLoader
         },
         {
           path: "islamic",
