@@ -10,7 +10,7 @@ const IslamicContentHome = (props) => {
     useEffect(() => {
         getCategories(
             {
-                url: `content${props.id ? `?operator_id=${props.id}` : ''}`,
+                url: `content${props.id ? `?category_id=${props.id}` : '?per_page=6'}`,
                 method: 'GET'
             },
             data => {
