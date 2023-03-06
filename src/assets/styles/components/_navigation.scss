@@ -9,7 +9,10 @@
   top: 3.5rem;
   left: 0;
   width: 100%;
-  li {
+  .navbar-nav {
+    padding-inline-start: 0;
+  }
+  li.nav-item {
 
     a {
       display: inline-block;
