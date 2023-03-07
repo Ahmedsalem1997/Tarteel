@@ -26,7 +26,7 @@ const CarouselWrapper = (props) => {
             <div className="carousel-content">
                 {props.children}
             </div>
-            {!loggedUser?.is_sheikh && <Navigation />}
+            <Navigation />
         </div>
     )
 }

@@ -3,7 +3,8 @@
         "home": "Home",
         "myRecords": "My Records",
         "islamicContent": "Islamic Content",
-        "quran": "Quran"
+        "quran": "Quran",
+        "logout": "logout"
     },
     "carousel": {
         "title": "Learn Quran in the right way",

@@ -1,6 +1,7 @@
-import { NavLink } from "react-router-dom";
+import { Fragment } from "react";
+import { Link, NavLink } from "react-router-dom";
 import Translate from "../../helpers/Translate/Translate";
-import { getAuth } from "../../utils/Auth";
+import { getAuth, logout } from "../../utils/Auth";
 
 
 
@@ -25,17 +26,28 @@ const Navigation = () => {
                 <NavLink to="/home" activeclassname="active"><Translate id="navigation.home" /></NavLink>
               </li>
               {
-                auth.isAuth &&
+                (auth?.isAuth && !auth?.loggedUser?.is_sheikh) &&
                 <li class="nav-item">
                   <NavLink to={`/users/${auth.loggedUser.id}`} activeclassname="active"><Translate id="navigation.myRecords" /></NavLink>
                 </li>
               }
-              <li class="nav-item">
-                <NavLink to="/islamic" activeclassname="active"><Translate id="navigation.islamicContent" /></NavLink>
-              </li>
-              <li class="nav-item">
-                <NavLink to="/quran" activeclassname="active"><Translate id="navigation.quran" /></NavLink>
-              </li>
+              {
+                !auth?.loggedUser?.is_sheikh &&
+                <Fragment>
+                  <li class="nav-item">
+                    <NavLink to="/islamic" activeclassname="active"><Translate id="navigation.islamicContent" /></NavLink>
+                  </li>
+                  <li class="nav-item">
+                    <NavLink to="/quran" activeclassname="active"><Translate id="navigation.quran" /></NavLink>
+                  </li>
+                </Fragment>
+              }
+              {
+                auth.isAuth &&
+                <li class="nav-item">
+                  <Link to="/" onClick={logout}><Translate id="navigation.logout" /></Link>
+                </li>
+              }
             </ul>
           </div>
         </div>
