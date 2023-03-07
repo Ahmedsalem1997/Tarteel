@@ -12,6 +12,7 @@ const useHTTP = () => {
         setError(null);
         let baseUrl = process.env.REACT_APP_BASE_URL;
         let headers = {operator: process.env.REACT_APP_OPERATOR_ID, ...requestConfig.headers};
+        console.log(headers);
         try {
             const response = await fetch(
                 baseUrl + requestConfig.url,
