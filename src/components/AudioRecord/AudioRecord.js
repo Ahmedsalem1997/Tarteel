@@ -3,7 +3,7 @@ import Translate from '../../helpers/Translate/Translate';
 import MicRecorder from 'mic-recorder-to-mp3';
 
 const AudioRecord = (props) => {
-    const recorder = useRef(null);
+    const [recorder, setRecorder] = useState(null);
     const [timer, setTimer] = useState(null);
     const [time, setTime] = useState(0);
     const [isRecording, setIsRecording] = useState(false);
@@ -11,28 +11,46 @@ const AudioRecord = (props) => {
     const [uploadedRecord, setUploadedRecord] = useState(undefined);
 
     useEffect(() => {
-        //Declares the recorder object and stores it in ref
-        recorder.current = new MicRecorder({ bitRate: 128 });
+        //Declares the recorder object and stores it in state
+        setRecorder(new MicRecorder({ bitRate: 128 }));
     }, []);
 
     const startRecording = () => {
+        // const audio = document.getElementById('record-audio');
+        // console.log('started', audio.defaultPlaybackRate, audio.playbackRate);
         //start() returns a promise incase if audio is not blocked by browser
-        recorder.current.start().then(() => {
-            setIsRecording(true);
-        });
+        if(!isRecording) {
+            navigator.getUserMedia({ audio: true },
+                () => {
+                    console.log('Permission Granted');
+                    recorder.start().then(() => {
+                        setIsRecording(true);
+                    });
+                },
+                () => {
+                    console.log('Permission Denied');
+                },
+            );
+        }
     };
 
     const stopRecording = (e) => {
-        e.stopPropagation()
-        recorder.current
+        e.stopPropagation();
+        console.log('stopped');
+        recorder
             .stop()
             .getMp3()
             .then(([buffer, blob]) => {
-                const newBlobUrl = URL.createObjectURL(blob); //generates url from blob
+                const file = new File(buffer, 'recorded-voice.mp3', {
+                    type: blob.type,
+                    lastModified: Date.now()
+                });
+                console.log(file);
+                const newBlobUrl = URL.createObjectURL(file); //generates url from blob
                 setBlobUrl(newBlobUrl); //refreshes the page
                 setIsRecording(false);
-                setUploadedRecord(blob);
-                props.onRecordFinished(blob);
+                setUploadedRecord(file);
+                props.onRecordFinished(file);
             })
             .catch((e) => console.log(e));
     };
@@ -44,6 +62,10 @@ const AudioRecord = (props) => {
             startTimer();
         } else {
             stopTimer();
+            // const audio = document.getElementById('record-audio');
+            // if (audio) {
+            //     audio.play();
+            // }
         }
     }, [isRecording]);
 
@@ -71,7 +93,7 @@ const AudioRecord = (props) => {
                     {
                         isRecording &&
                         <span className='d-flex justify-content-center align-items-center'>
-                            <i className="fa-solid fa-circle-stop" onClick={stopRecording}></i>&nbsp;&nbsp;
+                            <i className="fa-solid fa-circle-stop cursor-pointer" onClick={stopRecording}></i>&nbsp;&nbsp;
                             <i className="fa-solid fa-circle-dot fa-beat error-color"></i>&nbsp;&nbsp;
                             <span className='fs-3'>{time}</span>
                         </span>
