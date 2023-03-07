@@ -12,6 +12,12 @@ export function getAuth() {
     return { token, loggedUser, isAuth }
 }
 
+export function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('loggedUser');
+    localStorage.removeItem('longTermToken');
+}
+
 export function generateLongTermToken() {
     const longTermToken =
         Math.floor(Math.random() * 100000000) + '_' +
