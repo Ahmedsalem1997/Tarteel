@@ -2,22 +2,39 @@
   audio {
     max-width: 15rem;
   }
+
   padding: 8px 0 0 0;
+
   .audio-recorder {
     display: inline-flex;
     box-shadow: none;
     width: auto;
+
     &.recording {
       display: flex;
     }
+
     &:not(.recording) {
       padding: 0;
       background: transparent;
+
       .audio-recorder-mic {
         filter: invert(1);
         height: 1.5rem;
         margin-inline-start: 0.5rem;
       }
     }
+  }
+}
+
+.record-container {
+  background-color: var(--main-btn-bg);
+  color: var(--main-btn-color);
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.5rem;
+  font-size: 2rem;
+  i {
+    margin-inline-end: 1.5rem;
+    color: var(--main-btn-color);
   }
 }

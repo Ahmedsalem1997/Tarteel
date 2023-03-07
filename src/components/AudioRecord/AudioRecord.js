@@ -19,18 +19,18 @@ const AudioRecord = (props) => {
         // const audio = document.getElementById('record-audio');
         // console.log('started', audio.defaultPlaybackRate, audio.playbackRate);
         //start() returns a promise incase if audio is not blocked by browser
-        if(!isRecording) {
-            navigator.getUserMedia({ audio: true },
-                () => {
-                    console.log('Permission Granted');
-                    recorder.start().then(() => {
-                        setIsRecording(true);
-                    });
-                },
-                () => {
-                    console.log('Permission Denied');
-                },
-            );
+        if (!isRecording) {
+            // navigator.getUserMedia({ audio: true },
+            //     () => {
+            //         console.log('Permission Granted');
+            recorder.start().then(() => {
+                setIsRecording(true);
+            });
+            //     },
+            //     () => {
+            //         console.log('Permission Denied');
+            //     },
+            // );
         }
     };
 
@@ -86,21 +86,28 @@ const AudioRecord = (props) => {
     return (
         <Fragment>
 
-            {uploadedRecord && <i className="fa-solid fa-trash-can error-color fa-2x" onClick={() => { setUploadedRecord(undefined); props.onRecordFinished(undefined) }}></i>}
             {
-                <button type="button" onClick={startRecording} disabled={uploadedRecord || props.disabled}>
-                    {(!isRecording && !uploadedRecord) && <span><i className="fa-solid fa-microphone"></i>&nbsp;<Translate id="button.addRecord" /></span>}
+                (!isRecording && !uploadedRecord) &&
+                <button type="button" onClick={startRecording} disabled={props.disabled}>
+                    <span><i className="fa-solid fa-microphone"></i>&nbsp;<Translate id="button.addRecord" /></span>
+                </button>
+            }
+            {
+                (isRecording || uploadedRecord) &&
+                <span className='d-flex justify-content-center align-items-center record-container'>
                     {
                         isRecording &&
-                        <span className='d-flex justify-content-center align-items-center'>
+                        <Fragment>
                             <i className="fa-solid fa-circle-stop cursor-pointer" onClick={stopRecording}></i>&nbsp;&nbsp;
                             <i className="fa-solid fa-circle-dot fa-beat error-color"></i>&nbsp;&nbsp;
                             <span className='fs-3'>{time}</span>
-                        </span>
+                        </Fragment>
                     }
+                    {uploadedRecord && <i className="fa-solid fa-trash-can error-color fa-2x" onClick={() => { setUploadedRecord(undefined); props.onRecordFinished(undefined) }}></i>}
                     {(!isRecording && uploadedRecord) && <audio id='record-audio' style={{ maxWidth: '100%' }} src={blobUrl} controls></audio>}
-                </button>
+                </span>
             }
+
         </Fragment>
     );
 }
