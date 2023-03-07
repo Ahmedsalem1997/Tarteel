@@ -135,6 +135,20 @@
   //   max-width: 500px;
   // }
 
+  // navigation
+
+  .navigation-links {
+    justify-content: flex-start;
+    .navbar {
+      padding-inline-start: 3.5rem;
+    }
+    li.nav-item {
+      a {
+        width: 100%;
+      }
+    }
+  }
+
 }
 
 @media screen and (max-width: 575px) {
@@ -253,18 +267,4 @@
   // .edit-profile {
   //   max-width: 250px;
   // }
-
-  // navigation
-
-  .navigation-links {
-    justify-content: flex-start;
-    .navbar {
-      padding-inline-start: 3.5rem;
-    }
-    li.nav-item {
-      a {
-        width: 100%;
-      }
-    }
-  }
 }

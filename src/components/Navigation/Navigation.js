@@ -15,7 +15,7 @@ const Navigation = () => {
     //   <li><NavLink to="/quran" activeclassname="active"><Translate id="navigation.quran" /></NavLink></li>
     // </ul>
     <div className="navigation-links">
-      <nav class="navbar navbar-expand-sm navbar-dark">
+      <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#naviagtion" aria-controls="naviagtion" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
