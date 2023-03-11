@@ -5,6 +5,7 @@ import { modalsActions } from "../../store/Modals/Modals";
 import { setLongTermToken } from "../../utils/Auth";
 import Modal from "../Modal/Modal";
 import Loader from "../Loader/Loader";
+import { useState } from "react";
 
 
 
@@ -14,7 +15,7 @@ const NotRegistered = () => {
     dispatch(modalsActions.closeLoginModal());
   };
   const { isLoading, error, sendRequest } = useHTTP();
-
+  const [err, setErr] = useState('');
   const onLogin = () => {
     sendRequest(
       {
@@ -30,7 +31,7 @@ const NotRegistered = () => {
         window.location.replace(data.data);
       },
       err => {
-
+        setErr(err);
       }
     );
 
@@ -49,6 +50,10 @@ const NotRegistered = () => {
         </div>
         <div className="not-registered-cancel">
           <button className="cancel-btn" onClick={closeLoginModal}><Translate id="button.cancel" /></button>
+        </div>
+        <div className="not-registered-cancel">
+          <p className="cancel-btn">error from request {err}</p>
+          <p className="cancel-btn">error from useHTTP {error}</p>
         </div>
       </div>
     </Modal>
