@@ -18,9 +18,9 @@ const Footer = () => {
                     <div className="footer-start-links-col">
                         <p className="footer-start-links-col-header"><Translate id="footer.quickLink" /></p>
                         <ul>
-                            <li><Link to='/'><Translate id="footer.aboutUs" /></Link></li>
-                            <li><Link to='/'><Translate id="footer.helpCenter" /></Link></li>
-                            <li><Link to='/'><Translate id="footer.privatePolicy" /></Link></li>
+                            <li><Link to='/about-us'><Translate id="footer.aboutUs" /></Link></li>
+                            <li><Link to='/private-policy'><Translate id="footer.helpCenter" /></Link></li>
+                            <li><Link to='/private-policy'><Translate id="footer.privatePolicy" /></Link></li>
                             {/* <li><Link to='/'><Translate id="footer.bePartner" /></Link></li> */}
                         </ul>
                     </div>

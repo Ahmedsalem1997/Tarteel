@@ -15,6 +15,8 @@ import BasicLayout from './views/BasicLayout/BasicLayout';
 import { modalsActions } from "./store/Modals/Modals";
 import { getAuth } from "./utils/Auth";
 import SheikhProfileRecords from './views/SheikhProfileRecords/SheikhProfileRecords';
+import AboutUs from './views/AboutUs/AboutUs';
+import PrivatePolicy from './views/PrivatePolicy/PrivatePolicy';
 
 
 function App() {
@@ -148,6 +150,14 @@ function App() {
         // },
 
       ],
+    },
+    {
+      path: "about-us",
+      element: <AboutUs />
+    },
+    {
+      path: "private-policy",
+      element: <PrivatePolicy />
     },
     {
       path: "*",
