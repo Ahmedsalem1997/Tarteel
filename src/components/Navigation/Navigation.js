@@ -10,7 +10,8 @@ const Navigation = () => {
   const auth = getAuth();
   const logUserOut = () => {
     logout();
-    navigate(``);
+    navigate('/');
+    window.location.reload(false);
   }
   return (
     // <ul className="navigation-links">
@@ -27,9 +28,6 @@ const Navigation = () => {
           </button>
           <div className="collapse navbar-collapse" id="naviagtion">
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <NavLink to="/home" activeclassname="active"><Translate id="navigation.home" /></NavLink>
-              </li>
               <li className="nav-item">
                 <NavLink to="/home" activeclassname="active"><Translate id="navigation.home" /></NavLink>
               </li>
