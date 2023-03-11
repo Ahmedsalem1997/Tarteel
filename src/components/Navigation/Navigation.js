@@ -30,9 +30,6 @@ const Navigation = () => {
               <li className="nav-item">
                 <NavLink to="/home" activeclassname="active"><Translate id="navigation.home" /></NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/home" activeclassname="active"><Translate id="navigation.home" /></NavLink>
-              </li>
               {
                 (auth?.isAuth && !auth?.loggedUser?.is_sheikh) &&
                 <li className="nav-item">
