@@ -206,7 +206,6 @@ const Record = (props) => {
             <span className="post-feedback-likes-comments">
               <p>{record?.shares_count}</p>
               <i onClick={shareBtnHandler} className="fa-solid fa-arrow-up-from-bracket"></i>
-              <p></p>
               {record?.user?.is_mine && <i className="fa-solid fa-trash-can error-color" onClick={() => deleteRecord(record.id)}></i>}
             </span>
           </span>
