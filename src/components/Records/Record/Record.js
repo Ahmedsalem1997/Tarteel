@@ -31,6 +31,7 @@ const Record = (props) => {
 
   useEffect(() => {
     setRandomNum(Math.floor(Math.random() * 10));
+    console.log(props);
   }, [lang])
   const toggleLike = () => {
     setIsLiked(isLikedPrev => {
@@ -206,7 +207,7 @@ const Record = (props) => {
             <span className="post-feedback-likes-comments">
               <p>{record?.shares_count}</p>
               <i onClick={shareBtnHandler} className="fa-solid fa-arrow-up-from-bracket"></i>
-              {(record?.user?.is_mine && props.showDelete) && <i className="fa-solid fa-trash-can error-color" onClick={() => deleteRecord(record.id)}></i>}
+              {(record?.user?.is_mine && props?.showDelete) && <i className="fa-solid fa-trash-can error-color" onClick={() => deleteRecord(record.id)}></i>}
             </span>
           </span>
         </div>
