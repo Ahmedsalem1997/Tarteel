@@ -20,7 +20,7 @@ const useHTTP = () => {
                 {
                     method: requestConfig.method,
                     headers: headers,
-                    body: requestConfig.method === 'POST' && requestConfig.headers && requestConfig.headers['Content-Type'] === 'application/json' ? JSON.stringify(requestConfig.body) : requestConfig.body
+                    body: (requestConfig.method === 'POST' && requestConfig.headers && requestConfig.headers['Content-Type'] === 'application/json') ? JSON.stringify(requestConfig.body) : requestConfig.body
                 }
             );
             setStatus(response.status);
