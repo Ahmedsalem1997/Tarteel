@@ -10,7 +10,7 @@ const LayoutWrapper = (props) => {
                 <Carousel />
             </CarouselWrapper>
             {props.children}
-            <HomeSubscribe />
+            {/* <HomeSubscribe /> */}
             <Footer />
         </div>
     )

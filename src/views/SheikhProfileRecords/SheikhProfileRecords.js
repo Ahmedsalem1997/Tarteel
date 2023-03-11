@@ -19,7 +19,7 @@ const SheikhProfileRecords = () => {
             <div className="container-fluid gx-2 gx-md-5">
                 <SheikhRecords type={params.type} />
             </div>
-            <HomeSubscribe />
+            {/* <HomeSubscribe /> */}
             <Footer />
         </Fragment>
     )

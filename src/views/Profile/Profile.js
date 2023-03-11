@@ -39,7 +39,7 @@ const Profile = () => {
 
                 }
             </div>
-            <HomeSubscribe />
+            {/* <HomeSubscribe /> */}
             <Footer />
         </Fragment>
     )
