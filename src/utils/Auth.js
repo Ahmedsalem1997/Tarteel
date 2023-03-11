@@ -15,7 +15,7 @@ export function getAuth() {
 export function logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('loggedUser');
-    localStorage.removeItem('longTermToken');
+    // localStorage.removeItem('longTermToken');
 }
 
 export function generateLongTermToken() {
