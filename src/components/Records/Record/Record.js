@@ -31,7 +31,6 @@ const Record = (props) => {
 
   useEffect(() => {
     setRandomNum(Math.floor(Math.random() * 10));
-    console.log(props);
   }, [lang])
   const toggleLike = () => {
     setIsLiked(isLikedPrev => {
