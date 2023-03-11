@@ -5,7 +5,7 @@ import Loader from "../Loader/Loader";
 import Record from "./Record/Record";
 
 const Records = (props) => {
-    const { isLoading, error, sendRequest } = useHTTP();
+    const { isLoading, error, sendRequest, status } = useHTTP();
     const [err, setErr] = useState('');
     const [records, setRecords] = useState([]);
     const { token } = getAuth();
@@ -53,6 +53,7 @@ const Records = (props) => {
             } */}
             <p>request err: {err.message}</p>
             <p>HTTP err: {error}</p>
+            <p>HTTP status: {status}</p>
         </Fragment>
     )
 }

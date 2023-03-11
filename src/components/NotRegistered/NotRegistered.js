@@ -14,7 +14,7 @@ const NotRegistered = () => {
   const closeLoginModal = () => {
     dispatch(modalsActions.closeLoginModal());
   };
-  const { isLoading, error, sendRequest } = useHTTP();
+  const { isLoading, error, sendRequest, status } = useHTTP();
   const [err, setErr] = useState('');
   const onLogin = () => {
     sendRequest(
@@ -54,6 +54,7 @@ const NotRegistered = () => {
         <div className="not-registered-cancel">
           <p className="cancel-btn">error from request: {err.message}</p>
           <p className="cancel-btn">error from useHTTP: {error}</p>
+          <p className="cancel-btn">error from useHTTP: {status}</p>
         </div>
       </div>
     </Modal>

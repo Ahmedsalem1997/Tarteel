@@ -7,6 +7,7 @@ const useHTTP = () => {
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [status, setStatus] = useState(null);
     const sendRequest = useCallback(async (requestConfig, applyData, applyError) => {
         setIsLoading(true);
         setError(null);
@@ -22,7 +23,7 @@ const useHTTP = () => {
                     body: requestConfig.method === 'POST' && requestConfig.headers && requestConfig.headers['Content-Type'] === 'application/json' ? JSON.stringify(requestConfig.body) : requestConfig.body
                 }
             );
-
+            setStatus(response.status);
             if (!response.ok) {
                 if (response.status === 401) {
                     dispatch(modalsActions.openLoginModal());
@@ -42,7 +43,8 @@ const useHTTP = () => {
     return {
         isLoading,
         error,
-        sendRequest
+        sendRequest,
+        status
     }
 }
 
