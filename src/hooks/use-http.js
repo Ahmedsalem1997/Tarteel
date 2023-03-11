@@ -35,6 +35,7 @@ const useHTTP = () => {
             applyData(data);
         } catch (err) {
             setError(err.message || 'something went wrong');
+            setStatus(err.status);
             applyError(err);
         }
         setIsLoading(false);
