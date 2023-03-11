@@ -6,7 +6,7 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer-start">
                 <div className="footer-start-links">
-                    <div className="footer-start-links-col">
+                    {/* <div className="footer-start-links-col">
                         <p className="footer-start-links-col-header"><Translate id="footer.company" /></p>
                         <ul>
                             <li><Link to='/'><Translate id="footer.aboutUs" /></Link></li>
@@ -14,14 +14,14 @@ const Footer = () => {
                             <li><Link to='/'><Translate id="footer.privatePolicy" /></Link></li>
                             <li><Link to='/'><Translate id="footer.bePartner" /></Link></li>
                         </ul>
-                    </div>
+                    </div> */}
                     <div className="footer-start-links-col">
                         <p className="footer-start-links-col-header"><Translate id="footer.quickLink" /></p>
                         <ul>
                             <li><Link to='/'><Translate id="footer.aboutUs" /></Link></li>
                             <li><Link to='/'><Translate id="footer.helpCenter" /></Link></li>
                             <li><Link to='/'><Translate id="footer.privatePolicy" /></Link></li>
-                            <li><Link to='/'><Translate id="footer.bePartner" /></Link></li>
+                            {/* <li><Link to='/'><Translate id="footer.bePartner" /></Link></li> */}
                         </ul>
                     </div>
                     <div className="footer-start-links-col">
