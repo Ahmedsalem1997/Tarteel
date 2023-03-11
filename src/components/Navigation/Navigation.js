@@ -1,12 +1,17 @@
 import { Fragment } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Translate from "../../helpers/Translate/Translate";
 import { getAuth, logout } from "../../utils/Auth";
 
 
 
 const Navigation = () => {
+  const navigate = useNavigate();
   const auth = getAuth();
+  const logUserOut = () => {
+    logout();
+    navigate(`/`);
+  }
   return (
     // <ul className="navigation-links">
     //   <li><NavLink to="/home" activeclassname="active"><Translate id="navigation.home" /></NavLink></li>
@@ -48,7 +53,7 @@ const Navigation = () => {
               {
                 auth.isAuth &&
                 <li className="nav-item">
-                  <Link to="/" onClick={logout}><Translate id="navigation.logout" /></Link>
+                  <Link to="/" onClick={logUserOut}><Translate id="navigation.logout" /></Link>
                 </li>
               }
             </ul>
