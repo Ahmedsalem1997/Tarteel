@@ -134,6 +134,29 @@ const Record = (props) => {
       openLoginModal();
     }
   }
+  const deleteRecord = (recordId) => {
+    if (isAuth) {
+      sendRequest(
+        {
+          url: `records/${recordId}`,
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        },
+        data => {
+          // setRecordUser(data.data);
+          props.onRecordChange();
+        },
+        err => {
+        }
+      )
+    } else {
+      openLoginModal();
+    }
+  }
+
+
 
   return (
     <Fragment>
@@ -182,7 +205,8 @@ const Record = (props) => {
           <span>
             <span className="post-feedback-likes-comments">
               <p>{record?.shares_count}</p>
-              <i onClick={shareBtnHandler} className="fa-solid fa-arrow-up-from-bracket"></i>
+              {record?.user?.is_mine && <i onClick={shareBtnHandler} className="fa-solid fa-arrow-up-from-bracket"></i>}
+              <i className="fa-solid fa-trash-can error-color" onClick={ () => deleteRecord(record.id) }></i>
             </span>
           </span>
         </div>
