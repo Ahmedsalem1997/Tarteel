@@ -6,6 +6,7 @@ import Record from "./Record/Record";
 
 const Records = (props) => {
     const { isLoading, error, sendRequest } = useHTTP();
+    const [err, setErr] = useState('');
     const [records, setRecords] = useState([]);
     const { token } = getAuth();
     // const [page, setPage] = useState(1);
@@ -26,7 +27,7 @@ const Records = (props) => {
                 // setTotalRecords(data.meta.total);
             },
             err => {
-
+                setErr(err);
             }
         )
     }
@@ -50,6 +51,8 @@ const Records = (props) => {
                     <button className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
                 </div>
             } */}
+            <p>request err{err}</p>
+            <p>HTTP err{error}</p>
         </Fragment>
     )
 }
