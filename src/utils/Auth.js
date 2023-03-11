@@ -31,12 +31,15 @@ export function generateLongTermToken() {
 }
 
 export function setLongTermToken() {
+    if (getLongTermToken()) {
+        return getLongTermToken();
+    }
     const longTermToken = generateLongTermToken();
     localStorage.setItem('longTermToken', longTermToken);
     return longTermToken;
 }
 
-export function getLongTermToken(data) {
+export function getLongTermToken() {
     return localStorage.getItem('longTermToken');
 }
 

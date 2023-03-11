@@ -22,8 +22,7 @@ const NotRegistered = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: {
-          long_term_token: setLongTermToken(),
-          operator_id: 1
+          long_term_token: setLongTermToken()
         },
       },
       (data) => {

@@ -19,7 +19,7 @@ const Login = () => {
     useEffect(() => {
         if (status && message && code) {
             if (code) {
-                if (error === 'USER_ALREADY_SUBSCRIBED') {
+                if (status === '409') {
                     // console.log('login')
                     setSuccessMessage('تم تسجيل دخولك بنجاح');
                     setErrorMessage('')
@@ -53,8 +53,7 @@ const Login = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: {
                     authorization_code: code,
-                    long_term_token: getLongTermToken(),
-                    operator_id: 1
+                    long_term_token: getLongTermToken()
                 }
 
             },
