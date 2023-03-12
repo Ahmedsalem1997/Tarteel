@@ -24,13 +24,13 @@ const Footer = () => {
                             {/* <li><Link to='/'><Translate id="footer.bePartner" /></Link></li> */}
                         </ul>
                     </div>
-                    <div className="footer-start-links-col">
+                    {/* <div className="footer-start-links-col">
                         <p className="footer-start-links-col-header"><Translate id="footer.stayConnected" /></p>
                         <ul>
                             <li>tartel@mail.com</li>
                             <li>Riyadh 2231</li>
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
                 {/* <div className="footer-start-support">
                     <p><Translate id="footer.supportedBy" /></p>
