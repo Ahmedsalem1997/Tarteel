@@ -11,8 +11,8 @@ const useHTTP = () => {
     const sendRequest = useCallback(async (requestConfig, applyData, applyError) => {
         setIsLoading(true);
         setError(null);
-        let baseUrl = process.env.REACT_APP_BASE_URL;
-        let headers = {operator: process.env.REACT_APP_OPERATOR_ID, ...requestConfig.headers};
+        let baseUrl = 'https://tarteel.me/api/v1/front/';
+        let headers = {operator: 'test_operator', ...requestConfig.headers};
         // console.log(headers);
         try {
             const response = await fetch(
