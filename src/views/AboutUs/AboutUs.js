@@ -4,9 +4,17 @@ import LayoutWrapper from "../../components/LayoutWrapper/LayoutWrapper";
 const AboutUs = () => {
     return (
         <LayoutWrapper>
-            <HomeSection header="footer.aboutUs">
-                {/* <Records recordsUrl={`records/latest?records_type=${props.type}`} hideFollow={true} /> */}
-            </HomeSection>
+            <div className="container">
+                <HomeSection header="footer.aboutUs">
+                    <p>
+                        ترتيل منصة خاصة بقراءة القرآن الكريم  بطريقة صحيحة  عن طريق معلمين موثقين لتصحيح التلاوات
+                        نهدف إلى جعل ترتيل واحدة من أكبر منصّات التواصل الإجتماعي لمحبي القرآن الكريم، حيث يمكنهم التواصل، المشاركة، التعلم وتحسين تلاوتهم للقرآن.
+
+                        يستطيع المشترك من خلال ترتيل الدخول  وتسجيل قرائته وسيقوم احد المعلمين بالاستماع لها وتصحيحها اذا لزم الأمر.
+                        ترتيل يحتوي بالاضافة للقرآن الكريم على  محتويات اسلامية منوعه لتغطية كل المواسم الاسلامية  وكل ما يحتاجه المسلم في حياته
+                    </p>
+                </HomeSection>
+            </div>
         </LayoutWrapper>
     )
 }
