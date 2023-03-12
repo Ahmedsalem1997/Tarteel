@@ -26,7 +26,7 @@ const EditProfile = (props) => {
     const [avatarErr, setAvatarErr] = useState('');
     const [token, setToken] = useState('');
     const [nameErr, setNameErr] = useState('');
-    const [emailErr, setEmailErr] = useState('');
+    // const [emailErr, setEmailErr] = useState('');
     const [formErr, setFormErr] = useState('');
     const auth = getAuth();
     // const loadXHR = (url) => {
@@ -46,7 +46,7 @@ const EditProfile = (props) => {
     //     });
     // }
     useEffect(() => {
-        if (auth.loggedUser.name && auth.loggedUser.email) {
+        if (auth.loggedUser.name) {
             setName(auth.loggedUser.name);
             setEmail(auth.loggedUser.email);
             setAvatar(auth.loggedUser.avatar);
@@ -57,10 +57,10 @@ const EditProfile = (props) => {
     }, []);
     const onEditProfileHandler = (e) => {
         e.preventDefault();
-        if (name && email) {
+        if (name) {
             let formdata = new FormData();
             formdata.append('name', name);
-            formdata.append('email', email);
+            // formdata.append('email', email);
             if (avatar !== newAvatar) {
                 formdata.append('avatar', avatar);
             }
@@ -119,18 +119,18 @@ const EditProfile = (props) => {
         setName(e.target.value);
     }
 
-    const onChangeEmail = (e) => {
-        const schema = Joi.object({
-            email: Joi.string().trim().email({ tlds: false, allowUnicode: false }).required()
-        })
-        const nameError = schema.validate({ email: e.target.value });
-        if (nameError.error) {
-            setEmailErr('email');
-        } else {
-            setEmailErr('');
-        }
-        setEmail(e.target.value.trim());
-    }
+    // const onChangeEmail = (e) => {
+    //     const schema = Joi.object({
+    //         email: Joi.string().trim().email({ tlds: false, allowUnicode: false }).required()
+    //     })
+    //     const nameError = schema.validate({ email: e.target.value });
+    //     if (nameError.error) {
+    //         setEmailErr('email');
+    //     } else {
+    //         setEmailErr('');
+    //     }
+    //     setEmail(e.target.value.trim());
+    // }
 
     return (
         <Modal>
@@ -148,13 +148,13 @@ const EditProfile = (props) => {
                         <input name="name" placeholder={useTranslate('input.placeholder.name')} value={name} onChange={onChangeName} type="text" className="trans-input" required />
                         <ErrorMessage message={nameErr} />
                     </div>
-                    <div className="edit-profile-input-group">
+                    {/* <div className="edit-profile-input-group">
                         <label><Translate id="input.label.email" /></label>
                         <input name="email" placeholder={useTranslate('input.placeholder.email')} value={email} onChange={onChangeEmail} type="text" className="trans-input" required />
                         <ErrorMessage message={emailErr} />
-                    </div>
+                    </div> */}
                     <div className="edit-profile-actions">
-                        <button type="submit" className="main-button" disabled={emailErr || nameErr || !name || !email}><Translate id="button.save" /></button>
+                        <button type="submit" className="main-button" disabled={ nameErr || !name }><Translate id="button.save" /></button>
                         <ErrorMessage message={formErr} />
                     </div>
                 </div>
