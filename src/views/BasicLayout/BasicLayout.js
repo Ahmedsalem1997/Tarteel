@@ -28,7 +28,7 @@ const BasicLayout = () => {
             },
             (data) => {
                 setAuth({ user: data.data });
-                if (!data.data.email || !data.data.name) {
+                if (!data.data.name) {
                     openEditProfileModal();
                 } else {
                     // navigate('/home');
