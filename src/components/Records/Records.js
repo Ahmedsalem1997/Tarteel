@@ -51,9 +51,9 @@ const Records = (props) => {
                     <button className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
                 </div>
             } */}
-            <p>request err: {err.message}</p>
+            {/* <p>request err: {err.message}</p>
             <p>HTTP err: {error}</p>
-            <p>HTTP status: {status}</p>
+            <p>HTTP status: {status}</p> */}
         </Fragment>
     )
 }

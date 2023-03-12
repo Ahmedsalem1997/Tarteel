@@ -51,11 +51,11 @@ const NotRegistered = () => {
         <div className="not-registered-cancel">
           <button className="cancel-btn" onClick={closeLoginModal}><Translate id="button.cancel" /></button>
         </div>
-        <div className="not-registered-cancel">
+        {/* <div className="not-registered-cancel">
           <p className="cancel-btn">error from request: {err.message}</p>
           <p className="cancel-btn">error from useHTTP: {error}</p>
           <p className="cancel-btn">error from useHTTP: {status}</p>
-        </div>
+        </div> */}
       </div>
     </Modal>
   );
