@@ -19,17 +19,17 @@ const Login = () => {
     useEffect(() => {
         if (status && message) {
             // if (code) {
-                if (status === '409') {
-                    // console.log('login')
-                    setSuccessMessage('تم تسجيل دخولك بنجاح');
-                    setErrorMessage('')
-                }
-                else if (status === '200') {
-                    // console.log('subscribe')
-                    setSuccessMessage('تم تسجيلك بنجاح');
-                    setErrorMessage('');
-                }
-                fetchUserWithCode(code);
+            if (status === '409') {
+                // console.log('login')
+                setSuccessMessage('تم تسجيل دخولك بنجاح');
+                setErrorMessage('')
+            }
+            else if (status === '200') {
+                // console.log('subscribe')
+                setSuccessMessage('تم تسجيلك بنجاح');
+                setErrorMessage('');
+            }
+            fetchUserWithCode(code);
             // }
             // else {
             //     // console.log('1111', error);
@@ -46,15 +46,22 @@ const Login = () => {
     }, []);
 
     const fetchUserWithCode = (code) => {
+        let body = {
+            // authorization_code: code || '',
+            long_term_token: getLongTermToken()
+        }
+        if (code) {
+            body = {
+                authorization_code: code,
+                long_term_token: getLongTermToken()
+            }
+        }
         sendRequest(
             {
                 url: 'codes',
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: {
-                    authorization_code: code || '',
-                    long_term_token: getLongTermToken()
-                }
+                body: body
 
             },
             data => {
