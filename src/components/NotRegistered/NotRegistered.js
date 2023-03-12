@@ -16,7 +16,22 @@ const NotRegistered = () => {
   };
   const { isLoading, error, sendRequest, status } = useHTTP();
   const [err, setErr] = useState('');
-  const onLogin = () => {
+
+  // const onLogin = () => {
+  //   sendRequest(
+  //     {
+  //       url: "login",
+  //       method: "GET"
+  //     },
+  //     data => {
+  //       window.location.replace(data.data);
+  //     },
+  //     err => {
+  //       setErr(err);
+  //     }
+  //   )
+  // }
+  const onRegister = () => {
     sendRequest(
       {
         url: "subscribe",
@@ -45,8 +60,8 @@ const NotRegistered = () => {
           <p><Translate id="notRegistered.pleaseRegister" /></p>
         </div>
         <div className="not-registered-actions">
-          <button className="main-button" onClick={onLogin}><Translate id="button.login" /></button>
-          <button className="trans-btn" onClick={onLogin}><Translate id="button.register" /></button>
+          <button className="main-button" onClick={onRegister}><Translate id="button.login" /></button>
+          <button className="trans-btn" onClick={onRegister}><Translate id="button.register" /></button>
         </div>
         <div className="not-registered-cancel">
           <button className="cancel-btn" onClick={closeLoginModal}><Translate id="button.cancel" /></button>

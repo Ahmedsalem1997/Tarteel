@@ -17,8 +17,8 @@ const Login = () => {
     const { isLoading, error: requestError, sendRequest } = useHTTP();
     const navigate = useNavigate();
     useEffect(() => {
-        if (status && message && code) {
-            if (code) {
+        if (status && message) {
+            // if (code) {
                 if (status === '409') {
                     // console.log('login')
                     setSuccessMessage('تم تسجيل دخولك بنجاح');
@@ -30,12 +30,12 @@ const Login = () => {
                     setErrorMessage('');
                 }
                 fetchUserWithCode(code);
-            }
-            else {
-                // console.log('1111', error);
-                setErrorMessage(error);
-                setSuccessMessage('');
-            }
+            // }
+            // else {
+            //     // console.log('1111', error);
+            //     setErrorMessage(error);
+            //     setSuccessMessage('');
+            // }
         } else if (error) {
             // console.log('2222', error);
             setErrorMessage(error);
@@ -52,7 +52,7 @@ const Login = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: {
-                    authorization_code: code,
+                    authorization_code: code || '',
                     long_term_token: getLongTermToken()
                 }
 
