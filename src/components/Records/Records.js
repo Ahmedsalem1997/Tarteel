@@ -5,7 +5,7 @@ import Loader from "../Loader/Loader";
 import Record from "./Record/Record";
 
 const Records = (props) => {
-    const { isLoading, error, sendRequest, status } = useHTTP();
+    const { isLoading, error, sendRequest } = useHTTP();
     const [err, setErr] = useState('');
     const [records, setRecords] = useState([]);
     const { token } = getAuth();
@@ -45,15 +45,6 @@ const Records = (props) => {
             {records?.map((record) => {
                 return <Record hideFollow={props.hideFollow} showDelete={props.showDelete} key={record.id} record={record} onRecordChange={getRecords} />
             })}
-            {/* {
-                records.length < totalRecords &&
-                <div className="show-more">
-                    <button className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
-                </div>
-            } */}
-            {/* <p>request err: {err.message}</p>
-            <p>HTTP err: {error}</p>
-            <p>HTTP status: {status}</p> */}
         </Fragment>
     )
 }
