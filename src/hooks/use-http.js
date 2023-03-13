@@ -11,7 +11,7 @@ const useHTTP = () => {
     const sendRequest = useCallback(async (requestConfig, applyData, applyError) => {
         setIsLoading(true);
         setError(null);
-        let baseUrl = 'https://tarteel.me/api/v1/front/';
+        let baseUrl = 'https://tarteel.site/api/v1/front/';
         let headers = {operator: 'test_operator', ...requestConfig.headers};
         // console.log(headers);
         try {
