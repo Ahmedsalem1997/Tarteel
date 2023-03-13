@@ -33,8 +33,8 @@ const AudioPlayer = (props) => {
         // splitChannels: true,
         height: 50,
         rtl: globalLang === 'ar' ? true : false,
-        xhr: { mode: 'no-cors' },
-        backend: 'MediaElement'
+        // xhr: { mode: 'no-cors' },
+        // backend: 'MediaElement'
         // cursorColor: "#75b10e",
       });
       dispatch(audioActions.addAudio(waveform.current));
