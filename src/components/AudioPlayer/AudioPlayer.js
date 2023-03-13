@@ -62,7 +62,7 @@ const AudioPlayer = (props) => {
       */
     }
 
-    props?.audio && waveform.current.load(props?.audio);
+    props?.audio && waveform.current.load('https://tarteel.site/storage/23/001(1).mp3');
     waveform.current.on("pause", () => {
       setIsPlaying(false);
     });
