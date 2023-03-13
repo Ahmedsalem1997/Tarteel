@@ -19,7 +19,7 @@ const Records = (props) => {
                 method: 'GET',
                 headers:
                 {
-                    'Authorization': `Bearer ${token || ''}`
+                    'Authorization': token ? `Bearer ${token}` : ''
                 }
             },
             data => {
