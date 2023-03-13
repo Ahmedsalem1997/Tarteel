@@ -61,7 +61,8 @@ const AudioPlayer = (props) => {
       3. Load the audio using wavesurfer's loadBlob API
       */
     }
-    waveform.current.load(props.audio);
+
+    props?.audio && waveform.current.load(props?.audio);
     waveform.current.on("pause", () => {
       setIsPlaying(false);
     });
