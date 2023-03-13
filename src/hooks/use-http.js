@@ -24,7 +24,7 @@ const useHTTP = () => {
                     body: (requestConfig.method === 'POST' && requestConfig.headers && requestConfig.headers['Content-Type'] === 'application/json') ? JSON.stringify(requestConfig.body) : requestConfig.body
                 }
             );
-            console.log('fetch done');
+            console.log('fetch done', response.status);
             setStatus(response.status);
             if (!response.ok) {
                 if (response.status === 401) {
