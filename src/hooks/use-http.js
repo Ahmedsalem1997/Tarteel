@@ -17,10 +17,11 @@ const useHTTP = () => {
         try {
             console.log('fetch start');
             const response = await fetch(
-                baseUrl + requestConfig.url + '?origin=*',
+                baseUrl + requestConfig.url,
                 {
                     method: requestConfig.method,
                     headers: headers,
+                    mode: 'no-cors',
                     body: (requestConfig.method === 'POST' && requestConfig.headers && requestConfig.headers['Content-Type'] === 'application/json') ? JSON.stringify(requestConfig.body) : requestConfig.body
                 }
             );
