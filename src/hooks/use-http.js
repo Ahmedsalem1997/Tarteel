@@ -15,6 +15,7 @@ const useHTTP = () => {
         let headers = {operator: 'test_operator', ...requestConfig.headers};
         // console.log(headers);
         try {
+            console.log('fetch start');
             const response = await fetch(
                 baseUrl + requestConfig.url,
                 {
@@ -23,6 +24,7 @@ const useHTTP = () => {
                     body: (requestConfig.method === 'POST' && requestConfig.headers && requestConfig.headers['Content-Type'] === 'application/json') ? JSON.stringify(requestConfig.body) : requestConfig.body
                 }
             );
+            console.log('fetch done');
             setStatus(response.status);
             if (!response.ok) {
                 if (response.status === 401) {
