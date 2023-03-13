@@ -33,8 +33,8 @@ const AudioPlayer = (props) => {
         // splitChannels: true,
         height: 50,
         rtl: globalLang === 'ar' ? true : false,
-        // xhr: { mode: 'no-cors' },
-        // backend: 'MediaElement'
+        xhr: { mode: 'no-cors' },
+        backend: 'MediaElement'
         // cursorColor: "#75b10e",
       });
       dispatch(audioActions.addAudio(waveform.current));
@@ -62,7 +62,7 @@ const AudioPlayer = (props) => {
       */
     }
 
-    props?.audio && waveform.current.load('https://tarteel.site/storage/23/001(1).mp3');
+    props?.audio && waveform.current.load(props?.audio);
     waveform.current.on("pause", () => {
       setIsPlaying(false);
     });
