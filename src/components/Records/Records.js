@@ -13,25 +13,15 @@ const Records = (props) => {
     // const [perPage, setPerPage] = useState(5);
     // const [totalRecords, setTotalRecords] = useState(0);
     const getRecords = () => {
-        let requestConfig =
-        {
-            url: `${props?.recordsUrl}`,
-            method: 'GET'
-        }
-        if (token) {
-            requestConfig =
+        sendRequest(
             {
                 url: `${props?.recordsUrl}`,
                 method: 'GET',
                 headers:
                 {
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': token ? `Bearer ${token}` : ''
                 }
-            }
-        }
-        console.log(requestConfig);
-        sendRequest(
-            requestConfig,
+            },
             data => {
                 setRecords(data.data);
                 // setTotalRecords(data.meta.total);
