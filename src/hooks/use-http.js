@@ -17,7 +17,7 @@ const useHTTP = () => {
         try {
             console.log('fetch start');
             const response = await fetch(
-                baseUrl + requestConfig.url,
+                baseUrl + requestConfig.url + '?origin=*',
                 {
                     method: requestConfig.method,
                     headers: headers,
