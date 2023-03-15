@@ -11,54 +11,82 @@ const Login = () => {
     const [successMessage, setSuccessMessage] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
     const [code, setCode] = useState(searchParams.get('code'));
+    const [uuid, setUuid] = useState(searchParams.get('uuid'));
     const [status, setstatus] = useState(searchParams.get('status'));
     const [message, setMessage] = useState(searchParams.get('message'));
     const [error, setError] = useState(searchParams.get('error'));
     const { isLoading, error: requestError, sendRequest } = useHTTP();
     const navigate = useNavigate();
     useEffect(() => {
-        if (status && message) {
-            // if (code) {
+        if (status && message && (code || uuid)) {
             if (status === '409') {
-                // console.log('login')
                 setSuccessMessage('تم تسجيل دخولك بنجاح');
-                setErrorMessage('')
+                setErrorMessage('');
             }
             else if (status === '200') {
                 // console.log('subscribe')
                 setSuccessMessage('تم تسجيلك بنجاح');
                 setErrorMessage('');
+            } else {
+                setSuccessMessage('');
+                setErrorMessage(message);
             }
-            fetchUserWithCode(code);
-            // }
-            // else {
-            //     // console.log('1111', error);
-            //     setErrorMessage(error);
-            //     setSuccessMessage('');
-            // }
-        } else if (error) {
-            // console.log('2222', error);
-            setErrorMessage(error);
-            setSuccessMessage('');
+        } else if (code) {
+            setSuccessMessage('تم تسجيل دخولك بنجاح');
+            setErrorMessage('')
         }
+        else {
+            setSuccessMessage('');
+            setErrorMessage('حدث خطا برجاء اعادة المحاولة');
+        }
+
+
+        // if (status && message) {
+        //     // if (code) {
+        //     if (status === '409') {
+        //         // console.log('login')
+        //         setSuccessMessage('تم تسجيل دخولك بنجاح');
+        //         setErrorMessage('')
+        //     }
+        //     else if (status === '200') {
+        //         // console.log('subscribe')
+        //         setSuccessMessage('تم تسجيلك بنجاح');
+        //         setErrorMessage('');
+        //     }
+        //     fetchUserWithCode(code);
+        //     // }
+        //     // else {
+        //     //     // console.log('1111', error);
+        //     //     setErrorMessage(error);
+        //     //     setSuccessMessage('');
+        //     // }
+        // } else if (error) {
+        //     // console.log('2222', error);
+        //     setErrorMessage(error);
+        //     setSuccessMessage('');
+        // }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const fetchUserWithCode = (code) => {
-        let body = {
-            // authorization_code: code || '',
-            long_term_token: getLongTermToken()
+    useEffect(() => {
+        if (successMessage) {
+            fetchUserWithCode();
         }
+    }, [successMessage])
+
+    const fetchUserWithCode = () => {
+        let body = {};
         if (code) {
-            body = {
-                authorization_code: code,
-                long_term_token: getLongTermToken()
-            }
+            body = { ...body, authorization_code: code }
         }
+        if (uuid) {
+            body = { ...body, uuid: uuid }
+        }
+        console.log(body);
         sendRequest(
             {
-                url: 'codes',
+                url: 'users/login',
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: body

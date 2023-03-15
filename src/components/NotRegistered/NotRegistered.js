@@ -11,27 +11,32 @@ import { useState } from "react";
 
 const NotRegistered = () => {
   const dispatch = useDispatch();
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const closeLoginModal = () => {
     dispatch(modalsActions.closeLoginModal());
   };
   const { isLoading, error, sendRequest } = useHTTP();
   const [err, setErr] = useState('');
 
-  // const onLogin = () => {
-  //   sendRequest(
-  //     {
-  //       url: "login",
-  //       method: "GET"
-  //     },
-  //     data => {
-  //       window.location.replace(data.data);
-  //     },
-  //     err => {
-  //       setErr(err);
-  //     }
-  //   )
-  // }
+  const onLogin = () => {
+    setIsRedirecting(true);
+    sendRequest(
+      {
+        url: "users/login",
+        method: "GET"
+      },
+      data => {
+        // console.log(data);
+        window.location.replace(data.data);
+      },
+      err => {
+        setErr(err);
+        setIsRedirecting(false);
+      }
+    )
+  }
   const onRegister = () => {
+    setIsRedirecting(true);
     sendRequest(
       {
         url: "subscribe",
@@ -47,20 +52,21 @@ const NotRegistered = () => {
       },
       err => {
         setErr(err);
+        setIsRedirecting(false);
       }
     );
 
   }
   return (
     <Modal>
-      {isLoading && <Loader />}
+      {(isLoading || isRedirecting) && <Loader />}
       <div className="not-registered">
         <div className="not-registered-header">
           <h3><Translate id="notRegistered.title" /></h3>
           <p><Translate id="notRegistered.pleaseRegister" /></p>
         </div>
         <div className="not-registered-actions">
-          <button className="main-button" onClick={onRegister}><Translate id="button.login" /></button>
+          <button className="main-button" onClick={onLogin}><Translate id="button.login" /></button>
           <button className="trans-btn" onClick={onRegister}><Translate id="button.register" /></button>
         </div>
         <div className="not-registered-cancel">

@@ -41,7 +41,7 @@ const BasicLayout = () => {
     }
 
     useEffect(() => {
-        console.log('hello console ios');
+        // console.log('hello console ios');
         if (auth?.isAuth) {
             fetchCurrentUser();
         } else {

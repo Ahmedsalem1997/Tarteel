@@ -14,7 +14,7 @@ const useHTTP = () => {
         let headers = {operator: process.env.REACT_APP_OPERATOR_ID, ...requestConfig.headers};
         // console.log(headers);
         try {
-            console.log('fetch start');
+            // console.log('fetch start');
             const response = await fetch(
                 baseUrl + requestConfig.url,
                 {
