@@ -41,10 +41,10 @@ const NotRegistered = () => {
       {
         url: "subscribe",
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: {
-          long_term_token: setLongTermToken()
-        },
+        // headers: { "Content-Type": "application/json" },
+        // body: {
+        //   long_term_token: setLongTermToken()
+        // },
       },
       (data) => {
         // console.log(data);
