@@ -160,7 +160,7 @@ const Subscribe = () => {
                     <i className="fa-solid fa-triangle-exclamation"></i>
                     <h4>خطأ!</h4>
                     <p>{errorMessage}</p>
-                    {(status === '409' && message && !(code || uuid)) && <button className="main-button" onClick={onLogin}><Translate id="button.login" /></button>}
+                    {(status === '409' && message && !(code || uuid)) && <button className="main-button fs-6" onClick={onLogin}><Translate id="button.login" /></button>}
                     <button onClick={() => navigate('/home')} className="error-message-cancel-btn w-100"><Translate id="navigation.home" /></button>
                 </div>}
                 {successMessage && <div className="success-message">
