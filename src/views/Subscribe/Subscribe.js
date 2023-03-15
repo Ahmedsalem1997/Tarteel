@@ -17,20 +17,43 @@ const Subscribe = () => {
     const [status, setstatus] = useState(searchParams.get('status'));
     const [message, setMessage] = useState(searchParams.get('message'));
     const [error, setError] = useState(searchParams.get('error'));
+    const [isRedirecting, setIsRedirecting] = useState(false);
     const { isLoading, error: requestError, sendRequest } = useHTTP();
     const navigate = useNavigate();
+
+    const onLogin = () => {
+        setIsRedirecting(true);
+        sendRequest(
+            {
+                url: "users/login",
+                method: "GET"
+            },
+            data => {
+                // console.log(data);
+                window.location.replace(data.data);
+            },
+            err => {
+                setIsRedirecting(false);
+            }
+        )
+    }
+
     useEffect(() => {
         if (status === '200' && message && (code || uuid)) {
             setSuccessMessage('تم تسجيلك بنجاح');
             setErrorMessage('');
+        } else if (status === '409' && message && !(code || uuid)) {
+            setErrorMessage('هذا الرقم مسجل بالفعل برجاء تسجيل الدخول');
+            setSuccessMessage('');
         } else if (status === '409' && message && (code || uuid)) {
             setSuccessMessage('تم تسجيل دخولك بنجاح');
             setErrorMessage('');
-        } else {
+        }
+        else {
             setSuccessMessage('');
             setErrorMessage('ناسف حدث خطأ برجاء إعادة التسجيل');
         }
-        if (code || uuid) {
+        if ((code || uuid)) {
             fetchUserWithCode();
         }
         // else if (status && message) {
@@ -137,6 +160,7 @@ const Subscribe = () => {
                     <i className="fa-solid fa-triangle-exclamation"></i>
                     <h4>خطأ!</h4>
                     <p>{errorMessage}</p>
+                    {(status === '409' && message && !(code || uuid)) && <button className="main-button" onClick={onLogin}><Translate id="button.login" /></button>}
                     <button onClick={() => navigate('/home')} className="error-message-cancel-btn w-100"><Translate id="navigation.home" /></button>
                 </div>}
                 {successMessage && <div className="success-message">
