@@ -17,6 +17,7 @@ import { getAuth } from "./utils/Auth";
 import SheikhProfileRecords from './views/SheikhProfileRecords/SheikhProfileRecords';
 import AboutUs from './views/AboutUs/AboutUs';
 import PrivatePolicy from './views/PrivatePolicy/PrivatePolicy';
+import Subscribe from './views/Subscribe/Subscribe';
 
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
   }
 
   const checkIsShekhLoader = () => {
-    const {loggedUser} = getAuth();
+    const { loggedUser } = getAuth();
     if (!(loggedUser && loggedUser.is_sheikh)) {
       return redirect('/home');
     }
@@ -96,6 +97,11 @@ function App() {
     {
       path: "login",
       element: <Login />,
+      loader: checkLogeedInLoader
+    },
+    {
+      path: "subscribe",
+      element: <Subscribe />,
       loader: checkLogeedInLoader
     },
     {

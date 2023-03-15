@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import LoginWrapper from "../../components/LoginWrapper/LoginWrapper";
+// import LoginWrapper from "../../components/LoginWrapper/LoginWrapper";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useHTTP from "../../hooks/use-http";
-import { getAuth, getLongTermToken, setAuth } from "../../utils/Auth";
-import Loader from "../Loader/Loader";
+import { setAuth } from "../../utils/Auth";
+// import Loader from "../Loader/Loader";
 import Translate from "../../helpers/Translate/Translate";
+import Loader from "../../components/Loader/Loader";
+import LoginWrapper from "../../components/LoginWrapper/LoginWrapper";
 
-const Login = () => {
+const Subscribe = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
@@ -18,30 +20,49 @@ const Login = () => {
     const { isLoading, error: requestError, sendRequest } = useHTTP();
     const navigate = useNavigate();
     useEffect(() => {
-        if (code || uuid) {
+        if (status === '200' && message && (code || uuid)) {
+            setSuccessMessage('تم تسجيلك بنجاح');
+            setErrorMessage('');
+        } else if (status === '409' && message && (code || uuid)) {
             setSuccessMessage('تم تسجيل دخولك بنجاح');
             setErrorMessage('');
-            fetchUserWithCode();
-            // if (status === '409') {
-            //     setSuccessMessage('تم تسجيل دخولك بنجاح');
-            //     setErrorMessage('');
-            // }
-            // else if (status === '200') {
-            //     // console.log('subscribe')
-            //     setSuccessMessage('تم تسجيلك بنجاح');
-            //     setErrorMessage('');
-            // } else {
-            //     setSuccessMessage('');
-            //     setErrorMessage(message);
-            // }
-            // } else if (code) {
-            //     setSuccessMessage('تم تسجيل دخولك بنجاح');
-            //     setErrorMessage('')
-            // }
         } else {
             setSuccessMessage('');
-            setErrorMessage('حدث خطا برجاء اعادة تسجيل الدخول');
+            setErrorMessage('ناسف حدث خطأ برجاء إعادة التسجيل');
         }
+        if (code || uuid) {
+            fetchUserWithCode();
+        }
+        // else if (status && message) {
+        //     if (status === '200') {
+        //         setSuccessMessage('تم تسجيلك بنجاح');
+        //         setErrorMessage('');
+        //     } else if (status === '409') {
+        //         setSuccessMessage('تم تسجيل دخولك بنجاح');
+        //         setErrorMessage('');
+        //     }
+        // }
+        // if (status && message && (code || uuid)) {
+        //     if (status === '409') {
+        //         setSuccessMessage('تم تسجيل دخولك بنجاح');
+        //         setErrorMessage('');
+        //     }
+        //     else if (status === '200') {
+        //         // console.log('subscribe')
+        //         setSuccessMessage('تم تسجيلك بنجاح');
+        //         setErrorMessage('');
+        //     } else {
+        //         setSuccessMessage('');
+        //         setErrorMessage(message);
+        //     }
+        //     // } else if (code) {
+        //     //     setSuccessMessage('تم تسجيل دخولك بنجاح');
+        //     //     setErrorMessage('')
+        //     // }
+        // } else {
+        //     setSuccessMessage('');
+        //     setErrorMessage('حدث خطا برجاء اعادة المحاولة');
+        // }
 
 
         // if (status && message) {
@@ -97,12 +118,14 @@ const Login = () => {
             },
             data => {
                 // console.log(data);
+                // setSuccessMessage('تم تسجيلك بنجاح');
+                // setErrorMessage('');
                 setAuth(data.data);
             },
             err => {
                 // console.log('3333', err)
-                setErrorMessage('نأسف حدث خطا برجاء المحاولة مرة اخرى');
                 setSuccessMessage('');
+                setErrorMessage('ناسف حدث خطأ برجاء اعادة المحاولة');
             }
         )
     }
@@ -125,4 +148,4 @@ const Login = () => {
         </LoginWrapper>
     );
 };
-export default Login;
+export default Subscribe;
