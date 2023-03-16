@@ -32,7 +32,7 @@ const Navigation = () => {
                 <NavLink to="/home" activeclassname="active"><Translate id="navigation.home" /></NavLink>
               </li>
               {
-                (auth?.isAuth && !auth?.loggedUser?.is_sheikh) &&
+                (auth?.isSubscribed && !auth?.loggedUser?.is_sheikh) &&
                 <li className="nav-item">
                   <NavLink to={`/users/${auth.loggedUser.id}`} activeclassname="active"><Translate id="navigation.myRecords" /></NavLink>
                 </li>
@@ -49,7 +49,7 @@ const Navigation = () => {
                 </Fragment>
               }
               {
-                auth.isAuth &&
+                auth.isSubscribed &&
                 <li className="nav-item">
                   <Link to="/" onClick={logUserOut}><Translate id="navigation.logout" /></Link>
                 </li>

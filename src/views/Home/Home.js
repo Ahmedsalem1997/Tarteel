@@ -6,11 +6,11 @@ import LatestRecords from "../../components/LatestRecords/LatestRecords";
 import { getAuth } from "../../utils/Auth";
 
 const Home = () => {
-  const { isAuth, loggedUser } = getAuth();
+  const { loggedUser, isSubscribed } = getAuth();
   return (
     <LayoutWrapper>
       <div className="container-fluid gx-2 gx-md-5">
-        {isAuth && (
+        {isSubscribed && (
           <HomeSection header="records.myRecords" showAll={`/users/${loggedUser.id}`}>
             <MyRecordsHome />
           </HomeSection>

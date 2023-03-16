@@ -59,6 +59,7 @@ function App() {
   const checkProfileLoader = () => {
     const { isAuth, loggedUser } = getAuth();
     if (!isAuth) {
+      dispatch(modalsActions.openLoginModal());
       return redirect('/home');
     }
     if (isAuth && loggedUser.is_sheikh) {

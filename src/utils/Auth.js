@@ -9,7 +9,7 @@ export function getAuth() {
     const token = localStorage.getItem('token');
     const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
     const isSubscribed = token && loggedUser;
-    const isAuth = isSubscribed && loggedUser.is_subscribed;
+    const isAuth = isSubscribed && (loggedUser.is_subscribed || loggedUser.is_sheikh);
     return { token, loggedUser, isAuth, isSubscribed }
 }
 
