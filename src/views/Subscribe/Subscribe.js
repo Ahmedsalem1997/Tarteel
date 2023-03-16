@@ -154,7 +154,7 @@ const Subscribe = () => {
     }
     return (
         <LoginWrapper>
-            {isLoading && <Loader />}
+            {(isLoading || isRedirecting) && <Loader />}
             <div className="login-message">
                 {errorMessage && <div className="error-message">
                     <i className="fa-solid fa-triangle-exclamation"></i>
