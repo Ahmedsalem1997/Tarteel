@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import Translate from "../../helpers/Translate/Translate";
 import useHTTP from "../../hooks/use-http";
 import { modalsActions } from "../../store/Modals/Modals";
-import { setLongTermToken } from "../../utils/Auth";
+import { getAuth, setLongTermToken } from "../../utils/Auth";
 import Modal from "../Modal/Modal";
 import Loader from "../Loader/Loader";
 import { useState } from "react";
@@ -17,7 +17,7 @@ const NotRegistered = () => {
   };
   const { isLoading, error, sendRequest } = useHTTP();
   const [err, setErr] = useState('');
-
+  const { isAuth, isSubscribed, loggedUser } = getAuth();
   const onLogin = () => {
     setIsRedirecting(true);
     sendRequest(
@@ -60,20 +60,35 @@ const NotRegistered = () => {
   return (
     <Modal>
       {(isLoading || isRedirecting) && <Loader />}
-      <div className="not-registered">
-        <div className="not-registered-header">
-          <h3><Translate id="notRegistered.title" /></h3>
-          <p><Translate id="notRegistered.pleaseRegister" /></p>
+      {
+        (isSubscribed && !isAuth) &&
+        <div className="not-registered">
+          <div className="not-registered-header">
+            <h3><Translate id="notRegistered.noCredit" /></h3>
+          </div>
+          <div className="not-registered-cancel">
+            <button className="cancel-btn" onClick={closeLoginModal}><Translate id="button.cancel" /></button>
+          </div>
         </div>
-        <div className="not-registered-actions">
-          <button className="main-button" onClick={onLogin}><Translate id="button.login" /></button>
-          <button className="trans-btn" onClick={onRegister}><Translate id="button.register" /></button>
+      }
+      {
+        !isSubscribed &&
+        < div className="not-registered">
+          <div className="not-registered-header">
+            <h3><Translate id="notRegistered.title" /></h3>
+            <p><Translate id="notRegistered.pleaseRegister" /></p>
+          </div>
+          <div className="not-registered-actions">
+            <button className="main-button" onClick={onLogin}><Translate id="button.login" /></button>
+            <button className="trans-btn" onClick={onRegister}><Translate id="button.register" /></button>
+          </div>
+          <div className="not-registered-cancel">
+            <button className="cancel-btn" onClick={closeLoginModal}><Translate id="button.cancel" /></button>
+          </div>
         </div>
-        <div className="not-registered-cancel">
-          <button className="cancel-btn" onClick={closeLoginModal}><Translate id="button.cancel" /></button>
-        </div>
-      </div>
-    </Modal>
+      }
+
+    </Modal >
   );
 };
 

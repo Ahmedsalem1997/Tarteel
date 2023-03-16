@@ -63,7 +63,8 @@
     },
     "notRegistered": {
         "title": "you are not registered",
-        "pleaseRegister": "please login to enjoy the content"
+        "pleaseRegister": "please login to enjoy the content",
+        "noCredit": "sorry, you don't have enough credit"
     },
     "profile": {
         "followers": "followers",
