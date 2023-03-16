@@ -64,7 +64,7 @@
     "notRegistered": {
         "title": "you are not registered",
         "pleaseRegister": "please login to enjoy the content",
-        "noCredit": "sorry, you don't have enough credit"
+        "noCredit": "sorry, your subscribtion is inactive"
     },
     "profile": {
         "followers": "followers",
