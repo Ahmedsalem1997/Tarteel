@@ -8,8 +8,9 @@ export function setAuth(data) {
 export function getAuth() {
     const token = localStorage.getItem('token');
     const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
-    const isAuth = token && loggedUser;
-    return { token, loggedUser, isAuth }
+    const isSubscribed = token && loggedUser;
+    const isAuth = isSubscribed && loggedUser.is_subscribed;
+    return { token, loggedUser, isAuth, isSubscribed }
 }
 
 export function logout() {
