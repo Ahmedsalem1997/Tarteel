@@ -68,7 +68,6 @@ const Comments = (props) => {
     // setPerPage(prev => prev * page);
     // let currentPage = page;
     // setPage(1);
-
     props.onAddComment();
     getRecordComments();
     setRandomNum(Math.floor(Math.random() * 100));
