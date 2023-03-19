@@ -13,11 +13,11 @@ const SheikhProfileRecords = () => {
     return (
         <Fragment>
             <CarouselWrapper>
-                <ProfileHeader id={loggedUser.id} />
+                <ProfileHeader id={loggedUser?.id} />
             </CarouselWrapper>
 
             <div className="container-fluid gx-2 gx-md-5">
-                <SheikhRecords type={params.type} />
+                <SheikhRecords type={params?.type} />
             </div>
             {/* <HomeSubscribe /> */}
             <Footer />
