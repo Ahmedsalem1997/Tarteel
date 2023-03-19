@@ -38,7 +38,6 @@ const Comments = (props) => {
           // if (oldComments) {
           //   setComments([...oldComments, ...data.data]);
           // } else {
-          console.log('comments', data);
           setComments(data.data.sort((a, b) => b.user.is_sheikh - a.user.is_sheikh));
           // }
           // if (page === 1) {
