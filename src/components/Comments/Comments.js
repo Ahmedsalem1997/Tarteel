@@ -20,7 +20,7 @@ const Comments = (props) => {
   const openLoginModal = () => {
     dispatch(modalsActions.openLoginModal());
   }
-  const getRecordComments = (oldComments) => {
+  const getRecordComments = () => {
     // if (page > 1) {
     //   setPerPage(prev => prev * page);
     // }
@@ -38,6 +38,7 @@ const Comments = (props) => {
           // if (oldComments) {
           //   setComments([...oldComments, ...data.data]);
           // } else {
+          console.log('comments', data);
           setComments(data.data.sort((a, b) => b.user.is_sheikh - a.user.is_sheikh));
           // }
           // if (page === 1) {
@@ -73,12 +74,16 @@ const Comments = (props) => {
     setRandomNum(Math.floor(Math.random() * 100));
     // setPage(currentPage);
   }
+  const onDeleteComment = () => {
+    getRecordComments();
+    setRandomNum(Math.floor(Math.random() * 100));
+  }
   return (
     <Fragment>
       {isLoading && <Loader />}
       <div className="comments">
         {comments.map(comment => {
-          return (<Comment key={comment.id} comment={comment} />)
+          return (<Comment key={comment.id + randomNum} comment={comment} onDeleteComment={onDeleteComment} />)
         })
         }
       </div>
@@ -86,7 +91,7 @@ const Comments = (props) => {
         <button className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
       </div>} */}
       <div className="add-new-comment">
-        <AddComment key={randomNum} recordId={props.recordId} onAddComment={onAddComment} onDeleteComment={onAddComment} />
+        <AddComment key={randomNum} recordId={props.recordId} onAddComment={onAddComment} />
       </div>
     </Fragment>
   );
