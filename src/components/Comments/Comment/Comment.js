@@ -16,7 +16,7 @@ const Comment = (props) => {
   const [isLiked, setIsLiked] = useState(comment.is_liked);
   const [likesCount, setLikesCount] = useState(comment.likes_count);
   const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * 10));
-
+  const { isAuth, loggedUser } = getAuth();
   const toggleLike = () => {
     setIsLiked(isLikedPrev => {
       setLikesCount(prev => isLikedPrev ? prev - 1 : prev + 1);
@@ -46,6 +46,26 @@ const Comment = (props) => {
       }
     );
   };
+
+  const deleteComment = (commentId) => {
+    if (isAuth) {
+      sendRequest(
+        {
+          url: `comments/${commentId}`,
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        },
+        data => {
+          // setRecordUser(data.data);
+          setComment({});
+        },
+        err => {
+        }
+      )
+    }
+  }
   return (
     <Fragment>
       {isLoading && <Loader />}
@@ -94,7 +114,10 @@ const Comment = (props) => {
             <span>
               {lang === "ar"
                 ? comment?.created_at_ar
-                : comment?.created_at_en}
+                : comment?.created_at_en
+              }
+              &nbsp;&nbsp;
+              {(comment?.user?.is_mine && loggedUser?.is_sheikh) && <i className="fa-solid fa-trash-can error-color" onClick={() => deleteComment(comment.id)}></i>}
             </span>
           </div>
         </div>
