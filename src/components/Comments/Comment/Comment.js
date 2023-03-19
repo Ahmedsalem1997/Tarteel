@@ -69,7 +69,7 @@ const Comment = (props) => {
   return (
     <Fragment>
       {isLoading && <Loader />}
-      <div className="comment">
+      {comment && <div className="comment">
         <div className="comment-header">
           <div className="comment-header-user">
             <div className="comment-header-user-image">
@@ -121,7 +121,7 @@ const Comment = (props) => {
             </span>
           </div>
         </div>
-      </div>
+      </div>}
 
     </Fragment>
   );
