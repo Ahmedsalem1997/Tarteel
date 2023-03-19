@@ -117,7 +117,7 @@ const Comment = (props) => {
                 : comment?.created_at_en
               }
               &nbsp;&nbsp;
-              {(comment?.user?.is_mine && loggedUser?.is_sheikh) && <i className="fa-solid fa-trash-can error-color" onClick={() => deleteComment(comment.id)}></i>}
+              {(comment?.user?.is_mine && loggedUser?.is_sheikh) ? <i className="fa-solid fa-trash-can error-color" onClick={() => deleteComment(comment.id)}></i> : ''}
             </span>
           </div>
         </div>
