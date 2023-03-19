@@ -59,7 +59,8 @@ const Comment = (props) => {
         },
         data => {
           // setRecordUser(data.data);
-          setComment({});
+          // setComment({});
+          props.onDeleteComment();
         },
         err => {
         }

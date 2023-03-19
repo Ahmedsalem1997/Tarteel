@@ -86,7 +86,7 @@ const Comments = (props) => {
         <button className="main-button" onClick={onShowMore}><Translate id="button.showMore" /></button>
       </div>} */}
       <div className="add-new-comment">
-        <AddComment key={randomNum} recordId={props.recordId} onAddComment={onAddComment} />
+        <AddComment key={randomNum} recordId={props.recordId} onAddComment={onAddComment} onDeleteComment={onAddComment} />
       </div>
     </Fragment>
   );
