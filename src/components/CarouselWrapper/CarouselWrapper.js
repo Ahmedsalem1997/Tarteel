@@ -2,7 +2,7 @@ import { getAuth } from "../../utils/Auth";
 import Navigation from "../Navigation/Navigation";
 
 const CarouselWrapper = (props) => {
-    const img1 = require("../../assets/images/bg1.png");
+    const img1 = require("../../assets/images/bg6.webp");
     const img2 = require("../../assets/images/bg2.png");
     const img3 = require("../../assets/images/bg3.png");
     const img4 = require("../../assets/images/bg4.png");
