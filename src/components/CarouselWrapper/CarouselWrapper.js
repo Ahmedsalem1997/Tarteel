@@ -2,10 +2,10 @@ import { getAuth } from "../../utils/Auth";
 import Navigation from "../Navigation/Navigation";
 
 const CarouselWrapper = (props) => {
-    const img1 = require("../../assets/images/bg6.webp");
-    const img2 = require("../../assets/images/bg2.png");
-    const img3 = require("../../assets/images/bg3.png");
-    const img4 = require("../../assets/images/bg4.png");
+    const img1 = require("../../assets/images/bg9.png");
+    const img2 = require("../../assets/images/bg8.png");
+    const img3 = require("../../assets/images/bg7.png");
+    // const img4 = require("../../assets/images/bg4.png");
     const { loggedUser } = getAuth();
     return (
         <div id="carouselExampleIndicators" className="carousel slide">
@@ -19,9 +19,9 @@ const CarouselWrapper = (props) => {
                 <div className="carousel-item">
                     <img src={img3} className="d-block min-vw-100" alt="..." />
                 </div>
-                <div className="carousel-item">
+                {/* <div className="carousel-item">
                     <img src={img4} className="d-block min-vw-100" alt="..." />
-                </div>
+                </div> */}
             </div>
             <div className="carousel-content">
                 {props.children}
