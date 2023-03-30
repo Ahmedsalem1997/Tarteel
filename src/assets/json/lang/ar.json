@@ -114,9 +114,22 @@
         "maxImgFileSize": "برجاء رفع صورة اقل من 5 ميجا",
         "password": "برجاء ادخال كلمة سر قوية",
         "comment": "برجاء ادخال تعليق ما بين 3 الى 200 حرف",
-        "somethingWrong": "حدث خطأ برجاء اعادة المحاولة"
+        "somethingWrong": "حدث خطأ برجاء اعادة المحاولة",
+        "noContent": "عفوا لا يوجد محتوى"
     },
     "addNewRecord": {
         "chooseSurah": "اختر سورة"
+    },
+    "subscribe": {
+        "success": {
+            "subscribedSuccessfully": "تم تسجيلك بنجاح",
+            "logedInSuccessfully": "تم تسجيل دخولك بنجاح"
+        },
+        "error": {
+            "title": "خطأ!",
+            "alreadyRegistered": "هذا الرقم مسجل بالفعل برجاء تسجيل الدخول",
+            "somthingWentWrongPleaseSubscribe": "ناسف حدث خطأ برجاء إعادة التسجيل",
+            "somthingWentWrong": "ناسف حدث خطأ برجاء اعادة المحاولة"
+        }
     }
 }

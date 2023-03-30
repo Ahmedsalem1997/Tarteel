@@ -1,18 +1,36 @@
-import { Fragment } from "react";
+import { useEffect } from "react";
+import { Fragment, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Translate from "../../helpers/Translate/Translate";
+import { langActions } from "../../store/Lang/Lang";
 import { getAuth, logout } from "../../utils/Auth";
 
 
 
 const Navigation = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const auth = getAuth();
+  const [selectedLang, setSelectedLang] = useState('ar');
+  const globalLang = useSelector((state) => {
+    return state.lang.globalLang;
+  });
   const logUserOut = () => {
     logout();
     navigate('/');
     window.location.reload(false);
   }
+
+  const langChangeHandler = (e) => {
+    setSelectedLang(e.target.value);
+    console.log(e.target.value);
+    dispatch(langActions.translation({ lang: e.target.value }));
+  }
+
+  useEffect(() => {
+    setSelectedLang(globalLang);
+  }, [globalLang])
   return (
     // <ul className="navigation-links">
     //   <li><NavLink to="/home" activeclassname="active"><Translate id="navigation.home" /></NavLink></li>
@@ -54,6 +72,20 @@ const Navigation = () => {
                   <Link to="/" onClick={logUserOut}><Translate id="navigation.logout" /></Link>
                 </li>
               }
+              <li className="nav-item">
+                {/* <Link class="nav-link dropdown-toggle" data-bs-toggle="dropdown" to="" role="button" aria-expanded="false">Dropdown</Link>
+                <ul class="dropdown-menu">
+                  <li><Link class="dropdown-item" href="#">English</Link></li>
+                  <li><Link class="dropdown-item" href="#">Arabic</Link></li>
+                </ul> */}
+                <Link>
+                  <i className="fa-solid fa-globe mx-2"></i>
+                  <select className="lang-select" name='langSelect' value={selectedLang} onChange={langChangeHandler} >
+                    <option value='ar'>عربي</option>
+                    <option value='en'>English</option>
+                  </select>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

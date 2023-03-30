@@ -19,7 +19,7 @@ const Login = () => {
     const navigate = useNavigate();
     useEffect(() => {
         if (code || uuid) {
-            setSuccessMessage('تم تسجيل دخولك بنجاح');
+            setSuccessMessage('logedInSuccessfully');
             setErrorMessage('');
             fetchUserWithCode();
             // if (status === '409') {
@@ -40,7 +40,7 @@ const Login = () => {
             // }
         } else {
             setSuccessMessage('');
-            setErrorMessage('حدث خطا برجاء اعادة تسجيل الدخول');
+            setErrorMessage('somthingWentWrongPleaseSubscribe');
         }
 
 
@@ -101,7 +101,7 @@ const Login = () => {
             },
             err => {
                 // console.log('3333', err)
-                setErrorMessage('نأسف حدث خطا برجاء المحاولة مرة اخرى');
+                setErrorMessage('somthingWentWrong');
                 setSuccessMessage('');
             }
         )
@@ -112,13 +112,13 @@ const Login = () => {
             <div className="login-message">
                 {errorMessage && <div className="error-message">
                     <i className="fa-solid fa-triangle-exclamation"></i>
-                    <h4>خطأ!</h4>
-                    <p>{errorMessage}</p>
+                    <h4><Translate id="subscribe.error.title"></Translate></h4>
+                    <p><Translate id={'subscribe.error.' + errorMessage}></Translate></p>
                     <button onClick={() => navigate('/home')} className="error-message-cancel-btn w-100"><Translate id="navigation.home" /></button>
                 </div>}
                 {successMessage && <div className="success-message">
                     <i className="fa-regular fa-square-check"></i>
-                    <h4>{successMessage}</h4>
+                    <p><Translate id={'subscribe.success.' + successMessage}></Translate></p>
                     <button onClick={() => navigate('/home')} className="success-message-cancel-btn w-100"><Translate id="navigation.home" /></button>
                 </div>}
             </div>

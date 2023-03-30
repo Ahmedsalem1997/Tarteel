@@ -9,9 +9,11 @@
   top: 3.5rem;
   left: 0;
   width: 100%;
+
   .navbar-nav {
     padding-inline-start: 0;
   }
+
   li.nav-item {
 
     a {
@@ -21,11 +23,25 @@
       color: $white;
       padding: 1rem 1.5rem;
       border-bottom: 1px solid var(--border-color);
+
       &.active {
         border-bottom: 2px solid var(--main-btn-bg);
         color: var(--main-btn-bg);
         font-weight: 600;
       }
     }
+  }
+}
+
+select.lang-select {
+  // padding: 1rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  outline: none;
+  option {
+    background-color: transparent;
+    color: #000;
   }
 }

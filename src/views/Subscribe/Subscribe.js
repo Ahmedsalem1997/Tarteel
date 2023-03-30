@@ -40,18 +40,18 @@ const Subscribe = () => {
 
     useEffect(() => {
         if (status === '200' && message && (code || uuid)) {
-            setSuccessMessage('تم تسجيلك بنجاح');
+            setSuccessMessage('subscribedSuccessfully');
             setErrorMessage('');
         } else if (status === '409' && message && !(code || uuid)) {
-            setErrorMessage('هذا الرقم مسجل بالفعل برجاء تسجيل الدخول');
+            setErrorMessage('somthingWentWrongPleaseSubscribe');
             setSuccessMessage('');
         } else if (status === '409' && message && (code || uuid)) {
-            setSuccessMessage('تم تسجيل دخولك بنجاح');
+            setSuccessMessage('logedInSuccessfully');
             setErrorMessage('');
         }
         else {
             setSuccessMessage('');
-            setErrorMessage('ناسف حدث خطأ برجاء إعادة التسجيل');
+            setErrorMessage('somthingWentWrong');
         }
         if ((code || uuid)) {
             fetchUserWithCode();
@@ -148,7 +148,7 @@ const Subscribe = () => {
             err => {
                 // console.log('3333', err)
                 setSuccessMessage('');
-                setErrorMessage('ناسف حدث خطأ برجاء اعادة المحاولة');
+                setErrorMessage('somthingWentWrong');
             }
         )
     }
@@ -158,14 +158,14 @@ const Subscribe = () => {
             <div className="login-message">
                 {errorMessage && <div className="error-message">
                     <i className="fa-solid fa-triangle-exclamation"></i>
-                    <h4>خطأ!</h4>
-                    <p>{errorMessage}</p>
+                    <h4><Translate id="subscribe.error.title"></Translate></h4>
+                    <p><Translate id={'subscribe.error.' + errorMessage}></Translate></p>
                     {(status === '409' && message && !(code || uuid)) && <button className="main-button fs-6" onClick={onLogin}><Translate id="button.login" /></button>}
                     <button onClick={() => navigate('/home')} className="error-message-cancel-btn w-100"><Translate id="navigation.home" /></button>
                 </div>}
                 {successMessage && <div className="success-message">
                     <i className="fa-regular fa-square-check"></i>
-                    <h4>{successMessage}</h4>
+                    <p><Translate id={'subscribe.success.' + successMessage}></Translate></p>
                     <button onClick={() => navigate('/home')} className="success-message-cancel-btn w-100"><Translate id="navigation.home" /></button>
                 </div>}
             </div>
