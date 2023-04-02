@@ -36,7 +36,7 @@ const AudioRecord = (props) => {
 
     const stopRecording = (e) => {
         e.stopPropagation();
-        console.log('stopped');
+        // console.log('stopped');
         recorder
             .stop()
             .getMp3()
@@ -45,14 +45,14 @@ const AudioRecord = (props) => {
                     type: blob.type,
                     lastModified: Date.now()
                 });
-                console.log(file);
+                // console.log(file);
                 const newBlobUrl = URL.createObjectURL(file); //generates url from blob
                 setBlobUrl(newBlobUrl); //refreshes the page
                 setIsRecording(false);
                 setUploadedRecord(file);
                 props.onRecordFinished(file);
             })
-            .catch((e) => console.log(e));
+            .catch();
     };
 
     useEffect(() => {

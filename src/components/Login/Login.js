@@ -86,7 +86,7 @@ const Login = () => {
         if (uuid) {
             body = { ...body, uuid: uuid }
         }
-        console.log(body);
+        // console.log(body);
         sendRequest(
             {
                 url: 'users/login',

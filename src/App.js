@@ -80,12 +80,12 @@ function App() {
       setLang(rootEle.getAttribute("lang"));
     }
     dispatch(langActions.translation({ lang: lang }));
-    console.log('first init lang', lang);
+    // console.log('first init lang', lang);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
 
   useEffect(() => {
-    console.log('global lang changed on app', globalLang);
+    // console.log('global lang changed on app', globalLang);
     if (globalLang === "ar") {
       rootEle.setAttribute("dir", "rtl");
     }

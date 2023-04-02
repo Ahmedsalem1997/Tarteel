@@ -24,7 +24,7 @@ const Navigation = () => {
 
   const langChangeHandler = (e) => {
     setSelectedLang(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
     dispatch(langActions.translation({ lang: e.target.value }));
   }
 
