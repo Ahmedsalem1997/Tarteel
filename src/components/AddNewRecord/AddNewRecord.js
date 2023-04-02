@@ -95,7 +95,7 @@ const AddNewRecord = (props) => {
     const getReads = () => {
         sendRequest(
             {
-                url: `quran/reads`,
+                url: `quran/full_reads`,
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -210,7 +210,7 @@ const AddNewRecord = (props) => {
                         <select name="reads" value={selectedRead} onChange={onChangeReadHandler}>
                             {reads.map((read, i) => {
                                 return (
-                                    <option key={i + 1} value={i + 1}>{read}</option>
+                                    <option key={i + 1} value={i + 1}>{lang === 'ar' ? read.name : read.name_en}</option>
                                 )
                             })}
                         </select>
