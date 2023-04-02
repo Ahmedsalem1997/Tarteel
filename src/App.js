@@ -90,7 +90,7 @@ function App() {
       rootEle.setAttribute("dir", "rtl");
     }
     if (globalLang === "en") {
-      rootEle.removeAttribute("dir");
+      rootEle.setAttribute("dir", "ltr");
     }
     rootEle.setAttribute("lang", globalLang);
     localStorage.setItem("lang", globalLang);

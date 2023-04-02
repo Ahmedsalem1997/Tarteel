@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialLangState = { globalLang: 'ar', translation: require('../../assets/json/lang/en.json') }
+const initialLangState = { globalLang: 'ar', translation: require('../../assets/json/lang/ar.json') }
 
 const langSlice = createSlice({
     name: 'lang',
