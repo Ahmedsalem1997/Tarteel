@@ -18,6 +18,8 @@ const NotRegistered = () => {
   const { isLoading, error, sendRequest } = useHTTP();
   const [err, setErr] = useState('');
   const { isAuth, isSubscribed, loggedUser } = getAuth();
+  const [showSubscriptionType, setShowSubscriptionType] = useState(false);
+  const [selectedSubscriptionType, setSelectedSubscriptionType] = useState('daily');
   const onLogin = () => {
     setIsRedirecting(true);
     sendRequest(
@@ -36,26 +38,39 @@ const NotRegistered = () => {
     )
   }
   const onRegister = () => {
+    const operator = process.env.REACT_APP_OPERATOR_ID;
+
+    if (operator.startsWith('Zain')) {
+      setShowSubscriptionType(true);
+    } else {
+      handleRegister();
+    }
+    // handleRegister();
+  }
+
+  const handleRegister = (subType) => {
     setIsRedirecting(true);
+    const url = subType === 'monthly' ? 'subscribe?sub_type=monthly' : 'subscribe'
     sendRequest(
       {
-        url: "subscribe",
+        url: url,
         method: "POST",
-        // headers: { "Content-Type": "application/json" },
+        // headers: subType === 'monthly' ? { "sub_type": "monthly" } : {},
         // body: {
         //   long_term_token: setLongTermToken()
         // },
       },
       (data) => {
         // console.log(data);
-        window.location.replace(data.data);
+        // setTimeout(() => {
+          window.location.replace(data.data);
+        // }, 20000);
       },
       err => {
         setErr(err);
         setIsRedirecting(false);
       }
     );
-
   }
   return (
     <Modal>
@@ -81,6 +96,19 @@ const NotRegistered = () => {
           <div className="not-registered-actions">
             <button className="main-button" onClick={onLogin}><Translate id="button.login" /></button>
             <button className="trans-btn" onClick={onRegister}><Translate id="button.register" /></button>
+            {showSubscriptionType && <div className="subscriptionTypeWrapper">
+              <div className={`subscriptionType ${selectedSubscriptionType === 'daily' ? 'selected' : ''}`} onClick={() => setSelectedSubscriptionType('daily')}>
+                <input type="radio" id="daily" name="subType" value={'daily'} checked={selectedSubscriptionType === 'daily'} />
+                <label htmlFor="daily"><Translate id="notRegistered.daily" /> 2 <Translate id="notRegistered.SAR" /></label>
+              </div>
+              <div className={`subscriptionType ${selectedSubscriptionType === 'monthly' ? 'selected' : ''}`} onClick={() => setSelectedSubscriptionType('monthly')}>
+                <input type="radio" id="monthly" name="subType" value={'monthly'} checked={selectedSubscriptionType === 'monthly'} />
+                <label htmlFor="monthly"><Translate id="notRegistered.monthly" /> 30 <Translate id="notRegistered.SAR" /></label>
+              </div>
+              <button
+                onClick={() => handleRegister(selectedSubscriptionType)}
+                className="main-button"><Translate id="notRegistered.subscribe" /></button>
+            </div>}
           </div>
           <div className="not-registered-cancel">
             <button className="cancel-btn" onClick={closeLoginModal}><Translate id="button.cancel" /></button>
