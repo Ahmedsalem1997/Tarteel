@@ -20,7 +20,7 @@ const NotRegistered = () => {
   const { isAuth, isSubscribed, loggedUser } = getAuth();
   const [showSubscriptionType, setShowSubscriptionType] = useState(false);
   const [selectedSubscriptionType, setSelectedSubscriptionType] = useState('daily');
-  const [showTelInput, setShowTelInput] = useState(false);
+  // const [showTelInput, setShowTelInput] = useState(false);
   const [loginTel, setLoginTel] = useState('');
   const onLogin = () => {
     setIsRedirecting(true);
@@ -121,18 +121,18 @@ const NotRegistered = () => {
             <p><Translate id="notRegistered.pleaseRegister" /></p>
           </div>
           <div className="not-registered-actions">
-            <button className="main-button" onClick={() => setShowTelInput(!showTelInput)}><Translate id="button.login" /></button>
-            {
-              showTelInput &&
-              <form className="zain-login" onSubmit={onZainLogin}>
-                <div className="zain-login-input">
-                  <input value={loginTel} placeholder="05XXXXXXXX" type="tel" pattern="05[0-9]{8}" onChange={(e) => setLoginTel(e.target.value)} />
-                </div>
-                <button
-                  // onClick={() => onZainLogin()}
-                  className="trans-btn"><Translate id="button.login" /></button>
-              </form>
-            }
+            {/* <button className="main-button" onClick={() => setShowTelInput(!showTelInput)}><Translate id="button.login" /></button> */}
+            {/* {
+              showTelInput && */}
+            <form className="zain-login" onSubmit={onZainLogin}>
+              <div className="zain-login-input">
+                <input value={loginTel} placeholder="05XXXXXXXX" type="tel" pattern="05[0-9]{8}" onChange={(e) => setLoginTel(e.target.value)} />
+              </div>
+              <button
+                // onClick={() => onZainLogin()}
+                className="main-button"><Translate id="button.login" /></button>
+            </form>
+            {/* } */}
             <button className="trans-btn" onClick={onRegister}><Translate id="button.register" /></button>
             {showSubscriptionType && <div className="subscriptionTypeWrapper">
               <div className={`subscriptionType ${selectedSubscriptionType === 'daily' ? 'selected' : ''}`} onClick={() => setSelectedSubscriptionType('daily')}>
