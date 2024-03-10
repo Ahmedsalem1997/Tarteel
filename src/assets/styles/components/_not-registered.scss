@@ -49,3 +49,19 @@
     cursor: pointer;
   }
 }
+
+.zain-login {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.zain-login-input input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 2px solid var(--singleRecordCardBorder);
+  background-color: transparent;
+  color: var(--singleRecordCardBorder);
+  font-size: 1.2rem;
+}
