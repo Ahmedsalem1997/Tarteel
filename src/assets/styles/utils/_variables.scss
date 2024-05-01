@@ -2,6 +2,7 @@ $green: #65990c;
 $du-blue: #0086c3;
 $orange: #ff9d18;
 $stc-purple: #4f008c;
+$mobily-blue: #1985c1;
 $yellow: #9db30e;
 $tajawal: "Tajawal";
 $quran: "Quran";
@@ -56,7 +57,16 @@ $stc-theme: (
     "white-btn-color": $stc-purple,
     "play-pause-btn": lighten($stc-purple, 5),
     "dark-main-color": darken($stc-purple, 5)
-
+);
+$mobily-theme: (
+    "main-color": $mobily-blue,
+    "gradient-main-dark": darken($mobily-blue, 30),
+    "gradient-main-light": darken($mobily-blue, 20),
+    "main-icon-color": $mobily-blue,
+    "main-btn-bg": $mobily-blue,
+    "white-btn-color": $mobily-blue,
+    "play-pause-btn": lighten($mobily-blue, 5),
+    "dark-main-color": darken($mobily-blue, 5)
 );
 $main-colors: (
     "icon-color": $yellow,

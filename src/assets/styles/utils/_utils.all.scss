@@ -44,4 +44,7 @@
         // --gradient-main-dark: darken($du-blue, 30);
         // --gradient-main-light: darken($du-blue, 20);
     }
+    .mobily-theme {
+        @include create-css-vars($mobily-theme);
+    }
 }
